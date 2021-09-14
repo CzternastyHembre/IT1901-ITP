@@ -11,7 +11,7 @@ import java.util.function.UnaryOperator;
 public class Roulette {
 		
 	private Random rand = new Random();
-	public static final int RoulettSize = 37;	
+	public static final int RoulettSize = 36;	
 	public TemporaryUser user;
 	
 	public Roulette(TemporaryUser user) {
@@ -35,20 +35,22 @@ public class Roulette {
 	 */
 	public double calculate() {
 		rollNumber();
-		this.rolledNumber = 2;
-		System.out.println("RolledNumber = " + this.rolledNumber);
+		this.rolledNumber = 5;
+		System.out.println("RolledNumber = " + this.rolledNumber + "\n");
 		List<Guess> guesses = user.getGuesses();
 		
 		double winnings = 0;
 		
 		for (Guess guess : guesses) {
 			if (guess.isWin(rolledNumber)) {
-				System.out.println("" + guess.getClass().getSimpleName() + " = " + guess);
+				System.out.println("" + guess.getClass().getSimpleName() + " = " + guess + " " + (guess.amount * RoulettSize / guess.getPossibleWins()));
+				
 				winnings += guess.amount * RoulettSize / guess.getPossibleWins();
 			} else {
-				System.err.println("" + guess.getClass().getSimpleName() + " = " + guess);
+				System.err.println("" + guess.getClass().getSimpleName() + " = " + guess + " 0 ");
 			}
 		}
+		
 		user.addBalance(winnings);
 		return winnings;
 	}
@@ -63,15 +65,18 @@ public class Roulette {
 			
 		r.setnumber(1);
 		
+		System.out.println(u.getBalance());
+
 		u.addGuess(new PatternGuess(100, 1, 2));
 		u.addGuess(new NumberGuess(100, 2,5));
 		u.addGuess(new ListGuess(50, 2,5));
 		
+		System.out.println(u.getBalance());
+
 		System.out.println(r.calculate());
 		
 		System.out.println(u.getBalance());
 		
-		System.out.println();
 		
 	}
 }
