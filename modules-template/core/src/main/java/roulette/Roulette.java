@@ -1,6 +1,7 @@
 package roulette;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -8,58 +9,67 @@ import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
 
 public class Roulette {
-	
-	
-	public static final UnaryOperator<Integer> firstrow = a -> ((a+2) % 3);
-	public static final UnaryOperator<Integer> secondRow = a -> ((a+1) % 3);
-	public static final UnaryOperator<Integer> thirdRow = a -> (a == 0 ? -1 : a % 3);
-
-	public static final UnaryOperator<Integer> oneToTwelve = a -> (a > 0 && a < 13 ? 0 : -1);
-	public static final UnaryOperator<Integer> ThirteenToTventyfour= a -> (a > 12 && a < 25 ? 0 : -1);
-	public static final UnaryOperator<Integer> TventyfourToThirtysix= a -> (a > 24 && a < 37 ? 0 : -1);
-	
-	private HashMap<Integer, UnaryOperator<Integer>> myGuesses = new HashMap<>();
-	
-	public void addGuess(int amount, UnaryOperator<Integer> op) {
-		myGuesses.put(amount, op);
-	}
-	
-
-	private static int rolledNumber;
-	
-	
-
-	
-	public void setNumber(int number) {
-		Roulette.rolledNumber = number;
-	}
-	
-	public void makeThings() {
-		List l = new ArrayList<>();
 		
-		for (int i = 0; i < 37; i++) {
-			if (i % 3 == 2) {
-				l.add(i);
+	private Random rand = new Random();
+	public static final int RoulettSize = 37;	
+	public TemporaryUser user;
+	
+	public Roulette(TemporaryUser user) {
+		this.user = user;
+	}
+
+	private int rolledNumber;
+	
+	private void rollNumber() {
+		rolledNumber = rand.nextInt(38);	
+	}
+	public void setnumber(int rolledNumber) {
+		this.rolledNumber = rolledNumber;
+	}
+	
+	
+	/**
+	 * Rolls the board and calculates the amount of money won
+	 * @return
+	 * The amount of money won
+	 */
+	public double calculate() {
+		rollNumber();
+		this.rolledNumber = 2;
+		System.out.println("RolledNumber = " + this.rolledNumber);
+		List<Guess> guesses = user.getGuesses();
+		
+		double winnings = 0;
+		
+		for (Guess guess : guesses) {
+			if (guess.isWin(rolledNumber)) {
+				System.out.println("" + guess.getClass().getSimpleName() + " = " + guess);
+				winnings += guess.amount * RoulettSize / guess.getPossibleWins();
+			} else {
+				System.err.println("" + guess.getClass().getSimpleName() + " = " + guess);
 			}
 		}
-		System.out.println(l);
-	}
-	
-	
-	public boolean calculate(UnaryOperator<Integer> op) {
-		
-		return op.apply(rolledNumber) == 0;
+		user.addBalance(winnings);
+		return winnings;
 	}
 	
 	
 	
 	public static void main(String[] args) {
-		Roulette r = new Roulette();
-		r.setNumber(13);
 		
-		r.addGuess(1300, ThirteenToTventyfour);
-		r.addGuess(1300, ThirteenToTventyfour);
+		TemporaryUser u = new TemporaryUser(1000);
 		
-		System.out.println(r.calculate(oneToTwelve));
+		Roulette r = new Roulette(u);
+			
+		r.setnumber(1);
+		
+		u.addGuess(new PatternGuess(100, 1, 2));
+		u.addGuess(new NumberGuess(100, 2,5));
+		u.addGuess(new ListGuess(50, 2,5));
+		
+		System.out.println(r.calculate());
+		
+		System.out.println(u.getBalance());
+		
 	}
 }
