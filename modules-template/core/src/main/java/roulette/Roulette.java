@@ -20,7 +20,7 @@ public class Roulette {
 	
 	private HashMap<Integer, UnaryOperator<Integer>> myGuesses = new HashMap<>();
 	
-	public void setGuess(UnaryOperator<Integer> op, int amount) {
+	public void addGuess(int amount, UnaryOperator<Integer> op) {
 		myGuesses.put(amount, op);
 	}
 	
@@ -56,6 +56,9 @@ public class Roulette {
 	public static void main(String[] args) {
 		Roulette r = new Roulette();
 		r.setNumber(13);
+		
+		r.addGuess(1300, ThirteenToTventyfour);
+		r.addGuess(1300, ThirteenToTventyfour);
 		
 		System.out.println(r.calculate(oneToTwelve));
 	}
