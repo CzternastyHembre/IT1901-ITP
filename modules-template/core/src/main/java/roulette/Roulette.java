@@ -47,6 +47,7 @@ public class Roulette {
 	
 	
 	public boolean calculate(UnaryOperator<Integer> op) {
+		
 		return op.apply(rolledNumber) == 0;
 	}
 	
