@@ -71,5 +71,7 @@ public class Roulette {
 		
 		System.out.println(u.getBalance());
 		
+		System.out.println();
+		
 	}
 }

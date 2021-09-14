@@ -9,13 +9,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * JavaFX Roulette
  */
-public class App extends Application {
+public class RouletteApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Start.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Roulette.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setScene(new Scene(parent));
         stage.show();
