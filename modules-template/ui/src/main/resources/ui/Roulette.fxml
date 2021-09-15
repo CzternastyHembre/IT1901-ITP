@@ -18,6 +18,7 @@
         </rowConstraints>
          <children>
             <Pane fx:id="board" prefHeight="290.0" prefWidth="600.0" />
+            <Pane fx:id="chipFolder" prefHeight="110.0" prefWidth="418.0" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
