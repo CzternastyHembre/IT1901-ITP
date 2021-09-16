@@ -15,7 +15,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import roulette.ListGuess;
 import roulette.NumberGuess;
 import roulette.PokerChip;
 import roulette.Roulette;
@@ -35,10 +40,12 @@ public class RouletteController {
 	private TemporaryUser user;
 	private List<Circle> chipList = new ArrayList<>();
 	
-	public final int FontSize = 20;
+	public final int FontSize = 15;
+	private final Font textFont = Font.font("Arial", FontWeight.BOLD, FontSize);
+	private int chipRadius = 20;
 	
 
-	private int valueChip= 1;
+	private int valueChip= 0;
 	
 	private int rouletteRows = 3 ;
 	private int rouletteColums = 14;
@@ -61,6 +68,8 @@ public class RouletteController {
 			for (int x = 0; x < rouletteColums; x++) {
 				Pane tile = new Pane();
 				Label tileLabel = new Label();
+				tileLabel.setFont(textFont);
+				tileLabel.setTextFill(Color.WHITE);
 				if (x == 0) {//The leftmost column
 					if (y == 0) {
 						tile.setPrefSize(tileWidth, tileHeight * rouletteRows);
@@ -68,7 +77,6 @@ public class RouletteController {
 						anchorPane.getChildren().add(tile);
 						
 						tileLabel.setText("" + x);
-						tileLabel.setFont(new Font(FontSize));
 						tile.getChildren().add(tileLabel);
 						tileLabel.setTranslateX(tileWidth / 2 - FontSize / 2);
 						tileLabel.setTranslateY(tileHeight * rouletteRows / 2 - FontSize / 2);
@@ -82,13 +90,30 @@ public class RouletteController {
 					
 					tileLabel.setText("Row " + y);
 					tile.getChildren().add(tileLabel);
-					
 					anchorPane.getChildren().add(tile);
+
+					int start = y * 12 + 1;
+					int end = (y + 1) * 12;
+					int index = anchorPane.getChildren().indexOf(tile);
+
+					tile.setOnMouseClicked(e -> {
+						addListGuess(start, end);
+						addChip(index);
+						});
+
+					
 				} else {//all the columns in the middle (the numbers)
 					Pane numberTile = new Pane();
 					numberTile.setPrefSize(tileWidth, tileHeight);
 					numberTile.setTranslateX(tileWidth * x); 
 					numberTile.setTranslateY(tileHeight * y); 
+					
+					if ((x + y) % 2 == 0) {
+						numberTile.setStyle("-fx-background-color:red;");
+					} else {
+						numberTile.setStyle("-fx-background-color:black;");
+					}
+
 					
 					int number = (x - 1)*3 + (3- y);
 					tileLabel.setText("" + number);
@@ -96,64 +121,93 @@ public class RouletteController {
 					anchorPane.getChildren().add(numberTile);
 					int index = anchorPane.getChildren().indexOf(numberTile);
 					numberTile.setOnMouseClicked(e -> {addNumberGuess(number);addChip(index);});
-					
-					
-
 				}
-				
-//				String style = tile.getStyle();
-//				tile.setStyle(style + "-fx-cursor:pointer;");
 			}
 		}
 		for (int i = 0; i < PokerChip.values.length; i++) {
-			Circle c = getChip(i);
-			c.setTranslateX(i * 30 + 50);
-			c.setStroke(null);
-			int a = i;
-			chipFolder.getChildren().add(c);
-			c.setOnMouseClicked(e -> {
-				((Circle) chipFolder.getChildren().get(valueChip)).setStroke(null);
-				valueChip = a;
-				c.setStyle("-fx-border");
-				c.setStroke(Paint.valueOf("black"));
+			Pane chipContainer = getChip(i);
+			String style = chipContainer.getStyle();
+			
+			chipContainer.setTranslateX(i * (chipRadius*2 + 4) + 20);
+			int value = i;
+			chipFolder.getChildren().add(chipContainer);
+			chipContainer.setOnMouseClicked(e -> {
+				Pane oldChipContainer = (Pane) chipFolder.getChildren().get(valueChip);
+				
+				oldChipContainer.setStyle(style);
+				chipContainer.setStyle(style +  "-fx-opacity:0.5;");
+				valueChip = value;
 			});
 			if (i == valueChip) {
-				c.setStyle("-fx-border");
-				c.setStroke(Paint.valueOf("black"));
+				chipContainer.setStyle(style + "-fx-opacity:0.5;");
 			}
 		}
 
 	}
 	
 	private void addNumberGuess(int number) {
-		NumberGuess g = new NumberGuess(PokerChip.values[valueChip], number);
-		user.addGuess(g);
+		NumberGuess guess = new NumberGuess(PokerChip.values[valueChip], number);
+		user.addGuess(guess);
 	}
 	
-	private void addChip(int number) {
-		Pane tile = (Pane) anchorPane.getChildren().get(number);
-		Circle chip = getChip(valueChip);
-		double yTranslated = chip.getTranslateY();
+	private void addListGuess(int start, int end) {
+		ListGuess guess = new ListGuess(PokerChip.values[valueChip], start, end);
+		user.addGuess(guess);
+		System.out.println(start + " " + end);
+		
+	}
+	
+	private void addChip(int tileIndex) {
+		Pane tile = (Pane) anchorPane.getChildren().get(tileIndex);
+		
+		Pane chipContainer = getChip(valueChip);
+		double yTranslated = chipContainer.getTranslateY();
 		int chipSize = tile.getChildren().size() - 1; 	// - 1 because first child is a label
 		if (chipSize < 10) {
-			chip.setTranslateY(yTranslated + -chipSize*2);			
+			chipContainer.setTranslateY(yTranslated + -chipSize*2);			
 		} else {
-			chip.setTranslateY(yTranslated + -10*2);			
+			chipContainer.setTranslateY(yTranslated + -10*2);			
 
 		}
-		tile.getChildren().add(chip);
+		tile.getChildren().add(chipContainer);
 	}
 	
-	private Circle getChip(int n) {
+	private Pane getChip(int valueIndex) {
+		
+	Pane chipContainer = new Pane();
+	chipContainer.setTranslateX(tileWidth / 2);
+	chipContainer.setTranslateY(tileHeight / 2);
+
+		
 	Circle circle = new Circle();
-	PokerChip p = new PokerChip(n);
-	int r = 15;
-	circle.setRadius(r);
-	circle.setFill(Color.valueOf(p.getColor()));
-	circle.setTranslateX(tileWidth / 2);
-	circle.setTranslateY(tileHeight / 2);
+	PokerChip pokerChip = new PokerChip(valueIndex);
+	circle.setRadius(chipRadius);
+	circle.setFill(Color.valueOf(pokerChip.getColor()));
 	circle.setStroke(Paint.valueOf("black"));
-	return circle;
+	circle.setStrokeWidth(6);
+	circle.setStrokeLineCap(StrokeLineCap.BUTT);
+	circle.setStrokeType(StrokeType.INSIDE);
+	circle.setStyle("-fx-stroke-dash-array:8;");
+	
+
+	
+	Circle circle2 = new Circle();
+	circle2.setRadius(chipRadius);
+	circle2.setStroke(Paint.valueOf("black"));
+	
+	chipContainer.getChildren().add(circle2);
+	chipContainer.getChildren().add(circle);
+	
+	
+	Label chipLabel = new Label(pokerChip.getTextValue());
+	chipLabel.setFont(textFont);
+	chipLabel.setTranslateX(-FontSize/3*2 - 3);
+	chipLabel.setTranslateY(-FontSize/2 - 2);
+	chipLabel.setTextFill(Paint.valueOf("black"));
+	
+	chipContainer.getChildren().add(chipLabel);
+	
+	return chipContainer;
 	
 }
 
