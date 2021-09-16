@@ -12,8 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
-import core.*;
-import core.*;
 import roulette.NumberGuess;
 import roulette.PokerChip;
 import roulette.Roulette;
