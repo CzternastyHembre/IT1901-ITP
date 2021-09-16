@@ -1,9 +1,5 @@
 package ui;
 
-//
-//import roulette.Roulette;
-//import roulette.TemporaryUser;
-import core.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,13 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
-import tempRoulette.PokerChip;
-import tempRoulette.NumberGuess;
-import tempRoulette.Roulette;
-//import roulette.Roulette;
-import tempRoulette.TemporaryUser;
-
-//import calc.core.main.src.java.core.roulette.Roulette;
+import roulette.*;
 
 public class RouletteController {
 	
@@ -29,6 +19,8 @@ public class RouletteController {
 	Pane board;
 	@FXML
 	Pane chipFolder;
+	@FXML
+	Label moneyLabel;
 	
 	private Roulette r;
 	private TemporaryUser user;
@@ -40,11 +32,12 @@ public class RouletteController {
 	double paneWidth = width / (size/3);
 	double paneHeight= height / (size/12);
 
-	private int valueChip= 1;
+	private int valueChip= 0;
 	
 	
 	@FXML
 	public void initialize() {
+		board.getChildren().clear();
 		user = new TemporaryUser(1000);
 		r = new Roulette(user);
 		
@@ -68,7 +61,7 @@ public class RouletteController {
 				
 				board.getChildren().add(p);				
 			
-				p.setOnMouseClicked(e -> {addNumberGuess(number);addChip(number-1);run();});
+				p.setOnMouseClicked(e -> {addNumberGuess(number);addChip(number-1);});
 				
 			}
 		}
@@ -82,21 +75,31 @@ public class RouletteController {
 		
 		for (int i = 0; i < PokerChip.values.length; i++) {
 			Circle c = getChip(i);
-			c.setTranslateX(i * 30 + 50);
+			c.setTranslateX(i * 30 + 20);
 			int a = i;
 			chipFolder.getChildren().add(c);
+			
 			c.setOnMouseClicked(e -> {
 				((Circle) chipFolder.getChildren().get(valueChip)).setStroke(null);
 				valueChip = a;
-				c.setStyle("-fx-border");
+				c.setStyle("-fx-border-style:dashed;");
 				c.setStroke(Paint.valueOf("black"));
 				c.setStrokeWidth(5);
 			});
 			if (i == valueChip) {
-				c.setStyle("-fx-border");
+				c.setStyle("-fx-border-style:dashed;");
 				c.setStroke(Paint.valueOf("black"));
 				c.setStrokeWidth(5);				
 			}
+		}
+		for (int i = 0; i < PokerChip.values.length; i++) {
+			Label l = new Label("" + PokerChip.values[i]);
+			l.setFont(new Font(14));
+			l.setTextFill(Paint.valueOf("black"));
+			l.setTranslateX(i * 30 + 10);
+			l.setTranslateY(20);
+			chipFolder.getChildren().add(l);
+
 		}
 	}
 	
@@ -123,14 +126,16 @@ public class RouletteController {
 		System.out.println(n);
 	}
 	
+	@FXML
 	private void run() {
-		System.out.println(r.calculate());
+		double winnings = r.calculate();
+		updateMoneyLabel();
+		initialize();
 	}
 	
-	
-	public static void main(String[] args) {
-		System.out.println("y");
-//		Roulette r = new Roulette(new TemporaryUser(1000));
+	private void updateMoneyLabel() {
+		this.moneyLabel.setText("" + user.getBalance());
 	}
+	
 
 }
