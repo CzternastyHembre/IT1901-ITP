@@ -1,4 +1,4 @@
 module core {
-    exports core;
+    exports slots;
     exports roulette;
 }

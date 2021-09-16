@@ -1,4 +1,4 @@
-package core;
+package slots;
 
 import validators.SlotValidator;
 

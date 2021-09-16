@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="modules-ui" />
         <module name="modules-core" />
+        <module name="storage" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="modules-core" target="16" />
       <module name="modules-template" target="16" />
       <module name="modules-ui" target="16" />
+      <module name="storage" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
