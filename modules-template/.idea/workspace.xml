@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="renamed branch">
-      <change afterPath="$PROJECT_DIR$/storage/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/storage.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/core/Slots.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/slots/Slots.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/core/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/slots/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/storage.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/slots/Slots.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/slots/Slots.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/slots/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/user/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

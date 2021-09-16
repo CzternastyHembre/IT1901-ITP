@@ -1,5 +1,6 @@
 package slots;
 
+import user.User;
 import validators.SlotValidator;
 
 import java.util.*;
