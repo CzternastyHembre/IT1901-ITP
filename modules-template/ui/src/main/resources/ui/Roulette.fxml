@@ -33,7 +33,6 @@
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
                         <Label layoutX="374.0" layoutY="21.0" prefHeight="17.0" prefWidth="78.0" text="Dine penger:" />
-                        <Button layoutX="557.0" layoutY="17.0" mnemonicParsing="false" onAction="#run" text="Rull" />
                         <Label fx:id="moneyLabel" layoutX="452.0" layoutY="21.0" prefHeight="17.0" prefWidth="45.0" />
                      </children>
                   </Pane>
