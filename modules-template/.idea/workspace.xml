@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="new branch thar works">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules-template.iml" beforeDir="false" afterPath="$PROJECT_DIR$/modules-template.iml" afterDir="false" />
+    <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="renamed branch">
+      <change afterPath="$PROJECT_DIR$/storage/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/core/Slots.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/slots/Slots.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/core/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/slots/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/storage.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="testbranch" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -58,6 +63,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.RouletteApp" />
+        <item itemvalue="Application.RouletteApp" />
       </list>
     </recent_temporary>
   </component>
@@ -70,6 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1631094804686</updated>
       <workItem from="1631094809919" duration="1932000" />
+      <workItem from="1631791423670" duration="1097000" />
     </task>
     <task id="LOCAL−00001" summary="new branch thar works">
       <created>1631790757991</created>
@@ -77,7 +84,13 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1631790757992</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="renamed branch">
+      <created>1631791481625</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1631791481626</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +110,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new branch thar works" />
-    <option name="LAST_COMMIT_MESSAGE" value="new branch thar works" />
+    <MESSAGE value="renamed branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed branch" />
   </component>
 </project>
