@@ -61,9 +61,9 @@ public class Roulette {
 
 		System.out.println(u.getBalance());
 
-		u.addGuess(new PatternGuess(100, 1, 2));
-		u.addGuess(new NumberGuess(100, 2, 5));
-		u.addGuess(new ListGuess(50, 2, 5));
+//		u.addGuess(new PatternGuess(100, 1, 2));
+//		u.addGuess(new NumberGuess(100, 2, 5));
+//		u.addGuess(new ListGuess(50, 2, 5));
 
 		System.out.println(u.getBalance());
 

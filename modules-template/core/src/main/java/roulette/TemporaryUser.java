@@ -31,6 +31,14 @@ public class TemporaryUser {
 		this.balance -= delta;
 	}
 
+	public double getSumOfBets() {
+		if (guesses.size() == 0) {
+			return 0;
+		}
+		return guesses.stream().mapToDouble(guess -> guess.getAmount()).sum();
+	}
+
+	
 	public void addGuess(Guess guess) {
 		this.withdraw(guess.getAmount());
 		guesses.add(guess);

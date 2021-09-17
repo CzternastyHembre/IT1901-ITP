@@ -2,8 +2,8 @@ package roulette;
 
 public class NumberGuess extends Guess {
 
-	public NumberGuess(int amount, int... numbers) {
-		super(amount);
+	public NumberGuess(int... numbers) {
+		super();
 		for (int nums : numbers) {
 			this.numbers.add(nums);
 		}
