@@ -1,4 +1,4 @@
-package SaveHandler;
+package saveHandler;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,12 +7,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import user.User;
 
 public class UserSaveHandler{
 	
-	public final static String SAVE_FILE = "../storage/userData/data.txt";
+	public final static String SAVE_FILE = "storage/userData/data.txt";
 
 	
 	public static void createUser(User user) {
@@ -53,7 +52,7 @@ public class UserSaveHandler{
 	        sc.nextLine();
 	        String formatString2 = sc.nextLine();
 	        
-	        while (sc.hasNextLine()) {users.add(sc.nextLine());};
+	        while (sc.hasNextLine()) {users.add(sc.nextLine());}
 	        sc.close();
 	        
 	        FileWriter fileWriter = new FileWriter(SAVE_FILE); //Set true for append mode
@@ -74,7 +73,7 @@ public class UserSaveHandler{
 	        
 		    writer.close();
 		} catch (IOException e) {
-			e.printStackTrace();;
+			e.printStackTrace();
 		}
 	}
 	
@@ -90,7 +89,7 @@ public class UserSaveHandler{
     		double balance = Double.parseDouble(userInfo[1]);
     		return new User(currentName, balance);
 		} catch (IOException e) {
-			e.printStackTrace();;
+			e.printStackTrace();
 		}
 		return null;
 
@@ -113,7 +112,7 @@ public class UserSaveHandler{
 		    }
 		    sc.close();
 		} catch (IOException e) {
-			e.printStackTrace();;
+			e.printStackTrace();
 		}
 		return null;
 	}
