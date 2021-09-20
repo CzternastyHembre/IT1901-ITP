@@ -1,11 +1,8 @@
 package ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -23,7 +20,6 @@ import roulette.NumberGuess;
 import roulette.PatternGuess;
 import roulette.PokerChip;
 import roulette.Roulette;
-import roulette.TemporaryUser;
 import saveHandler.UserSaveHandler;
 import user.User;
 
