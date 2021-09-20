@@ -35,13 +35,7 @@ public class TemporaryUser {
 		if (guesses.size() == 0) {
 			return 0;
 		}
-		double betts = 0;
-		for (Guess guess : guesses) {
-			betts += guess.getAmount();
-			System.out.println(guess.getAmount());
-		}
-		System.out.println(betts + " " + guesses.stream().mapToDouble(guess -> guess.getAmount()).sum());
-		return betts;
+		return guesses.stream().mapToDouble(guess -> guess.getAmount()).sum();
 	}
 
 	

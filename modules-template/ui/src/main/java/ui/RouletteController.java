@@ -187,17 +187,17 @@ public class RouletteController {
 			
 			chipContainer.setTranslateX(i * (chipRadius*2 + 4) + 20);
 			chipContainer.setTranslateY(chipFolder.getPrefHeight() / 2);
-			int valueIndex = i;
+			int CurrentvalueIndex = i;
 			chipFolder.getChildren().add(chipContainer);
 			
 			chipContainer.setOnMouseClicked(e -> {
 				Pane oldChipContainer = (Pane) chipFolder.getChildren().get(valueIndex);
-				
 				oldChipContainer.setOpacity(1);
+					
 				chipContainer.setOpacity(0.5);
-				this.valueIndex = valueIndex;
+				this.valueIndex = CurrentvalueIndex;
 			});
-			if (this.valueIndex == valueIndex) {
+			if (this.valueIndex == CurrentvalueIndex) {
 				chipContainer.setStyle(style + "-fx-opacity:0.5;");
 			}
 		}
