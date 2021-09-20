@@ -11,7 +11,7 @@ import user.User;
 
 public class UserSaveHandler{
 	
-	public final static String SAVE_FILE = "storage/userData/data.txt";
+	public final static String SAVE_FILE = "userData/data.txt";
 
 	
 	public static void createUser(User user) {
@@ -121,7 +121,7 @@ public class UserSaveHandler{
 
 	public static void main(String[] args) {
 		User erlend = new User("Erlend", 1000);
-		User mattis = new User("Mattis", 99);
+		User mattis = new User("Mattis", 999);
 		User seb = new User("Seb", 100);
 		
 		UserSaveHandler.UpdateUser(mattis);
