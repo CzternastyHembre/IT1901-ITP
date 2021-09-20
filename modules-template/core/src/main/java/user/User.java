@@ -10,7 +10,7 @@ public class User {
         this.username = username;
     }
 
-    public void addMoney(int amount){
+    public void addMoney(double amount){
         this.money += amount;
     }
 
@@ -18,7 +18,7 @@ public class User {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(double money) {
         if (money < 0)
             throw new IllegalArgumentException("Cannot have a negative value of money");
         this.money = money;
