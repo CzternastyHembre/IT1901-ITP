@@ -51,7 +51,7 @@ public class RouletteController {
 	private final Font textFont = Font.font("Arial", FontWeight.BOLD, FontSize);
 	private int chipRadius = 20;
 		
-	private PokerChip pokerChip = new PokerChip(0);
+	private int valueIndex = 0;
 	
 	private int rouletteRows = 3 ;
 	private int rouletteColums = 14;
@@ -99,8 +99,7 @@ public class RouletteController {
 				}
 				
 				tile.getChildren().add(tileLabel);
-				Guess guess = new NumberGuess(number);
-				setGuess(guess, tile);
+				setNumberGuess(tile, number);
 //				tile.setOnMouseClicked(e -> {addNumberGuess(number, tile);});
 				
 				tileLabel.setText("" + number);
@@ -124,8 +123,7 @@ public class RouletteController {
 			int start = 3 - y;
 			int increment = 3;;
 			
-			Guess guess = new PatternGuess(start, increment);
-			setGuess(guess, tile);
+			setPatternGuess(tile, start, increment);
 		}
 		
 		for (int x = 0; x < 3; x++) {//The 4. row
@@ -144,8 +142,7 @@ public class RouletteController {
 			tileLabel.setText("" + tileString);
 			tile.getChildren().add(tileLabel);
 			
-			Guess guess = new ListGuess(startNumber, endNumber);
-			setGuess(guess, tile);
+			setListGuess(tile, startNumber, endNumber);
 		}
 		
 		for (int i = 0; i < 4; i++) {//The 5. row
@@ -162,20 +159,15 @@ public class RouletteController {
 			String tileString = startNumber + "";
 			tileLabel.setText("" + tileString);
 			
-			
 			tile.getChildren().add(tileLabel);	
 			
-			Guess guess;
-			
 			switch (i) {
-				case 0 -> {guess = new ListGuess(1, 18); tileLabel.setText("1-18");}
-				case 1 -> {guess = new PatternGuess(2, 2); tileLabel.setText("EVEN");}
-				case 2 -> {guess = new PatternGuess(1, 2); tileLabel.setText("ODD");}
-				case 3 -> {guess = new ListGuess(19, 36); tileLabel.setText("1-18");}
+				case 0 -> {setListGuess(tile, 1, 18);tileLabel.setText("1-18");}
+				case 1 -> {setPatternGuess(tile, 2, 2); tileLabel.setText("EVEN");}
+				case 2 -> {setPatternGuess(tile, 1, 2); tileLabel.setText("ODD");}
+				case 3 -> {setListGuess(tile, 19, 36); tileLabel.setText("1-18");}
 				default -> throw new IllegalArgumentException();
 			}
-			setGuess(guess, tile);
-
 		}
 		
 		for (Node node : anchorPane.getChildren()) {
@@ -188,7 +180,7 @@ public class RouletteController {
 			tileLabel.setTextFill(Paint.valueOf("white"));
 		}
 		
-		//Adding the select poker chip
+		//Adding the select poker chips
 		for (int i = 0; i < PokerChip.values.length; i++) {
 			Pane chipContainer = getChip(i);
 			String style = chipContainer.getStyle();
@@ -197,31 +189,51 @@ public class RouletteController {
 			chipContainer.setTranslateY(chipFolder.getPrefHeight() / 2);
 			int valueIndex = i;
 			chipFolder.getChildren().add(chipContainer);
+			
 			chipContainer.setOnMouseClicked(e -> {
-				Pane oldChipContainer = (Pane) chipFolder.getChildren().get(pokerChip.getIndex());
+				Pane oldChipContainer = (Pane) chipFolder.getChildren().get(valueIndex);
 				
-				oldChipContainer.setStyle(style);
-				chipContainer.setStyle(style +  "-fx-opacity:0.5;");
-				pokerChip.setIndex(valueIndex);
+				oldChipContainer.setOpacity(1);
+				chipContainer.setOpacity(0.5);
+				this.valueIndex = valueIndex;
 			});
-			if (valueIndex == pokerChip.getIndex()) {
+			if (this.valueIndex == valueIndex) {
 				chipContainer.setStyle(style + "-fx-opacity:0.5;");
 			}
 		}
 	}
 	
-	private void setGuess(Guess guess, Pane tile) {
-		List<Integer> numbers = guess.getNumbers();
-		tile.setOnMouseClicked(e -> addGuess(guess, tile));
-		
+	private void setNumberGuess(Pane tile, int number) {
+		tile.setOnMouseClicked(e -> {
+			NumberGuess guess = new NumberGuess(PokerChip.getValue(valueIndex), number);
+			addGuess(guess, tile);
+		});
+		setGuessAnimation(tile, new NumberGuess(PokerChip.getValue(valueIndex), number).getNumbers());
+	}
+	
+	private void setListGuess(Pane tile, int start, int end) {
+		tile.setOnMouseClicked(e -> {
+			ListGuess guess = new ListGuess(PokerChip.getValue(valueIndex), start, end);
+			addGuess(guess, tile);
+		});
+		setGuessAnimation(tile, new ListGuess(PokerChip.getValue(valueIndex), start, end).getNumbers());
+	}
+	
+	private void setPatternGuess(Pane tile, int start, int increment) {
+		tile.setOnMouseClicked(e -> {
+			PatternGuess guess = new PatternGuess(PokerChip.getValue(valueIndex), start, increment);
+			addGuess(guess, tile);
+		});
+		setGuessAnimation(tile, new PatternGuess(PokerChip.getValue(valueIndex), start, increment).getNumbers());
+	}
+	
+	private void setGuessAnimation(Pane tile, List<Integer> numbers) {
 		tile.setOnMousePressed(e -> numbers.forEach(num -> numbersTilesMap.get(num).setOpacity(0.5)));
 		tile.setOnMouseReleased(e -> numbers.forEach(num -> numbersTilesMap.get(num).setOpacity(1)));
-		
 		}
 	
 	private void addGuess(Guess guess, Pane tile) {
 		try {
-			guess.setAmount(pokerChip.getValue());
 			user.addGuess(guess);
 			moneyBettedLabel.setText("" + user.getSumOfBets());
 			moneyLabel.setText("" + user.getBalance());	
@@ -239,7 +251,7 @@ public class RouletteController {
 		double tileWidth = tile.getPrefWidth();
 		double tileHeight = tile.getPrefHeight();
 		
-		Pane chipContainer = getChip(pokerChip.getIndex());
+		Pane chipContainer = getChip(valueIndex);
 		chipContainer.setTranslateX(tileWidth / 2);
 		chipContainer.setTranslateY(tileHeight / 2);
 
@@ -260,18 +272,17 @@ public class RouletteController {
 	Pane chipContainer = new Pane();
 		
 	Circle circle = new Circle();
-	PokerChip pokerChip = new PokerChip(valueIndex);
 	circle.setRadius(chipRadius);
-	circle.setFill(Color.valueOf(pokerChip.getColor()));
+	circle.setFill(Color.valueOf(PokerChip.getColor(valueIndex)));
 	circle.setStroke(Paint.valueOf("black"));
 	circle.setStrokeWidth(6);
-	circle.setStrokeLineCap(StrokeLineCap.BUTT);
+	circle.setStrokeLineCap(StrokeLineCap.BUTT);//The poker chip border design
 	circle.setStrokeType(StrokeType.INSIDE);
 	circle.setStyle("-fx-stroke-dash-array:8;");
 	
 
 	
-	Circle circle2 = new Circle();
+	Circle circle2 = new Circle();//To get a "seconde border on the chip
 	circle2.setRadius(chipRadius);
 	circle2.setStroke(Paint.valueOf("black"));
 	
@@ -279,7 +290,7 @@ public class RouletteController {
 	chipContainer.getChildren().add(circle);
 	
 	
-	Label chipLabel = new Label(pokerChip.getTextValue());
+	Label chipLabel = new Label(PokerChip.getTextValue(valueIndex));
 	chipLabel.setFont(textFont);
 	chipLabel.setTranslateX(-FontSize/3*2 - 3);
 	chipLabel.setTranslateY(-FontSize/2 - 2);

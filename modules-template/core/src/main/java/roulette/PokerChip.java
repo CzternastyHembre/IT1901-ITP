@@ -6,29 +6,17 @@ public class PokerChip {
 	public static final String[] textValues = {"  1", "  5"," 25", " 50", "100", "500", " 1k", " 5k", "10k", "50k"};
 	
 	
-	private int index;
-		
-	public PokerChip(int index) {
-		this.index = index;
-	}
 	
-	public void setIndex(int index) {
-		this.index = index;
-	}
 	
-	public int getIndex() {
-		return index;
-	}
-	
-	public String getColor() {
+	public static String getColor(int index) {
 		return colors[index % colors.length];
 	}
 	
-	public int getValue() {
+	public static int getValue(int index) {
 		return values[index];
 	}
 	
-	public String getTextValue() {
+	public static String getTextValue(int index) {
 		return textValues[index];
 	}
 	
