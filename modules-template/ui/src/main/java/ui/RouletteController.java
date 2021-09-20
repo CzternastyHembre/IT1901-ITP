@@ -25,6 +25,8 @@ import roulette.PatternGuess;
 import roulette.PokerChip;
 import roulette.Roulette;
 import roulette.TemporaryUser;
+import saveHandler.UserSaveHandler;
+import user.User;
 
 //import calc.core.main.src.java.core.roulette.Roulette;
 
@@ -43,7 +45,7 @@ public class RouletteController {
 	Label feedBackLabel;
 	
 	private Roulette rouletteGame;
-	private TemporaryUser user;
+	private User user;
 	private List<Circle> chipList = new ArrayList<>();
 	private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
 	
@@ -58,7 +60,7 @@ public class RouletteController {
 		/*
 		 * Takes in an temporary user for now
 		 */
-		user = new TemporaryUser(1000);
+		user = UserSaveHandler.getActiveUser();
 		rouletteGame = new Roulette(user);
 		
 		int rouletteRows = 3 ;
