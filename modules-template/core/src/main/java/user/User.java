@@ -17,6 +17,14 @@ public class User {
     public double getMoney() {
         return money;
     }
+    
+	public void withdraw(double delta) {
+		if (delta > money) {
+			throw new IllegalStateException("You dont have enough money");
+		}
+		this.money -= delta;
+	}
+
 
     public void setMoney(double money) {
         if (money < 0)
