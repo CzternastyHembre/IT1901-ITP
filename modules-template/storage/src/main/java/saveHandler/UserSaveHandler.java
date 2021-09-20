@@ -11,7 +11,7 @@ import user.User;
 
 public class UserSaveHandler{
 	
-	public final static String SAVE_FILE = "userData/data.txt";
+	public final static String SAVE_FILE = "../storage/userData/data.txt";
 
 	
 	public static void createUser(User user) {
@@ -124,6 +124,7 @@ public class UserSaveHandler{
 		User mattis = new User("Mattis", 999);
 		User seb = new User("Seb", 100);
 		
+		System.out.println(UserSaveHandler.getActiveUser());
 		UserSaveHandler.UpdateUser(mattis);
 	}
 }

@@ -1,15 +1,20 @@
 package roulette;
 
 import java.util.Random;
+
+import user.User;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Roulette {
 
 	private Random rand = new Random();
 	public static final int RoulettSize = 36;
-	public TemporaryUser user;
+	private User user;
+	private List<Guess> guesses = new ArrayList<>();
 
-	public Roulette(TemporaryUser user) {
+	public Roulette(User user) {
 		this.user = user;
 	}
 
@@ -19,8 +24,8 @@ public class Roulette {
 		rolledNumber = rand.nextInt(38);
 	}
 
-	public void setnumber(int rolledNumber) {
-		this.rolledNumber = rolledNumber;
+	public int getRolledNumber() {
+		return rolledNumber;
 	}
 
 	/**
@@ -32,7 +37,6 @@ public class Roulette {
 		rollNumber();
 		this.rolledNumber = 5;
 		System.out.println("RolledNumber = " + this.rolledNumber + "\n");
-		List<Guess> guesses = user.getGuesses();
 
 		double winnings = 0;
 
@@ -47,31 +51,33 @@ public class Roulette {
 			}
 		}
 
-		user.addBalance(winnings);
+		user.addMoney(winnings);
+		guesses.clear();
 		return winnings;
 	}
+	
+	public double getSumOfBets() {
+		if (guesses.size() == 0) {
+			return 0;
+		}
+		return guesses.stream().mapToDouble(guess -> guess.getAmount()).sum();
+	}
+	
+	public void addGuess(Guess guess) {
+		user.withdraw(guess.getAmount());
+		guesses.add(guess);
+	}
+	
+	public void cleacGuess() {
+		guesses.remove(guesses.size());
+	}
+
 
 	public static void main(String[] args) {
 
-		TemporaryUser u = new TemporaryUser(1000);
-
-		Roulette r = new Roulette(u);
-
-		r.setnumber(1);
-
-		System.out.println(u.getBalance());
 
 //		u.addGuess(new PatternGuess(100, 1, 2));
 //		u.addGuess(new NumberGuess(100, 2, 5));
 //		u.addGuess(new ListGuess(50, 2, 5));
-
-		System.out.println(u.getBalance());
-
-		System.out.println(r.calculate());
-
-		System.out.println(u.getBalance());
-		
-		System.out.println(System.getProperties());
-
 	}
 }

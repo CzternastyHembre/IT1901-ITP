@@ -1,11 +1,8 @@
 package ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -17,16 +14,14 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.util.Duration;
 import roulette.Guess;
 import roulette.ListGuess;
 import roulette.NumberGuess;
 import roulette.PatternGuess;
 import roulette.PokerChip;
 import roulette.Roulette;
-import roulette.TemporaryUser;
-
-//import calc.core.main.src.java.core.roulette.Roulette;
+import saveHandler.UserSaveHandler;
+import user.User;
 
 public class RouletteController {
 	
@@ -41,10 +36,13 @@ public class RouletteController {
 	Label moneyBettedLabel;
 	@FXML
 	Label feedBackLabel;
+	@FXML
+	Label nameLabel;
+	@FXML
+	Label rolledNumberLabel;
 	
 	private Roulette rouletteGame;
-	private TemporaryUser user;
-	private List<Circle> chipList = new ArrayList<>();
+	private User user;
 	private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
 	
 	public final int FontSize = 15;
@@ -58,7 +56,7 @@ public class RouletteController {
 		/*
 		 * Takes in an temporary user for now
 		 */
-		user = new TemporaryUser(1000);
+		user = UserSaveHandler.getActiveUser();
 		rouletteGame = new Roulette(user);
 		
 		int rouletteRows = 3 ;
@@ -70,8 +68,8 @@ public class RouletteController {
 		double tileWidth = width / rouletteColums;
 		double tileHeight= height / rouletteRows;
 		
-		moneyBettedLabel.setText("" + user.getSumOfBets());
-		moneyLabel.setText("" + user.getBalance());
+		updateLables();
+		nameLabel.setText(user.getUsername());
 
 		anchorPane.setStyle("-fx-background-color:#075600");
 		chipFolder.setStyle("-fx-background-color:#075600");
@@ -122,7 +120,7 @@ public class RouletteController {
 			anchorPane.getChildren().add(tile);
 	
 			int start = 3 - y;
-			int increment = 3;;
+			int increment = 3;
 			
 			setPatternGuess(tile, start, increment);
 		}
@@ -206,7 +204,21 @@ public class RouletteController {
 	
 	@FXML
 	public void run() {
-		
+		double winnings = rouletteGame.calculate();
+		feedBackLabel.setText("you won: " + winnings);
+		UserSaveHandler.UpdateUser(user);
+		updateLables();
+		clearChips();
+		rolledNumberLabel.setText( "" + rouletteGame.getRolledNumber());
+//		System.out.println("" + rouletteGame.getRolledNumber());
+	}
+	
+	private void clearChips() {
+		numbersTilesMap.forEach((k,v) -> {
+			for (int i = v.getChildren().size() - 1; i > 0; i--) {
+				v.getChildren().remove(i);
+			}
+		});;
 	}
 	
 	private void addChip(Pane tile) {
@@ -295,15 +307,19 @@ public class RouletteController {
 	
 	private void addGuess(Guess guess, Pane tile) {
 		try {
-			user.addGuess(guess);
-			moneyBettedLabel.setText("" + user.getSumOfBets());
-			moneyLabel.setText("" + user.getBalance());	
+			rouletteGame.addGuess(guess);
+			updateLables();
 			addChip(tile);
 			feedBackLabel.setText(null);
 			
 		} catch (Exception e) {
 			feedBackLabel.setText(e.getMessage());
 		}
+	}
+	
+	private void updateLables() {
+		moneyBettedLabel.setText("" + rouletteGame.getSumOfBets());
+		moneyLabel.setText("" + user.getMoney());
 	}
 
 }
