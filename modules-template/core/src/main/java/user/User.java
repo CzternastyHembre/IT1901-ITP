@@ -2,11 +2,11 @@ package user;
 
 public class User {
 
-    private int money;
+    private double money;
     private String username;
 
-    public User(String username, int money) {
-        this.money = 0;
+    public User(String username, double money) {
+        this.money = money;
         this.username = username;
     }
 
@@ -14,7 +14,7 @@ public class User {
         this.money += amount;
     }
 
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
