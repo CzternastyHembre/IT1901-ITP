@@ -14,6 +14,6 @@ The user has the need to play roulette where the application is as random as rou
 
 **Important to do**
 * Be able to easily put their chips in their right place.
-* Be able to bet on multiple spots*
+* Be able to bet on multiple spots
 * Being able to undo bets.
 
