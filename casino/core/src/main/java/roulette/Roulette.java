@@ -35,7 +35,7 @@ public class Roulette {
 	 */
 	public double calculate() {
 		rollNumber();
-		this.rolledNumber = 5;
+//		this.rolledNumber = 5;
 		System.out.println("RolledNumber = " + this.rolledNumber + "\n");
 
 		double winnings = 0;
