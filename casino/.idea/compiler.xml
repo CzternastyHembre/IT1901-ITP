@@ -13,8 +13,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="modules-core" target="16" />
-      <module name="modules-template" target="16" />
       <module name="modules-ui" target="16" />
+      <module name="parent" target="16" />
       <module name="storage" target="16" />
     </bytecodeTargetLevel>
   </component>

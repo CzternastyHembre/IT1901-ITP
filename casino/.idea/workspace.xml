@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="renamed branch">
-      <change afterPath="$PROJECT_DIR$/storage/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/SaveHandler/UserSaveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/storage/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules-template.iml" beforeDir="false" afterPath="$PROJECT_DIR$/parent.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/userData/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/storage/userData/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/modules-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/modules-ui.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +50,20 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.App" />
+      <module name="modules-ui" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RouletteApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.RouletteApp" />
       <module name="modules-ui" />
@@ -59,6 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.RouletteApp" />
         <item itemvalue="Application.RouletteApp" />
       </list>
@@ -75,6 +96,7 @@
       <workItem from="1631094809919" duration="1932000" />
       <workItem from="1631791423670" duration="1097000" />
       <workItem from="1632145922389" duration="225000" />
+      <workItem from="1632212241413" duration="329000" />
     </task>
     <task id="LOCAL−00001" summary="new branch thar works">
       <created>1631790757991</created>

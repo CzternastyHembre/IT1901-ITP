@@ -32,5 +32,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.testfx:testfx-junit5:4.0.16-alpha" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest:2.2" level="project" />
     <orderEntry type="module" module-name="modules-core" />
+    <orderEntry type="module" module-name="storage" />
   </component>
 </module>
