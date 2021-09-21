@@ -34,7 +34,7 @@ public class UserSaveHandler{
 		}
 	}
 	
-	private static void setActive(User user) {
+	public static void setActive(User user) {
 		UpdateUser(user);
 	}
 	
@@ -108,7 +108,6 @@ public class UserSaveHandler{
 		    	if (currentName.equals(userName)) {
 		    		double balance = Double.parseDouble(userInfo[1]);
 					User user = new User(userName, balance);
-					setActive(user);
 		    		return user;
 				}
 		    }
