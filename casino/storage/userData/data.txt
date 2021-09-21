@@ -1,6 +1,7 @@
 -Format: userName;Balance
 - Active User:
-Mattis;899.0
+Karen;1.0
 - Users:
 Erlend;1000.0
 Mattis;899.0
+Karen;3020.0

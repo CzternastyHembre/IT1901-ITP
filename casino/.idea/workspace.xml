@@ -4,17 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="renamed branch">
-      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="Fixed maven-problems and changed to casino">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/CreateUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/LogInController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/main/resources/ui/Create_User.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/main/resources/ui/Log_in.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/main/resources/ui/Start.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../modules-template/core/modules-core.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../modules-template/storage/storage.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../modules-template/ui/modules-ui.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules-template.iml" beforeDir="false" afterPath="$PROJECT_DIR$/parent.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/userData/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/storage/userData/data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/modules-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/modules-ui.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/StartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/RouletteApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/RouletteApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/ui/App.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="module-info" />
+        <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -96,7 +102,7 @@
       <workItem from="1631094809919" duration="1932000" />
       <workItem from="1631791423670" duration="1097000" />
       <workItem from="1632145922389" duration="225000" />
-      <workItem from="1632212241413" duration="329000" />
+      <workItem from="1632212241413" duration="2871000" />
     </task>
     <task id="LOCAL−00001" summary="new branch thar works">
       <created>1631790757991</created>
@@ -110,7 +116,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1631791481626</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Fixed maven-problems and changed to casino">
+      <created>1632212594501</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1632212594501</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +143,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new branch thar works" />
     <MESSAGE value="renamed branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed branch" />
+    <MESSAGE value="Fixed maven-problems and changed to casino" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed maven-problems and changed to casino" />
   </component>
 </project>
