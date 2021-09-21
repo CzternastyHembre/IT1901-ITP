@@ -11,7 +11,7 @@ import user.User;
 
 public class UserSaveHandler{
 	
-	public final static String SAVE_FILE = "../storage/userData/data.txt";
+	public final static String SAVE_FILE = "storage/userData/data.txt";
 
 	
 	public static void createUser(User user) {
@@ -34,7 +34,7 @@ public class UserSaveHandler{
 		}
 	}
 	
-	public static void setActive(User user) {
+	private static void setActive(User user) {
 		UpdateUser(user);
 	}
 	
@@ -107,7 +107,9 @@ public class UserSaveHandler{
 		    	String currentName = userInfo[0];
 		    	if (currentName.equals(userName)) {
 		    		double balance = Double.parseDouble(userInfo[1]);
-		    		return new User(userName, balance);
+					User user = new User(userName, balance);
+					setActive(user);
+		    		return user;
 				}
 		    }
 		    sc.close();

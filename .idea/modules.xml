@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/modules-template/core/modules-core.iml" filepath="$PROJECT_DIR$/modules-template/core/modules-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules-template/modules-template.iml" filepath="$PROJECT_DIR$/modules-template/modules-template.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules-template/ui/modules-ui.iml" filepath="$PROJECT_DIR$/modules-template/ui/modules-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules-template/storage/storage.iml" filepath="$PROJECT_DIR$/modules-template/storage/storage.iml" />
     </modules>
   </component>
 </project>
