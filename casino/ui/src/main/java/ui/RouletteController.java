@@ -214,9 +214,10 @@ public class RouletteController {
 	}
 	
 	private void clearChips() {
-		numbersTilesMap.forEach((k,v) -> {
-			for (int i = v.getChildren().size() - 1; i > 0; i--) {
-				v.getChildren().remove(i);
+		anchorPane.getChildren().forEach((n) -> {
+			Pane tile = (Pane) n;
+			for (int i = tile.getChildren().size() - 1; i > 0; i--) {
+				tile.getChildren().remove(i);
 			}
 		});;
 	}
