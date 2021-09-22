@@ -9,10 +9,10 @@ hence if you guess the correct number the reward will be 36 times the amount you
 
 **Odds**
 - Single number ods is 1 in 37 (includes 0) which is not included in the pay - **1 to 36** pay
-- Collection of all even or odd numbers the odds are 1 in 2 - **1 to 2** pay
-- Collection of 1-12, 13-24 and 25-36 odds are 1 in 3 -  **1 to 3** pay
-- Collection of 1-18 and 19-36 odds are 1 in 2- **1 to 2** pay
-- Row 1, row 2 and row 3 odds are 1 in 3- **1 to 3** pay
+- Collection of all even or odd numbers the odds are 1 in 2  -  **1 to 2** pay
+- Collection of 1-12, 13-24 and 25-36 odds are 1 in 3  -   **1 to 3** pay
+- Collection of 1-18 and 19-36 odds are 1 in 2  -  **1 to 2** pay
+- Row 1, row 2 and row 3 odds are 1 in 3  -  **1 to 3** pay
 
 ## User
 This is the folder of all the sourcecode to the User classes
