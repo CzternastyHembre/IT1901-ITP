@@ -4,25 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="Fixed maven-problems and changed to casino">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/test/java/oddstest/OddsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="Added more tests to the project and fixed bugs within the jacoo plugin.">
+      <change afterPath="$PROJECT_DIR$/core/src/test/java/roulette/OddsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/modules-core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/core/modules-core.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/roulette/PokerChip.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/roulette/PokerChip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/roulette/Roulette.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/roulette/Roulette.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/parent.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/test/java/oddstest/OddsTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/storage.iml" beforeDir="false" afterPath="$PROJECT_DIR$/storage/storage.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/userData/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/storage/userData/data.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/bin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/bin/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/bin/src/test/java/ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ui/bin/src/test/java/ui/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/modules-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/modules-ui.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/CreateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/CreateUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/test/java/ui/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +89,8 @@
     </configuration>
     <configuration name="OddsTest.checkOddSingleNumberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="modules-core" />
-      <option name="PACKAGE_NAME" value="oddstest" />
-      <option name="MAIN_CLASS_NAME" value="oddstest.OddsTest" />
+      <option name="PACKAGE_NAME" value="roulette" />
+      <option name="MAIN_CLASS_NAME" value="roulette.OddsTest" />
       <option name="METHOD_NAME" value="checkOddSingleNumberTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -142,9 +133,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.OddsTest.checkOddSingleNumberTest" />
+        <item itemvalue="Application.RouletteApp" />
         <item itemvalue="Application.App" />
-        <item itemvalue="Application.RouletteApp" />
-        <item itemvalue="Application.RouletteApp" />
+        <item itemvalue="JUnit.OddsTest.checkOddSingleNumberTest" />
+        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -205,7 +197,8 @@
     <MESSAGE value="new branch thar works" />
     <MESSAGE value="renamed branch" />
     <MESSAGE value="Fixed maven-problems and changed to casino" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed maven-problems and changed to casino" />
+    <MESSAGE value="Added more tests to the project and fixed bugs within the jacoo plugin." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more tests to the project and fixed bugs within the jacoo plugin." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

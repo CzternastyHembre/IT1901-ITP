@@ -108,9 +108,9 @@
                         </execution>
                         <execution>
                             <id>jacoco-report</id>
-                            <phase>verify</phase>
+                            <phase>test</phase>
                             <goals>
-                                <goal>report-aggregate</goal>
+                                <goal>report</goal>
                             </goals>
                         </execution>
                     </executions>

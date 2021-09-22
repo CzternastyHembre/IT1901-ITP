@@ -1,5 +1,4 @@
-package oddstest;
-
+package roulette;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -7,23 +6,23 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import roulette.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import user.User;
 
-
 public class OddsTest {
 
-    Roulette rouletteGame = new Roulette(new User("userrr", 1000));
+    Roulette roulette = new Roulette(new User("bob", 1000));
 
     @Test
-    public void checkOddSingleNumberTest(){
-        Guess guess = new NumberGuess(5, 1);
-        rouletteGame.addGuess(guess);
+    public void testSingleValueTest(){
+        Guess numberGuess = new NumberGuess(5, 1);
+        roulette.addGuess(numberGuess);
 
-        rouletteGame.setRolledNumber(5);
-        assertEquals(0, rouletteGame.calcuteGuessWinnings());
-
+        roulette.setRolledNumber(6);
+        assertEquals(0, roulette.calcuteGuessWinnings());
     }
+
 }
