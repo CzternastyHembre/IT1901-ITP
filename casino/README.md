@@ -17,3 +17,12 @@ The storage module contains all the classes and files for saving (reading and wr
 Since this project is a bigger java application, it is usefull to use a building tool, like Maven or Gradle, to run the tests, check the quality of the code, etc. Our project is configured to use Maven and therefore has a pom.xml file for the configuration: 
 The pom.xml file contains different types of information about the project:
 - Identefication in the form of **groupId, ArtifactId and version-elements**
+- Dependecncies in the form of **Dependecncies-elements**
+- Plugins in the form of **Plugin-elements**
+
+Our maven build also has the follwing:
+- Setup of Java (**Maven-compiler-plugin**)
+- Testing (**Maven-surefire-plugin**)
+- The running of JavaFx (**javafx-maven-plugin**)
+
+
