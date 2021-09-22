@@ -25,5 +25,9 @@ Our maven build also has the follwing:
 - Setup of Java (**Maven-compiler-plugin**)
 - Testing (**Maven-surefire-plugin**)
 - The running of JavaFx (**javafx-maven-plugin**)
+- Checking the quality of the code with spotbugs (**spotbugs-maven-plugin**)
+- Test coverage with jacoco (**jacoco-maven-plugin**)
+
+
 
 
