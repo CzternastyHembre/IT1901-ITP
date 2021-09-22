@@ -11,7 +11,8 @@ import user.User;
 
 public class UserSaveHandler{
 	
-	public final static String SAVE_FILE = "/workspace/gr2124/casino/storage/userData/data.txt";
+	public final static String SAVE_FILE = "/workspace/gr2124/casino/storage/userData/data.txt";//Savefile for gidPod
+//	public final static String SAVE_FILE = "../storage/userData/data.txt"; //Temporaty local savefile
 
 	
 	public static void createUser(User user) {
@@ -24,7 +25,7 @@ public class UserSaveHandler{
 	        FileWriter fileWriter = new FileWriter(SAVE_FILE, true); //Set true for append mode
 	        PrintWriter writer = new PrintWriter(fileWriter);
 
-	        String formatString = user.getUsername() + ";" + user.getMoney();
+	        String formatString = user.getUsername() + ";" + user.getBalance();
 			writer.println(formatString);  //New line
 			writer.close();
 			
@@ -59,12 +60,12 @@ public class UserSaveHandler{
 	        PrintWriter writer = new PrintWriter(fileWriter);
 	        
 	        writer.println(formatString1);
-	        writer.println(user.getUsername() + ";" + user.getMoney());
+	        writer.println(user.getUsername() + ";" + user.getBalance());
 	        writer.println(formatString2);
 	        
 	        for (String userString : users) {
 				if (userString.split(";")[0].equals(user.getUsername())) {
-			        writer.println(user.getUsername() + ";" + user.getMoney());
+			        writer.println(user.getUsername() + ";" + user.getBalance());
 				} else {
 					writer.println(userString);
 				}

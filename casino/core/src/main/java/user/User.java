@@ -2,41 +2,41 @@ package user;
 
 public class User {
 
-    private double money;
+    private double balance;
     private String username;
 
-    public User(String username, double money) {
-        this.money = money;
+    public User(String username, double balance) {
+        this.balance = balance;
         this.username = username;
     }
 
     public void addMoney(double amount){
-        this.money += amount;
+        this.balance += amount;
     }
 
-    public double getMoney() {
-        return money;
+    public double getBalance() {
+        return balance;
     }
     
 	public void withdraw(double delta) {
-		if (delta > money) {
+		if (delta > balance) {
 			throw new IllegalStateException("You dont have enough money");
 		}
-		this.money -= delta;
+		if (delta <= 0) {
+			throw new IllegalArgumentException("You can't withdraw negative amount of money");			
+		}
+		this.balance -= delta;
 	}
 
 
     public void setMoney(double money) {
         if (money < 0)
             throw new IllegalArgumentException("Cannot have a negative value of money");
-        this.money = money;
+        this.balance = money;
     }
 
     public String getUsername() {
         return username;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    
 }

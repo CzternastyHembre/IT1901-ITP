@@ -320,7 +320,7 @@ public class RouletteController {
 	
 	private void updateLables() {
 		moneyBettedLabel.setText("" + rouletteGame.getSumOfBets());
-		moneyLabel.setText("" + user.getMoney());
+		moneyLabel.setText("" + user.getBalance());
 	}
 
 }
