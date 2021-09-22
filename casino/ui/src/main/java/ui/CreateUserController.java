@@ -17,13 +17,9 @@ import java.util.Objects;
 public class CreateUserController {
     @FXML
     private TextField username_field;
-    private final double StartingBalance = 1000;
+    private static final double StartingBalance = 1000;
     private Stage stage;
     private Scene scene;
-    private Parent root;
-
-
-
     @FXML
     private void run(ActionEvent actionEvent) throws IOException {
 
@@ -38,7 +34,6 @@ public class CreateUserController {
         stage.setScene(scene);
         stage.show();
     }
-
     @FXML
     public String getUsername(){
         return username_field.getText();

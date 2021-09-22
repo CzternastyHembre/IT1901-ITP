@@ -45,7 +45,7 @@ public class RouletteController {
 	private User user;
 	private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
 	
-	public final int FontSize = 15;
+	public final static int FontSize = 15;
 	private final Font textFont = Font.font("Arial", FontWeight.BOLD, FontSize);
 	private int chipRadius = 20;
 		

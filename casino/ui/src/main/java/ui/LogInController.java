@@ -17,10 +17,9 @@ import java.util.Objects;
 public class LogInController {
     @FXML
     private TextField log_in_field;
-    private final double StartingBalance = 1000;
+    private final static double StartingBalance = 1000;
     private Stage stage;
     private Scene scene;
-    private Parent root;
 
 
     public void run(ActionEvent actionEvent) throws IOException {
