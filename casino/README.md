@@ -7,11 +7,12 @@ The core module contains all the classes and logic that the application uses to 
 Since our app is a casino, all the logic of how blackjack, roulette and slots are played, happens here in the different packages inside the module. The core module contains classes to handle and represent the logic behind these games.
 
 ## UI
-All the classes and logic of how the UI and buttons work happens in the UI module. The UI module is divided by controllers and FXML files in different packages, where to controllers are in the **UI/src/main/java/ui** and the FXML files are in the **main/resources/ui**. The UI of our project is to show a start-page where users could either log in or create a new user. Further the user should be able to play different types of casino games like roulette, blackjack and slots. 
+All the classes and logic of how the UI and buttons work happens in the UI module.  The UI of our project is to show a start-page where users could either log in or create a new user. Further the user should be able to play different types of casino games like roulette, blackjack and slots. 
 
+The UI is made with JavaFX and FXML, where the FXML files and the controllers of the FXML files are divided in different packages, where the controllers are in the **UI/src/main/java/ui** and the FXML files are in the **main/resources/ui**.
 
 ## Storage
-The storage module contains all the classes and files for saving (reading and writing to files). Our storage module uses JSON-files for filesaving.
+The storage module contains all the classes and files for saving (reading and writing to files). Our storage module uses JSON-files for filesaving. (The first release uses textfiles for saving)
 
 ## Building with Maven
 Since this project is a bigger java application, it is usefull to use a building tool, like Maven or Gradle, to run the tests, check the quality of the code, etc. Our project is configured to use Maven and therefore has a pom.xml file for the configuration: 
