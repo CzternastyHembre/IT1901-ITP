@@ -19,8 +19,4 @@ public class PokerChip {
 	public static String getTextValue(int index) {
 		return textValues[index];
 	}
-	
-	
-
-
 }

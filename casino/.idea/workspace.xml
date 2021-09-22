@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904155f8-c442-4695-a632-ba9c65b7b164" name="Changes" comment="Fixed maven-problems and changed to casino">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/test/java/oddstest/OddsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/modules-core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/core/modules-core.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/roulette/PokerChip.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/roulette/PokerChip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/roulette/Roulette.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/roulette/Roulette.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/parent.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/storage/src/main/java/saveHandler/UserSaveHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/storage.iml" beforeDir="false" afterPath="$PROJECT_DIR$/storage/storage.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/bin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/bin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/bin/src/test/java/ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ui/bin/src/test/java/ui/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/modules-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/modules-ui.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/CreateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/CreateUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/test/java/ui/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +41,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="removing_old_template" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -43,8 +58,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.44844124" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.ignored.files" />
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/src" />
+      <recent name="$PROJECT_DIR$/core/src/main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.parent - clean test jacoco:report">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.App" />
       <module name="modules-ui" />
@@ -71,8 +96,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OddsTest.checkOddSingleNumberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="modules-core" />
+      <option name="PACKAGE_NAME" value="oddstest" />
+      <option name="MAIN_CLASS_NAME" value="oddstest.OddsTest" />
+      <option name="METHOD_NAME" value="checkOddSingleNumberTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="parent - clean test jacoco:report" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="verify" />
+                <option value="jacoco:report" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.RouletteApp" />
+      <item itemvalue="JUnit.OddsTest.checkOddSingleNumberTest" />
+      <item itemvalue="Maven.parent - clean test jacoco:report" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OddsTest.checkOddSingleNumberTest" />
         <item itemvalue="Application.App" />
         <item itemvalue="Application.RouletteApp" />
         <item itemvalue="Application.RouletteApp" />
@@ -92,6 +161,9 @@
       <workItem from="1632145922389" duration="225000" />
       <workItem from="1632212241413" duration="2871000" />
       <workItem from="1632216040180" duration="404000" />
+      <workItem from="1632314354734" duration="2334000" />
+      <workItem from="1632318860419" duration="639000" />
+      <workItem from="1632319740189" duration="3548000" />
     </task>
     <task id="LOCAL−00001" summary="new branch thar works">
       <created>1631790757991</created>
@@ -134,5 +206,9 @@
     <MESSAGE value="renamed branch" />
     <MESSAGE value="Fixed maven-problems and changed to casino" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixed maven-problems and changed to casino" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

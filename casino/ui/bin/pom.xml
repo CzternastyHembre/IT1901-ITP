@@ -44,7 +44,7 @@
             <artifactId>junit-jupiter-params</artifactId>
         </dependency>
 
-        <!-- test javafx with TextFX -->
+        <!-- oddstest javafx with TextFX -->
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-core</artifactId>
