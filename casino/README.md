@@ -1,5 +1,5 @@
 # Casino
-The code in the application is divided into three main parts, core, ui and storage to easily divide the different parts of the code.
+The code in the application is divided into three main parts, core, ui and storage to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules. 
 
 ## Core
 The core module contains all the classes and logic that the application uses to play the different casino games. It is independent of all the UI and filesaving. 
