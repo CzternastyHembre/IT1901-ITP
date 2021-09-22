@@ -38,7 +38,7 @@
             <artifactId>junit-jupiter-params</artifactId>
         </dependency>
 
-        <!-- test javafx with TextFX -->
+        <!-- roulette javafx with TextFX -->
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-core</artifactId>
@@ -99,6 +99,7 @@
                     <mainClass>ui/ui.App</mainClass>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>

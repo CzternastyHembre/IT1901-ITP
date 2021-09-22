@@ -1,7 +1,6 @@
 package user;
 
 public class User {
-
     private double balance;
     private String username;
 
@@ -19,8 +18,8 @@ public class User {
     }
     
 	public void withdraw(double delta) {
-		if (delta > balance) {
-			throw new IllegalStateException("You dont have enough money");
+        if (delta > balance) {
+            throw new IllegalStateException("You dont have enough money");
 		}
 		if (delta <= 0) {
 			throw new IllegalArgumentException("You can't withdraw negative amount of money");			

@@ -1,6 +1,6 @@
 # Tests for the RPN calculator
 
-This folder/package contains tests based on TestFX for the RPN Calculator (currently only one test class).
+This folder/package contains tests based on TestFX for the RPN Calculator (currently only one roulette class).
 
 As can be seen when launching, the app contains a list (top) showing the operands
 (topmost operand at the bottom), a text field (below list, initially empty) for a new operand and
