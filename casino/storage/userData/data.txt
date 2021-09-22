@@ -1,6 +1,6 @@
 -Format: userName;Balance
 - Active User:
-Test;1000.0
+Test2;1285.0
 - Users:
 Erlend;1000.0
 Mattis;999.0
@@ -9,3 +9,4 @@ eeeee;18500.0
 karan Singh;4210.0
 
 Test;1000.0
+Test2;1285.0

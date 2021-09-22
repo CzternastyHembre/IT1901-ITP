@@ -1,11 +1,20 @@
 package ui;
 
+import javafx.scene.shape.Polygon;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -14,6 +23,7 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.transform.Rotate;
 import roulette.Guess;
 import roulette.ListGuess;
 import roulette.NumberGuess;
@@ -27,7 +37,11 @@ public class RouletteController {
 	
 		
 	@FXML
+	Pane rouletteBoardPane;
+	
+	@FXML
 	Pane anchorPane;
+	
 	@FXML
 	Pane chipFolder;
 	@FXML
@@ -38,8 +52,8 @@ public class RouletteController {
 	Label feedBackLabel;
 	@FXML
 	Label nameLabel;
-	@FXML
-	Label rolledNumberLabel;
+	
+	Label rolledNumberLabel = new Label();
 	
 	private Roulette rouletteGame;
 	private User user;
@@ -50,9 +64,31 @@ public class RouletteController {
 	private int chipRadius = 20;
 		
 	private int valueIndex = 0;
+	Circle c;
+	
+	private double width = 600;
+	private double height = 290;
+	private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26);
+
+	private Pane rouletteWheelContainer;
 	
 	@FXML
 	public void initialize() {
+		nameLabel.setFont(textFont);
+		nameLabel.setTextFill(Paint.valueOf("white"));
+
+		moneyLabel.setFont(textFont);
+		moneyLabel.setTextFill(Paint.valueOf("white"));
+
+		moneyBettedLabel.setFont(textFont);
+		moneyBettedLabel.setTextFill(Paint.valueOf("white"));
+
+		feedBackLabel.setFont(textFont);
+		feedBackLabel.setTextFill(Paint.valueOf("white"));
+		
+		rolledNumberLabel.setFont(new Font(40));
+		rolledNumberLabel.setTextFill(Paint.valueOf("white"));
+
 		/*
 		 * Takes in an temporary user for now
 		 */
@@ -62,8 +98,9 @@ public class RouletteController {
 		int rouletteRows = 3 ;
 		int rouletteColums = 14;
 		
-		double width = 600;
-		double height = 290 * 3 / 5;
+		double height = this.height * 3 / 5;
+
+		
 		
 		double tileWidth = width / rouletteColums;
 		double tileHeight= height / rouletteRows;
@@ -72,7 +109,6 @@ public class RouletteController {
 		nameLabel.setText(user.getUsername());
 
 		anchorPane.setStyle("-fx-background-color:#075600");
-		chipFolder.setStyle("-fx-background-color:#075600");
 		
 		//Adding all the "numberTiles" the tiles that have a single number to bet on
 		for (int y = 0; y < rouletteRows; y++) 
@@ -103,7 +139,7 @@ public class RouletteController {
 				
 				tileLabel.setText("" + number);
 				numbersTilesMap.put(number, tile);
-				anchorPane.getChildren().add(tile);
+				rouletteBoardPane.getChildren().add(tile);
 			}
 		}
 		for (int y = 0; y < 3; y++) {//The rightmost Column
@@ -117,7 +153,7 @@ public class RouletteController {
 			
 			tileLabel.setText("Row " + (y + 1));
 			tile.getChildren().add(tileLabel);
-			anchorPane.getChildren().add(tile);
+			rouletteBoardPane.getChildren().add(tile);
 	
 			int start = 3 - y;
 			int increment = 3;
@@ -133,7 +169,7 @@ public class RouletteController {
 			tile.setTranslateX(tileWidth * x * 4 + tileWidth); 
 			tile.setTranslateY(tileHeight * 3);
 			tile.setStyle("-fx-background-color:green;");
-			anchorPane.getChildren().add(tile);
+			rouletteBoardPane.getChildren().add(tile);
 
 			int startNumber = (x * 12) + 1;
 			int endNumber = (x + 1) * 12;
@@ -152,7 +188,7 @@ public class RouletteController {
 			tile.setTranslateX(tileWidth * i * 3 + tileWidth); 
 			tile.setTranslateY(tileHeight * 4);
 			tile.setStyle("-fx-background-color:green;");
-			anchorPane.getChildren().add(tile);
+			rouletteBoardPane.getChildren().add(tile);
 
 			int startNumber = i;
 			String tileString = startNumber + "";
@@ -169,7 +205,7 @@ public class RouletteController {
 			}
 		}
 		
-		for (Node node : anchorPane.getChildren()) {
+		for (Node node : rouletteBoardPane.getChildren()) {
 			Pane tile = (Pane) node;
 			String oldStyle = tile.getStyle();
 			tile.setStyle(oldStyle + "-fx-border-color:white;");
@@ -200,21 +236,78 @@ public class RouletteController {
 				chipContainer.setStyle(style + "-fx-opacity:0.5;");
 			}
 		}
+		rouletteWheelContainer = createRouletteWheel();
+		anchorPane.getChildren().add(rouletteWheelContainer);
+		c = new Circle();
+		c.setRadius(13);
+		c.setStroke(Paint.valueOf("white"));
+		c.setStrokeWidth(2);
+		c.setTranslateX(width / 2);
+		c.setFill(null);
+		c.setTranslateY(16);
+		c.setVisible(false);
+		anchorPane.getChildren().add(c);
+		rouletteWheelContainer.setVisible(false);
+		
+		rolledNumberLabel.setTranslateX(width/2);
+		rolledNumberLabel.setTranslateY(this.height / 2);
+		anchorPane.getChildren().add(rolledNumberLabel);
+
 	}
 	
 	@FXML
 	public void run() {
 		double winnings = rouletteGame.calculate();
-		feedBackLabel.setText("you won: " + winnings);
 		UserSaveHandler.UpdateUser(user);
-		updateLables();
-		clearChips();
-		rolledNumberLabel.setText( "" + rouletteGame.getRolledNumber());
-//		System.out.println("" + rouletteGame.getRolledNumber());
+		
+		rolledNumberLabel.setText(null);
+		int number = rouletteGame.getRolledNumber();
+
+		setDisableBoard(true);
+		rouletteWheelContainer.setRotate(0);
+		double extraAngle = getAngle() * rouletteWheelNumberSequence.indexOf(number);
+		
+		RotateTransition rt = new RotateTransition(Duration.seconds(4), rouletteWheelContainer);
+		rt.setByAngle(360 * 4 + 360 - extraAngle);
+		rt.play();
+	
+		RotateTransition rt2 = new RotateTransition(Duration.seconds(2), rouletteWheelContainer);
+		rt2.setOnFinished(e -> {
+			setDisableBoard(false);
+			feedBackLabel.setText("you won: " + winnings);
+			updateLables();
+			clearChips();
+			rolledNumberLabel.setText(null);
+
+		});
+		rt.setOnFinished(e -> {
+			rolledNumberLabel.setText( "" + rouletteGame.getRolledNumber());
+			rt2.play();
+		});
+		
+//		tm.setOnFinished(e -> rouletteWheelContainer.setRotate(0));
+	}
+	
+	private void setDisableBoard(boolean b) {
+		if (b) {
+			rouletteWheelContainer.setVisible(true);
+			c.setVisible(true);
+			
+//			rouletteBoardPane.setOpacity(0);
+//			chipFolder.setOpacity(0);
+			rouletteBoardPane.setEffect(new BoxBlur()); // TODO activate when wheel is shown	
+		} else {
+			rouletteWheelContainer.setVisible(false);
+			c.setVisible(false);
+			
+//			rouletteBoardPane.setOpacity(1);
+//			chipFolder.setOpacity(1);
+			rouletteBoardPane.setEffect(null); // TODO activate when wheel is shown	
+		}
 	}
 	
 	private void clearChips() {
-		anchorPane.getChildren().forEach((n) -> {
+		rouletteBoardPane.getChildren().forEach((n) -> {
 			Pane tile = (Pane) n;
 			for (int i = tile.getChildren().size() - 1; i > 0; i--) {
 				tile.getChildren().remove(i);
@@ -316,6 +409,80 @@ public class RouletteController {
 		} catch (Exception e) {
 			feedBackLabel.setText(e.getMessage());
 		}
+	}
+	
+	private Pane createRouletteWheel() {
+		double radius = height/2 - 5;
+
+		Pane rwContainer = new Pane();
+		rwContainer.setTranslateX(width / 2); // Senters the pane
+		rwContainer.setTranslateY(height / 2); // Senters the pane
+		
+		Circle backgroundCircle = new Circle();
+		backgroundCircle.setFill(Paint.valueOf("black"));
+		backgroundCircle.setRadius(radius);
+		rwContainer.getChildren().add(backgroundCircle);
+		
+		
+		for (int i = 0; i <= Roulette.RoulettSize; i++) {
+			Paint style = (i % 2 == 0) ? Paint.valueOf("red") : Paint.valueOf("black");
+			style = (i == 0) ? Paint.valueOf("green") : style;
+			
+			Polygon tri = createTriangle(0, 0, radius, Math.PI  / (Roulette.RoulettSize + 1));
+			tri.setFill(style);
+
+			Rotate triangleRotation = new Rotate();
+			triangleRotation.setAngle(getAngle() * i);
+
+			tri.getTransforms().add(triangleRotation);
+			
+			int number = rouletteWheelNumberSequence.get(i);			
+			String text = number < 10 ? " " + number : "" + number;
+			Label l = new Label(text);
+			l.setFont(textFont);
+			l.setTextFill(Paint.valueOf("white"));
+			l.setTranslateY(-radius);
+			
+			
+			Rotate labelRotation = new Rotate();
+			labelRotation.setAngle((i - 0.4) * getAngle());
+
+			labelRotation.setPivotX(0);
+			labelRotation.setPivotY(radius);
+			l.getTransforms().add(labelRotation);
+			
+			rwContainer.getChildren().add(tri);
+			rwContainer.getChildren().add(l);
+			
+		}
+		rwContainer.setPrefSize(0, 0);
+		
+		Circle middleCircle = new Circle();
+		middleCircle.setRadius(radius/2);
+		
+		rwContainer.getChildren().add(middleCircle);
+		
+		
+		return rwContainer;
+	}
+	
+	/*
+	 * Creates a triangle from a point with an angle
+	 */
+	private Polygon createTriangle(double x, double y, double length, double angle){
+	    Polygon fovTriangle = new Polygon(
+	            0d, 0d,
+	            (length * Math.tan(angle)), -length,
+	            -(length * Math.tan(angle)), -length
+	    );
+	    
+	    fovTriangle.setLayoutX(x);
+	    fovTriangle.setLayoutY(y);
+	    return fovTriangle;
+	}
+	
+	private double getAngle() {
+		return 360.0 / (Roulette.RoulettSize + 1);
 	}
 	
 	private void updateLables() {

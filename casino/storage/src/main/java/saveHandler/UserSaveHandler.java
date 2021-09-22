@@ -11,8 +11,8 @@ import user.User;
 
 public class UserSaveHandler{
 	
-	public final static String SAVE_FILE = "/workspace/gr2124/casino/storage/userData/data.txt";//Savefile for gidPod
-//	public final static String SAVE_FILE = "../storage/userData/data.txt"; //Temporaty local savefile
+//	public final static String SAVE_FILE = "/workspace/gr2124/casino/storage/userData/data.txt";//Savefile for gidPod
+	public final static String SAVE_FILE = "../storage/userData/data.txt"; //Temporaty local savefile
 
 	
 	public static void createUser(User user) {
