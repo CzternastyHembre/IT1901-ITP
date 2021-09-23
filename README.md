@@ -6,3 +6,10 @@
 A casino application with features such as roulette, slots and blackjack. Users will be able to save their username and balance. 
 
 Look inside the casino directory to read more about the application.
+
+The developers:
+- Erlend Sorknes
+- Felix Berner
+- Mattis Hembre
+- Sebastian Sole
+
