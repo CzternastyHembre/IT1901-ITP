@@ -92,7 +92,7 @@ This was used so that the developers could easily get an understanding of what i
 Before merge-requesting the developer of the branch had to inform the other developers in the group that he would be performing a merge-request. The requirement for performing the merge-request would be that the branch is running and would be an appropriate addition to the main branch. 
 
 
-## Insuring Code quality
+## Code quality
 
 For ensuring good code quality throughout the project, the following plugins was added to help:
 
@@ -108,6 +108,8 @@ Both of these plugins run when using the **maven-verify lifecycle.**
 Simple tests was added to check that the methods, logic and features in the project worked as intended.  
 
 ## Illustrations
+Illustrations of what the end product is going to look like:
+
 ![start](images/242594917_545342576548985_5788820927871275701_n.png)
 ![create_user](images/242589592_382851316656932_4359090151023620277_n.png)
 ![log_in](images/242598130_252944550080896_4442521056475579515_n.png)
