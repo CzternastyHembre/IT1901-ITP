@@ -1,7 +1,7 @@
 # Userstories
 A collection of userstories to which the app is being formed around. Here the different stories have demands of what they would like to see and do in the application.
 
-## Roulette strategies (#us-1)
+## Roulette strategies (us-1)
 
 As an eager gambler I would like an application where I could try more roulette strategies without having to use money.  
 
