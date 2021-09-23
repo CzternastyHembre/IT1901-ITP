@@ -4,14 +4,17 @@
 
 ## Maven build
 
-The casino application uses the building tool Maven to build and run the application, the maven build in the project also has the following plugins added:
+The casino application uses the building tool Maven to build and run the application. This is done to automate the process of downloading and managing the dependencies in the project. 
 
 ## GitPod
 
   
-The application can be executed and run with GitPod.  Launch this by pressing the GitPod badge in the root [README.md](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/main/README.md)
+The application can be executed and run with GitPod.  Launch this by pressing the GitPod badge in the root [README.md](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/main/README.md) 
 
 ## Running the code:
+
+Start by routing into the casino directory. 
+
 ```powershell
 cd casino
 ```
@@ -31,7 +34,7 @@ The project is a multi module project to easily divide the different parts of th
 ### Core
 The [core module](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/core) contains all the classes and logic that the application uses to play the different casino games. It is independent of all the UI and filesaving.
 
-Since our app is a casino, all the logic of how blackjack, roulette and slots are played, happens here in the different packages inside the module. The core module contains classes to handle and represent the logic behind these games.
+Since our app is a casino, all the logic involving the roulette and user happens here in the different packages inside the module. The core module contains classes to handle and represent the logic behind these games.
 
 ### UI
 All the classes and logic of how the UI and buttons work happens in the [UI module](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui). The UI of our project is to show a start-page where users could either log in or create a new user. Then the user will be routed to the roulette game with the user used in the log in is the active user. 
@@ -65,7 +68,7 @@ The sprints will have the duration 1-2 weeks, this depends on the size of the mi
 Throughout the project the group uses issues to easily delegate tasks to other developers working on the project. The issues was made with labels, a due date and an assignee. 
 The issues would also have a description that would explain what needs to be done in the issue. For bigger issues there would also be checkboxes for the developers to check if a part of the issue was finished. 
 
-When commiting a new feature, in the commit message the developers would use the # every issue has to link to the issue they have been working on or finished. This ensures that the when a commit happens the other developers could see what issue it belongs to. 
+When commiting a new feature, in the commit message the developers would use the "#" to link to the issue they have been working on or finished. This ensures that the when a commit happens the other developers could see what issue it belongs to. 
 
 ### Labels
 All of the issues that was created in the first release has a label to mark what kind of issue or task this is. The main labels that was used was: 
@@ -89,7 +92,7 @@ This was used so that the developers could easily get an understanding of what i
 
 ### Merge-request
 
-Before merge-requesting the developer of the branch had to inform the other developers in the group that he would be performing a merge-request. The requirement for performing the merge-request would be that the branch is running and would be an appropriate addition to the main branch. 
+Before merge-requesting the developer of the branch had to inform the other developers in the group that he would be performing a merge-request. The requirement for performing the merge-request would be that the application in the branch with the new feature is running as inteded in the issue. 
 
 
 ## Code quality
@@ -100,7 +103,7 @@ For ensuring good code quality throughout the project, the following plugins was
 Jacoco is a maven-plugin that collects and presents the information of the codecoverage in the code. 
 
 - Checking the quality of the code with spotbugs (**spotbugs-maven-plugin**)
-Spotbugs is another maven-plugin that analyses the code for regular bugs.
+Spotbugs is another maven-plugin that analyzes the code for regular bugs.
 
 Both of these plugins run when using the **maven-verify lifecycle.** 
 
