@@ -1,5 +1,5 @@
 # IT1901-Prosjekt
-[a link](https://gitpod.stud.idi.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124)
+[a link](https://gitpod.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/)
 
 ## Casino
 
