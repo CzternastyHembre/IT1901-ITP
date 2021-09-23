@@ -6,6 +6,23 @@
 
 The casino application uses the building tool Maven to build and run the application, the maven build in the project also has the following plugins added:
 
+## GitPod
+
+  
+The application can be executed and run with GitPod.  Launch this by pressing the GitPod badge in the root [README.md](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/main/README.md)
+
+## Running the code:
+```powershell
+cd casino
+```
+
+When inside the casino directory, the next step is to install the project:
+```powershell
+mvn install
+cd ui/
+mvn javafx:run
+````
+
 
 ## Code architecture
 
@@ -27,11 +44,6 @@ The storage module contains all the classes and files for saving (reading and wr
 
 
 
-
-## GitPod
-
-  
-The application can be executed and run with GitPod.  Launch this by pressing the GitPod badge in the root [README.md](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/main/README.md)
 
   
 
