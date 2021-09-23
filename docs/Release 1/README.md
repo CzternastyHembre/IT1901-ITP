@@ -96,4 +96,4 @@ Both of these plugins run when using the **maven-verify lifecycle.**
 Simple tests was added to check that the methods, logic and features in the project worked as intended.  
 
 ## Illustrations
-![start](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/main/docs/Release%201/images/242594917_545342576548985_5788820927871275701_n.png)
+![start](images/242594917_545342576548985_5788820927871275701_n.png)
