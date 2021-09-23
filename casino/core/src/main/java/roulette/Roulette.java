@@ -36,18 +36,18 @@ public class Roulette {
 	public double calculate() {
 		rollNumber();
 //		this.rolledNumber = 5;
-		System.out.println("RolledNumber = " + this.rolledNumber + "\n");
+//		System.out.println("RolledNumber = " + this.rolledNumber + "\n");
 
 		double winnings = 0;
 
 		for (Guess guess : guesses) {
 			if (guess.isWin(rolledNumber)) {
-				System.out.println("" + guess.getClass().getSimpleName() + " = " + guess + " "
-						+ (guess.amount * RoulettSize / guess.getPossibleWins()));
+//				System.out.println("" + guess.getClass().getSimpleName() + " = " + guess + " "
+//						+ (guess.amount * RoulettSize / guess.getPossibleWins()));
 
 				winnings += guess.amount * RoulettSize / guess.getPossibleWins();
 			} else {
-				System.err.println("" + guess.getClass().getSimpleName() + " = " + guess + " 0 ");
+//				System.err.println("" + guess.getClass().getSimpleName() + " = " + guess + " 0 ");
 			}
 		}
 

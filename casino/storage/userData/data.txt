@@ -1,12 +1,15 @@
 -Format: userName;Balance
 - Active User:
-Test2;1285.0
+elin;0.0
 - Users:
 Erlend;1000.0
 Mattis;999.0
 Karen;3020.0
 eeeee;18500.0
 karan Singh;4210.0
-
-Test;1000.0
+Test;2601.0
 Test2;1285.0
+Casper Lunde Amtrup;0.0
+EasyCash;0.0
+Mathias;2243.0
+elin;0.0
