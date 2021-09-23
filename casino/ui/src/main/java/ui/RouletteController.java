@@ -180,7 +180,7 @@ public class RouletteController {
 		}
 		
 		//Adding the select poker chips
-		for (int i = 0; i < PokerChip.values.length; i++) {
+		for (int i = 0; i < PokerChip.getValuesSize(); i++) {
 			Pane chipContainer = getChip(i);
 			String style = chipContainer.getStyle();
 			
