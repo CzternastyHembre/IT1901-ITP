@@ -25,6 +25,31 @@ mvn install
 cd ui/
 mvn javafx:run
 ````
+## Status of the project:
+
+For this first release of the application there are three main features. Creating a user, logging in with an existing user and playing the roulette. 
+The user will easily be able to create a new user or log in with an existing user from a previous game. Then the user will be routed to the roulette game to play.
+
+## User story:
+
+Throughout this first release, the developers built the application around this user story: 
+
+
+### Roulette strategies (us-1)
+
+As an eager gambler I would like an application where I could try more roulette strategies without having to use money.  
+
+The user has the need to play roulette where the application is as random as roulette is in real life. The user would like to save their name and be able to come back later to play more. The roulette game has to be similiar to real life with betting different chips in different places to increase the chance to win.
+
+**Important to see**
+* See their username.
+* See how much money they have at all times.
+* Being able to see how much they have won or loss
+
+**Important to do**
+* Be able to easily put their chips in their right place.
+* Be able to bet on multiple spots
+* Being able to undo bets.
 
 
 ## Code architecture
@@ -46,9 +71,6 @@ The UI is made with JavaFX and FXML, where the FXML files and the controllers of
 The storage module contains all the classes and files for saving (reading and writing to files). This first release uses textfiles for saving and reading from files. The storage module is dependent on the core as it uses the User class in core to save the user. 
 
 
-
-
-  
 
 # Workflow
 
