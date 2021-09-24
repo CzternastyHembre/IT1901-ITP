@@ -17,7 +17,7 @@ The UI is made with JavaFX and FXML, where the FXML files and the controllers of
 The storage module contains all the classes and files for saving (reading and writing to files). Our storage module uses JSON-files for filesaving. (The first release uses textfiles for saving)
 
 ## Building with Maven
-Since this project is a bigger java application, it is usefull to use a building tool, like Maven or Gradle, to run the tests, check the quality of the code, etc. Our project is configured to use Maven and therefore has a pom.xml file for the configuration: 
+Since this project is a bigger java application, it is usefull to use a building tool, like Maven, to run the tests, check the quality of the code, etc. Our project is configured to use Maven and therefore has a pom.xml file for the configuration: 
 The pom.xml file contains different types of information about the project:
 - Identefication in the form of **groupId, ArtifactId and version-elements**
 - Dependecncies in the form of **Dependecncies-elements**
