@@ -1,6 +1,6 @@
 -Format: userName;Balance
 - Active User:
-Mattis;25.0
+Test;901.0
 - Users:
 Erlend;1000.0
 Mattis;25.0
@@ -8,5 +8,7 @@ Karen;3020.0
 eeeee;18500.0
 karan Singh;4210.0
 
-Test;1000.0
+Test;901.0
 snfg;1000.0
+TestUndo;1000.0
+TestUndoBTN;1000.0
