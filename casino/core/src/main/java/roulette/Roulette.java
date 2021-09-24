@@ -70,6 +70,12 @@ public class Roulette {
 		guesses.add(guess);
 	}
 	
+	public void undoGuess() {
+		Guess lastGuess = guesses.get(guesses.size() - 1);
+		user.addMoney(lastGuess.getAmount());
+		guesses.remove(guesses.size() - 1);
+	}
+	
 	public void cleacGuess() {
 		guesses.remove(guesses.size());
 	}

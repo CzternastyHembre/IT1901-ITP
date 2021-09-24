@@ -32,14 +32,15 @@
                   <Pane fx:id="chipFolder" prefHeight="61.0" prefWidth="358.0" />
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="feedBackLabel" layoutX="216.0" layoutY="6.0" prefHeight="17.0" prefWidth="175.0" />
-                        <Label fx:id="rolledNumberLabel" layoutX="394.0" layoutY="6.0" prefHeight="17.0" prefWidth="126.0" />
+                        <Label fx:id="feedBackLabel" layoutX="129.0" layoutY="6.0" prefHeight="17.0" prefWidth="218.0" />
+                        <Label fx:id="rolledNumberLabel" layoutX="343.0" layoutY="6.0" prefHeight="17.0" prefWidth="126.0" />
                         <Button layoutX="532.0" layoutY="2.0" mnemonicParsing="false" onAction="#run" text="RUN" />
                         <Label layoutX="216.0" layoutY="29.0" prefHeight="17.0" prefWidth="84.0" text="Money betted:" />
                         <Label fx:id="moneyBettedLabel" layoutX="300.0" layoutY="29.0" prefHeight="17.0" prefWidth="71.0" />
                         <Label layoutX="371.0" layoutY="29.0" prefHeight="17.0" prefWidth="71.0" text="Your money:" />
                         <Label fx:id="moneyLabel" layoutX="442.0" layoutY="29.0" prefHeight="17.0" prefWidth="116.0" />
                         <Label fx:id="nameLabel" layoutX="497.0" layoutY="32.0" prefHeight="17.0" prefWidth="71.0" />
+                        <Button layoutX="474.0" layoutY="2.0" mnemonicParsing="false" onAction="#undoGuess" text="Undo" />
                      </children>
                   </Pane>
                </children>

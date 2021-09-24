@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,7 @@ public class RouletteController {
 	private Roulette rouletteGame;
 	private User user;
 	private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
+	private List<Pane> chipList = new ArrayList<>();
 	
 	public final static int FontSize = 15;
 	private final Font textFont = Font.font("Arial", FontWeight.BOLD, FontSize);
@@ -240,7 +242,22 @@ public class RouletteController {
 
 		}
 		tile.getChildren().add(chipContainer);
+		chipList.add(chipContainer);
 	}
+	
+	@FXML
+	private void undoGuess() {
+		if (chipList.isEmpty()) {
+			return;
+		}
+		rouletteGame.undoGuess();
+		Pane chip = chipList.get(chipList.size() - 1);
+		chipList.remove(chip);
+		Pane tile = (Pane) chip.getParent();
+		tile.getChildren().remove(tile.getChildren().size() - 1);
+		updateLables();
+	}
+	
 	
 	
 	private Pane getChip(int valueIndex) {
