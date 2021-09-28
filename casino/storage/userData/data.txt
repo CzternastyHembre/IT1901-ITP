@@ -1,6 +1,6 @@
 -Format: userName;Balance
 - Active User:
-Test;901.0
+sebastiangay;0.0
 - Users:
 Erlend;1000.0
 Mattis;25.0
@@ -12,3 +12,5 @@ Test;901.0
 snfg;1000.0
 TestUndo;1000.0
 TestUndoBTN;1000.0
+sebastian;0.0
+sebastiangay;0.0

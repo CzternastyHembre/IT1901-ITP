@@ -10,11 +10,9 @@ public class Slots {
     // Fields
     private List<Integer> symbols = new ArrayList<>();
     private double userBalance;
-    private double prizePool;
     private int spins;
     private int netGain;
     private int bet;
-    private User user;
     private final Random random;
     private double currentWinnings;
     private String combo;
@@ -24,11 +22,21 @@ public class Slots {
 
 
     public Slots() {
-        this.prizePool = 100000.0;
         this.spins = 0;
         this.netGain = 0;
         this.bet = 0;
-        this.userBalance = 100000;
+        this.userBalance = 1000000;
+        for (int i = 0; i < 3; i++){
+            symbols.add(0);
+        }
+        this.random = new Random();
+    }
+
+    public Slots(double balance){
+        this.spins = 0;
+        this.netGain = 0;
+        this.bet = 0;
+        this.userBalance = balance;
         for (int i = 0; i < 3; i++){
             symbols.add(0);
         }
@@ -37,22 +45,21 @@ public class Slots {
 
     public void play(int bet) {
         setBet(bet);
+        placeBet();
         spin();
+        updateWinnings();
     }
 
     public void spin(){
-        placeBet();
         for (int i = 0; i < symbols.size();i++){
             symbols.set(i,generateSymbol());
         }
         spins++;
-        updateWinnings();
     }
 
     private void placeBet() {
         this.netGain-=getBet();
         this.userBalance-=getBet();
-        this.prizePool+=getBet();
     }
 
 
@@ -94,7 +101,6 @@ public class Slots {
         this.currentWinnings = winnings;
         netGain+=winnings;
         userBalance+=winnings;
-        prizePool-=winnings;
         calculateAveragePayout();
     }
 
@@ -111,10 +117,6 @@ public class Slots {
 
     public double getUserBalance() {
         return userBalance;
-    }
-
-    public double getPrizePool() {
-        return prizePool;
     }
 
     public int getSpins() {

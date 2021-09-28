@@ -1,24 +1,25 @@
 package slots;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import user.User;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class SlotsTest {
 
-class SlotsTest {
 
-    User user = new User("Test User",100);
-    Slots slotMachine = new Slots();
+    User user;
+    Slots slotMachine;
+
+    @BeforeEach
+    void setUp(){
+        this.user = new User("Test User",100);
+        this.slotMachine = new Slots(user.getBalance());
+    }
 
     @Test
     void spin() {
-        slotMachine.setBet(10);
         slotMachine.spin();
-        assertEquals(10, slotMachine.getBet());
-        assertEquals(90,slotMachine.getUserBalance());
-        assertEquals(-10,slotMachine.getNetGain());
-        assertEquals(1,slotMachine.getSpins());
+        Assertions.assertEquals(1, slotMachine.getSpins());
     }
-
-
 }

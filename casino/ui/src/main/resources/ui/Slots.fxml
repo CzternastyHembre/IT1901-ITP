@@ -65,24 +65,22 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <Pane prefHeight="47.0" prefWidth="279.0">
-            <Label layoutX="7.0" layoutY="6.0" text="Your Balance:" />
             <Label layoutX="7.0" layoutY="25.0" text="Net Gain:" />
-            <Label fx:id="balanceNum" layoutX="85.0" layoutY="6.5" text="0" />
             <Label fx:id="netGainNum" layoutX="62.0" layoutY="25.0" text="0" />
+            <Label layoutX="7.0" layoutY="6.0" text="Average Payout:" />
+            <Label fx:id="avgPayout" layoutX="100.0" layoutY="7.0" text="0" />
         </Pane>
         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
             <Label layoutX="4.0" layoutY="3.0" text="Bet: " />
             <Label fx:id="currentBetNum" layoutX="28.0" layoutY="3.0" text="0" />
             <Label layoutX="4.0" layoutY="20.0" text="Payout:" />
             <Label fx:id="payoutNum" layoutX="49.0" layoutY="20.0" text="0" />
-            <Label layoutX="135.0" layoutY="20.0" text="Average Payout:" />
-            <Label fx:id="avgPayout" layoutX="231.0" layoutY="20.0" text="0" />
         </Pane>
         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-            <Label layoutX="5.0" layoutY="6.0" text="Jackpot:" />
-            <Label fx:id="jackpotNum" layoutX="56.0" layoutY="6.5" text="100 000" />
+            <Label layoutX="5.0" layoutY="6.0" text="Balance:" />
             <Label layoutX="5.0" layoutY="23.0" text="Spins:" />
             <Label fx:id="spinsCounter" layoutX="41.0" layoutY="23.0" text="0" />
+         <Label id="balanceNNum" fx:id="balanceNum" layoutX="57.0" layoutY="7.0" text="0" />
         </Pane>
         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <Label layoutX="3.0" layoutY="6.0" text="PLACE BET:" />
@@ -92,4 +90,3 @@
         </Pane>
     </GridPane>
 </AnchorPane>
-

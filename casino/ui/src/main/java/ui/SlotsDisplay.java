@@ -31,7 +31,6 @@ public abstract class SlotsDisplay implements Initializable {
     @FXML public Label currentBetNum;
     @FXML public Label payoutNum;
     @FXML public Label comboSlot;
-    @FXML public Label jackpotNum;
 
     @FXML public Label slot1Label;
     @FXML public Label slot2Label;
@@ -66,7 +65,7 @@ public abstract class SlotsDisplay implements Initializable {
             case 7 -> slot.setStyle("-fx-background-color: #293bff");
             case 8 -> slot.setStyle("-fx-background-color: purple");
             case 9 -> slot.setStyle("-fx-background-color: violet");
-
+            default -> System.out.println("default");
         }
         slotLabel.setText(""+slotNum);
     }
@@ -81,7 +80,6 @@ public abstract class SlotsDisplay implements Initializable {
             comboSlot.setText("Bet and Spin to start!");
         else
             comboSlot.setText(""+slotMachine.getCombo());
-        jackpotNum.setText(""+slotMachine.getPrizePool());
         avgPayout.setText("" + slotMachine.getAveragePayout());
         spinsCounter.setText("" + slotMachine.getSpins());
         if (!keepBetButton.isSelected())
