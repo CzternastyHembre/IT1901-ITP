@@ -1,6 +1,6 @@
 -Format: userName;Balance
 - Active User:
-oindfioe;975.0
+kjnrefe;1000.0
 - Users:
 Erlend;1000.0
 Mattis;25.0
@@ -13,3 +13,4 @@ snfg;1000.0
 TestUndo;1000.0
 TestUndoBTN;1000.0
 oindfioe;975.0
+kjnrefe;1000.0
