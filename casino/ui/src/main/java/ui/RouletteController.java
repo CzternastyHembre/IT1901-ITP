@@ -1,37 +1,32 @@
 package ui;
 
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.shape.StrokeType;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javafx.util.Duration;
-import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.transform.Rotate;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import roulette.Guess;
 import roulette.ListGuess;
 import roulette.NumberGuess;
 import roulette.PatternGuess;
+import roulette.PokerChip;
 import roulette.Roulette;
 import saveHandler.UserSaveHandler;
 import user.User;
 
 public class RouletteController {
-	
+
 	@FXML
-	Pane chipFolder, anchorPane, rouletteBoardPane, controllsFolder; 
+	Pane chipFolder, anchorPane, rouletteBoardPane, controllsFolder;
 	@FXML
 	Label moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel, textLabel1, textLabel2;
 	
@@ -39,19 +34,21 @@ public class RouletteController {
 	private Roulette rouletteGame;
 	private User user;
 	private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
+	private List<Pane> chipList = new ArrayList<>();
+
 	private int chipValueIndex = 0;
 	private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26);
 	private Pane rouletteWheelContainer;
-	
+
 	@FXML
 	public void initialize() {
 		List<Label> labelList = new ArrayList<>(Arrays.asList(moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel, textLabel1, textLabel2, rolledNumberLabel));
-		
+
 		user = UserSaveHandler.getActiveUser();
 		rouletteGame = new Roulette(user);
 		updateUserLables();
 		nameLabel.setText(user.getUsername());
-		
+
 		int rouletteRows = 5 ;
 		int rouletteColums = 14;
 		double tileWidth = rouletteBoardPane.getPrefWidth() / rouletteColums;
@@ -70,7 +67,7 @@ public class RouletteController {
 					}
 					tile.setPrefSize(tileWidth, tileHeight * (rouletteRows - 2));
 					tile.setStyle("-fx-background-color:green;");
-					
+
 				} else {//all the columns in the middle (the numbers)
 					tile.setPrefSize(tileWidth, tileHeight);
 					tile.setTranslateX(tileWidth * x); 
@@ -107,6 +104,7 @@ public class RouletteController {
 			
 			setPatternGuess(tile, start, increment);
 		}
+		
 		for (int x = 0; x < 3; x++) {//The 4. row
 			Pane tile = new Pane();
 			Label tileLabel = new Label();
@@ -123,7 +121,7 @@ public class RouletteController {
 			tileLabel.setText("" + tileString);
 			tile.getChildren().add(tileLabel);
 			setListGuess(tile, startNumber, endNumber);
-			
+
 			labelList.add(tileLabel);
 		}
 		for (int i = 0; i < 4; i++) {//The 5. row
@@ -141,7 +139,7 @@ public class RouletteController {
 			tileLabel.setText("" + tileString);
 			
 			labelList.add(tileLabel);
-			tile.getChildren().add(tileLabel);	
+			tile.getChildren().add(tileLabel);
 			
 			switch (i) {
 				case 0 -> {setListGuess(tile, 1, 18);tileLabel.setText("1-18");}
@@ -172,23 +170,23 @@ public class RouletteController {
 			if (this.chipValueIndex == currentIndex) {
 				chipContainer.setStyle(style + "-fx-opacity:0.5;");
 			}
-			
+
 			chipContainer.setOnMouseClicked(e -> {
 				Pane oldChipContainer = (Pane) chipFolder.getChildren().get(chipValueIndex);
 				oldChipContainer.setOpacity(1);
 				chipContainer.setOpacity(0.5);
 				this.chipValueIndex = currentIndex;
 			});
-			
+
 		}
 		labelList.forEach(label -> {label.setFont(CasinoElements.TEXTFONT);label.setTextFill(CasinoElements.TEXTCOLOR);});
 		anchorPane.setStyle(CasinoElements.BACKGROUNDSTYLE);
 
-		
+
 		rouletteWheelContainer = createRouletteWheel();
 		anchorPane.getChildren().add(rouletteWheelContainer);
 		rouletteWheelContainer.setVisible(false);
-		
+
 
 		Circle circleWheelPointer = new Circle();
 		circleWheelPointer.setRadius(CasinoElements.FONTSIZE- 2);
@@ -198,7 +196,7 @@ public class RouletteController {
 		circleWheelPointer.setFill(null);
 		circleWheelPointer.setTranslateY(15);
 		rouletteWheelContainer.getChildren().add(circleWheelPointer);
-		
+
 		rolledNumberLabel.setFont(CasinoElements.LARGETEXTFONT);
 		rolledNumberLabel.setTranslateX(rouletteBoardPane.getPrefWidth()/2 - CasinoElements.LARGEFONTSIZE / 2);
 		rolledNumberLabel.setTranslateY(rouletteBoardPane.getPrefHeight() / 2 - CasinoElements.LARGEFONTSIZE / 2);
@@ -210,18 +208,18 @@ public class RouletteController {
 
 		double winnings = rouletteGame.calculate();
 		UserSaveHandler.UpdateUser(user);
-		
+
 		int number = rouletteGame.getRolledNumber();
 
 		setShowRouletteWheel(true);
 		Pane rouletteWheelPivotPane = (Pane) rouletteWheelContainer.getChildren().get(0);
 		rouletteWheelPivotPane.setRotate(0);
 		double extraAngle = getAngle() * rouletteWheelNumberSequence.indexOf(number);
-		
+
 		RotateTransition rt = new RotateTransition(Duration.seconds(4), rouletteWheelPivotPane);
 		rt.setByAngle(360 * 4 + 360 - extraAngle);
 		rt.play();
-	
+
 		RotateTransition rt2 = new RotateTransition(Duration.seconds(2), rouletteWheelPivotPane);
 		rt2.setOnFinished(e -> {
 			setShowRouletteWheel(false);
@@ -233,14 +231,14 @@ public class RouletteController {
 		rt.setOnFinished(e -> {
 			rolledNumberLabel.setText( "" + rouletteGame.getRolledNumber());
 			rt2.play();
-		});		
+		});
 	}
-	
+
 	private void setShowRouletteWheel(boolean b) {
 		if (b) {
-			rouletteWheelContainer.setVisible(true);	
-			
-			rouletteBoardPane.setEffect(new BoxBlur());	
+			rouletteWheelContainer.setVisible(true);
+
+			rouletteBoardPane.setEffect(new BoxBlur());
 			controllsFolder.setEffect(new BoxBlur());
 			chipFolder.setEffect(new BoxBlur());
 		} else {
@@ -279,9 +277,24 @@ public class RouletteController {
 
 		}
 		tile.getChildren().add(chipContainer);
+		chipList.add(chipContainer);
 	}
-	
-	
+
+	@FXML
+	private void undoGuess() {
+		if (chipList.isEmpty()) {
+			return;
+		}
+		rouletteGame.undoGuess();
+		Pane chip = chipList.get(chipList.size() - 1);
+		chipList.remove(chip);
+		Pane tile = (Pane) chip.getParent();
+		tile.getChildren().remove(tile.getChildren().size() - 1);
+		updateLables();
+	}
+
+
+
 	private void setNumberGuess(Pane tile, int number) {
 		tile.setOnMouseClicked(e -> {
 			NumberGuess guess = new NumberGuess(CasinoElements.getValue(chipValueIndex), number);
@@ -329,21 +342,21 @@ public class RouletteController {
 		Pane rouletteWheelContainer = new Pane();
 		rouletteWheelContainer.setPrefHeight(anchorPane.getPrefHeight());
 		rouletteWheelContainer.setPrefWidth(anchorPane.getPrefWidth());
-		
+
 		Pane rouletteWheelPivotPane = new Pane();
 		rouletteWheelPivotPane.setTranslateX(rouletteBoardPane.getPrefWidth() / 2); // Senters the pane
 		rouletteWheelPivotPane.setTranslateY(rouletteBoardPane.getPrefHeight() / 2); // Senters the pane
-		
+
 		Circle backgroundCircle = new Circle();
 		backgroundCircle.setFill(Paint.valueOf("black"));
 		backgroundCircle.setRadius(radius);
 		rouletteWheelPivotPane.getChildren().add(backgroundCircle);
-		
-		
+
+
 		for (int i = 0; i <= Roulette.RoulettSize; i++) {
 			Paint style = (i % 2 == 0) ? Paint.valueOf("red") : Paint.valueOf("black");
 			style = (i == 0) ? Paint.valueOf("green") : style;
-			
+
 			Polygon tri = createTriangle(0, 0, radius, Math.PI  / (Roulette.RoulettSize + 1));
 			tri.setFill(style);
 
@@ -351,28 +364,28 @@ public class RouletteController {
 			triangleRotation.setAngle(getAngle() * i);
 
 			tri.getTransforms().add(triangleRotation);
-			
-			int number = rouletteWheelNumberSequence.get(i);			
+
+			int number = rouletteWheelNumberSequence.get(i);
 			String text = number < 10 ? " " + number : "" + number;
 			Label l = new Label(text);
 			l.setFont(CasinoElements.TEXTFONT);
 			l.setTextFill(Paint.valueOf("white"));
 			l.setTranslateY(-radius);
-			
-			
+
+
 			Rotate labelRotation = new Rotate();
 			labelRotation.setAngle((i - 0.4) * getAngle());
 
 			labelRotation.setPivotX(0);
 			labelRotation.setPivotY(radius);
 			l.getTransforms().add(labelRotation);
-			
+
 			rouletteWheelPivotPane.getChildren().add(tri);
 			rouletteWheelPivotPane.getChildren().add(l);
-			
+
 		}
 		rouletteWheelPivotPane.setPrefSize(0, 0);
-		
+
 		Circle middleCircle = new Circle();
 		middleCircle.setRadius(radius * 2 / 3);
 		middleCircle.setFill(Paint.valueOf("#075600"));
@@ -382,15 +395,15 @@ public class RouletteController {
 		middleCircle.setStrokeLineCap(StrokeLineCap.BUTT);//The poker chip border design
 		middleCircle.setStrokeType(StrokeType.INSIDE);
 		middleCircle.setStyle("-fx-stroke-dash-array:8;");
-		
-		
-		
-		
-		
+
+
+
+
+
 		rouletteWheelContainer.getChildren().add(rouletteWheelPivotPane);
 		return rouletteWheelContainer;
 	}
-	
+
 	/*
 	 * Creates a triangle from a point with an angle
 	 */
@@ -400,11 +413,11 @@ public class RouletteController {
 	    fovTriangle.setLayoutY(y);
 	    return fovTriangle;
 	}
-	
+
 	private double getAngle() {
 		return 360.0 / (Roulette.RoulettSize + 1);
 	}
-	
+
 	private void updateUserLables() {
 		moneyBettedLabel.setText("" + rouletteGame.getSumOfBets());
 		moneyLabel.setText("" + user.getBalance());

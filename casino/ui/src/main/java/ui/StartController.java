@@ -19,7 +19,6 @@ public class StartController {
     private Button log_in_button;
     private Stage stage;
     private Scene scene;
-    private Parent root;
 
     @FXML
     public void log_in_scene(ActionEvent actionEvent) throws IOException {

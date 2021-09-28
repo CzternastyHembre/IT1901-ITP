@@ -21,11 +21,15 @@ public class Roulette {
 	private int rolledNumber;
 
 	private void rollNumber() {
-		rolledNumber = rand.nextInt(37);
+		rolledNumber = rand.nextInt(38);
 	}
 
 	public int getRolledNumber() {
 		return rolledNumber;
+	}
+
+	public void setRolledNumber(int rolledNumber) {
+		this.rolledNumber = rolledNumber;
 	}
 
 	/**
@@ -35,25 +39,23 @@ public class Roulette {
 	 */
 	public double calculate() {
 		rollNumber();
-//		this.rolledNumber = 5;
-//		System.out.println("RolledNumber = " + this.rolledNumber + "\n");
 
+		double winnings = calcuteGuessWinnings();
+		user.addMoney(winnings);
+		guesses.clear();
+		return winnings;
+	}
+
+	public double calcuteGuessWinnings() {
 		double winnings = 0;
 
 		for (Guess guess : guesses) {
 			if (guess.isWin(rolledNumber)) {
-//				System.out.println("" + guess.getClass().getSimpleName() + " = " + guess + " "
-//						+ (guess.amount * RoulettSize / guess.getPossibleWins()));
-
 				winnings += guess.amount * RoulettSize / guess.getPossibleWins();
-			} else {
-//				System.err.println("" + guess.getClass().getSimpleName() + " = " + guess + " 0 ");
 			}
 		}
-
-		user.addMoney(winnings);
-		guesses.clear();
 		return winnings;
+
 	}
 	
 	public double getSumOfBets() {
@@ -68,16 +70,14 @@ public class Roulette {
 		guesses.add(guess);
 	}
 	
+	public void undoGuess() {
+		Guess lastGuess = guesses.get(guesses.size() - 1);
+		user.addMoney(lastGuess.getAmount());
+		guesses.remove(guesses.size() - 1);
+	}
+	
 	public void cleacGuess() {
 		guesses.remove(guesses.size());
 	}
 
-
-	public static void main(String[] args) {
-
-
-//		u.addGuess(new PatternGuess(100, 1, 2));
-//		u.addGuess(new NumberGuess(100, 2, 5));
-//		u.addGuess(new ListGuess(50, 2, 5));
-	}
 }
