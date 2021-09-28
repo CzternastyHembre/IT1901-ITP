@@ -6,18 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="modules-ui" />
-        <module name="modules-core" />
+        <module name="core" />
         <module name="storage" />
+        <module name="ui" />
+        <module name="modules-ui" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="core" target="16" />
       <module name="javafx-template" target="16" />
       <module name="modules-core" target="16" />
       <module name="modules-template" target="16" />
       <module name="modules-ui" target="16" />
       <module name="packages-template" target="16" />
       <module name="storage" target="16" />
+      <module name="ui" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
