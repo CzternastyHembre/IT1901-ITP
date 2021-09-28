@@ -1,24 +1,25 @@
 package ui;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 import roulette.Guess;
 import roulette.ListGuess;
 import roulette.NumberGuess;
 import roulette.PatternGuess;
-import roulette.PokerChip;
 import roulette.Roulette;
 import saveHandler.UserSaveHandler;
 import user.User;
@@ -134,8 +135,7 @@ public class RouletteController {
 			tile.setStyle("-fx-background-color:green;");
 			rouletteBoardPane.getChildren().add(tile);
 
-			int startNumber = i;
-			String tileString = startNumber + "";
+			String tileString = i + "";
 			tileLabel.setText("" + tileString);
 			
 			labelList.add(tileLabel);
@@ -150,15 +150,14 @@ public class RouletteController {
 			}
 		}
 		for (Node node : rouletteBoardPane.getChildren()) {
-			if (node instanceof Pane) {
-				Pane tile = (Pane) node;
+			if (node instanceof Pane tile) {
 				String oldStyle = tile.getStyle();
 				tile.setStyle(oldStyle + "-fx-border-color:white;");
 			}
 		}
 
 		//Adding the select poker chips
-		for (int i = 0; i < CasinoElements.VALUES.length; i++) {
+		for (int i = 0; i < CasinoElements.getValuesSize(); i++) {
 			Pane chipContainer = CasinoElements.getChip(i);
 			String style = chipContainer.getStyle();
 			
@@ -253,10 +252,10 @@ public class RouletteController {
 	private void clearChips() {
 		rouletteBoardPane.getChildren().forEach((n) -> {
 			Pane tile = (Pane) n;
-			for (int i = tile.getChildren().size() - 1; i > 0; i--) {
-				tile.getChildren().remove(i);
+			if (tile.getChildren().size() > 1) {
+				tile.getChildren().subList(1, tile.getChildren().size()).clear();
 			}
-		});;
+		});
 	}
 	
 	private void addChip(Pane tile) {
@@ -293,6 +292,10 @@ public class RouletteController {
 		updateLables();
 	}
 
+	private void updateLables() {
+		moneyBettedLabel.setText("" + rouletteGame.getSumOfBets());
+		moneyLabel.setText("" + user.getBalance());
+	}
 
 
 	private void setNumberGuess(Pane tile, int number) {
