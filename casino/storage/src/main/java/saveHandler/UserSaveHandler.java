@@ -36,10 +36,10 @@ public class UserSaveHandler{
 	}
 	
 	public static void setActive(User user) {
-		UpdateUser(user);
+		updateUser(user);
 	}
 	
-	public static void UpdateUser(User user){
+	public static void updateUser(User user){
 		if (getUser(user.getUsername()) == null) {
 			throw new IllegalArgumentException("No user with the name " + user.getUsername());
 		}
@@ -127,6 +127,6 @@ public class UserSaveHandler{
 		User seb = new User("Seb", 100);
 		
 		System.out.println(UserSaveHandler.getActiveUser());
-		UserSaveHandler.UpdateUser(mattis);
+		UserSaveHandler.updateUser(mattis);
 	}
 }
