@@ -1,8 +1,8 @@
 -Format: userName;Balance
 - Active User:
-kjnrefe;1000.0
+oeihoifhew;999.0
 - Users:
-Erlend;1000.0
+Erlend;999.0
 Mattis;25.0
 Karen;3020.0
 eeeee;18500.0
@@ -14,3 +14,4 @@ TestUndo;1000.0
 TestUndoBTN;1000.0
 oindfioe;975.0
 kjnrefe;1000.0
+oeihoifhew;999.0

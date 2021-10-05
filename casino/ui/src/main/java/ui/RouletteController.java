@@ -206,7 +206,7 @@ public class RouletteController {
 	public void run() {
 
 		double winnings = rouletteGame.calculate();
-		UserSaveHandler.UpdateUser(user);
+		UserSaveHandler.updateUser(user);
 
 		int number = rouletteGame.getRolledNumber();
 
