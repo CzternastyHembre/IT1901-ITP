@@ -1,8 +1,0 @@
-{
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "java.format.settings.url": "casino/config/checkstyle/eclipse-java-google-style.xml",
-    "[java]": {
-      "editor.tabSize": 2
-    },
-    "java.dependency.packagePresentation": "hierarchical"
-}
