@@ -17,19 +17,21 @@ public class Slots {
     private double currentWinnings;
     private String combo;
     private double averagePayout;
+    private User user;
 
     // Constructor
 
 
-    public Slots() {
+    public Slots(User user) {
         this.spins = 0;
         this.netGain = 0;
         this.bet = 0;
-        this.userBalance = 1000000;
         for (int i = 0; i < 3; i++){
             symbols.add(0);
         }
         this.random = new Random();
+        this.user = user;
+        this.userBalance = user.getBalance();
     }
 
     public Slots(double balance){
@@ -49,6 +51,7 @@ public class Slots {
         spin();
         updateWinnings();
     }
+
 
     public void spin(){
         for (int i = 0; i < symbols.size();i++){
@@ -150,6 +153,9 @@ public class Slots {
     }
 
 
+    public User getUser() {
+        return this.user;
+    }
 }
 
 

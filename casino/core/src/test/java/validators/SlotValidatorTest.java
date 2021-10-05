@@ -14,7 +14,7 @@ import java.util.List;
 class SlotValidatorTest {
 
     User user = new User("Test",100000);
-    Slots slots = new Slots();
+    Slots slots = new Slots(user);
     List<Integer> symbols = new ArrayList<>();
 
     @BeforeEach

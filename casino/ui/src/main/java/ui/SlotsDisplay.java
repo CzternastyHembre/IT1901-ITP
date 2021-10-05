@@ -4,12 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
+import saveHandler.UserSaveHandler;
 import slots.Slots;
 
 import java.net.URL;
@@ -46,6 +46,11 @@ public abstract class SlotsDisplay implements Initializable {
         slotMachine.play(bet);
         setColors();
         updateStats();
+        updateUserState();
+    }
+
+    private void updateUserState() {
+        UserSaveHandler.updateUser(slotMachine.getUser());
     }
 
     public void setColors(){
