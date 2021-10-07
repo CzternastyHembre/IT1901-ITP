@@ -8,71 +8,77 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import saveHandler.UserSaveHandler;
 import slots.Slots;
 
+import java.io.File;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public abstract class SlotsDisplay implements Initializable {
 
     protected Slots slotMachine;
 
+    private final Image backImage = new Image((getClass().getResourceAsStream("/images/cards/backOfCard.jpg")));
 
     @FXML FXMLLoader loader = new FXMLLoader();
     @FXML private Button betButton;
     @FXML private TextField betField;
-    @FXML public Pane slot1;
-    @FXML public Pane slot2;
-    @FXML public Pane slot3;
+    @FXML public ImageView slot1;
+    @FXML public ImageView slot2;
+    @FXML public ImageView slot3;
+
     @FXML public Label balanceNum;
     @FXML public Label netGainNum;
     @FXML public Label currentBetNum;
     @FXML public Label payoutNum;
     @FXML public Label comboSlot;
 
-    @FXML public Label slot1Label;
-    @FXML public Label slot2Label;
-    @FXML public Label slot3Label;
     @FXML public Label avgPayout;
     @FXML public Label spinsCounter;
 
     @FXML public ToggleButton keepBetButton;
 
 
+
+    public void viewAtStart(){
+        System.out.println(this.backImage.getUrl());
+        slot1 = new ImageView(this.backImage);
+        System.out.println(this.backImage.getWidth());
+        System.out.println(this.backImage.getHeight());
+        slot2 = new ImageView(this.backImage);
+        slot3 = new ImageView(this.backImage);
+    }
+
+
     public void spin(ActionEvent actionEvent){
         int bet = Integer.parseInt(betField.getText());
         slotMachine.play(bet);
-        setColors();
+        updateCardsDisplay();
         updateStats();
-        updateUserState();
+//        updateUserState();
     }
 
     private void updateUserState() {
         UserSaveHandler.updateUser(slotMachine.getUser());
     }
 
-    public void setColors(){
-        assignColor(slot1, slotMachine.getSymbols().get(0), slot1Label);
-        assignColor(slot2, slotMachine.getSymbols().get(1), slot2Label);
-        assignColor(slot3, slotMachine.getSymbols().get(2), slot3Label);
+
+    public void updateCardsDisplay(){
+        System.out.println(slotMachine.getSymbols().get(0));
+        assignCard(this.slot1,slotMachine.getSymbols().get(0));
+        assignCard(this.slot2,slotMachine.getSymbols().get(1));
+        assignCard(this.slot3,slotMachine.getSymbols().get(2));
     }
 
-    public void assignColor(Pane slot, int slotNum, Label slotLabel){
-        switch (slotNum){
-            case 1 -> slot.setStyle("-fx-background-color: red");
-            case 2 -> slot.setStyle("-fx-background-color: orange");
-            case 3 -> slot.setStyle("-fx-background-color: yellow");
-            case 4 -> slot.setStyle("-fx-background-color: green");
-            case 5 -> slot.setStyle("-fx-background-color: #00ff22");
-            case 6 -> slot.setStyle("-fx-background-color: turquoise");
-            case 7 -> slot.setStyle("-fx-background-color: #293bff");
-            case 8 -> slot.setStyle("-fx-background-color: purple");
-            case 9 -> slot.setStyle("-fx-background-color: violet");
-            default -> System.out.println("default");
-        }
-        slotLabel.setText(""+slotNum);
+    public void assignCard(ImageView slot, String slotCard){
+        File file = new File("../images/cards/" + slotCard + ".jpg");
+        Image image = new Image(file.toURI().toString());
+        slot.setImage(image);
     }
 
 

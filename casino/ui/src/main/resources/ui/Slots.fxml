@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -28,31 +29,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <Pane prefHeight="200.0" prefWidth="200.0">
-            <Pane fx:id="slot1" layoutX="125.0" layoutY="40.0" prefHeight="198.0" prefWidth="117.0">
-                <Label id="slot1Num" fx:id="slot1Label" layoutX="39.0" layoutY="61.0" prefHeight="17.0" prefWidth="8.0" text="0">
-                    <font>
-                        <Font size="63.0" />
-                    </font>
-                </Label>
-            </Pane>
-            <Pane fx:id="slot2" layoutX="241.0" layoutY="40.0" prefHeight="198.0" prefWidth="117.0">
-                <Label id="slot2Num" fx:id="slot2Label" layoutX="39.0" layoutY="61.0" prefHeight="17.0" prefWidth="8.0" text="0">
-                    <font>
-                        <Font size="63.0" />
-                    </font>
-                </Label>
-            </Pane>
-            <Pane fx:id="slot3" layoutX="357.0" layoutY="40.0" prefHeight="198.0" prefWidth="117.0">
-                <Label id="slot3Num" fx:id="slot3Label" layoutX="39.0" layoutY="61.0" prefHeight="17.0" prefWidth="8.0" text="0">
-                    <font>
-                        <Font size="63.0" />
-                    </font>
-                </Label>
-            </Pane>
+            <ImageView id="slot2" fx:id="slot2" fitHeight="182.0" fitWidth="124.0" layoutX="236.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="comboSlot" layoutX="8.0" layoutY="244.0" prefHeight="28.0" prefWidth="294.0" text="LOSS" textAlignment="CENTER">
                 <font>
                     <Font size="23.0" />
                 </font></Label>
+            <ImageView id="slot3" fx:id="slot3" fitHeight="182.0" fitWidth="124.0" layoutX="360.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="slot1" fx:id="slot1" fitHeight="182.0" fitWidth="124.0" layoutX="112.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
         </Pane>
     </GridPane>
     <GridPane layoutY="307.0" prefHeight="93.0" prefWidth="600.0">

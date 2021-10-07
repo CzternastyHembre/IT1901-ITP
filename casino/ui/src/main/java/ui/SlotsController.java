@@ -1,10 +1,5 @@
 package ui;
 
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.Pane;
 import saveHandler.UserSaveHandler;
 import slots.Slots;
 
@@ -17,8 +12,10 @@ public class SlotsController extends SlotsDisplay {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
+//        super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
+        super.slotMachine = new Slots();
         super.updateStats();
+        super.viewAtStart();
     }
 
 

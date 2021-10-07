@@ -4,11 +4,12 @@ import user.User;
 import validators.SlotsValidator;
 
 import java.util.*;
+import javafx.fxml.FXML;
 
 public class Slots {
 
     // Fields
-    private List<Integer> symbols = new ArrayList<>();
+    private List<String> symbols = new ArrayList<>();
     private double userBalance;
     private int spins;
     private int netGain;
@@ -18,29 +19,46 @@ public class Slots {
     private String combo;
     private double averagePayout;
     private User user;
+    private final String[] validSuits = new String[] {"S","D","H","C"};
+
+
 
     // Constructor
 
-
+    // MAIN CONSTRUCTOR FOR FINAL PRODUCT
     public Slots(User user) {
         this.spins = 0;
         this.netGain = 0;
         this.bet = 0;
         for (int i = 0; i < 3; i++){
-            symbols.add(0);
+            symbols.add("");
         }
         this.random = new Random();
         this.user = user;
         this.userBalance = user.getBalance();
     }
 
+    // CONSTRUCTOR FOR SLOTAPP
+    public Slots() {
+        this.spins = 0;
+        this.netGain = 0;
+        this.bet = 0;
+        for (int i = 0; i < 3; i++){
+            symbols.add("");
+        }
+        this.random = new Random();
+        this.user = null;
+        this.userBalance = 100000;
+    }
+
+    // CONSTRUCTOR FOR TESTS
     public Slots(double balance){
         this.spins = 0;
         this.netGain = 0;
         this.bet = 0;
         this.userBalance = balance;
         for (int i = 0; i < 3; i++){
-            symbols.add(0);
+            symbols.add("");
         }
         this.random = new Random();
     }
@@ -58,6 +76,9 @@ public class Slots {
             symbols.set(i,generateSymbol());
         }
         spins++;
+        for (String symbol : symbols){
+            System.out.println(symbol);
+        }
     }
 
     private void placeBet() {
@@ -66,8 +87,9 @@ public class Slots {
     }
 
 
-    private int generateSymbol(){
-        return random.nextInt(9)+1;
+    private String generateSymbol(){
+        return random.nextInt(9)+1
+                + validSuits[random.nextInt(validSuits.length)]; // Generate a random number between 1-9, and add a random suit
     }
 
 
@@ -148,7 +170,7 @@ public class Slots {
         return combo;
     }
 
-    public List<Integer> getSymbols() {
+    public List<String> getSymbols() {
         return symbols;
     }
 
