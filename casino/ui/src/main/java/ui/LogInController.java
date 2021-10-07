@@ -28,7 +28,7 @@ public class LogInController {
         }
         User userr = UserSaveHandler.getUser(getUsername());
         UserSaveHandler.setActive(userr);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Roulette.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("selectGameView.fxml")));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
