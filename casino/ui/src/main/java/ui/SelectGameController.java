@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +19,9 @@ public class SelectGameController {
     private Stage stage;
     private Scene scene;
     @FXML Button roulette, slots;
+    @FXML MenuItem mainMenu, exit;
+    @FXML FXMLLoader loader = new FXMLLoader();
+    @FXML AnchorPane anchorPane;
 
     @FXML
     public void loadRoulette(ActionEvent actionEvent) throws IOException {
@@ -35,4 +40,23 @@ public class SelectGameController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    public void exit(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    @FXML
+    public void backToMainMenu(ActionEvent actionEvent) throws IOException {
+        //Sets location on the loader by getting the class and then the view file from resources
+        loader.setLocation(getClass().getResource("Start.fxml"));
+        Parent newGame = loader.load(); // Create a parent class of the loader.load()
+        Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
+
+        Stage window = (Stage) anchorPane.getScene().getWindow();   //Create new Stage to from the view-file
+        window.setScene(newGameScene);  //Set the window to the previous chosen scene
+
+        window.show();  //Opens the window
+    }
+
 }

@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.CreateUserController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.CreateUserController">
    <children>
       <TextField fx:id="username_field" layoutX="220.0" layoutY="187.0" promptText="Username" />
       <Button layoutX="273.0" layoutY="250.0" mnemonicParsing="false" onAction="#run" text="Create!" />
+      <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
+              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
