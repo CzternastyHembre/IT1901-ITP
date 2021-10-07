@@ -76,9 +76,6 @@ public class Slots {
             symbols.set(i,generateSymbol());
         }
         spins++;
-        for (String symbol : symbols){
-            System.out.println(symbol);
-        }
     }
 
     private void placeBet() {
@@ -88,32 +85,50 @@ public class Slots {
 
 
     private String generateSymbol(){
-        return random.nextInt(9)+1
+        return random.nextInt(10)+1
                 + validSuits[random.nextInt(validSuits.length)]; // Generate a random number between 1-9, and add a random suit
     }
 
 
     private double calculateWinnings(){
+
         if (SlotsValidator.isDevil(symbols)){
             this.combo = "DEVIL";
             return 0;
         }
+
+        if (SlotsValidator.isSuperJackpot(symbols)){
+            this.combo = "SUPER JACKPOT";
+            return getBet()* 5000;
+        }
+
+        if (SlotsValidator.isSuperPerfectStraight(symbols)){
+            this.combo = "SUPER PERFECT STRAIGHT";
+            return getBet() * 5000;
+        }
+
         if (SlotsValidator.isJackpot(symbols)) {
             this.combo = "JACKPOT";
-            return getBet()*40;
+            return getBet()*20;
         }
+
         if (SlotsValidator.isPerfectStraight(symbols)) {
             this.combo = "PERFECT STRAIGHT";
-            return getBet()*4.5;
+            return getBet()*2.5;
         }
         if (SlotsValidator.isStraight(symbols)) {
             this.combo = "STRAIGHT";
-            return getBet()*2.7;
+            return getBet()*1.7;
+        }
+
+        if (SlotsValidator.isFlush(symbols)){
+            this.combo = "FLUSH";
+            return getBet()*1.5;
         }
 
         if (SlotsValidator.isPair(symbols)) {
             this.combo = "PAIR";
-            return getBet()*1.75;
+            return getBet()*1.25;
         }
         else {
             this.combo = "LOSS";

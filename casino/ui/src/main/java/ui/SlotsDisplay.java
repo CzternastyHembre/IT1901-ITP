@@ -28,9 +28,6 @@ public abstract class SlotsDisplay implements Initializable {
     @FXML FXMLLoader loader = new FXMLLoader();
     @FXML private Button betButton;
     @FXML private TextField betField;
-    @FXML public ImageView slot1;
-    @FXML public ImageView slot2;
-    @FXML public ImageView slot3;
 
     @FXML public HBox slotHBox1;
     @FXML public HBox slotHBox2;
@@ -110,7 +107,6 @@ public abstract class SlotsDisplay implements Initializable {
 
 
     private ImageView createImageView(String imageName){
-        System.out.println("/images/cards/" + imageName + ".jpg");
         ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/cards/" + imageName + ".jpg")));
         imageView.setFitWidth(148);
         imageView.setFitHeight(210);
