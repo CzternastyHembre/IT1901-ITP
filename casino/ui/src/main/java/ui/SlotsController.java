@@ -15,6 +15,7 @@ public class SlotsController extends SlotsDisplay {
 //        super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
         super.slotMachine = new Slots();
         super.updateStats();
+        super.initializeHBoxes();
         super.viewAtStart();
     }
 

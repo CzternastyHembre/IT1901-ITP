@@ -10,14 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import saveHandler.UserSaveHandler;
 import slots.Slots;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public abstract class SlotsDisplay implements Initializable {
 
@@ -32,6 +32,10 @@ public abstract class SlotsDisplay implements Initializable {
     @FXML public ImageView slot2;
     @FXML public ImageView slot3;
 
+    @FXML public HBox slotHBox1;
+    @FXML public HBox slotHBox2;
+    @FXML public HBox slotHBox3;
+
     @FXML public Label balanceNum;
     @FXML public Label netGainNum;
     @FXML public Label currentBetNum;
@@ -43,17 +47,20 @@ public abstract class SlotsDisplay implements Initializable {
 
     @FXML public ToggleButton keepBetButton;
 
+    private final List<HBox> hboxesList = new ArrayList<>();
 
 
     public void viewAtStart(){
-        System.out.println(this.backImage.getUrl());
-        slot1 = new ImageView(this.backImage);
-        System.out.println(this.backImage.getWidth());
-        System.out.println(this.backImage.getHeight());
-        slot2 = new ImageView(this.backImage);
-        slot3 = new ImageView(this.backImage);
+        for (HBox box : hboxesList){
+            box.getChildren().add(createImageView("backOfCard"));
+        }
     }
 
+    public void initializeHBoxes(){
+        hboxesList.add(slotHBox1);
+        hboxesList.add(slotHBox2);
+        hboxesList.add(slotHBox3);
+    }
 
     public void spin(ActionEvent actionEvent){
         int bet = Integer.parseInt(betField.getText());
@@ -69,16 +76,20 @@ public abstract class SlotsDisplay implements Initializable {
 
 
     public void updateCardsDisplay(){
-        System.out.println(slotMachine.getSymbols().get(0));
-        assignCard(this.slot1,slotMachine.getSymbols().get(0));
-        assignCard(this.slot2,slotMachine.getSymbols().get(1));
-        assignCard(this.slot3,slotMachine.getSymbols().get(2));
+        removeCards();
+        for (HBox box : hboxesList){
+            assignCard(box, slotMachine.getSymbols().get(hboxesList.indexOf(box)));
+        }
     }
 
-    public void assignCard(ImageView slot, String slotCard){
-        File file = new File("../images/cards/" + slotCard + ".jpg");
-        Image image = new Image(file.toURI().toString());
-        slot.setImage(image);
+    private void removeCards() {
+        for (HBox box : hboxesList){
+            box.getChildren().clear();
+        }
+    }
+
+    public void assignCard(HBox slotHBox, String slotCard){
+        slotHBox.getChildren().add(createImageView(slotCard));
     }
 
 
@@ -98,6 +109,13 @@ public abstract class SlotsDisplay implements Initializable {
     }
 
 
+    private ImageView createImageView(String imageName){
+        System.out.println("/images/cards/" + imageName + ".jpg");
+        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/cards/" + imageName + ".jpg")));
+        imageView.setFitWidth(148);
+        imageView.setFitHeight(210);
+        return imageView;
+    }
 
 
     @Override
