@@ -1,13 +1,9 @@
 package ui;
 
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.Pane;
 import saveHandler.UserSaveHandler;
 import slots.Slots;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,9 +13,11 @@ public class SlotsController extends SlotsDisplay {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
+        try {
+            super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         super.updateStats();
     }
-
-
 }

@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 import javafx.animation.RotateTransition;
@@ -44,8 +45,13 @@ public class RouletteController {
 	@FXML
 	public void initialize() {
 		List<Label> labelList = new ArrayList<>(Arrays.asList(moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel, textLabel1, textLabel2, rolledNumberLabel));
-
-		user = UserSaveHandler.getActiveUser();
+		User user;
+		try{
+			user = UserSaveHandler.getActiveUser();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
 		rouletteGame = new Roulette(user);
 		updateUserLables();
 		nameLabel.setText(user.getUsername());
@@ -203,10 +209,12 @@ public class RouletteController {
 	}
 	
 	@FXML
-	public void run() {
+	public void run() throws FileNotFoundException {
 
 		double winnings = rouletteGame.calculate();
+		System.out.println("ye");
 		UserSaveHandler.updateUser(user);
+		System.out.println("yeye");
 
 		int number = rouletteGame.getRolledNumber();
 

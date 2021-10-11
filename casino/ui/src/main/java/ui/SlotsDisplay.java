@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import saveHandler.UserSaveHandler;
 import slots.Slots;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,7 +42,7 @@ public abstract class SlotsDisplay implements Initializable {
     @FXML public ToggleButton keepBetButton;
 
 
-    public void spin(ActionEvent actionEvent){
+    public void spin(ActionEvent actionEvent) throws FileNotFoundException {
         int bet = Integer.parseInt(betField.getText());
         slotMachine.play(bet);
         setColors();
@@ -49,7 +50,7 @@ public abstract class SlotsDisplay implements Initializable {
         updateUserState();
     }
 
-    private void updateUserState() {
+    private void updateUserState() throws FileNotFoundException {
         UserSaveHandler.updateUser(slotMachine.getUser());
     }
 

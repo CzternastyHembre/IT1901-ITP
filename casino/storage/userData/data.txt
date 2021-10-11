@@ -1,9 +1,9 @@
 -Format: userName;Balance
 - Active User:
-oeihoifhew;999.0
+oidnwfios;900.0
 - Users:
 Erlend;999.0
-Mattis;25.0
+Mattis;20.0
 Karen;3020.0
 eeeee;18500.0
 karan Singh;4210.0
@@ -15,3 +15,11 @@ TestUndoBTN;1000.0
 oindfioe;975.0
 kjnrefe;1000.0
 oeihoifhew;999.0
+nefneilf;1000.0
+idf;1000.0
+oidnfiod;1000.0
+idoi;1000.0
+bkjbkj;1000.0
+erlend;1000.0
+tor;950.0
+oidnwfios;900.0

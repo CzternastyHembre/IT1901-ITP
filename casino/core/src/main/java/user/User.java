@@ -4,9 +4,21 @@ public class User {
     private double balance;
     private String username;
 
+    public User(){
+
+    }
+
     public User(String username, double balance) {
         this.balance = balance;
         this.username = username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public void addMoney(double amount){
@@ -37,5 +49,12 @@ public class User {
     public String getUsername() {
         return username;
     }
-    
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "balance=" + balance +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
