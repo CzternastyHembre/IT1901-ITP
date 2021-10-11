@@ -48,18 +48,6 @@ public class Slots {
         this.userBalance = 100000;
     }
 
-    // CONSTRUCTOR FOR TESTS
-    public Slots(double balance) {
-        this.spins = 0;
-        this.netGain = 0;
-        this.bet = 0;
-        this.userBalance = balance;
-        for (int i = 0; i < 3; i++) {
-            symbols.add("");
-        }
-        this.random = new Random();
-    }
-
     public void play(int bet) {
         setBet(bet);
         withdrawMoney();
