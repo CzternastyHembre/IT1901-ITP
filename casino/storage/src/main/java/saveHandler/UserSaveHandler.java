@@ -12,16 +12,18 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class UserSaveHandler {
-    public final static String SAVE_FILE = "../storage/userData/users.json";
+    public final static String SAVE_FILE = "../storage/src/main/resources/users.json";
 
-    public static void createUser(User user) throws FileNotFoundException {
-        List<User> userList = getUserList();
-        if (userList.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
-            throw new IllegalArgumentException("Username is taken");
+    public static void createUser(User user) throws IOException {
+
+            List<User> userList = getUserList();
+            if (userList.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
+                throw new IllegalArgumentException("Username is taken");
+            }
+            userList.add(0, user);
+            updateFile(userList);
         }
-        userList.add(0, user);
-        updateFile(userList);
-    }
+
 
     private static void updateFile(List<User> userList) {
         try {
@@ -36,7 +38,16 @@ public class UserSaveHandler {
         }
     }
 
-    public static List<User> getUserList() throws FileNotFoundException {
+    public static boolean isEmpty(){
+        File file = new File(SAVE_FILE);
+        System.out.println(file.getAbsolutePath());
+        return file.length() == 0;
+    }
+
+    public static List<User> getUserList() throws IOException {
+            if(isEmpty()){
+                return new ArrayList<>();
+            }
             List<User> userList = new ArrayList<>();
             Scanner sc = new Scanner(new File(SAVE_FILE));
             if (!sc.hasNextLine()){
@@ -50,7 +61,7 @@ public class UserSaveHandler {
             return userList;
         }
 
-    public static User getUser(String username) throws FileNotFoundException {
+    public static User getUser(String username) throws IOException {
 
         for(User user : Objects.requireNonNull(getUserList())){
             if(user.getUsername().equals(username)){
@@ -61,7 +72,7 @@ public class UserSaveHandler {
     }
 
     // The active user is the first element in UserList
-    public static void setActive(User user) throws FileNotFoundException {
+    public static void setActive(User user) throws IOException {
         List<User> userList = getUserList();
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getUsername().equals(user.getUsername())){
@@ -73,7 +84,7 @@ public class UserSaveHandler {
         updateFile(userList);
     }
 
-    public static void updateUser(User user) throws FileNotFoundException {
+    public static void updateUser(User user) throws IOException {
         List<User> userList = getUserList();
         for (int i = 0; i < userList.size(); i++) {
             if(userList.get(i).getUsername().equals(user.getUsername())){
@@ -84,7 +95,7 @@ public class UserSaveHandler {
         updateFile(userList);
     }
 
-    public static User getActiveUser() throws FileNotFoundException {
+    public static User getActiveUser() throws IOException {
         return getUserList().get(0);
     }
 }
