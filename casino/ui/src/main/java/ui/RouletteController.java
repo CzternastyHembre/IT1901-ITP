@@ -43,15 +43,10 @@ public class RouletteController {
 	private Pane rouletteWheelContainer;
 
 	@FXML
-	public void initialize() {
+	public void initialize() throws FileNotFoundException {
 		List<Label> labelList = new ArrayList<>(Arrays.asList(moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel, textLabel1, textLabel2, rolledNumberLabel));
-		User user;
-		try{
-			user = UserSaveHandler.getActiveUser();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
+		user = UserSaveHandler.getActiveUser();
+
 		rouletteGame = new Roulette(user);
 		updateUserLables();
 		nameLabel.setText(user.getUsername());

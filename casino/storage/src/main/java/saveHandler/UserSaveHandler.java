@@ -87,6 +87,5 @@ public class UserSaveHandler {
     public static User getActiveUser() throws FileNotFoundException {
         return getUserList().get(0);
     }
-
 }
 
