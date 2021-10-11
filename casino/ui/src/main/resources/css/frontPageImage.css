@@ -1,0 +1,8 @@
+.image{
+    -fx-background-image: url(../images/MainMenu.jpeg);
+    -fx-background-size: 100% 100%;
+}
+.headline{
+    -fx-background-image: url(../images/headline.png);
+    -fx-background-size: 100% 100%;
+}

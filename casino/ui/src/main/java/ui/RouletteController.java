@@ -1,11 +1,18 @@
 package ui;
 
+import java.io.IOException;
 import java.util.*;
 
 import javafx.animation.RotateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -15,6 +22,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import roulette.Guess;
 import roulette.ListGuess;
@@ -30,7 +38,11 @@ public class RouletteController {
 	Pane chipFolder, anchorPane, rouletteBoardPane, controllsFolder;
 	@FXML
 	Label moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel, textLabel1, textLabel2;
-	
+	@FXML
+	MenuItem mainMenu, lobby, exit;
+	@FXML
+	FXMLLoader loader = new FXMLLoader();
+
 	Label rolledNumberLabel = new Label();
 	private Roulette rouletteGame;
 	private User user;
@@ -424,6 +436,37 @@ public class RouletteController {
 	private void updateUserLables() {
 		moneyBettedLabel.setText("" + rouletteGame.getSumOfBets());
 		moneyLabel.setText("" + user.getBalance());
+	}
+
+	@FXML
+	public void exit(ActionEvent actionEvent) {
+		System.exit(0);
+	}
+
+	@FXML
+	public void backToMainMenu(ActionEvent actionEvent) throws IOException {
+		//Sets location on the loader by getting the class and then the view file from resources
+		loader.setLocation(getClass().getResource("Start.fxml"));
+		Parent newGame = loader.load(); // Create a parent class of the loader.load()
+		Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
+
+		Stage window = (Stage) anchorPane.getScene().getWindow();   //Create new Stage to from the view-file
+		window.setScene(newGameScene);  //Set the window to the previous chosen scene
+
+		window.show();  //Opens the window
+	}
+
+	@FXML
+	public void backToLobby(ActionEvent actionEvent) throws IOException {
+		//Sets location on the loader by getting the class and then the view file from resources
+		loader.setLocation(getClass().getResource("selectGameView.fxml"));
+		Parent newGame = loader.load(); // Create a parent class of the loader.load()
+		Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
+
+		Stage window = (Stage) anchorPane.getScene().getWindow();   //Create new Stage to from the view-file
+		window.setScene(newGameScene);  //Set the window to the previous chosen scene
+
+		window.show();  //Opens the window
 	}
 
 }
