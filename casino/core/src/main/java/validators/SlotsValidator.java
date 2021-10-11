@@ -16,7 +16,7 @@ public class SlotsValidator {
     }
 
     public static boolean isSuperPerfectStraight(List<String> symbols) { // Perfect Straight and Flush
-        return isPerfectStraight(symbols) && (isFlush(symbols));
+        return (isPerfectStraight(symbols) && isFlush(symbols));
     }
 
 
@@ -24,7 +24,6 @@ public class SlotsValidator {
         int first = splitStringForInt(symbols.get(0));
         int second = splitStringForInt(symbols.get(1));
         int third = splitStringForInt(symbols.get(2));
-
         return isOneMore(first, second) && isOneMore(second,third)
                 || isOneLess(first, second) && isOneLess(second, third);
     }
@@ -69,11 +68,6 @@ public class SlotsValidator {
         ArrayList<Character> suitList = new ArrayList<>();
         for (String symbol : symbols) {
             suitList.add(splitStringForSuit(symbol));
-            System.out.println(splitStringForSuit(symbol));
-        }
-        System.out.println("--------");
-        for (char suit : suitList){
-            System.out.println(suit);
         }
         return suitList;
     }

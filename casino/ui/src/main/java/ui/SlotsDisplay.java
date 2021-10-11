@@ -23,10 +23,6 @@ public abstract class SlotsDisplay implements Initializable {
 
     protected Slots slotMachine;
 
-    private final Image backImage = new Image((getClass().getResourceAsStream("/images/cards/backOfCard.jpg")));
-
-    @FXML FXMLLoader loader = new FXMLLoader();
-    @FXML private Button betButton;
     @FXML private TextField betField;
 
     @FXML public HBox slotHBox1;
@@ -97,9 +93,10 @@ public abstract class SlotsDisplay implements Initializable {
         payoutNum.setText(""+slotMachine.getCurrentWinnings());
         if (slotMachine.getCombo() == null)
             comboSlot.setText("Bet and Spin to start!");
-        else
+        else{
             comboSlot.setText(""+slotMachine.getCombo());
-        avgPayout.setText("" + slotMachine.getAveragePayout());
+        }
+        avgPayout.setText("" + (Math.round( slotMachine.getAveragePayout()*100.0)/100.0));
         spinsCounter.setText("" + slotMachine.getSpins());
         if (!keepBetButton.isSelected())
             betField.setText("");
@@ -107,7 +104,7 @@ public abstract class SlotsDisplay implements Initializable {
 
 
     private ImageView createImageView(String imageName){
-        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/cards/" + imageName + ".jpg")));
+        ImageView imageView = new ImageView(new Image(SlotsDisplay.class.getResourceAsStream("/images/cards/" + imageName + ".jpg")));
         imageView.setFitWidth(148);
         imageView.setFitHeight(210);
         return imageView;
