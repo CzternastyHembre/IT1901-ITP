@@ -6,35 +6,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import saveHandler.UserSaveHandler;
-import user.User;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class LogInController {
-    @FXML
-    private TextField log_in_field;
-    private final static double StartingBalance = 1000;
+public class SelectGameController {
+
     private Stage stage;
     private Scene scene;
-    @FXML MenuItem mainMenu;
-    @FXML MenuItem exit;
+    @FXML Button roulette, slots;
+    @FXML MenuItem mainMenu, exit;
     @FXML FXMLLoader loader = new FXMLLoader();
     @FXML AnchorPane anchorPane;
 
-
-    public void run(ActionEvent actionEvent) throws IOException {
-        if(UserSaveHandler.getUser(getUsername()) == null){
-            throw new IllegalArgumentException("This user does not exist");
-        }
-        User userr = UserSaveHandler.getUser(getUsername());
-        UserSaveHandler.setActive(userr);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("selectGameView.fxml")));
+    @FXML
+    public void loadRoulette(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Roulette.fxml")));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -42,8 +33,12 @@ public class LogInController {
     }
 
     @FXML
-    public String getUsername(){
-        return log_in_field.getText();
+    public void loadSlots(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Slots.fxml")));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -63,4 +58,5 @@ public class LogInController {
 
         window.show();  //Opens the window
     }
+
 }

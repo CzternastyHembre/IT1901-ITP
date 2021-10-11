@@ -2,48 +2,54 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RouletteController">
-    <GridPane prefHeight="400.0" prefWidth="600.0">
+<AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RouletteController">
+   <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+               <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
+               <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
+           <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+    <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.topAnchor="27.5">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="292.0" minHeight="10.0" prefHeight="292.0" vgrow="SOMETIMES"/>
-            <RowConstraints maxHeight="195.79999389648438" minHeight="10.0" prefHeight="111.19999999999999"
-                            vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="292.0" minHeight="10.0" prefHeight="292.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="195.79999389648438" minHeight="10.0" prefHeight="111.19999999999999" vgrow="SOMETIMES" />
         </rowConstraints>
-        <Pane fx:id="rouletteBoardPane" prefHeight="290.0" prefWidth="600.0"/>
+        <Pane fx:id="rouletteBoardPane" prefHeight="290.0" prefWidth="600.0" />
         <GridPane prefHeight="81.0" prefWidth="254.0" GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
-            <Pane fx:id="chipFolder" prefHeight="61.0" prefWidth="358.0"/>
+            <Pane fx:id="chipFolder" prefHeight="61.0" prefWidth="358.0" />
             <Pane fx:id="controllsFolder" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                <Label fx:id="feedBackLabel" layoutX="218.0" layoutY="6.0" prefHeight="17.0"
-                       prefWidth="263.0"/>
-                <Button layoutX="532.0" layoutY="2.0" mnemonicParsing="false" onAction="#run" text="RUN"/>
-                <Label fx:id="textLabel1" layoutX="14.0" layoutY="32.0" prefHeight="17.0" prefWidth="116.0"
-                       text="Money betted:"/>
-                <Label fx:id="moneyBettedLabel" layoutX="145.0" layoutY="32.0" prefHeight="17.0"
-                       prefWidth="71.0"/>
-                <Label fx:id="textLabel2" layoutX="229.0" layoutY="32.0" prefHeight="17.0" prefWidth="130.0"
-                       text="Your money:"/>
-                <Label fx:id="moneyLabel" layoutX="359.0" layoutY="32.0" prefHeight="17.0"
-                       prefWidth="116.0"/>
-                <Label fx:id="nameLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="201.0"/>
-                <Button layoutX="530.0" layoutY="27.0" mnemonicParsing="false" onAction="#undoGuess"
-                        text="Undo"/>
+                <Label fx:id="feedBackLabel" layoutX="218.0" layoutY="6.0" prefHeight="17.0" prefWidth="263.0" />
+                <Button layoutX="532.0" layoutY="2.0" mnemonicParsing="false" onAction="#run" text="RUN" />
+                <Label fx:id="textLabel1" layoutX="14.0" layoutY="32.0" prefHeight="17.0" prefWidth="116.0" text="Money betted:" />
+                <Label fx:id="moneyBettedLabel" layoutX="145.0" layoutY="32.0" prefHeight="17.0" prefWidth="71.0" />
+                <Label fx:id="textLabel2" layoutX="229.0" layoutY="32.0" prefHeight="17.0" prefWidth="130.0" text="Your money:" />
+                <Label fx:id="moneyLabel" layoutX="359.0" layoutY="32.0" prefHeight="17.0" prefWidth="116.0" />
+                <Label fx:id="nameLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="201.0" />
+                <Button layoutX="530.0" layoutY="27.0" mnemonicParsing="false" onAction="#undoGuess" text="Undo" />
             </Pane>
         </GridPane>
     </GridPane>
