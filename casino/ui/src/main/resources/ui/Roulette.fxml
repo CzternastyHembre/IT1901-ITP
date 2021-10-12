@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RouletteController">
+<AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RouletteController">
    <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
      <menus>
        <Menu mnemonicParsing="false" text="File">
@@ -23,7 +23,7 @@
        </Menu>
      </menus>
    </MenuBar>
-    <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.topAnchor="27.5">
+    <GridPane fx:id="gridPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.topAnchor="27.5">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
