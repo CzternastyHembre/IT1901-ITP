@@ -32,8 +32,33 @@ public class RouletteUITest extends ApplicationTest {
     }
 
     @Test
-    public void undoBet(){
+    public void undoRouletteBet() throws IOException {
+        User user5 = new User("undo_test", 10000);
+        UserSaveHandler.createUser(user5);
+        clickOn("#log_in_button");
+        clickOn("#log_in_field").write("undo_test");
+        clickOn("#log_in");
+        clickOn("#roulette");
+        clickOn("#selectChip3");
+        clickOn("#1");
+        clickOn("#undo_button");
+        clickOn("#selectChip5");
+        clickOn("#7");
+        clickOn("#play_button");
+        sleep(7000);
+    }
 
+    public void playRoulette() throws IOException {
+        User user1 = new User("roulette_test", 100);
+        UserSaveHandler.createUser(user1);
+        clickOn("#log_in_button");
+        clickOn("#log_in_field").write("roulette_test");
+        clickOn("#log_in");
+        clickOn("#roulette");
+        clickOn("#selectChip0");
+        clickOn("#1");
+        clickOn("#play_button");
+        sleep(5000);
     }
 
 
