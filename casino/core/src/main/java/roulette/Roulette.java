@@ -21,7 +21,7 @@ public class Roulette {
 	private int rolledNumber;
 
 	private void rollNumber() {
-		rolledNumber = rand.nextInt(38);
+		rolledNumber = rand.nextInt(37);
 	}
 
 	public int getRolledNumber() {
