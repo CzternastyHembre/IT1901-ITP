@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class UserSaveHandler {
-    public final static String SAVE_FILE = "../storage/src/main/resources/users.json";
+    public static String SAVE_FILE = "../storage/src/main/resources/users.json";
 
     public static void createUser(User user) throws IOException {
 
