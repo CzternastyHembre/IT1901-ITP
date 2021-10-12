@@ -10,7 +10,6 @@ public class Slots {
 
     // Fields
     private List<String> symbols = new ArrayList<>();
-    private double userBalance;
     private int spins;
     private int netGain;
     private int bet;
