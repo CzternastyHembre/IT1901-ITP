@@ -22,7 +22,7 @@ import javafx.util.Duration;
 import saveHandler.UserSaveHandler;
 import slots.Slots;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -57,20 +57,7 @@ public abstract class SlotsDisplay implements Initializable {
 
     private final List<HBox> hboxesList = new ArrayList<>();
 
-
-    public void viewAtStart(){
-        for (HBox box : hboxesList){
-            box.getChildren().add(createImageView("backOfCard"));
-        }
-    }
-
-    public void initializeHBoxes(){
-        hboxesList.add(slotHBox1);
-        hboxesList.add(slotHBox2);
-        hboxesList.add(slotHBox3);
-    }
-
-    public void spin(ActionEvent actionEvent){
+    public void spin(ActionEvent actionEvent) throws IOException {
         int bet = Integer.parseInt(betField.getText());
         slotMachine.play(bet);
         for (HBox box : hboxesList){
@@ -78,10 +65,7 @@ public abstract class SlotsDisplay implements Initializable {
         }
     }
 
-
-
-
-    private void updateUserState() {
+    private void updateUserState() throws IOException {
         UserSaveHandler.updateUser(slotMachine.getUser());
     }
 
