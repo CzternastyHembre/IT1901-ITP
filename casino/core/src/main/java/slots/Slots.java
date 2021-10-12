@@ -3,6 +3,7 @@ package slots;
 import user.User;
 import validators.SlotsValidator;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Slots {
@@ -33,7 +34,6 @@ public class Slots {
         }
         this.random = new Random();
         this.user = user;
-        this.userBalance = user.getBalance();
     }
 
     // CONSTRUCTOR FOR SLOTAPP
@@ -46,7 +46,6 @@ public class Slots {
         }
         this.random = new Random();
         this.user = null;
-        this.userBalance = 100000;
     }
 
     public void play(int bet) {
@@ -66,7 +65,7 @@ public class Slots {
 
     private void withdrawMoney() {
         this.netGain -= getBet();
-        this.userBalance -= getBet();
+        this.user.setBalance(this.user.getBalance()-getBet());
     }
 
 
@@ -126,7 +125,7 @@ public class Slots {
         var winnings = calculateWinnings();
         this.currentWinnings = winnings;
         netGain += winnings;
-        userBalance += winnings;
+        this.user.setBalance(this.user.getBalance()+winnings);
         calculateAveragePayout();
     }
 
@@ -142,7 +141,7 @@ public class Slots {
     }
 
     public double getUserBalance() {
-        return userBalance;
+        return this.user.getBalance();
     }
 
     public int getSpins() {

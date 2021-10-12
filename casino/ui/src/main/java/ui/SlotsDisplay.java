@@ -57,6 +57,20 @@ public abstract class SlotsDisplay implements Initializable {
 
     private final List<HBox> hboxesList = new ArrayList<>();
 
+
+    protected void initializeHBoxes() {
+        hboxesList.add(slotHBox1);
+        hboxesList.add(slotHBox2);
+        hboxesList.add(slotHBox3);
+    }
+
+    protected void viewAtStart() {
+        for (HBox box : hboxesList){
+            box.getChildren().add(createImageView("backOfCard"));
+        }
+    }
+
+
     public void spin(ActionEvent actionEvent) throws IOException {
         int bet = Integer.parseInt(betField.getText());
         slotMachine.play(bet);
@@ -110,7 +124,7 @@ public abstract class SlotsDisplay implements Initializable {
 
 
 
-    private void rotateCard(Node card, int stage) {
+    private void rotateCard(Node card, int stage) throws IOException {
         switch (stage){
             case 0 -> {
                 animateCard(card, 90, stage);
@@ -130,6 +144,9 @@ public abstract class SlotsDisplay implements Initializable {
                 updateUserState();
                 spinButton.setDisable(false);
             }
+            default -> {
+                break;
+            }
         }
     }
 
@@ -143,7 +160,11 @@ public abstract class SlotsDisplay implements Initializable {
         rotator.setCycleCount(1);
         rotator.play();
         rotator.setOnFinished(event ->{
-            rotateCard(card, stage + 1);
+            try {
+                rotateCard(card, stage + 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -159,7 +180,7 @@ public abstract class SlotsDisplay implements Initializable {
     @FXML
     public void backToMainMenu(ActionEvent actionEvent) throws IOException {
         //Sets location on the loader by getting the class and then the view file from resources
-        loader.setLocation(getClass().getResource("Start.fxml"));
+        loader.setLocation(SlotsDisplay.class.getResource("Start.fxml"));
         Parent newGame = loader.load(); // Create a parent class of the loader.load()
         Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
 
@@ -172,7 +193,7 @@ public abstract class SlotsDisplay implements Initializable {
     @FXML
     public void backToLobby(ActionEvent actionEvent) throws IOException {
         //Sets location on the loader by getting the class and then the view file from resources
-        loader.setLocation(getClass().getResource("selectGameView.fxml"));
+        loader.setLocation(SlotsDisplay.class.getResource("selectGameView.fxml"));
         Parent newGame = loader.load(); // Create a parent class of the loader.load()
         Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
 
@@ -186,5 +207,6 @@ public abstract class SlotsDisplay implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
 }
 
