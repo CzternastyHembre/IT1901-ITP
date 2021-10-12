@@ -1,9 +1,13 @@
 package ui;
 
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point3D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,7 +16,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import saveHandler.UserSaveHandler;
 import slots.Slots;
 
@@ -29,6 +35,8 @@ public abstract class SlotsDisplay implements Initializable {
     @FXML public MenuItem lobby;
     @FXML FXMLLoader loader = new FXMLLoader();
     @FXML AnchorPane anchorPane;
+
+    @FXML Button spinButton;
 
     @FXML private TextField betField;
 
@@ -65,10 +73,13 @@ public abstract class SlotsDisplay implements Initializable {
     public void spin(ActionEvent actionEvent){
         int bet = Integer.parseInt(betField.getText());
         slotMachine.play(bet);
-        updateCardsDisplay();
-        updateStats();
-//        updateUserState();
+        for (HBox box : hboxesList){
+            rotateCard(box, 0);
+        }
     }
+
+
+
 
     private void updateUserState() {
         UserSaveHandler.updateUser(slotMachine.getUser());
@@ -76,20 +87,15 @@ public abstract class SlotsDisplay implements Initializable {
 
 
     public void updateCardsDisplay(){
-        removeCards();
-        for (HBox box : hboxesList){
-            assignCard(box, slotMachine.getSymbols().get(hboxesList.indexOf(box)));
+        for (HBox box : hboxesList) {
+            box.getChildren().set(0, createImageView(slotMachine.getSymbols().get(hboxesList.indexOf(box))));
         }
     }
 
-    private void removeCards() {
-        for (HBox box : hboxesList){
-            box.getChildren().clear();
+    public void displayBackOfCard(){
+        for (HBox box : hboxesList) {
+            box.getChildren().set(0, createImageView("backOfCard"));
         }
-    }
-
-    public void assignCard(HBox slotHBox, String slotCard){
-        slotHBox.getChildren().add(createImageView(slotCard));
     }
 
 
@@ -116,6 +122,49 @@ public abstract class SlotsDisplay implements Initializable {
         imageView.setFitHeight(210);
         return imageView;
     }
+
+
+
+
+    private void rotateCard(Node card, int stage) {
+        switch (stage){
+            case 0 -> {
+                animateCard(card, 90, stage);
+                spinButton.setDisable(true);
+            }
+            case 1 -> {
+                animateCard(card, 90, stage);
+                displayBackOfCard();
+            }
+            case 2 -> animateCard(card, -90, stage);
+            case 3 -> {
+                animateCard(card, -90, stage);
+                updateCardsDisplay();
+            }
+            case 4 -> {
+                updateStats();
+                updateUserState();
+                spinButton.setDisable(false);
+            }
+        }
+    }
+
+    private void animateCard(Node card, double angle, int stage) {
+        RotateTransition rotator = new RotateTransition(Duration.millis(500), card);
+        double currentAngle = card.getRotate();
+        rotator.setAxis(new Point3D(0,5,0));
+        rotator.setFromAngle(currentAngle);
+        rotator.setToAngle(currentAngle + angle);
+        rotator.setInterpolator(Interpolator.LINEAR);
+        rotator.setCycleCount(1);
+        rotator.play();
+        rotator.setOnFinished(event ->{
+            rotateCard(card, stage + 1);
+        });
+    }
+
+
+
 
 
     @FXML

@@ -33,6 +33,6 @@ public class SlotsTest {
         Assertions.assertTrue(prevBalance-slotMachine.getUserBalance()!=0); // Indirectly tests updateWinnings()
         Assertions.assertEquals(slotMachine.getSpins(),1);
     }
-
+    
 
 }

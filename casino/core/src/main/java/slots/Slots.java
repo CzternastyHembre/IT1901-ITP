@@ -20,6 +20,7 @@ public class Slots {
     private User user;
     private final String[] validSuits = new String[]{"S", "D", "H", "C"};
 
+
     // Constructor
 
     // MAIN CONSTRUCTOR FOR FINAL PRODUCT
@@ -114,13 +115,14 @@ public class Slots {
         if (SlotsValidator.isPair(symbols)) {
             this.combo = "PAIR";
             return getBet() * 1.25;
-        } else {
+        }
+        else {
             this.combo = "LOSS";
             return 0;
         }
     }
 
-    public void updateWinnings() {
+    private void updateWinnings() {
         var winnings = calculateWinnings();
         this.currentWinnings = winnings;
         netGain += winnings;

@@ -70,7 +70,7 @@
         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <Label layoutX="3.0" layoutY="6.0" text="PLACE BET:" textFill="WHITE" />
             <TextField fx:id="betField" layoutX="77.0" layoutY="1.0" prefHeight="27.0" prefWidth="75.0" promptText="10" />
-            <Button id="betButton" layoutX="155.0" mnemonicParsing="false" onAction="#spin" prefHeight="27.0" prefWidth="67.0" text="Bet/Spin" />
+            <Button id="betButton" fx:id="spinButton" layoutX="155.0" mnemonicParsing="false" onAction="#spin" prefHeight="27.0" prefWidth="67.0" text="Bet/Spin" />
             <ToggleButton fx:id="keepBetButton" layoutX="224.0" mnemonicParsing="false" text="Keep Bet" />
         </Pane>
     </GridPane>
