@@ -8,7 +8,7 @@ import java.util.*;
 public class Slots {
 
     // Fields
-    private List<Integer> symbols = new ArrayList<>();
+    private List<String> symbols = new ArrayList<>();
     private double userBalance;
     private int spins;
     private int netGain;
@@ -18,80 +18,103 @@ public class Slots {
     private String combo;
     private double averagePayout;
     private User user;
+    private final String[] validSuits = new String[]{"S", "D", "H", "C"};
+
 
     // Constructor
 
-
+    // MAIN CONSTRUCTOR FOR FINAL PRODUCT
     public Slots(User user) {
         this.spins = 0;
         this.netGain = 0;
         this.bet = 0;
-        for (int i = 0; i < 3; i++){
-            symbols.add(0);
+        for (int i = 0; i < 3; i++) {
+            symbols.add("");
         }
         this.random = new Random();
         this.user = user;
         this.userBalance = user.getBalance();
     }
 
-    public Slots(double balance){
+    // CONSTRUCTOR FOR SLOTAPP
+    public Slots() {
         this.spins = 0;
         this.netGain = 0;
         this.bet = 0;
-        this.userBalance = balance;
-        for (int i = 0; i < 3; i++){
-            symbols.add(0);
+        for (int i = 0; i < 3; i++) {
+            symbols.add("");
         }
         this.random = new Random();
+        this.user = null;
+        this.userBalance = 100000;
     }
 
     public void play(int bet) {
         setBet(bet);
-        placeBet();
+        withdrawMoney();
         spin();
         updateWinnings();
     }
 
 
-    public void spin(){
-        for (int i = 0; i < symbols.size();i++){
-            symbols.set(i,generateSymbol());
+    public void spin() {
+        for (int i = 0; i < symbols.size(); i++) {
+            symbols.set(i, generateSymbol());
         }
         spins++;
     }
 
-    private void placeBet() {
-        this.netGain-=getBet();
-        this.userBalance-=getBet();
+    private void withdrawMoney() {
+        this.netGain -= getBet();
+        this.userBalance -= getBet();
     }
 
 
-    private int generateSymbol(){
-        return random.nextInt(9)+1;
+    private String generateSymbol() {
+        return random.nextInt(10) + 1
+                + validSuits[random.nextInt(validSuits.length)]; // Generate a random number between 1-9, and add a random suit
     }
 
 
-    private double calculateWinnings(){
-        if (SlotsValidator.isDevil(symbols)){
+    private double calculateWinnings() {
+
+        if (SlotsValidator.isDevil(symbols)) {
             this.combo = "DEVIL";
             return 0;
         }
+
+        if (SlotsValidator.isSuperJackpot(symbols)) {
+            this.combo = "SUPER JACKPOT";
+            return getBet() * 500;
+        }
+
+        if (SlotsValidator.isSuperPerfectStraight(symbols)) {
+            this.combo = "SUPER PERFECT STRAIGHT";
+            return getBet() * 400;
+        }
+
         if (SlotsValidator.isJackpot(symbols)) {
             this.combo = "JACKPOT";
-            return getBet()*40;
+            return getBet() * 16;
         }
+
         if (SlotsValidator.isPerfectStraight(symbols)) {
             this.combo = "PERFECT STRAIGHT";
-            return getBet()*4.5;
+            return getBet() * 2.25;
         }
         if (SlotsValidator.isStraight(symbols)) {
             this.combo = "STRAIGHT";
-            return getBet()*2.7;
+            return getBet() * 1.65;
+        }
+
+        if (SlotsValidator.isFlush(symbols)) {
+            this.combo = "FLUSH";
+            return getBet() * 1.35;
         }
 
         if (SlotsValidator.isPair(symbols)) {
             this.combo = "PAIR";
-            return getBet()*1.75;
+            return getBet() * 1.25;
         }
         else {
             this.combo = "LOSS";
@@ -99,15 +122,15 @@ public class Slots {
         }
     }
 
-    public void updateWinnings(){
+    private void updateWinnings() {
         var winnings = calculateWinnings();
         this.currentWinnings = winnings;
-        netGain+=winnings;
-        userBalance+=winnings;
+        netGain += winnings;
+        userBalance += winnings;
         calculateAveragePayout();
     }
 
-    private void calculateAveragePayout(){
+    private void calculateAveragePayout() {
         this.averagePayout = (double) netGain / spins;
     }
 
@@ -148,7 +171,7 @@ public class Slots {
         return combo;
     }
 
-    public List<Integer> getSymbols() {
+    public List<String> getSymbols() {
         return symbols;
     }
 

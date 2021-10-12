@@ -12,6 +12,7 @@ public class SlotsController extends SlotsDisplay {
 
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -20,5 +21,7 @@ public class SlotsController extends SlotsDisplay {
             e.printStackTrace();
         }
         super.updateStats();
+        super.initializeHBoxes();
+        super.viewAtStart();
     }
 }
