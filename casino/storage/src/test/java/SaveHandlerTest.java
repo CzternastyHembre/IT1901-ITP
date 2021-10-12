@@ -17,10 +17,5 @@ import java.util.Map;
 public class SaveHandlerTest {
 
 
-    @Test
-    public void createUserTest() throws IOException {
-        User user = new User("Bob", 100);
-        UserSaveHandler.createUser(user);
-        assertFalse(UserSaveHandler.getUserList().isEmpty());
-    }
+
 }
