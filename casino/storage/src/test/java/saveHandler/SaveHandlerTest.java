@@ -44,4 +44,9 @@ public class SaveHandlerTest {
         assertEquals(user.toString(), UserSaveHandler.getUser("karen").toString());
     }
 
+    @Test
+    public void activeUserTest(){
+
+    }
+
 }
