@@ -1,6 +1,7 @@
 package roulette;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ public class RouletteTest {
     	
     	assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * (amount2 + amount));
 	}
-    
+
     @Test
     public void CalulateTest() {
     	
@@ -78,5 +79,47 @@ public class RouletteTest {
 	    	assertEquals(roulette.getSumOfBets(), 0);    	
     	}
     }
+    
+    @Test
+    public void undoGuessTest() {
+    	
+    	double amount1 = 10;
+    	double amount2 = 15;
+    	    		
+    	Guess guess1 = new NumberGuess(amount1, 1);
+    	Guess guess2 = new ListGuess(amount2, 1, 12);
+    	
+    	
+    	roulette.addGuess(guess1);
+    	roulette.addGuess(guess2);
+    	
+    	roulette.undoGuess();
+    	
+    	roulette.setRolledNumber(1);
+    	assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * amount1);
+    	
+    	roulette.undoGuess();
+    	assertThrows(IllegalArgumentException.class, () -> roulette.undoGuess());
+    }
 
+    @Test
+    public void clearGuessTest() {
+    	
+    	double amount1 = 10;
+    	double amount2 = 15;
+    	    		
+    	Guess guess1 = new NumberGuess(amount1, 1);
+    	Guess guess2 = new ListGuess(amount2, 1, 12);
+    	
+    	
+    	roulette.addGuess(guess1);
+    	roulette.addGuess(guess2);
+
+    	roulette.setRolledNumber(1);
+    	assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * amount1 + Roulette.RoulettSize * amount2 / guess2.getPossibleWins());
+    	
+    	roulette.clearGuesses();
+    	assertEquals(roulette.getSumOfBets(), 0);
+
+    }
 }

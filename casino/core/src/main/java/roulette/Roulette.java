@@ -71,13 +71,16 @@ public class Roulette {
 	}
 	
 	public void undoGuess() {
+		if (guesses.size() == 0) {
+			throw new IllegalArgumentException("No guesses to undo");
+		}
 		Guess lastGuess = guesses.get(guesses.size() - 1);
 		user.addMoney(lastGuess.getAmount());
 		guesses.remove(guesses.size() - 1);
 	}
 	
-	public void cleacGuess() {
-		guesses.remove(guesses.size());
+	public void clearGuesses() {
+		guesses.clear();
 	}
 
 }
