@@ -3,7 +3,6 @@ package roulette;
 import java.util.Random;
 
 import user.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,13 +39,14 @@ public class Roulette {
 	public double calculate() {
 		rollNumber();
 
-		double winnings = calcuteGuessWinnings();
+		double winnings = calculateGuessWinnings();
 		user.addMoney(winnings);
 		guesses.clear();
+		
 		return winnings;
 	}
 
-	public double calcuteGuessWinnings() {
+	public double calculateGuessWinnings() {
 		double winnings = 0;
 
 		for (Guess guess : guesses) {
