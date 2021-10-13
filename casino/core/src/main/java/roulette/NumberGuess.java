@@ -10,9 +10,4 @@ public class NumberGuess extends Guess {
 			this.numbers.add(nums);
 		}
 	}
-	public NumberGuess(double amount, List<Integer> numbers) {
-		super(amount);
-		this.numbers = numbers;
-	}
-
 }

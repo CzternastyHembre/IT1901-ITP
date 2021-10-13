@@ -88,21 +88,4 @@ public class NumberGuessTest {
 			assertEquals(roulette.calculateGuessWinnings(), 36 * bettingSum);
 		}
     }
-
-    @Test
-    public void multipleNumbersGuess() {
-    	for (int i = 0; i <= Roulette.RoulettSize; i++) {
-    		berforeEach();
-        	roulette.setRolledNumber(0);
-        	List<Integer> numberSequence = new ArrayList<>();
-        	
-        	for (int j = 0; j <= i; j++) {
-        		numberSequence.add(j);
-			}
-
-        	roulette.addGuess(new NumberGuess(36, numberSequence));
-        	assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * 36.0 / numberSequence.size());
-
-		}
-    }
 }
