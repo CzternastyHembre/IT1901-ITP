@@ -23,7 +23,7 @@
        </Menu>
      </menus>
    </MenuBar>
-    <GridPane fx:id="gridPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.topAnchor="27.5">
+    <GridPane fx:id="gridPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" AnchorPane.topAnchor="27.5">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
