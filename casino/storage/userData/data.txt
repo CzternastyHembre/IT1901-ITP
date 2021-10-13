@@ -1,6 +1,6 @@
 -Format: userName;Balance
 - Active User:
-Mattis;23.0
+bitch;1500.0
 - Users:
 Erlend;999.0
 Mattis;23.0
@@ -19,3 +19,4 @@ oeihoifhew;999.0
 1232938149827;1000.0
 Sofus;250.0
 Cathrine;1000.0
+bitch;1500.0

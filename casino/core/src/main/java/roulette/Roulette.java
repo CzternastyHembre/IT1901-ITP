@@ -8,16 +8,16 @@ import java.util.List;
 
 public class Roulette {
 
-	private Random rand = new Random();
 	public static final int RoulettSize = 36;
+	private Random rand = new Random();
 	private User user;
 	private List<Guess> guesses = new ArrayList<>();
+	private int rolledNumber;
 
 	public Roulette(User user) {
 		this.user = user;
 	}
 
-	private int rolledNumber;
 
 	private void rollNumber() {
 		rolledNumber = rand.nextInt(37);
@@ -27,7 +27,7 @@ public class Roulette {
 		return rolledNumber;
 	}
 
-	public void setRolledNumber(int rolledNumber) {
+	protected void setRolledNumber(int rolledNumber) {
 		this.rolledNumber = rolledNumber;
 	}
 
