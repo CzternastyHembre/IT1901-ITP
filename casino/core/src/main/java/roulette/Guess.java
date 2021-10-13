@@ -16,10 +16,6 @@ public abstract class Guess {
 		return amount;
 	}
 	
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
 	public boolean isWin(int number) {
 		return numbers.contains(number);
 	}
@@ -34,7 +30,7 @@ public abstract class Guess {
 	
 	@Override
 	public String toString() {
-		return "" + numbers;
+		return amount + ", numbers: " + numbers;
 	}
 
 }

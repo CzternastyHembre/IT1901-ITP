@@ -37,12 +37,9 @@ public class ListGuessTest {
     	double amount = 10;
     	for (int i = 0; i < 3; i++) {
     		
-    		for (int j = i * 12 + 1; j <= (i + 2) * 12; j++) {
-    			int guessNumber = (j + 12) % (Roulette.RoulettSize);
+    		for (int j = i * 12 + 1; j <= (i + 1) * 12; j++) {
     			berforeEach();
-    			roulette.setRolledNumber((j + 12) % (Roulette.RoulettSize)); 
-    			
-    			System.out.println((j + 12) % (Roulette.RoulettSize));
+    			roulette.setRolledNumber(-1);    			
 				
     			roulette.addGuess(new ListGuess(amount, i * 12 + 1, (i + 1) * 12));
     			assertEquals(roulette.calculateGuessWinnings(), 0);
