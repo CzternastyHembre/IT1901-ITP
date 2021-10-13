@@ -14,6 +14,18 @@ import java.util.Scanner;
 public class UserSaveHandler {
     public static String SAVE_FILE = "../storage/src/main/resources/users.json";
 
+
+    public static void cleanUserList() throws IOException {
+        List<User> userList = getUserList();
+        userList.clear();
+        Gson gson = new Gson();
+        FileWriter fileWriter = new FileWriter(SAVE_FILE);
+        String jsonSaveString = gson.toJson(userList);
+        fileWriter.append(jsonSaveString);
+        fileWriter.close();
+        System.out.println("cleared");
+    }
+
     public static void createUser(User user) throws IOException {
 
             List<User> userList = getUserList();
@@ -98,5 +110,6 @@ public class UserSaveHandler {
     public static User getActiveUser() throws IOException {
         return getUserList().get(0);
     }
+
 }
 
