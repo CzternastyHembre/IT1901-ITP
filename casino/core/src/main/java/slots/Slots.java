@@ -35,18 +35,6 @@ public class Slots {
         this.user = user;
     }
 
-    // CONSTRUCTOR FOR SLOTAPP
-    public Slots() {
-        this.spins = 0;
-        this.netGain = 0;
-        this.bet = 0;
-        for (int i = 0; i < 3; i++) {
-            symbols.add("");
-        }
-        this.random = new Random();
-        this.user = null;
-    }
-
     public void play(int bet) {
         setBet(bet);
         withdrawMoney();
@@ -74,7 +62,7 @@ public class Slots {
     }
 
 
-    private double calculateWinnings() {
+    public double calculateWinnings() {
 
         if (SlotsValidator.isDevil(symbols)) {
             this.combo = "DEVIL";
@@ -134,6 +122,10 @@ public class Slots {
 
     // Getters and Setters
 
+
+    public void setSymbols(List<String> symbols) {
+        this.symbols = symbols;
+    }
 
     public double getAveragePayout() {
         return averagePayout;
