@@ -56,7 +56,7 @@ public class CasinoElements {
 	
 
 	
-	Circle circle2 = new Circle();//To get a "seconde border on the chip
+	Circle circle2 = new Circle();//To get a "second border on the chip
 	circle2.setRadius(CHIPRADIUS);
 	circle2.setStroke(Paint.valueOf("black"));
 	

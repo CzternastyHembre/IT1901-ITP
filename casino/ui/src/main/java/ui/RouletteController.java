@@ -89,7 +89,7 @@ public class RouletteController {
 					String backgroundColor = "-fx-background-color:" + ((x + y) % 2 == 0 ? "red;" : "black;" );
 					tile.setStyle(backgroundColor);
 				}
-				
+				tile.setId("" + number);
 				tile.getChildren().add(tileLabel);
 				setNumberGuess(tile, number);
 				
@@ -173,6 +173,7 @@ public class RouletteController {
 		for (int i = 0; i < CasinoElements.getValuesSize(); i++) {
 			Pane chipContainer = CasinoElements.getChip(i);
 			String style = chipContainer.getStyle();
+			chipContainer.setId("selectChip" + i);
 			
 			chipContainer.setTranslateX(i * (CasinoElements.CHIPRADIUS*2 + 4) + 20);
 			chipContainer.setTranslateY(chipFolder.getPrefHeight() / 2);
@@ -470,6 +471,9 @@ public class RouletteController {
 		window.show();  //Opens the window
 	}
 
+	public Roulette getRouletteGame() {
+		return rouletteGame;
+	}
 }
 
 	

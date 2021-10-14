@@ -31,29 +31,29 @@ public abstract class SlotsDisplay implements Initializable {
 
     protected Slots slotMachine;
 
-    @FXML public MenuItem mainMenu;
-    @FXML public MenuItem lobby;
+    @FXML private MenuItem mainMenu;
+    @FXML private MenuItem lobby;
     @FXML FXMLLoader loader = new FXMLLoader();
     @FXML AnchorPane anchorPane;
 
-    @FXML Button spinButton;
+    @FXML private Button spinButton;
 
     @FXML private TextField betField;
 
-    @FXML public HBox slotHBox1;
-    @FXML public HBox slotHBox2;
-    @FXML public HBox slotHBox3;
+    @FXML private HBox slotHBox1;
+    @FXML private HBox slotHBox2;
+    @FXML private HBox slotHBox3;
 
-    @FXML public Label balanceNum;
-    @FXML public Label netGainNum;
-    @FXML public Label currentBetNum;
-    @FXML public Label payoutNum;
-    @FXML public Label comboSlot;
+    @FXML private Label balanceNum;
+    @FXML private Label netGainNum;
+    @FXML private Label currentBetNum;
+    @FXML private Label payoutNum;
+    @FXML private Label comboSlot;
 
-    @FXML public Label avgPayout;
-    @FXML public Label spinsCounter;
+    @FXML private Label avgPayout;
+    @FXML private Label spinsCounter;
 
-    @FXML public ToggleButton keepBetButton;
+    @FXML private ToggleButton keepBetButton;
 
     private final List<HBox> hboxesList = new ArrayList<>();
 
@@ -208,5 +208,40 @@ public abstract class SlotsDisplay implements Initializable {
 
     }
 
+    public TextField getBetField() {
+        return betField;
+    }
+
+    public Label getBalanceNum() {
+        return balanceNum;
+    }
+
+    public Label getNetGainNum() {
+        return netGainNum;
+    }
+
+    public Label getCurrentBetNum() {
+        return currentBetNum;
+    }
+
+    public Label getPayoutNum() {
+        return payoutNum;
+    }
+
+    public Label getComboSlot() {
+        return comboSlot;
+    }
+
+    public Label getAvgPayout() {
+        return avgPayout;
+    }
+
+    public Label getSpinsCounter() {
+        return spinsCounter;
+    }
+
+    public List<HBox> getHboxesList() {
+        return hboxesList;
+    }
 }
 

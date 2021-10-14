@@ -19,8 +19,8 @@
     <MenuBar prefHeight="29.0" prefWidth="600.0">
         <Menu fx:id="fileButton" mnemonicParsing="false" text="File">
             <MenuItem fx:id="close" mnemonicParsing="false" onAction="#exit" text="Close" />
-         <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
-         <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
+            <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
+            <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
         </Menu>
     </MenuBar>
     <GridPane layoutY="29.0" prefHeight="278.0" prefWidth="600.0">
@@ -35,9 +35,9 @@
                 <font>
                     <Font size="23.0" />
                 </font></Label>
-         <HBox fx:id="slotHBox2" layoutX="226.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
-         <HBox fx:id="slotHBox1" layoutX="75.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
-         <HBox fx:id="slotHBox3" layoutX="376.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
+            <HBox fx:id="slotHBox2" layoutX="226.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
+            <HBox fx:id="slotHBox1" layoutX="75.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
+            <HBox fx:id="slotHBox3" layoutX="376.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
         </Pane>
     </GridPane>
     <GridPane layoutY="307.0" prefHeight="93.0" prefWidth="600.0">
@@ -65,12 +65,12 @@
             <Label layoutX="5.0" layoutY="6.0" text="Balance:" textFill="WHITE" />
             <Label layoutX="5.0" layoutY="23.0" text="Spins:" textFill="WHITE" />
             <Label fx:id="spinsCounter" layoutX="41.0" layoutY="23.0" text="0" textFill="WHITE" />
-         <Label id="balanceNNum" fx:id="balanceNum" layoutX="57.0" layoutY="7.0" text="0" textFill="WHITE" />
+            <Label id="balanceNNum" fx:id="balanceNum" layoutX="57.0" layoutY="7.0" text="0" textFill="WHITE" />
         </Pane>
         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <Label layoutX="3.0" layoutY="6.0" text="PLACE BET:" textFill="WHITE" />
             <TextField fx:id="betField" layoutX="77.0" layoutY="1.0" prefHeight="27.0" prefWidth="75.0" promptText="10" />
-            <Button id="betButton" fx:id="spinButton" layoutX="155.0" mnemonicParsing="false" onAction="#spin" prefHeight="27.0" prefWidth="67.0" text="Bet/Spin" />
+            <Button id="spinButton" fx:id="spinButton" layoutX="155.0" mnemonicParsing="false" onAction="#spin" prefHeight="27.0" prefWidth="67.0" text="Bet/Spin" />
             <ToggleButton fx:id="keepBetButton" layoutX="224.0" mnemonicParsing="false" text="Keep Bet" />
         </Pane>
     </GridPane>

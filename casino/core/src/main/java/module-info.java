@@ -1,5 +1,4 @@
 module core {
-    requires javafx.fxml;
     opens roulette;
     opens user;
     opens slots;
