@@ -5,8 +5,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.junit.jupiter.api.Test;
+import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
+import saveHandler.UserSaveHandler;
 import ui.RouletteController;
+import user.User;
+
+import javax.swing.*;
+import java.io.IOException;
 
 public class RouletteUITest extends ApplicationTest {
 
@@ -21,7 +28,4 @@ public class RouletteUITest extends ApplicationTest {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-
-
 }

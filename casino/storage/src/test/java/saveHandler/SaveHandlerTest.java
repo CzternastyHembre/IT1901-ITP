@@ -45,8 +45,12 @@ public class SaveHandlerTest {
     }
 
     @Test
-    public void activeUserTest(){
-
+    public void activeUserTest() throws IOException {
+        User activeUser = new User("activeUser", 100);
+        User nonActiveUser = new User("nonActive", 500);
+        UserSaveHandler.createUser(activeUser);
+        UserSaveHandler.createUser(nonActiveUser);
+        UserSaveHandler.setActive(activeUser);
+        assertEquals(activeUser.toString(), UserSaveHandler.getActiveUser().toString());
     }
-
 }
