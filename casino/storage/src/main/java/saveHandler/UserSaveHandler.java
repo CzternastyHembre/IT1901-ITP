@@ -6,24 +6,27 @@ import user.User;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class UserSaveHandler {
-    public static String SAVE_FILE = "../storage/src/main/resources/users.json";
+    public static final String SAVE_FILE = "../storage/src/main/resources/users.json";
 
 
-    public static void cleanUserList() throws IOException {
-        List<User> userList = getUserList();
-        userList.clear();
-        Gson gson = new Gson();
-        FileWriter fileWriter = new FileWriter(SAVE_FILE);
-        String jsonSaveString = gson.toJson(userList);
-        fileWriter.append(jsonSaveString);
-        fileWriter.close();
-        System.out.println("cleared");
+    public static void cleanUserList() {
+        try (FileWriter fileWriter = new FileWriter(SAVE_FILE, StandardCharsets.UTF_8)) {
+            List<User> userList = getUserList();
+            userList.clear();
+            Gson gson = new Gson();
+
+            String jsonSaveString = gson.toJson(userList);
+            fileWriter.append(jsonSaveString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void createUser(User user) throws IOException {
@@ -38,13 +41,10 @@ public class UserSaveHandler {
 
 
     private static void updateFile(List<User> userList) {
-        try {
+        try (FileWriter fileWriter = new FileWriter(SAVE_FILE, StandardCharsets.UTF_8)) {
             Gson gson = new Gson();
-            FileWriter fileWriter = new FileWriter(SAVE_FILE);
             String jsonSaveString = gson.toJson(userList);
             fileWriter.append(jsonSaveString);
-            fileWriter.close();
-            System.out.println("Written!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class UserSaveHandler {
                 return new ArrayList<>();
             }
             List<User> userList = new ArrayList<>();
-            Scanner sc = new Scanner(new File(SAVE_FILE));
+            Scanner sc = new Scanner(new File(SAVE_FILE), StandardCharsets.UTF_8);
             if (!sc.hasNextLine()){
                 return userList;
             }
