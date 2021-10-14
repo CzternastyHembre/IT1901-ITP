@@ -26,10 +26,19 @@ cd ui/
 mvn javafx:run
 ````
 
+## Changes from previous release
+- Created slots which gives the application another game to choose between
+- Created a lobby page and a controller to it. The log-in and create-user page redirects the user now to lobby page where the user can choose which game to play
+- Styled several of the pages. The main menu is now more intriguing. Every page except from the games and main menu have the same background.
+- Changed from txt file saving to json
+- Added a menuBar with three menuItems that have functionality. MenuItems to close, redirect to main menu and redirect to lobby page.
+- Added card images which are placed in **[UI/src/main/java/resources/images](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images)**.
+
+
 ## Status of the project
 In this release there are main four features. Logging in with an existing user, creating a user, playing roulette and playing slots. After logging in or creating a user the user is redirected to a lobby menu where the user can choose between playing roulette or slots. Then the user is redirected to the chosen game.
 
-Including the main features there are three addition features which are designed as menuItems in the menuBar. The features are **Close**(closes the application), **Main Menu**(redirects the user to the main menu) and **Lobby**(redirects the user to the lobby). These features are available depending on where the user is in the application. In the main menu the user can only the Close feature is available, in log-in page, create-user page and lobby page the user can use the Close and Main Menu features. Lastly, in roulette and slots the user can use all of these features.
+Including the main features there are three addition features which are designed as menuItems in the menuBar. The features are **Close**(closes the application), **Main Menu**(redirects the user to the main menu) and **Lobby**(redirects the user to the lobby). These features are available depending on where the user is in the application. In the main menu only the Close feature is available, in log-in page, create-user page and lobby page the Close and Main Menu features are available. Lastly, in roulette and slots all of the features are available.
 
 ## Code architecture
 
