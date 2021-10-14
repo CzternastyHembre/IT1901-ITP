@@ -119,3 +119,10 @@ Both of these plugins run when using the **maven-verify lifecycle.**
 
 ## Illustrations
 Illustrations of what the end product is going to look like:
+![start](docs/Images/MainMenu.png)
+![create_user](docs/Images/CreateUser.png)
+![log_in](docs/Images/LogIn.png)
+![choose_game](docs/Images/Lobby.png)
+![blackjack](docs/Images/BlackJack.png)
+![roulette](docs/Images/Roulette.png)
+![slots](docs/Images/Slots.png)
