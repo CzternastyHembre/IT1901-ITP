@@ -23,5 +23,6 @@ public class SlotsController extends SlotsDisplay {
         super.updateStats();
         super.initializeHBoxes();
         super.viewAtStart();
+
     }
 }
