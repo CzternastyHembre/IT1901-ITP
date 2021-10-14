@@ -55,8 +55,7 @@ All the classes and logic of how the UI and buttons work happens in the [UI modu
 The UI is made with JavaFX, FXML, css and images. Those are divided into different folders. The FXML controllers are in **[UI/src/main/java/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/java/ui)**. FXML, css and images are in **[UI/src/main/java/resources](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources)** where they are further divided into new folders. The FXML files are in **[UI/src/main/java/resources/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/ui)**, the css is in **[UI/src/main/java/resources/css](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/css)** and the images are in **[UI/src/main/java/resources/images](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images)**.
 
 ### Storage 
-
-
+The storage module all the classes and files for saving(writing and reading file). The change from the previous release is that in this release the application uses json to save and read from file. 
 
 
 
@@ -115,7 +114,7 @@ Spotbugs is another maven-plugin that analyzes the code for regular bugs.
 Both of these plugins run when using the **maven-verify lifecycle.** 
 
 ### Tests
-
+We have created tests to check if the method, logic and features in the different classes function as they are intended to.
 
 ## Illustrations
 Illustrations of what the end product is going to look like:
