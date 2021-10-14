@@ -90,7 +90,7 @@ When working on new features in the application it was very important that the d
 
 ### Merge-request
 
-Before merge-requesting the developer of the branch had to inform the other developers in the group that he would be performing a merge-request. The requirement for performing the merge-request would be that the application in the branch with the new feature is running as intended in the issue. As well as the merge-request must be approved and merged in by another developer then themself. As mentioned in **Branch**, since the branches are pushed to remote, we can test the new functionalities and bulletproof that the new changes are functional and coded well. 
+Before merge-requesting the developer of the branch had to inform the other developers in the group that he would be performing a merge-request. The requirement for performing the merge-request would be that the application in the branch with the new feature is running as intended in the issue. As well as the merge-request must be approved and merged in by another developer then themself. As mentioned in **Branch** we push the branches to remote, so we can test the new functionalities and bulletproof that the new changes are functional and coded well. 
 
 
 ## Code quality
