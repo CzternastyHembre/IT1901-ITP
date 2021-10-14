@@ -32,7 +32,7 @@ mvn javafx:run
 - Styled several of the pages. The main menu is now more intriguing. Every page except from the games and main menu have the same background.
 - Changed from txt file saving to json
 - Added a menuBar with three menuItems that have functionality. MenuItems to close, redirect to main menu and redirect to lobby page.
-- Added card images which are placed in **[UI/src/main/java/resources/images](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images)**.
+- Added card images which are placed in **[UI/src/main/java/resources/images/cards](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images/cards)**.
 
 
 ## Status of the project
