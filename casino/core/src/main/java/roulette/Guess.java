@@ -9,6 +9,9 @@ public abstract class Guess {
 	protected List<Integer> numbers = new ArrayList<>();
 
 	public Guess(double amount) {
+		if (amount <= 0) {
+			throw new IllegalArgumentException("Guess amount must be a positive integer");
+		}
 		this.amount = amount;
 	}
 
@@ -16,10 +19,6 @@ public abstract class Guess {
 		return amount;
 	}
 	
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
 	public boolean isWin(int number) {
 		return numbers.contains(number);
 	}
@@ -34,7 +33,7 @@ public abstract class Guess {
 	
 	@Override
 	public String toString() {
-		return "" + numbers;
+		return "amount: " + amount + ", numbers: " + numbers;
 	}
 
 }

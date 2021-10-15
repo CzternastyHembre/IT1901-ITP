@@ -37,7 +37,7 @@ import user.User;
 public class RouletteController {
 
 	@FXML
-	Pane chipFolder, anchorPane, rouletteBoardPane, controllsFolder;
+	Pane chipFolder, anchorPane, rouletteBoardPane, controllsFolder, gridPane;
 	@FXML
 	Label moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel, textLabel1, textLabel2;
 	@FXML
@@ -80,7 +80,7 @@ public class RouletteController {
 						continue;
 					}
 					tile.setPrefSize(tileWidth, tileHeight * (rouletteRows - 2));
-					tile.setStyle("-fx-background-color:green;");
+//					tile.setStyle("-fx-background-color:green;");
 
 				} else {//all the columns in the middle (the numbers)
 					tile.setPrefSize(tileWidth, tileHeight);
@@ -106,7 +106,7 @@ public class RouletteController {
 			tile.setPrefSize(tileWidth, tileHeight);
 			tile.setTranslateX(tileWidth * (rouletteColums - 1)); 
 			tile.setTranslateY(tileHeight * y); 
-			tile.setStyle("-fx-background-color:green;");
+//			tile.setStyle("-fx-background-color:green;");
 			
 			tileLabel.setText("Row " + (y + 1));
 			tile.getChildren().add(tileLabel);
@@ -126,7 +126,7 @@ public class RouletteController {
 			tile.setPrefSize(tileWidth * 4, tileHeight);
 			tile.setTranslateX(tileWidth * x * 4 + tileWidth); 
 			tile.setTranslateY(tileHeight * 3);
-			tile.setStyle("-fx-background-color:green;");
+//			tile.setStyle("-fx-background-color:green;");
 			rouletteBoardPane.getChildren().add(tile);
 
 			int startNumber = (x * 12) + 1;
@@ -145,7 +145,7 @@ public class RouletteController {
 			tile.setPrefSize(tileWidth * 3, tileHeight);
 			tile.setTranslateX(tileWidth * i * 3 + tileWidth); 
 			tile.setTranslateY(tileHeight * 4);
-			tile.setStyle("-fx-background-color:green;");
+//			tile.setStyle("-fx-background-color:green;");
 			rouletteBoardPane.getChildren().add(tile);
 
 			String tileString = i + "";
@@ -193,11 +193,11 @@ public class RouletteController {
 
 		}
 		labelList.forEach(label -> {label.setFont(CasinoElements.TEXTFONT);label.setTextFill(CasinoElements.TEXTCOLOR);});
-		anchorPane.setStyle(CasinoElements.BACKGROUNDSTYLE);
+//		gridPane.setStyle(CasinoElements.BACKGROUNDSTYLE);
 
 
 		rouletteWheelContainer = createRouletteWheel();
-		anchorPane.getChildren().add(rouletteWheelContainer);
+		gridPane.getChildren().add(rouletteWheelContainer);
 		rouletteWheelContainer.setVisible(false);
 
 
@@ -211,7 +211,7 @@ public class RouletteController {
 		rouletteWheelContainer.getChildren().add(circleWheelPointer);
 
 		rolledNumberLabel.setFont(CasinoElements.LARGETEXTFONT);
-		rolledNumberLabel.setTranslateX(rouletteBoardPane.getPrefWidth()/2 - CasinoElements.LARGEFONTSIZE / 2);
+		rolledNumberLabel.setTranslateX(rouletteBoardPane.getPrefWidth() / 2 - CasinoElements.LARGEFONTSIZE / 2);
 		rolledNumberLabel.setTranslateY(rouletteBoardPane.getPrefHeight() / 2 - CasinoElements.LARGEFONTSIZE / 2);
 		rouletteWheelContainer.getChildren().add(rolledNumberLabel);
 	}
@@ -242,7 +242,7 @@ public class RouletteController {
 			rolledNumberLabel.setText(null);
 		});
 		rt.setOnFinished(e -> {
-			rolledNumberLabel.setText( "" + rouletteGame.getRolledNumber());
+			rolledNumberLabel.setText(rouletteGame.getRolledNumber() < 10 ? " " + rouletteGame.getRolledNumber() : "" + rouletteGame.getRolledNumber());
 			rt2.play();
 		});
 	}
@@ -357,8 +357,8 @@ public class RouletteController {
 		double radius = rouletteBoardPane.getPrefHeight() / 2 - 5;
 
 		Pane rouletteWheelContainer = new Pane();
-		rouletteWheelContainer.setPrefHeight(anchorPane.getPrefHeight());
-		rouletteWheelContainer.setPrefWidth(anchorPane.getPrefWidth());
+		rouletteWheelContainer.setPrefHeight(gridPane.getPrefHeight());
+		rouletteWheelContainer.setPrefWidth(gridPane.getPrefWidth());
 
 		Pane rouletteWheelPivotPane = new Pane();
 		rouletteWheelPivotPane.setTranslateX(rouletteBoardPane.getPrefWidth() / 2); // Senters the pane

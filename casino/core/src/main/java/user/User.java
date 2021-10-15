@@ -20,10 +20,16 @@ public class User {
     }
 
     public void setBalance(double balance) {
-        this.balance = balance;
+       if (balance < 0){
+           throw new IllegalArgumentException("Cant have negative balance");
+       }
+       this.balance = balance;
     }
 
     public void addMoney(double amount){
+        if (amount < 0){
+            throw new IllegalArgumentException("Can not add negative amount");
+        }
         this.balance += amount;
     }
 
@@ -58,18 +64,5 @@ public class User {
                 "balance=" + balance +
                 ", username='" + username + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return hashCode() == user.hashCode();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(balance, username);
     }
 }
