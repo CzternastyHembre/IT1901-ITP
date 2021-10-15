@@ -3,32 +3,31 @@ package roulette;
 import java.util.Random;
 
 import user.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Roulette {
 
-	private Random rand = new Random();
 	public static final int RoulettSize = 36;
+	private Random rand = new Random();
 	private User user;
 	private List<Guess> guesses = new ArrayList<>();
+	private int rolledNumber;
 
 	public Roulette(User user) {
 		this.user = user;
 	}
 
-	private int rolledNumber;
 
 	private void rollNumber() {
-		rolledNumber = rand.nextInt(38);
+		rolledNumber = rand.nextInt(37);
 	}
 
 	public int getRolledNumber() {
 		return rolledNumber;
 	}
 
-	public void setRolledNumber(int rolledNumber) {
+	protected void setRolledNumber(int rolledNumber) {
 		this.rolledNumber = rolledNumber;
 	}
 
@@ -40,13 +39,14 @@ public class Roulette {
 	public double calculate() {
 		rollNumber();
 
-		double winnings = calcuteGuessWinnings();
+		double winnings = calculateGuessWinnings();
 		user.addMoney(winnings);
 		guesses.clear();
+		
 		return winnings;
 	}
 
-	public double calcuteGuessWinnings() {
+	public double calculateGuessWinnings() {
 		double winnings = 0;
 
 		for (Guess guess : guesses) {
@@ -71,13 +71,16 @@ public class Roulette {
 	}
 	
 	public void undoGuess() {
+		if (guesses.size() == 0) {
+			throw new IllegalArgumentException("No guesses to undo");
+		}
 		Guess lastGuess = guesses.get(guesses.size() - 1);
 		user.addMoney(lastGuess.getAmount());
 		guesses.remove(guesses.size() - 1);
 	}
 	
-	public void cleacGuess() {
-		guesses.remove(guesses.size());
+	public void clearGuesses() {
+		guesses.clear();
 	}
 
 }

@@ -1,5 +1,7 @@
 package roulette;
 
+import java.util.List;
+
 public class NumberGuess extends Guess {
 
 	public NumberGuess(double amount, int... numbers) {
@@ -8,5 +10,4 @@ public class NumberGuess extends Guess {
 			this.numbers.add(nums);
 		}
 	}
-
 }
