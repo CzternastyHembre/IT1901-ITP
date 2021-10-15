@@ -33,12 +33,12 @@ Our maven build also has the follwing:
 ## Illstrations
 Illustrations of what the end product is going to look like:
 
-![start](images/242594917_545342576548985_5788820927871275701_n.png)
-![create_user](images/242589592_382851316656932_4359090151023620277_n.png)
-![log_in](images/242598130_252944550080896_4442521056475579515_n.png)
-![choose_game](images/242608508_817686512239902_5088266160564598597_n.png)
-![blackjack](images/242615500_669152750725763_1780304496907800957_n.png)
-![roulette](images/242542550_3012088495698616_4509731318974037236_n.png)
+![start](docs/Images/MainMenu.png)
+![create_user](docs/Imagess/CreateUser.png)
+![log_in](docs/Images/LogIn.png)
+![choose_game](docs/Images/Lobby.png)
+![blackjack](docs/Images/BlackJack.png)
+![roulette](docs/Images/Roulette.png)
 
 
 
