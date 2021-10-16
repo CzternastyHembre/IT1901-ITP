@@ -3,7 +3,7 @@
 
 ## Casino
 
-A casino application with features such as creating and saving user and playing roulette. 
+A casino application with features such as creating and saving user using json and playing roulette and slots.
 
 Look inside the casino directory to read more about the application and the code.
 
