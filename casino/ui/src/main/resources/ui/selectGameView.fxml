@@ -21,7 +21,7 @@
       </Pane>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
          <children>
-            <Button layoutX="103.0" layoutY="72.0" mnemonicParsing="false" text="TBA">
+            <Button layoutX="64.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
                <font>
                   <Font size="30.0" />
                </font>
@@ -48,12 +48,10 @@
       </Pane>
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu fx:id="meny_button" mnemonicParsing="false" text="Meny">
-            <items>
-                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
-              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
-            </items>
-          </Menu>
+           <Menu fx:id="meny_button" mnemonicParsing="false" text="Meny">
+              <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu"/>
+              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close"/>
+           </Menu>
         </menus>
       </MenuBar>
    </children>

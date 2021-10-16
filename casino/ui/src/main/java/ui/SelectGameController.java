@@ -42,6 +42,15 @@ public class SelectGameController {
     }
 
     @FXML
+    public void loadAddChips(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add_money.fxml")));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     public void exit(ActionEvent actionEvent) {
         System.exit(0);
     }
