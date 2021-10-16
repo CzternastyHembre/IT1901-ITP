@@ -21,7 +21,7 @@ The user has the need to play roulette where the application is as random as rou
 
 When working on the computer all day I want an application I can use to relax between sessions by playing casino games.
 
-The user has the need to be entertained by being able to play different casino games. The user would like to save his/hers username and the balance attached it to be able to return to playing after a working session. Both the roulette game and slots need to be similiar to real life by being as random as possible. 
+The user has the need to be entertained by being able to play different casino games. The user would like to save his/hers username and the balance attached it to be able to return to playing after a working session. The user needs to add money to an existing user to keep playing. Both the roulette game and slots need to be similiar to real life by being as random as possible. 
 
 **Important to see**
 * Having a styled and pretty application.
@@ -31,21 +31,7 @@ The user has the need to be entertained by being able to play different casino g
 **Important to do** 
 * Be able to play both slots and roulette
 * Easily maneuver around the app with a menu bar
-* Being able to keep their bets in slots to save time. 
+* Being able to keep their bets in slots to save time.
+* Be able to add money to an existing user
 
 
-## Blackjack tactics (us-3) 
-
-As a new gambler and card player, I want to try out blackjack tactics within an application before entering my first casino using real money. 
-
-The user wants to play blackjack with virtual money before going to a casino. The user would like to add money later on such that he or she could keep playing without having to create a new user. The blackjack game has to be similiar to a real life casino such that the user could get the feel of how it is to play. 
-
-**Important to see** 
-* Seeing what card the user and the dealer has.
-* Seeing how much the user has betted withing the session
-* See the balance in the lobby to decide which game to play
-
-**Important to do**
-* Adding more money in the lobby to keep playing
-* Play blackjack similiar to a real casino
-* Save user and create new ones easily
