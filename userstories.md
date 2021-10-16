@@ -30,7 +30,7 @@ The user has the need to be entertained by being able to play different casino g
 
 **Important to do** 
 * Be able to play both slots and roulette
-* Being able to automatically save their username and the balance attached. 
+* Easily maneuver around the app with a menu bar
 * Being able to keep their bets in slots to save time. 
 
 
