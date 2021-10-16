@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -26,10 +27,13 @@ public class LogInController {
     @FXML MenuItem exit;
     @FXML FXMLLoader loader = new FXMLLoader();
     @FXML AnchorPane anchorPane;
+    @FXML
+    Label errorLabel;
 
 
     public void run(ActionEvent actionEvent) throws IOException {
         if(UserSaveHandler.getUser(getUsername()) == null){
+            errorLabel.setText("Could not find user, please try again");
             throw new IllegalArgumentException("This user does not exist");
         }
         User userr = UserSaveHandler.getUser(getUsername());
