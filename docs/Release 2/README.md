@@ -33,6 +33,7 @@ mvn javafx:run
 - Changed from txt file saving to json
 - Added a menuBar with three menuItems that have functionality. MenuItems to close, redirect to main menu and redirect to lobby page.
 - Added card images which are placed in **[UI/src/main/java/resources/images/cards](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images/cards)**.
+- Added error messages for the user if a username is taken or a user does not exist.
 
 
 ## Status of the project
@@ -111,10 +112,18 @@ Jacoco is a maven-plugin that collects and presents the information of the codec
 - Checking the quality of the code with spotbugs (**spotbugs-maven-plugin**)
 Spotbugs is another maven-plugin that analyzes the code for regular bugs.
 
-Both of these plugins run when using the **maven-verify lifecycle.** 
+- Checkstyle was used to make sure that the developers write Java code for uses the same standard. 
+This was used by the developers by downloading a plugin for the IDEA and using the same XML document as a standard. 
+
+Jacoco and Spotbugs run when using the **maven-verify lifecycle.** 
+
+While checkstyle is used withing the IDEA. 
 
 ### Tests
 We have created tests to check if the method, logic and features in the different classes function as they are intended to.
+
+
+For this release our goal was that the Jacoco test coverage would have a minimum percentage of **70%** in each module to ensure good code quality. 
 
 ## Illustrations
 Illustrations of what the end product is going to look like:
