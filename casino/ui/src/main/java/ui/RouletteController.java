@@ -1,8 +1,6 @@
 package ui;
 
 import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.*;
 
 import javafx.animation.RotateTransition;
@@ -13,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
