@@ -12,34 +12,23 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="roulette" alignment="CENTER" layoutX="78.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadRoulette" text="Roulette">
+            <Button fx:id="roulette" alignment="CENTER" layoutX="35.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadRoulette" text="Roulette">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0" />
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane layoutX="294.0" layoutY="194.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="294.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="194.0">
          <children>
-            <Button layoutX="64.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
+            <Button fx:id="slots" layoutX="-69.0" layoutY="-22.0" mnemonicParsing="false" onAction="#loadSlots" prefHeight="57.0" prefWidth="112.0" text="Slots">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button layoutX="103.0" layoutY="72.0" mnemonicParsing="false" text="TBA">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
-         <children>
-            <Button fx:id="slots" layoutX="99.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadSlots" text="Slots">
+            <Button layoutX="102.0" layoutY="-22.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
                <font>
                   <Font size="30.0" />
                </font>
@@ -49,8 +38,8 @@
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
            <Menu fx:id="meny_button" mnemonicParsing="false" text="Meny">
-              <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu"/>
-              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close"/>
+              <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
+              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
            </Menu>
         </menus>
       </MenuBar>
