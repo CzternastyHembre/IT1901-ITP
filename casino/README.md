@@ -30,6 +30,13 @@ Our maven build also has the follwing:
 - Checking the quality of the code with spotbugs (**spotbugs-maven-plugin**)
 - Test coverage with jacoco (**jacoco-maven-plugin**)
 
+
+## Architecture of the app
+
+A PlantUML illustration showing the module dependencies and their packages.
+
+![appDependencies](docs/Images/appDependencies.png)
+
 ## Illstrations
 Illustrations of what the end product is going to look like:
 
