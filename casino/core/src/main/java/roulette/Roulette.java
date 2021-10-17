@@ -8,79 +8,78 @@ import java.util.List;
 
 public class Roulette {
 
-	public static final int RoulettSize = 36;
-	private Random rand = new Random();
-	private User user;
-	private List<Guess> guesses = new ArrayList<>();
-	private int rolledNumber;
+  public static final int RoulettSize = 36;
+  private Random rand = new Random();
+  private User user;
+  private List<Guess> guesses = new ArrayList<>();
+  private int rolledNumber;
 
-	public Roulette(User user) {
-		this.user = user;
-	}
+  public Roulette(User user) {
+    this.user = user;
+  }
 
+  private void rollNumber() {
+    rolledNumber = rand.nextInt(37);
+  }
 
-	private void rollNumber() {
-		rolledNumber = rand.nextInt(37);
-	}
+  public int getRolledNumber() {
+    return rolledNumber;
+  }
 
-	public int getRolledNumber() {
-		return rolledNumber;
-	}
+  protected void setRolledNumber(int rolledNumber) {
+    this.rolledNumber = rolledNumber;
+  }
 
-	protected void setRolledNumber(int rolledNumber) {
-		this.rolledNumber = rolledNumber;
-	}
+  /**
+   * Rolls the board and calculates the amount of money won
+   * 
+   * @return The amount of money won
+   */
+  public double calculate() {
+    rollNumber();
 
-	/**
-	 * Rolls the board and calculates the amount of money won
-	 * 
-	 * @return The amount of money won
-	 */
-	public double calculate() {
-		rollNumber();
+    double winnings = calculateGuessWinnings();
+    user.addMoney(winnings);
+    guesses.clear();
 
-		double winnings = calculateGuessWinnings();
-		user.addMoney(winnings);
-		guesses.clear();
-		
-		return winnings;
-	}
+    return winnings;
+  }
 
-	public double calculateGuessWinnings() {
-		double winnings = 0;
+  public double calculateGuessWinnings() {
+    double winnings = 0;
 
-		for (Guess guess : guesses) {
-			if (guess.isWin(rolledNumber)) {
-				winnings += guess.amount * RoulettSize / guess.getPossibleWins();
-			}
-		}
-		return winnings;
+    for (Guess guess : guesses) {
+      if (guess.isWin(rolledNumber)) {
+        winnings += guess.amount * RoulettSize / guess.getPossibleWins();
+      }
+    }
+    return winnings;
 
-	}
-	
-	public double getSumOfBets() {
-		if (guesses.size() == 0) {
-			return 0;
-		}
-		return guesses.stream().mapToDouble(guess -> guess.getAmount()).sum();
-	}
-	
-	public void addGuess(Guess guess) {
-		user.withdraw(guess.getAmount());
-		guesses.add(guess);
-	}
-	
-	public void undoGuess() {
-		if (guesses.size() == 0) {
-			throw new IllegalArgumentException("No guesses to undo");
-		}
-		Guess lastGuess = guesses.get(guesses.size() - 1);
-		user.addMoney(lastGuess.getAmount());
-		guesses.remove(guesses.size() - 1);
-	}
-	
-	public void clearGuesses() {
-		guesses.clear();
-	}
+  }
+
+  public double getSumOfBets() {
+    if (guesses.size() == 0) {
+      return 0;
+    }
+    return guesses.stream().mapToDouble(guess -> guess.getAmount()).sum();
+  }
+
+  public void addGuess(Guess guess) {
+    user.withdraw(guess.getAmount());
+    guesses.add(guess);
+  }
+
+  public void undoGuess() {
+    if (guesses.size() == 0) {
+      throw new IllegalArgumentException("No guesses to undo");
+    }
+    Guess lastGuess = guesses.get(guesses.size() - 1);
+    user.addMoney(lastGuess.getAmount());
+    guesses.remove(guesses.size() - 1);
+  }
+
+  public void clearGuesses() {
+    guesses.clear();
+  }
 
 }
