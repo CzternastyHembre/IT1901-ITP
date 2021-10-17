@@ -112,12 +112,12 @@ Jacoco is a maven-plugin that collects and presents the information of the codec
 - Checking the quality of the code with spotbugs (**spotbugs-maven-plugin**)
 Spotbugs is another maven-plugin that analyzes the code for regular bugs.
 
-- Checkstyle was used to make sure that the developers write Java code for uses the same standard. 
-This was used by the developers by downloading a plugin for the IDEA and using the same XML document as a standard. 
+- Enuring writing Java code standard with chechstyle (**checkstyle-maven-plugin**)
+Checkstyle is a maven-plugin that makes sure the developers are writing clean and readable code. 
 
-Jacoco and Spotbugs run when using the **maven-verify lifecycle.** 
+All of the plugins are run using the **verify** lifecycle.
 
-While checkstyle is used withing the IDEA. 
+
 
 ### Tests
 We have created tests to check if the method, logic and features in the different classes function as they are intended to.
