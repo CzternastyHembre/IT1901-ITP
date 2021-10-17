@@ -1,10 +1,15 @@
 package slots;
 
+import java.util.List;
+import java.util.Random;
+import java.util.ArrayList;
 import user.User;
 import validators.SlotsValidator;
 
-import java.io.IOException;
-import java.util.*;
+
+/**
+ * Slots class for the logic of the slots game.
+ */
 
 public class Slots {
 
@@ -20,9 +25,13 @@ public class Slots {
   private User user;
   private final String[] validSuits = new String[] { "S", "D", "H", "C" };
 
-  // Constructor
+  /**
+   * Constructor that sets the spins, netgain and bet to 0.
+   * Adds the symbols and creates a user with a random object.
+   *
+   * @param user takes int the user and sets the user.
+   */
 
-  // MAIN CONSTRUCTOR FOR FINAL PRODUCT
   public Slots(User user) {
     this.spins = 0;
     this.netGain = 0;
@@ -34,12 +43,22 @@ public class Slots {
     this.user = user;
   }
 
+  /**
+   * Runs the game with the seperate methods that builds the game.
+   *
+   * @param bet takes in the users bet.
+   */
+
   public void play(int bet) {
     setBet(bet);
     withdrawMoney();
     spin();
     updateWinnings();
   }
+
+  /**
+   * //TODO
+   */
 
   public void spin() {
     for (int i = 0; i < symbols.size(); i++) {
@@ -54,9 +73,14 @@ public class Slots {
   }
 
   private String generateSymbol() {
-    return random.nextInt(10) + 1 + validSuits[random.nextInt(validSuits.length)]; // Generate a random number between
-                                                                                   // 1-9, and add a random suit
+    return random.nextInt(10) + 1 + validSuits[random.nextInt(validSuits.length)];
   }
+
+  /**
+   * Uses the class SlotsValidator to calculate the winnings of the user.
+   *
+   * @return 0 if the user did not win or the bet times the given combination.
+   */
 
   public double calculateWinnings() {
 
@@ -103,6 +127,10 @@ public class Slots {
     }
   }
 
+  /**
+   * Updates the winnings of the user during the session.
+   */
+
   private void updateWinnings() {
     var winnings = calculateWinnings();
     this.currentWinnings = winnings;
@@ -115,7 +143,9 @@ public class Slots {
     this.averagePayout = (double) netGain / spins;
   }
 
-  // Getters and Setters
+  /**
+   * Getters and setters for the variables.
+   */
 
   public void setSymbols(List<String> symbols) {
     this.symbols = symbols;
@@ -141,9 +171,16 @@ public class Slots {
     return bet;
   }
 
+  /**
+   * Sets the bet of the user.
+   *
+   * @param bet is the amount that the user is betting.
+   */
+
   public void setBet(int bet) {
-    if (bet <= 0 || bet > this.getUserBalance())
+    if (bet <= 0 || bet > this.getUserBalance()) {
       throw new IllegalArgumentException("Invalid bet");
+    }
     this.bet = bet;
   }
 

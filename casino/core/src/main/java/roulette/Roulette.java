@@ -1,7 +1,6 @@
 package roulette;
 
 import java.util.Random;
-
 import user.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,7 @@ public class Roulette {
    * Rolls the board and calculates the amount of money won
    * 
    * @return The amount of money won
+   *
    */
   public double calculate() {
     rollNumber();
@@ -61,7 +61,7 @@ public class Roulette {
     if (guesses.size() == 0) {
       return 0;
     }
-    return guesses.stream().mapToDouble(guess -> guess.getAmount()).sum();
+    return guesses.stream().mapToDouble(Guess::getAmount).sum();
   }
 
   public void addGuess(Guess guess) {

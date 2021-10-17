@@ -7,9 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import saveHandler.UserSaveHandler;
-import ui.RouletteController;
-import ui.StartController;
+import savehandler.UserSaveHandler;
 import user.User;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,7 +38,7 @@ public class CasinoUITest extends ApplicationTest {
     }
 
     @Test
-    public void logInUser() throws IOException {
+    public void logInUser() {
         clickOn("#log_in_button");
         clickOn("#log_in_field").write("test");
         clickOn("#log_in");

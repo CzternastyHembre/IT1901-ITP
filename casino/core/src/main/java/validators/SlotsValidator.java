@@ -21,11 +21,13 @@ public class SlotsValidator {
     return (isPerfectStraight(symbols) && isFlush(symbols));
   }
 
- 
-  /**
- * Method for 
- */
 
+  /**
+   *Checks if the result is a perfect straight.
+   *
+   * @param symbols is list contains of the symbols in the slots.
+   * @return
+   */
   public static boolean isPerfectStraight(List<String> symbols) { 
     int first = splitStringForInt(symbols.get(0));
     int second = splitStringForInt(symbols.get(1));
@@ -33,6 +35,12 @@ public class SlotsValidator {
     return isOneMore(first, second) && isOneMore(second, third) || isOneLess(first, second) && isOneLess(second, third);
   }
 
+  /**
+   * Checks if the result of the slot spin is a straight.
+   *
+   * @param symbols
+   * @return
+   */
 
   public static boolean isStraight(List<String> symbols) { // F.eks 354, 798, 132
     var copyOfSymbols = new ArrayList<>(symbols);

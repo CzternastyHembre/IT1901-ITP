@@ -15,14 +15,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import saveHandler.UserSaveHandler;
+import savehandler.UserSaveHandler;
 import slots.Slots;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -115,7 +112,7 @@ public abstract class SlotsDisplay implements Initializable {
 
 
     private ImageView createImageView(String imageName){
-        ImageView imageView = new ImageView(new Image(SlotsDisplay.class.getResourceAsStream("/images/cards/" + imageName + ".jpg")));
+        ImageView imageView = new ImageView(new Image(Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream("/images/cards/" + imageName + ".jpg"))));
         imageView.setFitWidth(148);
         imageView.setFitHeight(210);
         return imageView;
@@ -145,7 +142,6 @@ public abstract class SlotsDisplay implements Initializable {
                 spinButton.setDisable(false);
             }
             default -> {
-                break;
             }
         }
     }

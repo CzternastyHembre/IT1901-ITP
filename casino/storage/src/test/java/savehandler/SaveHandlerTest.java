@@ -1,6 +1,5 @@
-package saveHandler;
+package savehandler;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import user.User;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 public class SaveHandlerTest {
 
     @BeforeEach
-    public void cleanUserList() throws IOException {
+    public void cleanUserList(){
         UserSaveHandler.cleanUserList();
     }
     //Makes the arrays strings to check if equal, the hash does not allow to be compared.
