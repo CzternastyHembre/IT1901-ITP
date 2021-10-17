@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LogInController">
    <children>
-      <TextField fx:id="log_in_field" layoutX="220.0" layoutY="173.0" promptText="Username" />
+      <TextField fx:id="logInField" layoutX="220.0" layoutY="173.0" promptText="Username" />
       <Button fx:id="log_in" layoutX="273.0" layoutY="232.0" mnemonicParsing="false" onAction="#run" text="Log in" />
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>

@@ -4,11 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 import user.User;
@@ -39,11 +39,12 @@ public class UserSaveHandler {
       e.printStackTrace();
     }
   }
-    /**
-     * Gets the exisiting userlist and add a user to this. Updates the file with the new user.
-     *
-     * @param user the user that is being created.
-     */
+  /**
+   * Gets the exisiting userlist and add a user to this. Updates the file with the new user.
+   *
+   * @param user the user that is being created.
+   */
+
   public static void createUser(User user) throws IOException {
 
     List<User> userList = getUserList();
@@ -64,11 +65,11 @@ public class UserSaveHandler {
       e.printStackTrace();
     }
   }
-    /**
-     * Checks if the json file is an empty file.
-     *
-     * @return true if the file has the length of 0.
-     */
+  /**
+   * Checks if the json file is an empty file.
+   *
+   * @return true if the file has the length of 0.
+   */
 
   public static boolean isEmpty() {
     File file = new File(SAVE_FILE);
@@ -76,11 +77,12 @@ public class UserSaveHandler {
     return file.length() == 0;
   }
 
-    /**
-     * Reads the file SAVE_FILE and return an arrayList of objects user.
-     *
-     * @return userList is the arrayList of the object user.
-     */
+  /**
+  * Reads the file SAVE_FILE and return an arrayList of objects user.
+  *
+  * @return userList is the arrayList of the object user.
+   */
+
   public static List<User> getUserList() throws IOException {
     if (isEmpty()) {
       return new ArrayList<>();
@@ -98,12 +100,13 @@ public class UserSaveHandler {
     return userList;
   }
 
-    /**
-     * Checks if there exist a user with the given username.
-     *
-     * @param username the username that is being checked.
-     * @return null or the object user with the username.
-     */
+  /**
+   * Checks if there exist a user with the given username.
+   *
+   * @param username the username that is being checked.
+   * @return null or the object user with the username.
+   */
+
   public static User getUser(String username) throws IOException {
 
     for (User user : Objects.requireNonNull(getUserList())) {
@@ -114,11 +117,12 @@ public class UserSaveHandler {
     return null;
   }
 
-    /**
-     * Makes the user given the active user, used to log in.
-     *
-     * @param user is the user that is being logged in and set to active.
-     */
+  /**
+   * Makes the user given the active user, used to log in.
+   *
+   * @param user is the user that is being logged in and set to active.
+   */
+
   public static void setActive(User user) throws IOException {
     List<User> userList = getUserList();
     for (int i = 0; i < userList.size(); i++) {
@@ -130,11 +134,11 @@ public class UserSaveHandler {
     userList.add(0, user);
     updateFile(userList);
   }
-    /**
-     * Updates a users balance, used if users wins or loses money.
-     *
-     * @param user is the user that is being updated.
-     */
+  /**
+   * Updates a users balance, used if users wins or loses money.
+   *
+   * @param user is the user that is being updated.
+   */
 
   public static void updateUser(User user) throws IOException {
     List<User> userList = getUserList();

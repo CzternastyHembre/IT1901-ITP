@@ -1,8 +1,11 @@
 package ui;
 
 import java.io.IOException;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Map;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,12 +34,26 @@ import roulette.Roulette;
 import savehandler.UserSaveHandler;
 import user.User;
 
+/**
+ * Controller for the roulette game.
+ */
+
 public class RouletteController {
 
   @FXML
   Pane chipFolder, anchorPane, rouletteBoardPane, controllsFolder, gridPane;
   @FXML
-  Label moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel, textLabel1, textLabel2;
+  Label moneyLabel;
+  @FXML
+  Label moneyBettedLabel;
+  @FXML
+  Label feedBackLabel;
+  @FXML
+  Label nameLabel;
+  @FXML
+  Label textLabel1;
+  @FXML
+  Label textLabel2;
   @FXML
   MenuItem mainMenu, lobby, exit;
   @FXML
@@ -52,6 +69,12 @@ public class RouletteController {
   private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27,
       13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26);
   private Pane rouletteWheelContainer;
+
+
+  /**
+   * Making the entire roulette board.
+   *
+   */
 
   @FXML
   public void initialize() throws IOException {

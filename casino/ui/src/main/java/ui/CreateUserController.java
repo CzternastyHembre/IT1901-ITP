@@ -11,15 +11,18 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import java.util.Objects;
+import java.io.IOException;
 import savehandler.UserSaveHandler;
 import user.User;
 
-import java.io.IOException;
-import java.util.Objects;
+/**
+ * Controller for the Create_User.fxml.
+ */
 
 public class CreateUserController {
   @FXML
-  private TextField username_field;
+  private TextField usernameField;
   private static final double StartingBalance = 1000;
   private Stage stage;
   private Scene scene;
@@ -34,6 +37,12 @@ public class CreateUserController {
   @FXML
   Label errorLabel;
 
+  /**
+   * Button for creating the user.
+   * If the username is taken, an exception is thrown.
+   * Creates a user and switches scene to selectGameView.fxml.
+   */
+
   @FXML
   private void run(ActionEvent actionEvent) throws IOException {
 
@@ -43,7 +52,8 @@ public class CreateUserController {
     }
     User newUser = new User(getUsername(), StartingBalance);
     UserSaveHandler.createUser(newUser);
-    Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
+    Parent root = FXMLLoader.load(
+            (Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
@@ -52,13 +62,17 @@ public class CreateUserController {
 
   @FXML
   public String getUsername() {
-    return username_field.getText();
+    return usernameField.getText();
   }
 
   @FXML
   public void exit(ActionEvent actionEvent) {
     System.exit(0);
   }
+
+  /**
+   * Button to go back to the main menu.
+   */
 
   @FXML
   public void backToMainMenu(ActionEvent actionEvent) throws IOException {
@@ -67,8 +81,8 @@ public class CreateUserController {
     loader.setLocation(getClass().getResource("Start.fxml"));
     Parent newGame = loader.load(); // Create a parent class of the loader.load()
     Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow(); // Create new Stage to from the view-file
+    // Create new Stage to from the view-file
+    Stage window = (Stage) anchorPane.getScene().getWindow();
     window.setScene(newGameScene); // Set the window to the previous chosen scene
 
     window.show(); // Opens the window

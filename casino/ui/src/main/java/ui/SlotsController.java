@@ -2,7 +2,6 @@ package ui;
 
 import savehandler.UserSaveHandler;
 import slots.Slots;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

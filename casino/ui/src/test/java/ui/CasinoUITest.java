@@ -31,16 +31,16 @@ public class CasinoUITest extends ApplicationTest {
 
     @Test
     public void checkNewUser() throws IOException {
-        clickOn("#create_user_button");
-        clickOn("#username_field").write(userTest);
+        clickOn("#createUserButton");
+        clickOn("#usernameField").write(userTest);
         clickOn("#create");
         assertEquals(userTest, UserSaveHandler.getActiveUser().getUsername());
     }
 
     @Test
     public void logInUser() {
-        clickOn("#log_in_button");
-        clickOn("#log_in_field").write("test");
+        clickOn("#logInButton");
+        clickOn("#logInField").write("test");
         clickOn("#log_in");
         assertEquals("test", user.getUsername());
     }
@@ -48,8 +48,8 @@ public class CasinoUITest extends ApplicationTest {
     @Test
     public void moveAround() throws IOException {
         UserSaveHandler.createUser(user);
-        clickOn("#log_in_button");
-        clickOn("#log_in_field").write("test");
+        clickOn("#logInButton");
+        clickOn("#logInField").write("test");
         clickOn("#log_in");
         clickOn("#roulette");
         clickOn("#meny_button");
