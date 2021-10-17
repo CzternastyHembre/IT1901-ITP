@@ -18,55 +18,59 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class CreateUserController {
-    @FXML
-    private TextField username_field;
-    private static final double StartingBalance = 1000;
-    private Stage stage;
-    private Scene scene;
-    @FXML MenuItem mainMenu;
-    @FXML MenuItem exit;
-    @FXML FXMLLoader loader = new FXMLLoader();
-    @FXML AnchorPane anchorPane;
-    @FXML
-    Label errorLabel;
+  @FXML
+  private TextField username_field;
+  private static final double StartingBalance = 1000;
+  private Stage stage;
+  private Scene scene;
+  @FXML
+  MenuItem mainMenu;
+  @FXML
+  MenuItem exit;
+  @FXML
+  FXMLLoader loader = new FXMLLoader();
+  @FXML
+  AnchorPane anchorPane;
+  @FXML
+  Label errorLabel;
 
-    @FXML
-    private void run(ActionEvent actionEvent) throws IOException {
+  @FXML
+  private void run(ActionEvent actionEvent) throws IOException {
 
-        if (UserSaveHandler.getUser(getUsername()) != null) {
-            errorLabel.setText("This username is taken, try again");
-            throw new IllegalArgumentException("Username already exist");
-        }
-        User newUser = new User(getUsername(), StartingBalance);
-        UserSaveHandler.createUser(newUser);
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    if (UserSaveHandler.getUser(getUsername()) != null) {
+      errorLabel.setText("This username is taken, try again");
+      throw new IllegalArgumentException("Username already exist");
     }
-    @FXML
-    public String getUsername(){
-        return username_field.getText();
-    }
+    User newUser = new User(getUsername(), StartingBalance);
+    UserSaveHandler.createUser(newUser);
+    Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
+    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
 
+  @FXML
+  public String getUsername() {
+    return username_field.getText();
+  }
 
+  @FXML
+  public void exit(ActionEvent actionEvent) {
+    System.exit(0);
+  }
 
-    @FXML
-    public void exit(ActionEvent actionEvent) {
-        System.exit(0);
-    }
+  @FXML
+  public void backToMainMenu(ActionEvent actionEvent) throws IOException {
+    // Sets location on the loader by getting the class and then the view file from
+    // resources
+    loader.setLocation(getClass().getResource("Start.fxml"));
+    Parent newGame = loader.load(); // Create a parent class of the loader.load()
+    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
 
-    @FXML
-    public void backToMainMenu(ActionEvent actionEvent) throws IOException {
-        //Sets location on the loader by getting the class and then the view file from resources
-        loader.setLocation(getClass().getResource("Start.fxml"));
-        Parent newGame = loader.load(); // Create a parent class of the loader.load()
-        Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
+    Stage window = (Stage) anchorPane.getScene().getWindow(); // Create new Stage to from the view-file
+    window.setScene(newGameScene); // Set the window to the previous chosen scene
 
-        Stage window = (Stage) anchorPane.getScene().getWindow();   //Create new Stage to from the view-file
-        window.setScene(newGameScene);  //Set the window to the previous chosen scene
-
-        window.show();  //Opens the window
-    }
+    window.show(); // Opens the window
+  }
 }

@@ -9,19 +9,16 @@ import java.util.ResourceBundle;
 
 public class SlotsController extends SlotsDisplay {
 
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        super.updateStats();
-        super.initializeHBoxes();
-        super.viewAtStart();
-
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    try {
+      super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+    super.updateStats();
+    super.initializeHBoxes();
+    super.viewAtStart();
+
+  }
 }

@@ -19,225 +19,231 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import savehandler.UserSaveHandler;
 import slots.Slots;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 public abstract class SlotsDisplay implements Initializable {
 
-    protected Slots slotMachine;
+  protected Slots slotMachine;
 
-    @FXML private MenuItem mainMenu;
-    @FXML private MenuItem lobby;
-    @FXML FXMLLoader loader = new FXMLLoader();
-    @FXML AnchorPane anchorPane;
+  @FXML
+  private MenuItem mainMenu;
+  @FXML
+  private MenuItem lobby;
+  @FXML
+  FXMLLoader loader = new FXMLLoader();
+  @FXML
+  AnchorPane anchorPane;
 
-    @FXML private Button spinButton;
+  @FXML
+  private Button spinButton;
 
-    @FXML private TextField betField;
+  @FXML
+  private TextField betField;
 
-    @FXML private HBox slotHBox1;
-    @FXML private HBox slotHBox2;
-    @FXML private HBox slotHBox3;
+  @FXML
+  private HBox slotHBox1;
+  @FXML
+  private HBox slotHBox2;
+  @FXML
+  private HBox slotHBox3;
 
-    @FXML private Label balanceNum;
-    @FXML private Label netGainNum;
-    @FXML private Label currentBetNum;
-    @FXML private Label payoutNum;
-    @FXML private Label comboSlot;
+  @FXML
+  private Label balanceNum;
+  @FXML
+  private Label netGainNum;
+  @FXML
+  private Label currentBetNum;
+  @FXML
+  private Label payoutNum;
+  @FXML
+  private Label comboSlot;
 
-    @FXML private Label avgPayout;
-    @FXML private Label spinsCounter;
+  @FXML
+  private Label avgPayout;
+  @FXML
+  private Label spinsCounter;
 
-    @FXML private ToggleButton keepBetButton;
+  @FXML
+  private ToggleButton keepBetButton;
 
-    private final List<HBox> hboxesList = new ArrayList<>();
+  private final List<HBox> hboxesList = new ArrayList<>();
 
+  protected void initializeHBoxes() {
+    hboxesList.add(slotHBox1);
+    hboxesList.add(slotHBox2);
+    hboxesList.add(slotHBox3);
+  }
 
-    protected void initializeHBoxes() {
-        hboxesList.add(slotHBox1);
-        hboxesList.add(slotHBox2);
-        hboxesList.add(slotHBox3);
+  protected void viewAtStart() {
+    for (HBox box : hboxesList) {
+      box.getChildren().add(createImageView("backOfCard"));
     }
+  }
 
-    protected void viewAtStart() {
-        for (HBox box : hboxesList){
-            box.getChildren().add(createImageView("backOfCard"));
-        }
+  public void spin(ActionEvent actionEvent) throws IOException {
+    int bet = Integer.parseInt(betField.getText());
+    slotMachine.play(bet);
+    for (HBox box : hboxesList) {
+      rotateCard(box, 0);
     }
+  }
 
+  private void updateUserState() throws IOException {
+    UserSaveHandler.updateUser(slotMachine.getUser());
+  }
 
-    public void spin(ActionEvent actionEvent) throws IOException {
-        int bet = Integer.parseInt(betField.getText());
-        slotMachine.play(bet);
-        for (HBox box : hboxesList){
-            rotateCard(box, 0);
-        }
+  public void updateCardsDisplay() {
+    for (HBox box : hboxesList) {
+      box.getChildren().set(0, createImageView(slotMachine.getSymbols().get(hboxesList.indexOf(box))));
     }
+  }
 
-    private void updateUserState() throws IOException {
-        UserSaveHandler.updateUser(slotMachine.getUser());
+  public void displayBackOfCard() {
+    for (HBox box : hboxesList) {
+      box.getChildren().set(0, createImageView("backOfCard"));
     }
+  }
 
-
-    public void updateCardsDisplay(){
-        for (HBox box : hboxesList) {
-            box.getChildren().set(0, createImageView(slotMachine.getSymbols().get(hboxesList.indexOf(box))));
-        }
+  protected void updateStats() {
+    balanceNum.setText("" + slotMachine.getUserBalance());
+    netGainNum.setText("" + slotMachine.getNetGain());
+    currentBetNum.setText("" + slotMachine.getBet());
+    payoutNum.setText("" + slotMachine.getCurrentWinnings());
+    if (slotMachine.getCombo() == null)
+      comboSlot.setText("Bet and Spin to start!");
+    else {
+      comboSlot.setText("" + slotMachine.getCombo());
     }
+    avgPayout.setText("" + (Math.round(slotMachine.getAveragePayout() * 100.0) / 100.0));
+    spinsCounter.setText("" + slotMachine.getSpins());
+    if (!keepBetButton.isSelected())
+      betField.setText("");
+  }
 
-    public void displayBackOfCard(){
-        for (HBox box : hboxesList) {
-            box.getChildren().set(0, createImageView("backOfCard"));
-        }
+  private ImageView createImageView(String imageName) {
+    ImageView imageView = new ImageView(new Image(
+        Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream("/images/cards/" + imageName + ".jpg"))));
+    imageView.setFitWidth(148);
+    imageView.setFitHeight(210);
+    return imageView;
+  }
+
+  private void rotateCard(Node card, int stage) throws IOException {
+    switch (stage) {
+    case 0 -> {
+      animateCard(card, 90, stage);
+      spinButton.setDisable(true);
     }
-
-
-    protected void updateStats() {
-        balanceNum.setText(""+slotMachine.getUserBalance());
-        netGainNum.setText(""+slotMachine.getNetGain());
-        currentBetNum.setText(""+slotMachine.getBet());
-        payoutNum.setText(""+slotMachine.getCurrentWinnings());
-        if (slotMachine.getCombo() == null)
-            comboSlot.setText("Bet and Spin to start!");
-        else{
-            comboSlot.setText(""+slotMachine.getCombo());
-        }
-        avgPayout.setText("" + (Math.round( slotMachine.getAveragePayout()*100.0)/100.0));
-        spinsCounter.setText("" + slotMachine.getSpins());
-        if (!keepBetButton.isSelected())
-            betField.setText("");
+    case 1 -> {
+      animateCard(card, 90, stage);
+      displayBackOfCard();
     }
-
-
-    private ImageView createImageView(String imageName){
-        ImageView imageView = new ImageView(new Image(Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream("/images/cards/" + imageName + ".jpg"))));
-        imageView.setFitWidth(148);
-        imageView.setFitHeight(210);
-        return imageView;
+    case 2 -> animateCard(card, -90, stage);
+    case 3 -> {
+      animateCard(card, -90, stage);
+      updateCardsDisplay();
     }
-
-
-
-
-    private void rotateCard(Node card, int stage) throws IOException {
-        switch (stage){
-            case 0 -> {
-                animateCard(card, 90, stage);
-                spinButton.setDisable(true);
-            }
-            case 1 -> {
-                animateCard(card, 90, stage);
-                displayBackOfCard();
-            }
-            case 2 -> animateCard(card, -90, stage);
-            case 3 -> {
-                animateCard(card, -90, stage);
-                updateCardsDisplay();
-            }
-            case 4 -> {
-                updateStats();
-                updateUserState();
-                spinButton.setDisable(false);
-            }
-            default -> {
-            }
-        }
+    case 4 -> {
+      updateStats();
+      updateUserState();
+      spinButton.setDisable(false);
     }
-
-    private void animateCard(Node card, double angle, int stage) {
-        RotateTransition rotator = new RotateTransition(Duration.millis(500), card);
-        double currentAngle = card.getRotate();
-        rotator.setAxis(new Point3D(0,5,0));
-        rotator.setFromAngle(currentAngle);
-        rotator.setToAngle(currentAngle + angle);
-        rotator.setInterpolator(Interpolator.LINEAR);
-        rotator.setCycleCount(1);
-        rotator.play();
-        rotator.setOnFinished(event ->{
-            try {
-                rotateCard(card, stage + 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    default -> {
     }
-
-
-
-
-
-    @FXML
-    public void exit(ActionEvent actionEvent) {
-        System.exit(0);
     }
+  }
 
-    @FXML
-    public void backToMainMenu(ActionEvent actionEvent) throws IOException {
-        //Sets location on the loader by getting the class and then the view file from resources
-        loader.setLocation(SlotsDisplay.class.getResource("Start.fxml"));
-        Parent newGame = loader.load(); // Create a parent class of the loader.load()
-        Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
+  private void animateCard(Node card, double angle, int stage) {
+    RotateTransition rotator = new RotateTransition(Duration.millis(500), card);
+    double currentAngle = card.getRotate();
+    rotator.setAxis(new Point3D(0, 5, 0));
+    rotator.setFromAngle(currentAngle);
+    rotator.setToAngle(currentAngle + angle);
+    rotator.setInterpolator(Interpolator.LINEAR);
+    rotator.setCycleCount(1);
+    rotator.play();
+    rotator.setOnFinished(event -> {
+      try {
+        rotateCard(card, stage + 1);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    });
+  }
 
-        Stage window = (Stage) anchorPane.getScene().getWindow();   //Create new Stage to from the view-file
-        window.setScene(newGameScene);  //Set the window to the previous chosen scene
+  @FXML
+  public void exit(ActionEvent actionEvent) {
+    System.exit(0);
+  }
 
-        window.show();  //Opens the window
-    }
+  @FXML
+  public void backToMainMenu(ActionEvent actionEvent) throws IOException {
+    // Sets location on the loader by getting the class and then the view file from
+    // resources
+    loader.setLocation(SlotsDisplay.class.getResource("Start.fxml"));
+    Parent newGame = loader.load(); // Create a parent class of the loader.load()
+    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
 
-    @FXML
-    public void backToLobby(ActionEvent actionEvent) throws IOException {
-        //Sets location on the loader by getting the class and then the view file from resources
-        loader.setLocation(SlotsDisplay.class.getResource("selectGameView.fxml"));
-        Parent newGame = loader.load(); // Create a parent class of the loader.load()
-        Scene newGameScene = new Scene(newGame); //Create a new Scene from the parent object
+    Stage window = (Stage) anchorPane.getScene().getWindow(); // Create new Stage to from the view-file
+    window.setScene(newGameScene); // Set the window to the previous chosen scene
 
-        Stage window = (Stage) anchorPane.getScene().getWindow();   //Create new Stage to from the view-file
-        window.setScene(newGameScene);  //Set the window to the previous chosen scene
+    window.show(); // Opens the window
+  }
 
-        window.show();  //Opens the window
-    }
+  @FXML
+  public void backToLobby(ActionEvent actionEvent) throws IOException {
+    // Sets location on the loader by getting the class and then the view file from
+    // resources
+    loader.setLocation(SlotsDisplay.class.getResource("selectGameView.fxml"));
+    Parent newGame = loader.load(); // Create a parent class of the loader.load()
+    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    Stage window = (Stage) anchorPane.getScene().getWindow(); // Create new Stage to from the view-file
+    window.setScene(newGameScene); // Set the window to the previous chosen scene
 
-    }
+    window.show(); // Opens the window
+  }
 
-    public TextField getBetField() {
-        return betField;
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    public Label getBalanceNum() {
-        return balanceNum;
-    }
+  }
 
-    public Label getNetGainNum() {
-        return netGainNum;
-    }
+  public TextField getBetField() {
+    return betField;
+  }
 
-    public Label getCurrentBetNum() {
-        return currentBetNum;
-    }
+  public Label getBalanceNum() {
+    return balanceNum;
+  }
 
-    public Label getPayoutNum() {
-        return payoutNum;
-    }
+  public Label getNetGainNum() {
+    return netGainNum;
+  }
 
-    public Label getComboSlot() {
-        return comboSlot;
-    }
+  public Label getCurrentBetNum() {
+    return currentBetNum;
+  }
 
-    public Label getAvgPayout() {
-        return avgPayout;
-    }
+  public Label getPayoutNum() {
+    return payoutNum;
+  }
 
-    public Label getSpinsCounter() {
-        return spinsCounter;
-    }
+  public Label getComboSlot() {
+    return comboSlot;
+  }
 
-    public List<HBox> getHboxesList() {
-        return hboxesList;
-    }
+  public Label getAvgPayout() {
+    return avgPayout;
+  }
+
+  public Label getSpinsCounter() {
+    return spinsCounter;
+  }
+
+  public List<HBox> getHboxesList() {
+    return hboxesList;
+  }
 }
-

@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.settings.url": "casino/config/checkstyle/eclipse-java-googe-style.xml",
+    "java.format.enabled": true,
+    "java.format.settings.profile": "GoogleStyle",
+    "[java]": {
+      "editor.tabSize": 2,
+      "editor.detectIndentation": false,
+    }
+  }
