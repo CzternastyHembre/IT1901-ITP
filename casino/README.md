@@ -29,6 +29,7 @@ Our maven build also has the follwing:
 - The running of JavaFx (**javafx-maven-plugin**)
 - Checking the quality of the code with spotbugs (**spotbugs-maven-plugin**)
 - Test coverage with jacoco (**jacoco-maven-plugin**)
+- Code quality with (**checkstyle-maven-plugin**)
 
 
 ## Architecture of the app
