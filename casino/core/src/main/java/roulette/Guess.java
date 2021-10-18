@@ -27,9 +27,10 @@ public abstract class Guess {
     this.amount = amount;
   }
 
-	public List<Integer> getNumbers(){
-		return new ArrayList<>(numbers);
-	}
+  public List<Integer> getNumbers() {
+    return new ArrayList<>(numbers);
+  }
+
   public double getAmount() {
     return amount;
   }

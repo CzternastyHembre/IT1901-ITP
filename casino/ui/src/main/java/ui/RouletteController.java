@@ -464,17 +464,18 @@ public class RouletteController {
       feedBackLabel.setText(e.getMessage());
     }
   }
-	public Pane getRouletteWheelContainer() {
-		return rouletteWheelContainer;
-	}
 
-	public Label getRolledNumberLabel() {
-		return rolledNumberLabel;
-	}
+  public Pane getRouletteWheelContainer() {
+    return rouletteWheelContainer;
+  }
 
-	public List<Pane> getChipList() {
-		return chipList;
-	}
+  public Label getRolledNumberLabel() {
+    return rolledNumberLabel;
+  }
+
+  public List<Pane> getChipList() {
+    return chipList;
+  }
 
   /**
    * Creates the roulette wheel.

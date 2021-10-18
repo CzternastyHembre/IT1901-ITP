@@ -100,7 +100,8 @@ public class Roulette {
 
   /**
    * Removes the {@link Guess} at the end of the {@code guesses}.
-   * 
+   *
+   *
    * @throws IllegalArgumentException if there are no {@link Guess} in {@code guesses}.
    *
    *
@@ -108,7 +109,7 @@ public class Roulette {
    *
    */
 
-  public void undoGuess() throws IllegalArgumentException{
+  public void undoGuess() throws IllegalArgumentException {
     if (guesses.size() == 0) {
       throw new IllegalArgumentException("No guesses to undo");
     }
