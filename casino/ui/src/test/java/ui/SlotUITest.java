@@ -5,16 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import java.io.IOException;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
-import saveHandler.UserSaveHandler;
-import ui.RouletteController;
-import ui.StartController;
 import user.User;
 import static org.junit.jupiter.api.Assertions.*;
 

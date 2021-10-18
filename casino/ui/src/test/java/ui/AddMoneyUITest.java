@@ -4,15 +4,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import saveHandler.UserSaveHandler;
+import savehandler.UserSaveHandler;
 import user.User;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddMoneyUITest extends ApplicationTest {

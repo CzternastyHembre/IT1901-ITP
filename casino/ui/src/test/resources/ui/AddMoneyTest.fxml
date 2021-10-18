@@ -14,7 +14,7 @@
         <TextField fx:id="amountField" layoutX="220.0" layoutY="229.0" stylesheets="@../css/generelBackgroundImage.css" />
         <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
-                <Menu fx:id="meny_button" mnemonicParsing="false" text="Meny">
+                <Menu fx:id="menyButton" mnemonicParsing="false" text="Meny">
                     <items>
                         <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
                         <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
