@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+import java.util.Objects;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +13,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import java.util.Objects;
-import java.io.IOException;
 import savehandler.UserSaveHandler;
 import user.User;
 

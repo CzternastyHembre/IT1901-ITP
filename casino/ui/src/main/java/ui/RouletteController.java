@@ -2,9 +2,9 @@ package ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -40,24 +40,21 @@ import user.User;
 
 public class RouletteController {
 
-  @FXML
-  Pane chipFolder, anchorPane, rouletteBoardPane, controllsFolder, gridPane;
-  @FXML
-  Label moneyLabel;
-  @FXML
-  Label moneyBettedLabel;
-  @FXML
-  Label feedBackLabel;
-  @FXML
-  Label nameLabel;
-  @FXML
-  Label textLabel1;
-  @FXML
-  Label textLabel2;
-  @FXML
-  MenuItem mainMenu, lobby, exit;
-  @FXML
-  FXMLLoader loader = new FXMLLoader();
+  @FXML Pane chipFolder;
+  @FXML Pane anchorPane;
+  @FXML Pane rouletteBoardPane;
+  @FXML Pane controllsFolder;
+  @FXML Pane gridPane;
+  @FXML Label moneyLabel;
+  @FXML Label moneyBettedLabel;
+  @FXML Label feedBackLabel;
+  @FXML Label nameLabel;
+  @FXML Label textLabel1;
+  @FXML Label textLabel2;
+  @FXML MenuItem mainMenu;
+  @FXML MenuItem lobby;
+  @FXML MenuItem exit;
+  @FXML FXMLLoader loader = new FXMLLoader();
 
   Label rolledNumberLabel = new Label();
   private Roulette rouletteGame;
@@ -66,8 +63,10 @@ public class RouletteController {
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
-  private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27,
-      13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26);
+  private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(
+          0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27,
+      13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20,
+          14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26);
   private Pane rouletteWheelContainer;
 
 
@@ -78,8 +77,9 @@ public class RouletteController {
 
   @FXML
   public void initialize() throws IOException {
-    List<Label> labelList = new ArrayList<>(Arrays.asList(moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
-        textLabel1, textLabel2, rolledNumberLabel));
+    List<Label> labelList = new ArrayList<>(Arrays.asList(
+            moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
+            textLabel1, textLabel2, rolledNumberLabel));
     user = UserSaveHandler.getActiveUser();
     rouletteGame = new Roulette(user);
     updateUserLables();
@@ -97,14 +97,13 @@ public class RouletteController {
         Label tileLabel = new Label();
         int number = (x - 1) * 3 + (3 - y);
 
-        if (x == 0) {// The leftmost column (#0)
+        if (x == 0) { // The leftmost column (#0)
           if (y != 0) {
             continue;
           }
           tile.setPrefSize(tileWidth, tileHeight * (rouletteRows - 2));
-          // tile.setStyle("-fx-background-color:green;");
 
-        } else {// all the columns in the middle (the numbers)
+        } else { // all the columns in the middle (the numbers)
           tile.setPrefSize(tileWidth, tileHeight);
           tile.setTranslateX(tileWidth * x);
           tile.setTranslateY(tileHeight * y);
@@ -121,15 +120,12 @@ public class RouletteController {
         rouletteBoardPane.getChildren().add(tile);
       }
     }
-    for (int y = 0; y < 3; y++) {// The rightmost Column
+    for (int y = 0; y < 3; y++) { // The rightmost Column
       Pane tile = new Pane();
-      Label tileLabel = new Label();
-
       tile.setPrefSize(tileWidth, tileHeight);
       tile.setTranslateX(tileWidth * (rouletteColums - 1));
       tile.setTranslateY(tileHeight * y);
-      // tile.setStyle("-fx-background-color:green;");
-
+      Label tileLabel = new Label();
       tileLabel.setText("Row " + (y + 1));
       tile.getChildren().add(tileLabel);
       labelList.add(tileLabel);
@@ -141,16 +137,15 @@ public class RouletteController {
       setPatternGuess(tile, start, increment);
     }
 
-    for (int x = 0; x < 3; x++) {// The 4. row
+    for (int x = 0; x < 3; x++) { // The 4. row
       Pane tile = new Pane();
-      Label tileLabel = new Label();
-
       tile.setPrefSize(tileWidth * 4, tileHeight);
       tile.setTranslateX(tileWidth * x * 4 + tileWidth);
       tile.setTranslateY(tileHeight * 3);
-      // tile.setStyle("-fx-background-color:green;");
+
       rouletteBoardPane.getChildren().add(tile);
 
+      Label tileLabel = new Label();
       int startNumber = (x * 12) + 1;
       int endNumber = (x + 1) * 12;
       String tileString = startNumber + "-" + endNumber;
@@ -160,16 +155,15 @@ public class RouletteController {
 
       labelList.add(tileLabel);
     }
-    for (int i = 0; i < 4; i++) {// The 5. row
+    for (int i = 0; i < 4; i++) { // The 5. row
       Pane tile = new Pane();
-      Label tileLabel = new Label();
 
       tile.setPrefSize(tileWidth * 3, tileHeight);
       tile.setTranslateX(tileWidth * i * 3 + tileWidth);
       tile.setTranslateY(tileHeight * 4);
-      // tile.setStyle("-fx-background-color:green;");
       rouletteBoardPane.getChildren().add(tile);
 
+      Label tileLabel = new Label();
       String tileString = i + "";
       tileLabel.setText("" + tileString);
 
@@ -177,23 +171,23 @@ public class RouletteController {
       tile.getChildren().add(tileLabel);
 
       switch (i) {
-      case 0 -> {
-        setListGuess(tile, 1, 18);
-        tileLabel.setText("1-18");
-      }
-      case 1 -> {
-        setPatternGuess(tile, 2, 2);
-        tileLabel.setText("EVEN");
-      }
-      case 2 -> {
-        setPatternGuess(tile, 1, 2);
-        tileLabel.setText("ODD");
-      }
-      case 3 -> {
-        setListGuess(tile, 19, 36);
-        tileLabel.setText("19-36");
-      }
-      default -> throw new IllegalArgumentException();
+        case 0 -> {
+          setListGuess(tile, 1, 18);
+          tileLabel.setText("1-18");
+        }
+        case 1 -> {
+          setPatternGuess(tile, 2, 2);
+          tileLabel.setText("EVEN");
+        }
+        case 2 -> {
+          setPatternGuess(tile, 1, 2);
+          tileLabel.setText("ODD");
+        }
+        case 3 -> {
+          setListGuess(tile, 19, 36);
+          tileLabel.setText("19-36");
+        }
+        default -> throw new IllegalArgumentException();
       }
     }
     for (Node node : rouletteBoardPane.getChildren()) {
@@ -230,7 +224,6 @@ public class RouletteController {
       label.setFont(CasinoElements.TEXTFONT);
       label.setTextFill(CasinoElements.TEXTCOLOR);
     });
-    // gridPane.setStyle(CasinoElements.BACKGROUNDSTYLE);
 
     rouletteWheelContainer = createRouletteWheel();
     gridPane.getChildren().add(rouletteWheelContainer);
@@ -246,15 +239,23 @@ public class RouletteController {
     rouletteWheelContainer.getChildren().add(circleWheelPointer);
 
     rolledNumberLabel.setFont(CasinoElements.LARGETEXTFONT);
-    rolledNumberLabel.setTranslateX(rouletteBoardPane.getPrefWidth() / 2 - CasinoElements.LARGEFONTSIZE / 2);
-    rolledNumberLabel.setTranslateY(rouletteBoardPane.getPrefHeight() / 2 - CasinoElements.LARGEFONTSIZE / 2);
+    rolledNumberLabel.setTranslateX(rouletteBoardPane.getPrefWidth()
+            / 2 - CasinoElements.LARGEFONTSIZE / 2);
+    rolledNumberLabel.setTranslateY(rouletteBoardPane.getPrefHeight()
+            / 2 - CasinoElements.LARGEFONTSIZE / 2);
     rouletteWheelContainer.getChildren().add(rolledNumberLabel);
   }
+
+  /**
+   * Plays the bet, spins the wheel and generates a winning number. Updates winnings
+   * and user's balance
+   *
+   * @throws IOException uses a scanner object which requires throws
+   */
 
   @FXML
   public void run() throws IOException {
 
-    double winnings = rouletteGame.calculate();
     UserSaveHandler.updateUser(user);
 
     int number = rouletteGame.getRolledNumber();
@@ -271,13 +272,14 @@ public class RouletteController {
     RotateTransition rt2 = new RotateTransition(Duration.seconds(2), rouletteWheelPivotPane);
     rt2.setOnFinished(e -> {
       setShowRouletteWheel(false);
-      feedBackLabel.setText("you won: " + winnings);
+      feedBackLabel.setText("you won: " + rouletteGame.calculate());
       updateUserLables();
       clearChips();
       rolledNumberLabel.setText(null);
     });
     rt.setOnFinished(e -> {
-      rolledNumberLabel.setText(rouletteGame.getRolledNumber() < 10 ? " " + rouletteGame.getRolledNumber()
+      rolledNumberLabel.setText(rouletteGame.getRolledNumber()
+              < 10 ? " " + rouletteGame.getRolledNumber()
           : "" + rouletteGame.getRolledNumber());
       rt2.play();
     });
@@ -317,12 +319,12 @@ public class RouletteController {
     chipContainer.setTranslateX(tileWidth / 2);
     chipContainer.setTranslateY(tileHeight / 2);
 
-    double yTranslated = chipContainer.getTranslateY();
+    double translateY = chipContainer.getTranslateY();
     int chipSize = tile.getChildren().size() - 1; // - 1 because first child is a label
     if (chipSize < 7) {
-      chipContainer.setTranslateY(yTranslated - chipSize * 3);
+      chipContainer.setTranslateY(translateY - chipSize * 3);
     } else {
-      chipContainer.setTranslateY(yTranslated + -7 * 3);
+      chipContainer.setTranslateY(translateY + -7 * 3);
 
     }
     tile.getChildren().add(chipContainer);
@@ -352,7 +354,9 @@ public class RouletteController {
       NumberGuess guess = new NumberGuess(CasinoElements.getValue(chipValueIndex), number);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new NumberGuess(CasinoElements.getValue(chipValueIndex), number).getNumbers());
+    setGuessAnimation(tile, new NumberGuess(
+            CasinoElements.getValue(chipValueIndex),
+            number).getNumbers());
   }
 
   private void setListGuess(Pane tile, int start, int end) {
@@ -360,15 +364,19 @@ public class RouletteController {
       ListGuess guess = new ListGuess(CasinoElements.getValue(chipValueIndex), start, end);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new ListGuess(CasinoElements.getValue(chipValueIndex), start, end).getNumbers());
+    setGuessAnimation(tile, new ListGuess(
+            CasinoElements.getValue(chipValueIndex),
+            start, end).getNumbers());
   }
 
   private void setPatternGuess(Pane tile, int start, int increment) {
     tile.setOnMouseClicked(e -> {
-      PatternGuess guess = new PatternGuess(CasinoElements.getValue(chipValueIndex), start, increment);
+      PatternGuess guess = new PatternGuess(
+              CasinoElements.getValue(chipValueIndex), start, increment);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new PatternGuess(CasinoElements.getValue(chipValueIndex), start, increment).getNumbers());
+    setGuessAnimation(tile, new PatternGuess(
+            CasinoElements.getValue(chipValueIndex), start, increment).getNumbers());
   }
 
   private void setGuessAnimation(Pane tile, List<Integer> numbers) {
@@ -389,7 +397,6 @@ public class RouletteController {
   }
 
   private Pane createRouletteWheel() {
-    double radius = rouletteBoardPane.getPrefHeight() / 2 - 5;
 
     Pane rouletteWheelContainer = new Pane();
     rouletteWheelContainer.setPrefHeight(gridPane.getPrefHeight());
@@ -398,6 +405,8 @@ public class RouletteController {
     Pane rouletteWheelPivotPane = new Pane();
     rouletteWheelPivotPane.setTranslateX(rouletteBoardPane.getPrefWidth() / 2); // Senters the pane
     rouletteWheelPivotPane.setTranslateY(rouletteBoardPane.getPrefHeight() / 2); // Senters the pane
+
+    double radius = rouletteBoardPane.getPrefHeight() / 2 - 5;
 
     Circle backgroundCircle = new Circle();
     backgroundCircle.setFill(Paint.valueOf("black"));
@@ -442,7 +451,7 @@ public class RouletteController {
     rouletteWheelPivotPane.getChildren().add(middleCircle);
     middleCircle.setStroke(Paint.valueOf("black"));
     middleCircle.setStrokeWidth(6);
-    middleCircle.setStrokeLineCap(StrokeLineCap.BUTT);// The poker chip border design
+    middleCircle.setStrokeLineCap(StrokeLineCap.BUTT); // The poker chip border design
     middleCircle.setStrokeType(StrokeType.INSIDE);
     middleCircle.setStyle("-fx-stroke-dash-array:8;");
 
@@ -450,11 +459,10 @@ public class RouletteController {
     return rouletteWheelContainer;
   }
 
-  /*
-   * Creates a triangle from a point with an angle
-   */
+
   private Polygon createTriangle(double x, double y, double length, double angle) {
-    Polygon fovTriangle = new Polygon(0d, 0d, (length * Math.tan(angle)), -length, -(length * Math.tan(angle)),
+    Polygon fovTriangle = new Polygon(
+            0d, 0d, (length * Math.tan(angle)), -length, -(length * Math.tan(angle)),
         -length);
     fovTriangle.setLayoutX(x);
     fovTriangle.setLayoutY(y);
@@ -475,6 +483,13 @@ public class RouletteController {
     System.exit(0);
   }
 
+  /**
+   * Sends user back to main menu view.
+   *
+   * @param actionEvent onClick, run this method
+   *
+   * @throws IOException loader.load() can throw an exception.
+   */
   @FXML
   public void backToMainMenu(ActionEvent actionEvent) throws IOException {
     // Sets location on the loader by getting the class and then the view file from
@@ -483,11 +498,19 @@ public class RouletteController {
     Parent newGame = loader.load(); // Create a parent class of the loader.load()
     Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
 
-    Stage window = (Stage) anchorPane.getScene().getWindow(); // Create new Stage to from the view-file
+    Stage window = (Stage) anchorPane.getScene().getWindow();
     window.setScene(newGameScene); // Set the window to the previous chosen scene
 
     window.show(); // Opens the window
   }
+
+  /**
+   * Sends user back to lobby view.
+   *
+   * @param actionEvent onClick, run this method.
+   *
+   * @throws IOException loader.load() can throw exception.
+   */
 
   @FXML
   public void backToLobby(ActionEvent actionEvent) throws IOException {
@@ -497,7 +520,7 @@ public class RouletteController {
     Parent newGame = loader.load(); // Create a parent class of the loader.load()
     Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
 
-    Stage window = (Stage) anchorPane.getScene().getWindow(); // Create new Stage to from the view-file
+    Stage window = (Stage) anchorPane.getScene().getWindow();
     window.setScene(newGameScene); // Set the window to the previous chosen scene
 
     window.show(); // Opens the window
