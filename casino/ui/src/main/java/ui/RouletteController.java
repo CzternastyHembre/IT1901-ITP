@@ -264,6 +264,7 @@ public class RouletteController {
   public void run() throws IOException {
 
     UserSaveHandler.updateUser(user);
+    rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();
 
@@ -276,10 +277,12 @@ public class RouletteController {
     rt.setByAngle(360 * 4 + 360 - extraAngle);
     rt.play();
 
+    var winnings = rouletteGame.calculate();
+
     RotateTransition rt2 = new RotateTransition(Duration.seconds(2), rouletteWheelPivotPane);
     rt2.setOnFinished(e -> {
       setShowRouletteWheel(false);
-      feedBackLabel.setText("you won: " + rouletteGame.calculate());
+      feedBackLabel.setText("you won: " + winnings);
       updateUserLables();
       clearChips();
       rolledNumberLabel.setText(null);
@@ -472,11 +475,6 @@ public class RouletteController {
 		return chipList;
 	}
 
-	@FXML
-	public void exit(ActionEvent actionEvent) {
-		System.exit(0);
-	}
-
   /**
    * Creates the roulette wheel.
    *
@@ -579,11 +577,6 @@ public class RouletteController {
     moneyLabel.setText("" + user.getBalance());
   }
 
-  @FXML
-  public void exit(ActionEvent actionEvent) {
-    System.exit(0);
-  }
-
   /**
    * Sends user back to main menu view.
    *
@@ -603,6 +596,11 @@ public class RouletteController {
     window.setScene(newGameScene); // Set the window to the previous chosen scene
 
     window.show(); // Opens the window
+  }
+
+  @FXML
+  public void exit(ActionEvent actionEvent) {
+    System.exit(0);
   }
 
   /**

@@ -49,9 +49,9 @@ public class SlotsValidator {
     Collections.sort(copyOfSymbols); // 354 becomes 345
     Collections.reverse(copyOfSymbols); // 543
 
-    var first = Integer.parseInt(copyOfSymbols.get(0));
-    var second = Integer.parseInt(copyOfSymbols.get(1));
-    var third = Integer.parseInt(copyOfSymbols.get(2));
+    var first = splitStringForInt(copyOfSymbols.get(0));
+    var second = splitStringForInt(copyOfSymbols.get(1));
+    var third = splitStringForInt(copyOfSymbols.get(2));
 
     return isOneMore(first, second) && isOneMore(second, third);
   }

@@ -21,7 +21,7 @@ public class Roulette {
     this.user = user;
   }
 
-  private void rollNumber() {
+  public void rollNumber() {
     rolledNumber = rand.nextInt(37);
   }
 
@@ -42,7 +42,6 @@ public class Roulette {
    */
   
   public double calculate() {
-    rollNumber();
 
     double winnings = calculateGuessWinnings();
     user.addMoney(winnings);
@@ -98,11 +97,11 @@ public class Roulette {
   /**
    * Removes the {@link Guess} at the end of the {@code guesses}.
    * 
-   * @throws If there are no {@link Guess} in {@code guesses}.
+   * @throws IllegalArgumentException if there are no {@link Guess} in {@code guesses}.
    *
    */
 
-  public void undoGuess() {
+  public void undoGuess() throws IllegalArgumentException{
     if (guesses.size() == 0) {
       throw new IllegalArgumentException("No guesses to undo");
     }
@@ -114,5 +113,6 @@ public class Roulette {
   public void clearGuesses() {
     guesses.clear();
   }
+
 
 }

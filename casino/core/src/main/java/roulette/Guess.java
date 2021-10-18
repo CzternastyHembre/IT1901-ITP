@@ -38,10 +38,6 @@ public abstract class Guess {
     return numbers.contains(number);
   }
 
-  public List<Integer> getNumbers() {
-    return numbers;
-  }
-
   public int getPossibleWins() {
     return numbers.size();
   }

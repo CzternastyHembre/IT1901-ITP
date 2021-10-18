@@ -15,7 +15,7 @@ public class RouletteTest {
     double balance;
 
     @BeforeEach
-    public void berforeEach() {
+    public void setUp() {
     	user = new User("bob", 1000);
     	this.balance = 1000;
     	roulette = new Roulette(user);

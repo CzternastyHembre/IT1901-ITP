@@ -111,6 +111,11 @@ public class SlotsTest {
         Assertions.assertEquals("LOSS", slotMachine.getCombo());
     }
 
+    @Test
+    void setBet(){
+        Assertions.assertThrows(IllegalArgumentException.class,()-> slotMachine.setBet(-10));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> slotMachine.setBet(1000000000));
+    }
 
 
 

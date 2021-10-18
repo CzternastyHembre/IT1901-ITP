@@ -21,10 +21,6 @@ public class User {
     this.username = username;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
   /**
    * Sets the balance of the user.
    *
