@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -410,10 +411,6 @@ public class RouletteController {
 		middleCircle.setStrokeType(StrokeType.INSIDE);
 		middleCircle.setStyle("-fx-stroke-dash-array:8;");
 
-
-
-
-
 		rouletteWheelContainer.getChildren().add(rouletteWheelPivotPane);
 		return rouletteWheelContainer;
 	}
@@ -435,6 +432,18 @@ public class RouletteController {
 	private void updateUserLables() {
 		moneyBettedLabel.setText("" + rouletteGame.getSumOfBets());
 		moneyLabel.setText("" + user.getBalance());
+	}
+
+	public Pane getRouletteWheelContainer() {
+		return rouletteWheelContainer;
+	}
+
+	public Label getRolledNumberLabel() {
+		return rolledNumberLabel;
+	}
+
+	public List<Pane> getChipList() {
+		return chipList;
 	}
 
 	@FXML

@@ -15,7 +15,7 @@ import user.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class addMoneyUITest extends ApplicationTest {
+public class AddMoneyUITest extends ApplicationTest {
 
     private AddMoneyController controller;
 
