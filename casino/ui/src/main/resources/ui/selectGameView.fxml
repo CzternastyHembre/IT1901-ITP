@@ -37,7 +37,7 @@
       </Pane>
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-           <Menu fx:id="menyButton" mnemonicParsing="false" text="Meny">
+           <Menu fx:id="menyButton" mnemonicParsing="false" text="Menu">
               <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
               <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
            </Menu>

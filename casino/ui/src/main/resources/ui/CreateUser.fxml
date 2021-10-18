@@ -15,7 +15,7 @@
       <Button fx:id="create" layoutX="273.0" layoutY="250.0" mnemonicParsing="false" onAction="#run" text="Create!" />
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Menu">
             <items>
                   <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
               <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />

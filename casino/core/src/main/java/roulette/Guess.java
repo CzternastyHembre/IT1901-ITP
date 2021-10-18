@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  *Abstract class containing a single guess.
  *{@code numbers} contains the numbers the bets gambled on.
  *{@code amount} contains the amount of money the bets contains.
@@ -17,6 +16,8 @@ public abstract class Guess {
   protected List<Integer> numbers = new ArrayList<>();
 
   /**
+   * Constructur of the guess class.
+   *
    * @param amount the amount of money the guess contains.
    */
   public Guess(double amount) {

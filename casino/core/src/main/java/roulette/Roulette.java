@@ -37,7 +37,6 @@ public class Roulette {
    * Rolls the number and calculates the guess winnings based on the new rolled number.
    * Adds the winnings into the {@link User} balance field.
    *
-   *
    * @return The amount of money won.
    *
    */
@@ -72,7 +71,8 @@ public class Roulette {
   }
 
   /**
-   * 
+   * Calculates the sum of all the guesses.
+   *
    * @return The sum of all the {@link Guess} amounts.
    */
   
@@ -85,7 +85,9 @@ public class Roulette {
 
   /**
    * Adds a guess in {@code guesses} and withdraws the amount of the guess in {@link User}.
-   * @param guess
+   *
+   * @param guess The Guess thats is take in.
+   *
    */
   
   public void addGuess(Guess guess) {
@@ -97,7 +99,9 @@ public class Roulette {
    * Removes the {@link Guess} at the end of the {@code guesses}.
    * 
    * @throws If there are no {@link Guess} in {@code guesses}.
+   *
    */
+
   public void undoGuess() {
     if (guesses.size() == 0) {
       throw new IllegalArgumentException("No guesses to undo");

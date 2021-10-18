@@ -53,6 +53,9 @@ public class AddMoneyController {
   private void addMoney() throws NumberFormatException {
     try {
       int amount = Integer.parseInt(amountField.getText());
+      if (amount < 0) {
+        errorLabel.setText("You can only add positive numbers");
+      }
       user.addMoney(amount);
       UserSaveHandler.updateUser(user);
       errorLabel.setText("");

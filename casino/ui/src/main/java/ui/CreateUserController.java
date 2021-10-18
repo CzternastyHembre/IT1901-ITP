@@ -53,7 +53,7 @@ public class CreateUserController {
     User newUser = new User(getUsername(), StartingBalance);
     UserSaveHandler.createUser(newUser);
     Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
-    stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();

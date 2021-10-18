@@ -9,7 +9,8 @@ import java.util.List;
 public class NumberGuess extends Guess {
  
 	/**
-	 * 
+	 * Creates a list of the numbers and supers to Guess.
+	 *
 	 * @param amount
 	 * , the amount of money the guess contains.
 	 * @param numbers

@@ -293,8 +293,10 @@ public class RouletteController {
 
   /**
    * If {@code bool} is true, the rouletteWheel is shown, and the rest of the view is set to blurry.
-   * If {@code bool} is false, the rouletteWheel is hidden, and the rest of the view removes the blur effect.
-   * @param bool
+   * If {@code bool} is false, the rouletteWheel is hidden.
+   * The rest of the view removes the blur effect.
+   *
+   * @param bool a boolean that is either true or false.
    */
   private void setShowRouletteWheel(boolean bool) {
     if (bool) {
@@ -319,16 +321,19 @@ public class RouletteController {
     rouletteBoardPane.getChildren().forEach((n) -> {
       Pane tile = (Pane) n;
       if (tile.getChildren().size() > 1) {
-    	  //The first element in the panes is a Label, the remaining is panes representing pokerChips.
+    	  //The first element in the panes is a Label.
+          // the remaining is panes representing pokerChips.
         tile.getChildren().subList(1, tile.getChildren().size()).clear();
       }
     });
   }
 
   /**
-   * Adds a chip in the center of the {@link Pane} {@code tile}
-   * @param tile
+   * Adds a chip in the center of the {@link Pane} {@code tile}.
+   *
+   * @param tile the the chip is added on.
    */
+
   private void addChip(Pane tile) {
 
     double tileWidth = tile.getPrefWidth();
@@ -374,8 +379,9 @@ public class RouletteController {
 
   /**
    * Creates a {@Link NumberGuess} add calls the method {@code addGuess}.
-   * @param tile
-   * @param number
+   *
+   * @param tile creates the {@link NumberGuess} when clicked on.
+   * @param number creates the {@link NumberGuess} based on the number.
    */
   
   private void setNumberGuess(Pane tile, int number) {
@@ -390,8 +396,10 @@ public class RouletteController {
 
   /**
    * Creates a {@link ListGuess} add calls the method {@code addGuess}.
-   * @param tile
-   * @param number
+   *
+   * @param tile creates the {@link ListGuess when clicked on.
+   * @param start the start parameter for {@link ListGuess}.
+   * @param end the end parameter for {@link ListGuess}.
    */
 
   private void setListGuess(Pane tile, int start, int end) {
@@ -405,9 +413,11 @@ public class RouletteController {
   }
 
   /**
-   * Creates a {@link PatterGuess} add calls the method {@code addGuess}.
-   * @param tile
-   * @param number
+   * Creates a {@link PatternGuess} add calls the method {@code addGuess}.
+   *
+   * @param tile creates the {@link PatternGuess} when clicked on.
+   * @param start the start parameter for {@link PatternGuess}.
+   * @param increment the end increment for {@link PatternGuess}.
    */
 
   private void setPatternGuess(Pane tile, int start, int increment) {
@@ -421,11 +431,10 @@ public class RouletteController {
   }
 
   /**
-   * 
-   * @param tile
-   * Creates a clickanimation when clicked on
-   * @param numbers
-   * Animates the corresponing {@code numberTiles} on the numbers
+   * Sets the animation.
+   *
+   * @param tile Creates a clickanimation when clicked on.
+   * @param numbers Animates the corresponing {@code numberTiles} on the numbers.
    */
   
   private void setGuessAnimation(Pane tile, List<Integer> numbers) {
@@ -434,9 +443,10 @@ public class RouletteController {
   }
 
   /**
-   * Adds the guess in the {@link Roulette} instance and draws the guess visually
-   * @param guess
-   * @param tile
+   * Adds the guess in the {@link Roulette} instance and draws the guess visually.
+   *
+   * @param guess the guess created.
+   * @param tile the tile the chip will be added on.
    */
   private void addGuess(Guess guess, Pane tile) {
     try {
@@ -452,8 +462,9 @@ public class RouletteController {
 
   /**
    * Creates the roulette wheel.
-   * @return
-   * A {@link Pane} containing 37 triangles from the center of the pane and out with a degree out from the center 37 / 360 degrees
+   *
+   * @return A {@link Pane} containing 37 triangles from the center of the pane and out
+   * with a degree out from the center 37 / 360 degrees
    */
   private Pane createRouletteWheel() {
 
@@ -519,12 +530,11 @@ public class RouletteController {
   }
 
 /**
- * @param length 
- * the length of each "leg" out from the triangle
- * @param angle
- * , the angle out for the corner of the triangle
- * @return
- * A {@link Polygon} which is a triangle based on the {@code angle} and {@code length}.
+ * Creates a {@link Polygon} triangle out with an angle and length on the "legs".
+ *
+ * @param length The length of each "leg" out from the triangle.
+ * @param angle The angle out for the corner of the triangle.
+ * @return A {@link Polygon} which is a triangle based on the {@code angle} and {@code length}.
  */
   
   private Polygon createTriangle(double length, double angle) {
@@ -537,9 +547,10 @@ public class RouletteController {
   }
 
   /**
-   * 
+   * Method for getting the angle of the triangle.
+   *
    * @return
-   * The angle of the triangle out from the "first" corner 
+   * The angle of the triangle out from the "first" corner.
    */
   
   private double getAngle() {

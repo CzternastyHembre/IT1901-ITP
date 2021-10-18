@@ -14,7 +14,7 @@
 <AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RouletteController">
    <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
      <menus>
-       <Menu fx:id="menyButton" mnemonicParsing="false" text="Meny">
+       <Menu fx:id="menyButton" mnemonicParsing="false" text="Menu">
          <items>
                <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
                <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
