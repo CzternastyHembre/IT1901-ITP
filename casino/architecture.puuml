@@ -6,7 +6,7 @@ component ui {
 
 
 component storage {
-	package saveHandler
+	package savehandler
 }
 
 

@@ -15,7 +15,7 @@ public class RouletteTest {
     double balance;
 
     @BeforeEach
-    public void berforeEach() {
+    public void setUp() {
     	user = new User("bob", 1000);
     	this.balance = 1000;
     	roulette = new Roulette(user);
@@ -40,7 +40,7 @@ public class RouletteTest {
     	assertEquals(user.getBalance(), balance);
 
     	
-    	assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * (amount2 + amount));
+    	assertEquals(roulette.calculateGuessWinnings(), Roulette.rouletteSize * (amount2 + amount));
 	}
 
     @Test
@@ -71,9 +71,9 @@ public class RouletteTest {
 	    	
 	    	double winnings = roulette.calculate();
 	    	double shouldWin = 0;
-	    	shouldWin += roulette.getRolledNumber() == 1 ? Roulette.RoulettSize * amount1 * 2 : 0;
-	    	shouldWin += roulette.getRolledNumber() > 0 && roulette.getRolledNumber() < 13 ? Roulette.RoulettSize * amount2 / guess2.getPossibleWins(): 0;
-	    	shouldWin += roulette.getRolledNumber() % 2 == 1 ? Roulette.RoulettSize * amount3 / guess3.getPossibleWins() : 0;
+	    	shouldWin += roulette.getRolledNumber() == 1 ? Roulette.rouletteSize * amount1 * 2 : 0;
+	    	shouldWin += roulette.getRolledNumber() > 0 && roulette.getRolledNumber() < 13 ? Roulette.rouletteSize * amount2 / guess2.getPossibleWins(): 0;
+	    	shouldWin += roulette.getRolledNumber() % 2 == 1 ? Roulette.rouletteSize * amount3 / guess3.getPossibleWins() : 0;
 	    	
 	    	assertEquals(winnings, shouldWin);
 	    	assertEquals(roulette.getSumOfBets(), 0);    	
@@ -96,7 +96,7 @@ public class RouletteTest {
     	roulette.undoGuess();
     	
     	roulette.setRolledNumber(1);
-    	assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * amount1);
+    	assertEquals(roulette.calculateGuessWinnings(), Roulette.rouletteSize * amount1);
     	
     	roulette.undoGuess();
     	assertThrows(IllegalArgumentException.class, () -> roulette.undoGuess());
@@ -116,7 +116,7 @@ public class RouletteTest {
     	roulette.addGuess(guess2);
 
     	roulette.setRolledNumber(1);
-    	assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * amount1 + Roulette.RoulettSize * amount2 / guess2.getPossibleWins());
+    	assertEquals(roulette.calculateGuessWinnings(), Roulette.rouletteSize * amount1 + Roulette.rouletteSize * amount2 / guess2.getPossibleWins());
     	
     	roulette.clearGuesses();
     	assertEquals(roulette.getSumOfBets(), 0);

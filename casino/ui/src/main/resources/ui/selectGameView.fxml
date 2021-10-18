@@ -28,7 +28,7 @@
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button layoutX="102.0" layoutY="-22.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
+            <Button fx:id="addChips" layoutX="102.0" layoutY="-22.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
                <font>
                   <Font size="30.0" />
                </font>
@@ -37,7 +37,7 @@
       </Pane>
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-           <Menu fx:id="meny_button" mnemonicParsing="false" text="Meny">
+           <Menu fx:id="menyButton" mnemonicParsing="false" text="Menu">
               <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
               <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
            </Menu>

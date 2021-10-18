@@ -9,21 +9,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.CreateUserController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LogInController">
    <children>
-      <TextField fx:id="username_field" layoutX="220.0" layoutY="187.0" promptText="Username" />
-      <Button fx:id="create" layoutX="273.0" layoutY="250.0" mnemonicParsing="false" onAction="#run" text="Create!" />
+      <TextField fx:id="logInField" layoutX="220.0" layoutY="173.0" promptText="Username" />
+      <Button fx:id="logIn" layoutX="273.0" layoutY="232.0" mnemonicParsing="false" onAction="#run" text="Log in" />
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Menu">
             <items>
-                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
+              <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
               <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label fx:id="errorLabel" layoutX="180.0" layoutY="321.0" textFill="#e10c0c">
+      <Label fx:id="errorLabel" layoutX="164.0" layoutY="298.0" prefHeight="23.0" prefWidth="273.0" textFill="#ff1f2a">
          <font>
             <Font size="18.0" />
          </font>

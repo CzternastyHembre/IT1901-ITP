@@ -22,7 +22,7 @@ public class PatternGuessTest {
     public void patternFalseTest(){
     	double amount = 10;
     	Guess patternGuessOdd = new PatternGuess(amount, 1, 2);
-    	for (int i = 0; i <= Roulette.RoulettSize; i+= 2) {
+    	for (int i = 0; i <= Roulette.rouletteSize; i+= 2) {
     		berforeEach();
         	roulette.setRolledNumber(i);
     		
@@ -31,7 +31,7 @@ public class PatternGuessTest {
     		}
 
     	Guess patternGuessEven = new PatternGuess(amount, 2, 2);
-    	for (int i = 1; i <= Roulette.RoulettSize; i+= 2) {
+    	for (int i = 1; i <= Roulette.rouletteSize; i+= 2) {
     		berforeEach();
         	roulette.setRolledNumber(i);
     		
@@ -44,21 +44,21 @@ public class PatternGuessTest {
     public void patternCorrectTest(){
     	double amount = 10;
     	Guess patternGuessOdd = new PatternGuess(amount, 1, 2);
-    	for (int i = 1; i <= Roulette.RoulettSize; i+= 2) {
+    	for (int i = 1; i <= Roulette.rouletteSize; i+= 2) {
     		berforeEach();
         	roulette.setRolledNumber(i);
     		
             roulette.addGuess(patternGuessOdd);
-            assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * amount / patternGuessOdd.getPossibleWins());
+            assertEquals(roulette.calculateGuessWinnings(), Roulette.rouletteSize * amount / patternGuessOdd.getPossibleWins());
     		}
 
     	Guess patternGuessEven = new PatternGuess(amount, 2, 2);
-    	for (int i = 2; i <= Roulette.RoulettSize; i+= 2) {
+    	for (int i = 2; i <= Roulette.rouletteSize; i+= 2) {
     		berforeEach();
         	roulette.setRolledNumber(i);
     		
             roulette.addGuess(patternGuessEven);
-            assertEquals(roulette.calculateGuessWinnings(), Roulette.RoulettSize * amount / patternGuessOdd.getPossibleWins());
+            assertEquals(roulette.calculateGuessWinnings(), Roulette.rouletteSize * amount / patternGuessOdd.getPossibleWins());
     		}
 	}
 }

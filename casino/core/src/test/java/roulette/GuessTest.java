@@ -35,19 +35,19 @@ public class GuessTest {
     	Guess numberGuess = new NumberGuess(amount, 1);
     	List<Integer> numbers = new ArrayList<>();
     	numbers.add(1);
-    	
+
     	assertEquals(numberGuess.getNumbers(), numbers);
-    	
+
     	numbers.clear();
     	Guess listGuess  = new ListGuess(amount, 1, 12);
     	for (int i = 1; i <= 12; i++) {
 			numbers.add(i);
 		}
     	assertEquals(listGuess.getNumbers(), numbers);
-    	
+
     	numbers.clear();
     	Guess patternGuess  = new PatternGuess(amount, 1, 2);
-    	for (int i = 1; i <= Roulette.RoulettSize; i += 2) {
+    	for (int i = 1; i <= Roulette.rouletteSize; i += 2) {
 			numbers.add(i);
 		}
     	assertEquals(patternGuess.getNumbers(), numbers);

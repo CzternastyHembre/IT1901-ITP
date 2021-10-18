@@ -7,5 +7,4 @@ target/
 *.prefs
 *.iml
 .idea
-.vscode
 .DS_Store

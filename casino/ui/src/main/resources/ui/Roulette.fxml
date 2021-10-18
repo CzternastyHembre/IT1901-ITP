@@ -14,7 +14,7 @@
 <AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RouletteController">
    <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
      <menus>
-       <Menu fx:id="meny_button" mnemonicParsing="false" text="Meny">
+       <Menu fx:id="menyButton" mnemonicParsing="false" text="Menu">
          <items>
                <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
                <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
@@ -43,13 +43,13 @@
             <Pane fx:id="chipFolder" prefHeight="61.0" prefWidth="358.0" />
             <Pane fx:id="controllsFolder" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                 <Label fx:id="feedBackLabel" layoutX="218.0" layoutY="6.0" prefHeight="17.0" prefWidth="263.0" />
-                <Button fx:id="play_button" layoutX="532.0" layoutY="2.0" mnemonicParsing="false" onAction="#run" text="RUN" />
+                <Button fx:id="playButton" layoutX="532.0" layoutY="2.0" mnemonicParsing="false" onAction="#run" text="RUN" />
                 <Label fx:id="textLabel1" layoutX="14.0" layoutY="32.0" prefHeight="17.0" prefWidth="116.0" text="Money betted:" />
                 <Label fx:id="moneyBettedLabel" layoutX="145.0" layoutY="32.0" prefHeight="17.0" prefWidth="71.0" />
                 <Label fx:id="textLabel2" layoutX="229.0" layoutY="32.0" prefHeight="17.0" prefWidth="130.0" text="Your money:" />
                 <Label fx:id="moneyLabel" layoutX="359.0" layoutY="32.0" prefHeight="17.0" prefWidth="116.0" />
                 <Label fx:id="nameLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="201.0" />
-                <Button fx:id="undo_button" layoutX="530.0" layoutY="27.0" mnemonicParsing="false" onAction="#undoGuess" text="Undo" />
+                <Button fx:id="undoButton" layoutX="530.0" layoutY="27.0" mnemonicParsing="false" onAction="#undoGuess" text="Undo" />
             </Pane>
         </GridPane>
     </GridPane>

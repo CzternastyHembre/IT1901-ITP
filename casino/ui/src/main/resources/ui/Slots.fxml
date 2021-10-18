@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SlotsController">
     <MenuBar prefHeight="29.0" prefWidth="600.0">
-        <Menu fx:id="fileButton" mnemonicParsing="false" text="File">
+        <Menu fx:id="fileButton" mnemonicParsing="false" text="Menu">
             <MenuItem fx:id="close" mnemonicParsing="false" onAction="#exit" text="Close" />
          <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
          <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
@@ -35,9 +35,9 @@
                 <font>
                     <Font size="23.0" />
                 </font></Label>
-         <HBox fx:id="slotHBox2" layoutX="226.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
-         <HBox fx:id="slotHBox1" layoutX="75.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
-         <HBox fx:id="slotHBox3" layoutX="376.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
+         <HBox fx:id="slotHbox2" layoutX="226.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
+         <HBox fx:id="slotHbox1" layoutX="75.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
+         <HBox fx:id="slotHbox3" layoutX="376.0" layoutY="20.0" prefHeight="210.0" prefWidth="148.0" />
         </Pane>
     </GridPane>
     <GridPane layoutY="307.0" prefHeight="93.0" prefWidth="600.0">
