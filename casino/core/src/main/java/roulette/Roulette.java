@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Random;
 import user.User;
 
+/**
+ * Roulette class for handling the rouletteGame and logic.
+ */
+
 public class Roulette {
 
   public static final int rouletteSize = 36;
@@ -30,12 +34,14 @@ public class Roulette {
   }
 
   /**
-   * Rolls the board and calculates the amount of money won.
+   * Rolls the number and calculates the guess winnings based on the new rolled number.
+   * Adds the winnings into the {@link User} balance field.
    *
    *
-   * @return The amount of money won
+   * @return The amount of money won.
    *
    */
+  
   public double calculate() {
     rollNumber();
 
@@ -46,11 +52,18 @@ public class Roulette {
     return winnings;
   }
 
+  /**
+   * Calculates the winnings for all the {@link ArrayList} <b> guesses </b> containing {@link Guess}.
+   * 
+   * @return the amount of money you win based on the {@code rolledNumber}.
+   */
+  
   public double calculateGuessWinnings() {
     double winnings = 0;
 
     for (Guess guess : guesses) {
       if (guess.isWin(rolledNumber)) {
+    	  //The odds in Roulette is calculated by {the amount of numbers guess on} / {the amount of possible outcomes the numbers can be (excluding 0)}.
         winnings += guess.amount * rouletteSize / guess.getPossibleWins();
       }
     }
@@ -58,6 +71,11 @@ public class Roulette {
 
   }
 
+  /**
+   * 
+   * @return The sum of all the {@link Guess} amounts.
+   */
+  
   public double getSumOfBets() {
     if (guesses.size() == 0) {
       return 0;
@@ -65,11 +83,21 @@ public class Roulette {
     return guesses.stream().mapToDouble(Guess::getAmount).sum();
   }
 
+  /**
+   * Adds a guess in {@code guesses} and withdraws the amount of the guess in {@link User}.
+   * @param guess
+   */
+  
   public void addGuess(Guess guess) {
     user.withdraw(guess.getAmount());
     guesses.add(guess);
   }
 
+  /**
+   * Removes the {@link Guess} at the end of the {@code guesses}.
+   * 
+   * @throws If there are no {@link Guess} in {@code guesses}.
+   */
   public void undoGuess() {
     if (guesses.size() == 0) {
       throw new IllegalArgumentException("No guesses to undo");
