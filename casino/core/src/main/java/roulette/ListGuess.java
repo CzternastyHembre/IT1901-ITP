@@ -10,13 +10,16 @@ import java.util.ArrayList;
 public class ListGuess extends Guess {
 
 	/**
+	 * @param amount
+	 *amount, the amount of money the guess contains.
+	 * @param start
+	 * , the start of the {@code list} of numbers (inclusive).
+	 * @param end
+	 * , the end of the {@code list} of numbers (inclusive).
 	 * 
-	 * @param amount, the amount of money the guess contains.
-	 * @param start, the start of the {@code list} of numbers (inclusive).
-	 * @param end, the end of the {@code list} of numbers (inclusive).
 	 */
 	
-  public ListGuess(double amount, int start, int end) {
+	public ListGuess(double amount, int start, int end) {
     super(amount);
 
     for (int i = start; i <= end; i++) {

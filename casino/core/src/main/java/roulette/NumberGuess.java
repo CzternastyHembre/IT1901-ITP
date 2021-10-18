@@ -8,12 +8,14 @@ import java.util.List;
  */
 public class NumberGuess extends Guess {
  
-/**
- * 
- * @param amount, the amount of money the guess contains.
- * @param numbers, the numbers containing the guess
- */
-  public NumberGuess(double amount, int... numbers) {
+	/**
+	 * 
+	 * @param amount
+	 * , the amount of money the guess contains.
+	 * @param numbers
+	 * , the numbers containing the guess.
+	 */
+	public NumberGuess(double amount, int... numbers) {
     super(amount);
     for (int nums : numbers) {
       this.numbers.add(nums);
