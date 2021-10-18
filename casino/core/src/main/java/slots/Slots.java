@@ -1,8 +1,8 @@
 package slots;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.ArrayList;
 import user.User;
 import validators.SlotsValidator;
 
@@ -56,8 +56,11 @@ public class Slots {
     updateWinnings();
   }
 
+
   /**
-   * //TODO
+   * Update the symbols array with the new symbols.
+   *
+   *
    */
 
   public void spin() {
@@ -67,6 +70,12 @@ public class Slots {
     spins++;
   }
 
+
+  /**
+   * Updates fields that deal with money. Netgain and the user's balance are updated
+   *
+   *
+   */
   private void withdrawMoney() {
     this.netGain -= getBet();
     this.user.setBalance(this.user.getBalance() - getBet());

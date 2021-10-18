@@ -1,9 +1,6 @@
 package roulette;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import user.User;
@@ -22,7 +19,7 @@ public class NumberGuessTest {
     @Test
     public void numbersFalseTest(){
     	
-    	for (int i = 0; i <= Roulette.RoulettSize; i++) {
+    	for (int i = 0; i <= Roulette.rouletteSize; i++) {
     		berforeEach();
         	roulette.setRolledNumber(-1);
     		
@@ -34,7 +31,7 @@ public class NumberGuessTest {
     @Test
     public void numbersCorrectTest(){
     	
-    	for (int i = 0; i <= Roulette.RoulettSize; i++) {
+    	for (int i = 0; i <= Roulette.rouletteSize; i++) {
     		berforeEach();
         	roulette.setRolledNumber(i);
 	
@@ -46,11 +43,11 @@ public class NumberGuessTest {
     @Test
     public void multipleGuessesFalseTest() {
     	
-    	for (int i = 0; i <= Roulette.RoulettSize; i++) {
+    	for (int i = 0; i <= Roulette.rouletteSize; i++) {
     		berforeEach();
         	roulette.setRolledNumber(i);
 	
-        	for (int j = 0; j <= Roulette.RoulettSize; j++) {
+        	for (int j = 0; j <= Roulette.rouletteSize; j++) {
         		if (j != i) {
         			roulette.addGuess(new NumberGuess(10, j));
 				}        		
@@ -61,11 +58,11 @@ public class NumberGuessTest {
     
     @Test
     public void multipleGuessesOneCorrectTest() {
-    	for (int i = 0; i <= Roulette.RoulettSize; i++) {
+    	for (int i = 0; i <= Roulette.rouletteSize; i++) {
     		berforeEach();
         	roulette.setRolledNumber(i);
 	
-        	for (int j = 0; j <= Roulette.RoulettSize; j++) {
+        	for (int j = 0; j <= Roulette.rouletteSize; j++) {
     			roulette.addGuess(new NumberGuess(10, j));
     		}
         	assertEquals(roulette.calculateGuessWinnings(), 36 * 10);					

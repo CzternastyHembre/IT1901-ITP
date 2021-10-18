@@ -1,13 +1,13 @@
 package roulette;
 
-import java.util.Random;
-import user.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import user.User;
 
 public class Roulette {
 
-  public static final int RoulettSize = 36;
+  public static final int rouletteSize = 36;
   private Random rand = new Random();
   private User user;
   private List<Guess> guesses = new ArrayList<>();
@@ -30,8 +30,9 @@ public class Roulette {
   }
 
   /**
-   * Rolls the board and calculates the amount of money won
-   * 
+   * Rolls the board and calculates the amount of money won.
+   *
+   *
    * @return The amount of money won
    *
    */
@@ -50,7 +51,7 @@ public class Roulette {
 
     for (Guess guess : guesses) {
       if (guess.isWin(rolledNumber)) {
-        winnings += guess.amount * RoulettSize / guess.getPossibleWins();
+        winnings += guess.amount * rouletteSize / guess.getPossibleWins();
       }
     }
     return winnings;

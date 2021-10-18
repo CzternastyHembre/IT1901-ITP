@@ -47,7 +47,7 @@ public class GuessTest {
     	
     	numbers.clear();
     	Guess patternGuess  = new PatternGuess(amount, 1, 2);
-    	for (int i = 1; i <= Roulette.RoulettSize; i += 2) {
+    	for (int i = 1; i <= Roulette.rouletteSize; i += 2) {
 			numbers.add(i);
 		}
     	assertEquals(patternGuess.getNumbers(), numbers);

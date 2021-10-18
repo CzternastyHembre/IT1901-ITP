@@ -404,11 +404,11 @@ public class RouletteController {
     backgroundCircle.setRadius(radius);
     rouletteWheelPivotPane.getChildren().add(backgroundCircle);
 
-    for (int i = 0; i <= Roulette.RoulettSize; i++) {
+    for (int i = 0; i <= Roulette.rouletteSize; i++) {
       Paint style = (i % 2 == 0) ? Paint.valueOf("red") : Paint.valueOf("black");
       style = (i == 0) ? Paint.valueOf("green") : style;
 
-      Polygon tri = createTriangle(0, 0, radius, Math.PI / (Roulette.RoulettSize + 1));
+      Polygon tri = createTriangle(0, 0, radius, Math.PI / (Roulette.rouletteSize + 1));
       tri.setFill(style);
 
       Rotate triangleRotation = new Rotate();
@@ -462,7 +462,7 @@ public class RouletteController {
   }
 
   private double getAngle() {
-    return 360.0 / (Roulette.RoulettSize + 1);
+    return 360.0 / (Roulette.rouletteSize + 1);
   }
 
   private void updateUserLables() {
