@@ -35,6 +35,7 @@ mvn javafx:run
 - Added card images which are placed in **[UI/src/main/java/resources/images/cards](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images/cards)**.
 - Added error messages for the user if a username is taken or a user does not exist.
 - Fixed issues regarding the feedback from previous release
+- Added the checkstyle plugin to ensure good code quality and continuity in the codebase. 
 
 
 ## Status of the project
@@ -113,7 +114,7 @@ Jacoco is a maven-plugin that collects and presents the information of the codec
 - Checking the quality of the code with spotbugs (**spotbugs-maven-plugin**)
 Spotbugs is another maven-plugin that analyzes the code for regular bugs.
 
-- Enuring writing Java code standard with chechstyle (**checkstyle-maven-plugin**)
+- Enuring writing Java code standard with checkstyle (**checkstyle-maven-plugin**)
 Checkstyle is a maven-plugin that makes sure the developers are writing clean and readable code. 
 
 All of the plugins are run using the **verify** lifecycle.
