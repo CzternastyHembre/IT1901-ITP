@@ -132,6 +132,6 @@ Illustrations of what the end product is going to look like:
 ![create_user](docs/Images/CreateUser.png)
 ![log_in](docs/Images/LogIn.png)
 ![choose_game](docs/Images/Lobby.png)
-![add_money](docs/Images/AddMoney)
+![add_money](docs/Images/AddMoney.png)
 ![roulette](docs/Images/Roulette.png)
 ![slots](docs/Images/Slots.png)
