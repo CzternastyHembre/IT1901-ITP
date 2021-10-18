@@ -16,7 +16,7 @@ import savehandler.UserSaveHandler;
 import user.User;
 
 /**
- * Controller for adding money add_money.fxml.
+ * Controller for adding money AddMoney.fxml.
  */
 
 public class AddMoneyController {

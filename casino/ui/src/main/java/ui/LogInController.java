@@ -17,7 +17,7 @@ import savehandler.UserSaveHandler;
 import user.User;
 
 /**
- * Controller for Log_in.fxml.
+ * Controller for LogIn.fxml.
  */
 
 public class LogInController {

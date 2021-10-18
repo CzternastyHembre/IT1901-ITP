@@ -72,7 +72,7 @@ public class SelectGameController {
 
   /**
    * Actionevent when pressing button to load Add chips.
-   * Switches scene to add_money.fxml.
+   * Switches scene to AddMoney.fxml.
    *
    * @param actionEvent the actionevent when pressing the button.
    */
@@ -80,7 +80,7 @@ public class SelectGameController {
   @FXML
   public void loadAddChips(ActionEvent actionEvent) throws IOException {
     Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("add_money.fxml")));
+            Objects.requireNonNull(getClass().getResource("AddMoney.fxml")));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);

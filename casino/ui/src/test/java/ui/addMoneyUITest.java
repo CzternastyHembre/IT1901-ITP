@@ -6,8 +6,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import savehandler.UserSaveHandler;
 import user.User;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class addMoneyUITest extends ApplicationTest {
 

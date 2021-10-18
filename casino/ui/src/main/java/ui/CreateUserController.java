@@ -17,7 +17,7 @@ import savehandler.UserSaveHandler;
 import user.User;
 
 /**
- * Controller for the Create_User.fxml.
+ * Controller for the CreateUser.fxml.
  */
 
 public class CreateUserController {
@@ -52,13 +52,15 @@ public class CreateUserController {
     }
     User newUser = new User(getUsername(), StartingBalance);
     UserSaveHandler.createUser(newUser);
-    Parent root = FXMLLoader.load(
-            (Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
-    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
+    stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
   }
+
+
+
 
   @FXML
   public String getUsername() {

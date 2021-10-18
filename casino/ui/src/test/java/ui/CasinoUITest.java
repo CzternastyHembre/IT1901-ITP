@@ -5,6 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import savehandler.UserSaveHandler;
@@ -41,7 +43,7 @@ public class CasinoUITest extends ApplicationTest {
     public void logInUser() {
         clickOn("#logInButton");
         clickOn("#logInField").write("test");
-        clickOn("#log_in");
+        clickOn("#logIn");
         assertEquals("test", user.getUsername());
     }
 
@@ -50,11 +52,22 @@ public class CasinoUITest extends ApplicationTest {
         UserSaveHandler.createUser(user);
         clickOn("#logInButton");
         clickOn("#logInField").write("test");
-        clickOn("#log_in");
+        clickOn("#logIn");
         clickOn("#roulette");
-        clickOn("#meny_button");
+        clickOn("#menyButton");
         clickOn("#lobby");
-        clickOn("#meny_button");
+        clickOn("#menyButton");
         clickOn("#mainMenu");
+    }
+    @Test
+    public void addMoneyTest() throws IOException {
+        UserSaveHandler.createUser(new User("addMoneyTest", 1000));
+        clickOn("#logInButton");
+        clickOn("#logInField").write("addMoneyTest");
+        clickOn("#logIn");
+        clickOn("#addChips");
+        clickOn("#amountField").write("1000");
+        clickOn("#addButton");
+        assertEquals(2000, Objects.requireNonNull(UserSaveHandler.getUser("addMoneyTest")).getBalance());
     }
 }

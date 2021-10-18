@@ -37,7 +37,7 @@ public class StartController {
   @FXML
   public void log_in_scene(ActionEvent actionEvent) throws IOException {
     Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("Log_in.fxml")));
+            Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
@@ -53,7 +53,7 @@ public class StartController {
   @FXML
   public void create_user_scene(ActionEvent actionEvent) throws IOException {
     Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("Create_User.fxml")));
+            Objects.requireNonNull(getClass().getResource("CreateUser.fxml")));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
