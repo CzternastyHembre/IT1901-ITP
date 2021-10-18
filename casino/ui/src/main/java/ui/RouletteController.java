@@ -63,6 +63,11 @@ public class RouletteController {
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
+  
+  /*
+   * The number sequense on an European rouletteWheel.
+   */
+  
   private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(
           0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27,
       13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20,
@@ -71,7 +76,7 @@ public class RouletteController {
 
 
   /**
-   * Making the entire roulette board.
+   * Creating the rouletteBoard.
    *
    */
 
@@ -225,6 +230,7 @@ public class RouletteController {
       label.setTextFill(CasinoElements.TEXTCOLOR);
     });
 
+    //Creating the rouletteWheel.
     rouletteWheelContainer = createRouletteWheel();
     gridPane.getChildren().add(rouletteWheelContainer);
     rouletteWheelContainer.setVisible(false);
@@ -285,8 +291,13 @@ public class RouletteController {
     });
   }
 
-  private void setShowRouletteWheel(boolean b) {
-    if (b) {
+  /**
+   * If {@code bool} is true, the rouletteWheel is shown, and the rest of the view is set to blurry.
+   * If {@code bool} is false, the rouletteWheel is hidden, and the rest of the view removes the blur effect.
+   * @param bool
+   */
+  private void setShowRouletteWheel(boolean bool) {
+    if (bool) {
       rouletteWheelContainer.setVisible(true);
 
       rouletteBoardPane.setEffect(new BoxBlur());
@@ -301,15 +312,23 @@ public class RouletteController {
     }
   }
 
+  /**
+   * Methos thats removes all the chips places on the {@code rouletteBoardPane}.
+   */
   private void clearChips() {
     rouletteBoardPane.getChildren().forEach((n) -> {
       Pane tile = (Pane) n;
       if (tile.getChildren().size() > 1) {
+    	  //The first element in the panes is a Label, the remaining is panes representing pokerChips.
         tile.getChildren().subList(1, tile.getChildren().size()).clear();
       }
     });
   }
 
+  /**
+   * Adds a chip in the center of the {@link Pane} {@code tile}
+   * @param tile
+   */
   private void addChip(Pane tile) {
 
     double tileWidth = tile.getPrefWidth();
@@ -324,13 +343,17 @@ public class RouletteController {
     if (chipSize < 7) {
       chipContainer.setTranslateY(translateY - chipSize * 3);
     } else {
-      chipContainer.setTranslateY(translateY + -7 * 3);
+      chipContainer.setTranslateY(translateY + - 7 * 3);
 
     }
     tile.getChildren().add(chipContainer);
     chipList.add(chipContainer);
   }
 
+  /**
+   * Method that undoes the last guess in the {@link Roulette} game and removes the last {@link Pane} chip added in {@code chipList}.
+   */
+  
   @FXML
   private void undoGuess() {
     if (chipList.isEmpty()) {
@@ -349,6 +372,12 @@ public class RouletteController {
     moneyLabel.setText("" + user.getBalance());
   }
 
+  /**
+   * Creates a {@Link NumberGuess} add calls the method {@code addGuess}.
+   * @param tile
+   * @param number
+   */
+  
   private void setNumberGuess(Pane tile, int number) {
     tile.setOnMouseClicked(e -> {
       NumberGuess guess = new NumberGuess(CasinoElements.getValue(chipValueIndex), number);
@@ -358,6 +387,12 @@ public class RouletteController {
             CasinoElements.getValue(chipValueIndex),
             number).getNumbers());
   }
+
+  /**
+   * Creates a {@link ListGuess} add calls the method {@code addGuess}.
+   * @param tile
+   * @param number
+   */
 
   private void setListGuess(Pane tile, int start, int end) {
     tile.setOnMouseClicked(e -> {
@@ -369,6 +404,12 @@ public class RouletteController {
             start, end).getNumbers());
   }
 
+  /**
+   * Creates a {@link PatterGuess} add calls the method {@code addGuess}.
+   * @param tile
+   * @param number
+   */
+
   private void setPatternGuess(Pane tile, int start, int increment) {
     tile.setOnMouseClicked(e -> {
       PatternGuess guess = new PatternGuess(
@@ -379,11 +420,24 @@ public class RouletteController {
             CasinoElements.getValue(chipValueIndex), start, increment).getNumbers());
   }
 
+  /**
+   * 
+   * @param tile
+   * Creates a clickanimation when clicked on
+   * @param numbers
+   * Animates the corresponing {@code numberTiles} on the numbers
+   */
+  
   private void setGuessAnimation(Pane tile, List<Integer> numbers) {
     tile.setOnMousePressed(e -> numbers.forEach(num -> numbersTilesMap.get(num).setOpacity(0.5)));
     tile.setOnMouseReleased(e -> numbers.forEach(num -> numbersTilesMap.get(num).setOpacity(1)));
   }
 
+  /**
+   * Adds the guess in the {@link Roulette} instance and draws the guess visually
+   * @param guess
+   * @param tile
+   */
   private void addGuess(Guess guess, Pane tile) {
     try {
       rouletteGame.addGuess(guess);
@@ -396,6 +450,11 @@ public class RouletteController {
     }
   }
 
+  /**
+   * Creates the roulette wheel.
+   * @return
+   * A {@link Pane} containing 37 triangles from the center of the pane and out with a degree out from the center 37 / 360 degrees
+   */
   private Pane createRouletteWheel() {
 
     Pane rouletteWheelContainer = new Pane();
@@ -417,7 +476,7 @@ public class RouletteController {
       Paint style = (i % 2 == 0) ? Paint.valueOf("red") : Paint.valueOf("black");
       style = (i == 0) ? Paint.valueOf("green") : style;
 
-      Polygon tri = createTriangle(0, 0, radius, Math.PI / (Roulette.rouletteSize + 1));
+      Polygon tri = createTriangle(radius, Math.PI / (Roulette.rouletteSize + 1));
       tri.setFill(style);
 
       Rotate triangleRotation = new Rotate();
@@ -451,7 +510,7 @@ public class RouletteController {
     rouletteWheelPivotPane.getChildren().add(middleCircle);
     middleCircle.setStroke(Paint.valueOf("black"));
     middleCircle.setStrokeWidth(6);
-    middleCircle.setStrokeLineCap(StrokeLineCap.BUTT); // The poker chip border design
+    middleCircle.setStrokeLineCap(StrokeLineCap.BUTT); // The poker chip border design.
     middleCircle.setStrokeType(StrokeType.INSIDE);
     middleCircle.setStyle("-fx-stroke-dash-array:8;");
 
@@ -459,16 +518,30 @@ public class RouletteController {
     return rouletteWheelContainer;
   }
 
-
-  private Polygon createTriangle(double x, double y, double length, double angle) {
+/**
+ * @param length 
+ * the length of each "leg" out from the triangle
+ * @param angle
+ * , the angle out for the corner of the triangle
+ * @return
+ * A {@link Polygon} which is a triangle based on the {@code angle} and {@code length}.
+ */
+  
+  private Polygon createTriangle(double length, double angle) {
     Polygon fovTriangle = new Polygon(
             0d, 0d, (length * Math.tan(angle)), -length, -(length * Math.tan(angle)),
         -length);
-    fovTriangle.setLayoutX(x);
-    fovTriangle.setLayoutY(y);
+    fovTriangle.setLayoutX(0);
+    fovTriangle.setLayoutY(0);
     return fovTriangle;
   }
 
+  /**
+   * 
+   * @return
+   * The angle of the triangle out from the "first" corner 
+   */
+  
   private double getAngle() {
     return 360.0 / (Roulette.rouletteSize + 1);
   }
