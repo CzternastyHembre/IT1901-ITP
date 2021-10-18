@@ -1,10 +1,10 @@
 package ui;
 
+import java.util.Arrays;
+import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
-import java.util.Arrays;
 import java.util.Map;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;

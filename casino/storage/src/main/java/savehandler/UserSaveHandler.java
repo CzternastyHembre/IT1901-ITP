@@ -40,7 +40,7 @@ public class UserSaveHandler {
     }
   }
   /**
-   * Gets the exisiting userlist and add a user to this. Updates the file with the new user.
+   * Gets the existing userList and add a user to this. Updates the file with the new user.
    *
    * @param user the user that is being created.
    */

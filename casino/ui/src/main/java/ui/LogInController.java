@@ -23,7 +23,6 @@ import user.User;
 public class LogInController {
   @FXML
   private TextField logInField;
-  private final double startingBalance = 1000;
   private Stage stage;
   private Scene scene;
   @FXML
