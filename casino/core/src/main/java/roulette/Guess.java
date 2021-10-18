@@ -24,7 +24,7 @@ public abstract class Guess {
 	}
 	
 	public List<Integer> getNumbers(){
-		return numbers;
+		return new ArrayList<>(numbers);
 	}
 
 	public int getPossibleWins() {
