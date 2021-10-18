@@ -51,9 +51,12 @@ public class Roulette {
   }
 
   /**
-   * Calculates the winnings for all the {@link ArrayList} <b> guesses </b> containing {@link Guess}.
-   * 
+   * Calculates the winnings for all the {@link ArrayList}
+   * <b> guesses </b> containing {@link Guess}.
+   *
+   *
    * @return the amount of money you win based on the {@code rolledNumber}.
+   *
    */
   
   public double calculateGuessWinnings() {
@@ -61,7 +64,8 @@ public class Roulette {
 
     for (Guess guess : guesses) {
       if (guess.isWin(rolledNumber)) {
-    	  //The odds in Roulette is calculated by {the amount of numbers guess on} / {the amount of possible outcomes the numbers can be (excluding 0)}.
+        //The odds in Roulette is calculated by {the amount of numbers guess on}
+        //{the amount of possible outcomes the numbers can be (excluding 0)}.
         winnings += guess.amount * rouletteSize / guess.getPossibleWins();
       }
     }
@@ -98,6 +102,9 @@ public class Roulette {
    * Removes the {@link Guess} at the end of the {@code guesses}.
    * 
    * @throws IllegalArgumentException if there are no {@link Guess} in {@code guesses}.
+   *
+   *
+   * @throws if there are no {@link Guess} in {@code guesses}.
    *
    */
 

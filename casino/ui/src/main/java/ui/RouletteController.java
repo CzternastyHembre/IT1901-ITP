@@ -325,8 +325,8 @@ public class RouletteController {
     rouletteBoardPane.getChildren().forEach((n) -> {
       Pane tile = (Pane) n;
       if (tile.getChildren().size() > 1) {
-    	  //The first element in the panes is a Label.
-          // the remaining is panes representing pokerChips.
+        //The first element in the panes is a Label.
+        // the remaining is panes representing pokerChips.
         tile.getChildren().subList(1, tile.getChildren().size()).clear();
       }
     });
@@ -360,7 +360,8 @@ public class RouletteController {
   }
 
   /**
-   * Method that undoes the last guess in the {@link Roulette} game and removes the last {@link Pane} chip added in {@code chipList}.
+   * Method that undoes the last guess in the {@link Roulette} game
+   * Removes the last {@link Pane} chip added in {@code chipList}.
    */
   
   @FXML
@@ -401,7 +402,7 @@ public class RouletteController {
   /**
    * Creates a {@link ListGuess} add calls the method {@code addGuess}.
    *
-   * @param tile creates the {@link ListGuess when clicked on.
+   * @param tile creates the {@link ListGuess} when clicked on.
    * @param start the start parameter for {@link ListGuess}.
    * @param end the end parameter for {@link ListGuess}.
    */
@@ -478,9 +479,9 @@ public class RouletteController {
   /**
    * Creates the roulette wheel.
    *
-   * @return A {@link Pane} containing 37 triangles from the center of the pane and out
-   * with a degree out from the center 37 / 360 degrees
+   * @return A {@link Pane} containing 37 triangles from the center of the pane.
    */
+
   private Pane createRouletteWheel() {
 
     Pane rouletteWheelContainer = new Pane();
@@ -544,13 +545,13 @@ public class RouletteController {
     return rouletteWheelContainer;
   }
 
-/**
- * Creates a {@link Polygon} triangle out with an angle and length on the "legs".
- *
- * @param length The length of each "leg" out from the triangle.
- * @param angle The angle out for the corner of the triangle.
- * @return A {@link Polygon} which is a triangle based on the {@code angle} and {@code length}.
- */
+  /**
+   * Creates a {@link Polygon} triangle out with an angle and length on the "legs".
+   *
+   * @param length The length of each "leg" out from the triangle.
+   * @param angle The angle out for the corner of the triangle.
+   * @return A {@link Polygon} which is a triangle based on the {@code angle} and {@code length}.
+   */
   
   private Polygon createTriangle(double length, double angle) {
     Polygon fovTriangle = new Polygon(
@@ -564,8 +565,7 @@ public class RouletteController {
   /**
    * Method for getting the angle of the triangle.
    *
-   * @return
-   * The angle of the triangle out from the "first" corner.
+   * @return The angle of the triangle out from the "first" corner.
    */
   
   private double getAngle() {
