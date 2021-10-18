@@ -3,11 +3,22 @@ package roulette;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ *Abstract class containing a single guess.
+ *{@code numbers} contains the numbers the bets gambled on.
+ *{@code amount} contains the amount of money the bets contains.
+ *
+ */
+
 public abstract class Guess {
 
   protected double amount;
   protected List<Integer> numbers = new ArrayList<>();
 
+  /**
+   * @param amount the amount of money the guess contains.
+   */
   public Guess(double amount) {
     if (amount <= 0) {
       throw new IllegalArgumentException("Guess amount must be a positive integer");
