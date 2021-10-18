@@ -34,6 +34,7 @@ mvn javafx:run
 - Added a menuBar with three menuItems that have functionality. MenuItems to close, redirect to main menu and redirect to lobby page.
 - Added card images which are placed in **[UI/src/main/java/resources/images/cards](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images/cards)**.
 - Added error messages for the user if a username is taken or a user does not exist.
+- Fixed issues regarding the feedback from previous release
 
 
 ## Status of the project
@@ -56,8 +57,7 @@ All the classes and logic of how the UI and buttons work happens in the [UI modu
 The UI is made with JavaFX, FXML, css and images. Those are divided into different folders. The FXML controllers are in **[UI/src/main/java/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/java/ui)**. FXML, css and images are in **[UI/src/main/java/resources](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources)** where they are further divided into new folders. The FXML files are in **[UI/src/main/java/resources/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/ui)**, the css is in **[UI/src/main/java/resources/css](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/css)** and the images are in **[UI/src/main/java/resources/images](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images)**.
 
 ### Storage 
-The storage module all the classes and files for saving(writing and reading file). The change from the previous release is that in this release the application uses json to save and read from file. 
-
+We use Gson as our Java library in this release to convert the the users(Java Objects) into their json representation. This is a more optimized way of saving the state of the objects in the application. 
 
 
 # Workflow
@@ -84,6 +84,7 @@ All of the issues that was created in the first release has a label to mark what
 - Incident
 - us-2
 - Bug
+- Cleaning
 
 ### Boards
 The board functionality was used to place the issues in three different areas:
