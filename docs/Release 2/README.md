@@ -11,6 +11,8 @@ The casino application uses the building tool Maven to build and run the applica
   
 The application can be executed and run with GitPod.  Launch this by pressing the GitPod badge in the root [README.md](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/main/README.md) 
 
+It is recommended to clone the project and run the application locally. The animations are poorly visualized in GitPod. 
+
 ## Running the code:
 
 Start by routing into the casino directory. 
