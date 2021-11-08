@@ -2,6 +2,8 @@ package savehandler;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import user.User;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-import user.User;
 
 
 /**
@@ -22,19 +23,25 @@ public class UserSaveHandler {
    * Variable SAVE_FILE is saved as the path to the saving destination.
    */
 
-  public static final String SAVE_FILE = "../storage/src/main/resources/users.json";
+  private static String SAVE_FILE = System.getProperty("user.dir") + "/core/src/main/resources/users.json";
+
+  // When running with "javafx:run", the working directory will be "ui".
+  // This method removes the path into "ui", so the path finds the file in "data"
+  private static void adaptFilePath() {
+    String s = SAVE_FILE.replace("/ui", "");
+    s = s.replace("/casino/core/core", "/casino/core");
+    s = s.replace("/rest", "");
+    SAVE_FILE = s;
+  }
 
   /**
    * Clears the user arrayList and overwrites the file with the new empty arraylist.
    */
 
   public static void cleanUserList() {
+
     try (FileWriter fileWriter = new FileWriter(SAVE_FILE, StandardCharsets.UTF_8)) {
-      List<User> userList = getUserList();
-      userList.clear();
-      Gson gson = new Gson();
-      String jsonSaveString = gson.toJson(userList);
-      fileWriter.append(jsonSaveString);
+      fileWriter.write("");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -84,6 +91,7 @@ public class UserSaveHandler {
    */
 
   public static List<User> getUserList() throws IOException {
+    adaptFilePath();
     if (isEmpty()) {
       return new ArrayList<>();
     }
@@ -151,7 +159,10 @@ public class UserSaveHandler {
     updateFile(userList);
   }
 
+
   public static User getActiveUser() throws IOException {
+    System.out.println(UserSaveHandler.SAVE_FILE);
+    System.out.println(System.getProperty("user.dir"));
     return getUserList().get(0);
   }
 }
