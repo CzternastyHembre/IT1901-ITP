@@ -5,16 +5,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import savehandler.UserSaveHandler;
 
-import java.io.IOException;
 
 public class RouletteUITest extends ApplicationTest {
 
     private RouletteController controller;
 
+    @AfterAll
+    static void cleanList(){
+        UserSaveHandler.cleanUserList();
+    }
 
     @Override
     public void start(final Stage stage) throws Exception{
@@ -26,7 +31,7 @@ public class RouletteUITest extends ApplicationTest {
     }
 
     @Test
-    void run() throws IOException {
+    void run() {
         clickOn("#selectChip1");
         clickOn("#1");
         clickOn("#1");
