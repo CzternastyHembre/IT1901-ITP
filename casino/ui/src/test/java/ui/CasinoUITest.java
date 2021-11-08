@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testfx.framework.junit5.ApplicationTest;
 import savehandler.UserSaveHandler;
 import user.User;
@@ -22,6 +22,9 @@ public class CasinoUITest extends ApplicationTest {
     private String userTest = "UserTest";
     private RouletteController rouletteController;
     private User user = new User("test", 100);
+
+
+
 
     @Override
     public void start(final Stage stage) throws Exception{
@@ -42,9 +45,10 @@ public class CasinoUITest extends ApplicationTest {
     }
 
     @Test
-    public void logInUser() {
+    public void logInUser() throws IOException {
+        UserSaveHandler.createUser(new User("Logtest", 500));
         clickOn("#logInButton");
-        clickOn("#logInField").write("test");
+        clickOn("#logInField").write("Logtest");
         clickOn("#logIn");
         assertEquals("test", user.getUsername());
     }
