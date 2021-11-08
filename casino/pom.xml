@@ -137,6 +137,6 @@
     <modules>
         <module>core</module>
         <module>ui</module>
-        <module>storage</module>
+        <module>rest</module>
     </modules>
 </project>
