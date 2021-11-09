@@ -44,14 +44,16 @@ public class CreateUserController {
    */
 
   @FXML
-  private void run(ActionEvent actionEvent) throws IOException {
+  private void run(ActionEvent actionEvent) throws IOException, InterruptedException {
 
     if (UserSaveHandler.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
       throw new IllegalArgumentException("Username already exist");
     }
     User newUser = new User(getUsername(), StartingBalance);
-    UserSaveHandler.createUser(newUser);
+
+    RestModel.createUser(newUser);
+    RestModel.getUserList();
     Parent root = FXMLLoader.load((
             Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
