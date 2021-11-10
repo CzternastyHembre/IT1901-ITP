@@ -1,11 +1,9 @@
 package it1901.rest;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import savehandler.UserSaveHandler;
+import savehandler.*;
 import user.User;
 
 import java.io.IOException;
@@ -17,7 +15,7 @@ import java.util.List;
 public class RestController {
 
     @GetMapping("/users")
-    public List<User> getUserList(){
+    public List<User> getUserList() throws IOException {
         return UserSaveHandler.getUserList();
     }
 

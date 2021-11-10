@@ -11,9 +11,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+
 public class RestModel {
     public static String baseUri = "http://localhost:8080";
     public static Gson gson = new Gson();
+
+
     public static void createUser(User newUser) throws IOException, InterruptedException {
         String endpoint = baseUri + "/users/add";
         String payload = gson.toJson(newUser);
@@ -25,6 +28,8 @@ public class RestModel {
                 .build();
         client.send(request, HttpResponse.BodyHandlers.ofString());
     }
+
+
     public static List<User> getUserList() throws IOException, InterruptedException {
         List<User> userList;
         String endpoint = baseUri + "/users";
@@ -50,6 +55,8 @@ public class RestModel {
         }
         return null;
     }
+
+
     public static void updateList(List<User> userList) throws IOException, InterruptedException {
         String payload = gson.toJson(userList);
         String endpoint = baseUri + "/users/update";

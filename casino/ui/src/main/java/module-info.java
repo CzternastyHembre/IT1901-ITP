@@ -3,7 +3,6 @@ module ui {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
-    requires spring.context;
     requires java.net.http;
     requires com.google.gson;
 

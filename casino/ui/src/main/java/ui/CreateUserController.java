@@ -14,7 +14,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import savehandler.UserSaveHandler;
 import user.User;
 
 /**
@@ -38,7 +37,6 @@ public class CreateUserController {
   @FXML
   Label errorLabel;
 
-  private RestModel restService = new RestModel();
 
   /**
    * Button for creating the user.
@@ -49,12 +47,12 @@ public class CreateUserController {
   @FXML
   private void run(ActionEvent actionEvent) throws IOException, InterruptedException {
 
-    if (UserSaveHandler.getUser(getUsername()) != null) {
+    if (RestModel.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
       throw new IllegalArgumentException("Username already exist");
     }
     User newUser = new User(getUsername(), StartingBalance);
-    restService.createUser(newUser);
+    RestModel.createUser(newUser);
     Parent root = FXMLLoader.load((
             Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
