@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,8 +24,12 @@ public class UserSaveHandler {
   /**
    * Variable SAVE_FILE is saved as the path to the saving destination.
    */
+  private String SAVE_FILE = System.getProperty("user.home");
 
-  private static String SAVE_FILE = System.getProperty("user.dir") + "/core/src/main/resources/users.json";
+  private void createDirectory() throws IOException {
+    Files.createDirectory(Path.of(SAVE_FILE));
+  }
+
 
   // When running with "javafx:run", the working directory will be "ui".
   // This method removes the path into "ui", so the path finds the file in "data"
