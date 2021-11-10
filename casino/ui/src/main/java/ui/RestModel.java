@@ -44,7 +44,6 @@ public class RestModel {
         Type userListType = new TypeToken<ArrayList<User>>() {
         }.getType();
         userList = gson.fromJson(response.body(), userListType);
-        System.out.println(userList);
         return userList;
     }
     public static User getUser(String username) throws IOException, InterruptedException {

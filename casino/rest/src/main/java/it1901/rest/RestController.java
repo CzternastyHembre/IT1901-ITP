@@ -14,6 +14,7 @@ import java.util.List;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
+
     @GetMapping("/users")
     public List<User> getUserList() throws IOException {
         return UserSaveHandler.getUserList();

@@ -107,9 +107,12 @@ public class UserSaveHandler {
 
   public static List<User> getUserList() throws IOException {
     if(isEmpty()) {
-      FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8);
-      fileWriter.write("");
-      return new ArrayList<>();
+      try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
+
+        fileWriter.write("");
+        fileWriter.close();
+        return new ArrayList<>();
+        }
       }
       Scanner sc = new Scanner(new File(String.valueOf(SAVE_FILE)), StandardCharsets.UTF_8);
       String userString = sc.nextLine();
@@ -179,7 +182,8 @@ public class UserSaveHandler {
   }
 
   public static void main(String[] args) throws IOException {
-    UserSaveHandler.cleanUserList();
+    UserSaveHandler.createUser(new User("victoria", 500));
+    System.out.println(UserSaveHandler.getUserList());
   }
 }
 

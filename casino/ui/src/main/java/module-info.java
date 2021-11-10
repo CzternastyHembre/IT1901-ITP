@@ -6,6 +6,5 @@ module ui {
     requires java.net.http;
     requires com.google.gson;
 
-
     opens ui to javafx.graphics, javafx.fxml;
 }

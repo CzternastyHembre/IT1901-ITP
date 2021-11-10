@@ -26,6 +26,7 @@ public class CasinoUITest extends ApplicationTest {
 
 
 
+
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("StartTest.fxml"));
