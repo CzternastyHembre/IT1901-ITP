@@ -1,22 +1,23 @@
 package it1901.rest;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+
 import savehandler.UserSaveHandler;
 import user.User;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
     @GetMapping("/users")
-    public List<User> getUserList() throws IOException {
+    public List<User> getUserList(){
         return UserSaveHandler.getUserList();
     }
 
@@ -27,3 +28,4 @@ public class RestController {
         return newUser;
     }
 }
+

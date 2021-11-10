@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 import java.util.Objects;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,8 @@ public class LogInController {
   @FXML
   Label errorLabel;
 
+  private RestModel restService;
+
   /**
    * Button to log in with the user written in the textfield.
    * Throws an exception if the user does not exist.
@@ -43,13 +46,13 @@ public class LogInController {
    * @param actionEvent the event when pressing the button.
    */
 
-  public void run(ActionEvent actionEvent) throws IOException {
+  public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
     if (UserSaveHandler.getUser(getUsername()) == null) {
       errorLabel.setText("Could not find user, please try again");
       throw new IllegalArgumentException("This user does not exist");
     }
-    User user = UserSaveHandler.getUser(getUsername());
-    UserSaveHandler.setActive(user);
+    User user = RestModel.getUser(getUsername());
+    RestModel.setActive(user);
     Parent root = FXMLLoader.load(
             Objects.requireNonNull(getClass().getResource("selectGameView.fxml")));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

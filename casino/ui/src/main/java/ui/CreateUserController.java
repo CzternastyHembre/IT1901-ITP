@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 import java.util.Objects;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +38,8 @@ public class CreateUserController {
   @FXML
   Label errorLabel;
 
+  private RestModel restService = new RestModel();
+
   /**
    * Button for creating the user.
    * If the username is taken, an exception is thrown.
@@ -51,9 +54,7 @@ public class CreateUserController {
       throw new IllegalArgumentException("Username already exist");
     }
     User newUser = new User(getUsername(), StartingBalance);
-
-    RestModel.createUser(newUser);
-    RestModel.getUserList();
+    restService.createUser(newUser);
     Parent root = FXMLLoader.load((
             Objects.requireNonNull(getClass().getResource("selectGameView.fxml"))));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
