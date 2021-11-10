@@ -28,15 +28,15 @@ public class UserSaveHandler {
    */
   private static Path SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
 
-  public UserSaveHandler(){
-
-  }
-
-  public static void createDirectory() throws IOException {
+  public static void createDirectory() {
     String path = String.valueOf(SAVE_FILE);
-    System.out.println(path.replace("/users.json", ""));
-    path = path.replaceAll("/users.json", "");
-    Files.createDirectory(Path.of(path));
+    path = path.replaceAll("users.json", "");
+    if (Files.exists(Path.of(path))) {return;}
+    try {
+      Files.createDirectory(Path.of(path));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 

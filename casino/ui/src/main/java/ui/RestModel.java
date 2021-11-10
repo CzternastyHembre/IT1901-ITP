@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestModel {
-    public static String baseUri = "http://localhost:8080";
-    public static Gson gson = new Gson();
+    public static final String baseUri = "http://localhost:8080";
+    public static final Gson gson = new Gson();
 
 
     public static void createUser(User newUser) throws IOException, InterruptedException {
