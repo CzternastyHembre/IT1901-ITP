@@ -5,10 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import savehandler.*;
 import user.User;
-
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
@@ -26,5 +23,10 @@ public class RestController {
         UserSaveHandler.createUser(newUser);
         return newUser;
     }
-}
 
+    @PostMapping("/users/set-active")
+    public User activeUser(@RequestBody User newUser) throws IOException {
+        UserSaveHandler.setActive(newUser);
+        return newUser;
+    }
+}
