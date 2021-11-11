@@ -37,8 +37,6 @@ public class LogInController {
   @FXML
   Label errorLabel;
 
-  private RestModel restService;
-
   /**
    * Button to log in with the user written in the textfield.
    * Throws an exception if the user does not exist.

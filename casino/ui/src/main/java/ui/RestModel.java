@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestModel {
-    public static String baseUri = "http://localhost:8080";
-    public static Gson gson = new Gson();
+    public static final String baseUri = "http://localhost:8080";
+    public static final Gson gson = new Gson();
 
 
     public static void createUser(User newUser) throws IOException, InterruptedException {
@@ -67,15 +67,16 @@ public class RestModel {
                 .build();
         client.send(request, HttpResponse.BodyHandlers.ofString());
     }
+
     public static void setActive(User user) throws IOException, InterruptedException {
-        List<User> userList = getUserList();
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUsername().equals(user.getUsername())) {
-                userList.remove(i);
-                break;
-            }
-        }
-        userList.add(0, user);
-        updateList(userList);
+        String payload = gson.toJson(user);
+        String endpoint = baseUri + "/users/set-active";
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(endpoint))
+                .header("Content-type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(payload))
+                .build();
+        client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }

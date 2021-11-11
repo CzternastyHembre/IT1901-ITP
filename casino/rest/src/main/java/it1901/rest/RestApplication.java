@@ -11,6 +11,7 @@ import java.io.IOException;
 public class RestApplication {
 
 	public static void main(String[] args) {
+		UserSaveHandler.createDirectory();
 		SpringApplication.run(RestApplication.class, args);
 	}
 	}
