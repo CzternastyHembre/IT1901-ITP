@@ -37,6 +37,11 @@ public class CasinoUITest extends ApplicationTest {
     }
 
 
+    @AfterEach
+    public void cleanList(){
+        UserSaveHandler.cleanUserList();
+    }
+
     @Test
     public void checkNewUser() throws IOException {
         clickOn("#createUserButton");
