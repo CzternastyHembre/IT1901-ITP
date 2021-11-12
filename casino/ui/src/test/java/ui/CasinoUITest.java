@@ -1,10 +1,8 @@
 package ui;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
@@ -23,10 +21,6 @@ public class CasinoUITest extends ApplicationTest {
     private RouletteController rouletteController;
     private User user = new User("test", 100);
 
-
-
-
-
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("StartTest.fxml"));
@@ -37,12 +31,17 @@ public class CasinoUITest extends ApplicationTest {
     }
 
 
+    @BeforeAll
+    static void setUp(){
+        UserSaveHandler.changeToTestPath();
+    }
+
     @Test
     public void checkNewUser() throws IOException {
         clickOn("#createUserButton");
-        clickOn("#usernameField").write(userTest);
+        clickOn("#usernameField").write("newUserTest");
         clickOn("#create");
-        assertEquals(userTest, UserSaveHandler.getActiveUser().getUsername());
+        assertEquals("Logtest", UserSaveHandler.getActiveUser().getUsername());
     }
 
     @Test
@@ -51,7 +50,7 @@ public class CasinoUITest extends ApplicationTest {
         clickOn("#logInButton");
         clickOn("#logInField").write("Logtest");
         clickOn("#logIn");
-        assertEquals("test", user.getUsername());
+        assertEquals("Logtest", UserSaveHandler.getActiveUser().getUsername());
     }
 
     @Test

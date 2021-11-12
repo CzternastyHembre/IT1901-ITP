@@ -5,7 +5,6 @@ module core {
     opens slots;
     opens validators;
     opens savehandler;
-
     exports roulette;
     exports user;
     exports slots;

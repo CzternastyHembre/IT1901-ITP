@@ -7,7 +7,6 @@ import user.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,7 +25,8 @@ public class UserSaveHandler {
   /**
    * Variable SAVE_FILE is saved as the path to the saving destination.
    */
-  private static Path SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+  private static Path SAVE_FILE = Paths
+          .get(System.getProperty("user.home"), "CasinoData", "users.json");
 
   public static void createDirectory() {
     String path = String.valueOf(SAVE_FILE);
@@ -39,17 +39,9 @@ public class UserSaveHandler {
     }
   }
 
-
-
-
-  // When running with "javafx:run", the working directory will be "ui".
-  // This method removes the path into "ui", so the path finds the file in "data"
-//  private static void adaptFilePath() {
-//    String s = SAVE_FILE.replace("/ui", "");
-//    s = s.replace("/casino/core/core", "/casino/core");
-//    s = s.replace("/rest", "");
-//    SAVE_FILE = s;
-//  }
+  public static void changeToTestPath(){
+    SAVE_FILE = Path.of(String.valueOf(SAVE_FILE).replace("CasinoData", "TestData"));
+  }
 
   /**
    * Clears the user arrayList and overwrites the file with the new empty arraylist.
@@ -82,6 +74,7 @@ public class UserSaveHandler {
   private static void updateFile(List<User> userList) {
     try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
       Gson gson = new Gson();
+      System.out.println(SAVE_FILE);
       String jsonSaveString = gson.toJson(userList);
       fileWriter.append(jsonSaveString);
     } catch (Exception e) {
@@ -107,8 +100,8 @@ public class UserSaveHandler {
 
   public static List<User> getUserList() throws IOException {
     if(isEmpty()) {
+      createDirectory();
       try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
-
         fileWriter.write("");
         fileWriter.close();
         return new ArrayList<>();

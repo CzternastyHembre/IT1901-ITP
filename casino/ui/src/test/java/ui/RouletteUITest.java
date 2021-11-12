@@ -16,11 +16,6 @@ public class RouletteUITest extends ApplicationTest {
 
     private RouletteController controller;
 
-    @AfterAll
-    static void cleanList(){
-        UserSaveHandler.cleanUserList();
-    }
-
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("RouletteTest.fxml"));
@@ -28,6 +23,11 @@ public class RouletteUITest extends ApplicationTest {
         this.controller = loader.getController();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @AfterAll
+    static void afterTests(){
+        UserSaveHandler.cleanUserList();
     }
 
     @Test

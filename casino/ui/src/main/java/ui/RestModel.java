@@ -56,18 +56,6 @@ public class RestModel {
     }
 
 
-    public static void updateList(List<User> userList) throws IOException, InterruptedException {
-        String payload = gson.toJson(userList);
-        String endpoint = baseUri + "/users/update";
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("Content-type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofString(payload))
-                .build();
-        client.send(request, HttpResponse.BodyHandlers.ofString());
-    }
-
     public static void setActive(User user) throws IOException, InterruptedException {
         String payload = gson.toJson(user);
         String endpoint = baseUri + "/users/set-active";
