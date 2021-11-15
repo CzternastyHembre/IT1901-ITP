@@ -14,8 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -25,10 +23,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import savehandler.UserSaveHandler;
 import slots.Slots;
+import ui.MenuItem.CasinoMenu;
+import user.User;
 
 
 /**
@@ -37,10 +36,13 @@ import slots.Slots;
  *
  */
 
-public abstract class SlotsDisplay implements Initializable {
+public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
 
   protected Slots slotMachine;
 
+  public SlotsDisplay(User user) {
+    super(user);
+  }
   @FXML
   private MenuItem mainMenu;
   @FXML
@@ -238,50 +240,6 @@ public abstract class SlotsDisplay implements Initializable {
         e.printStackTrace();
       }
     });
-  }
-
-  @FXML
-  public void exit(ActionEvent actionEvent) {
-    System.exit(0);
-  }
-
-
-  /**
-   * Takes the user back to the main menu view.
-   *
-   *
-   */
-  @FXML
-  public void backToMainMenu(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(SlotsDisplay.class.getResource("Start.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
-
-  /**
-   * Takes the user back to the lobby view.
-   *
-   *
-   */
-  @FXML
-  public void backToLobby(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(SlotsDisplay.class.getResource("selectGameView.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
   }
 
   @Override

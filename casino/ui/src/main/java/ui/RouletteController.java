@@ -7,16 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.animation.RotateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -25,7 +20,6 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import roulette.Guess;
 import roulette.ListGuess;
@@ -33,16 +27,16 @@ import roulette.NumberGuess;
 import roulette.PatternGuess;
 import roulette.Roulette;
 import savehandler.UserSaveHandler;
+import ui.MenuItem.CasinoMenu;
 import user.User;
 
 /**
  * Controller for the roulette game.
  */
 
-public class RouletteController {
+public class RouletteController extends CasinoMenu {
 
   @FXML Pane chipFolder;
-  @FXML Pane anchorPane;
   @FXML Pane rouletteBoardPane;
   @FXML Pane controllsFolder;
   @FXML Pane gridPane;
@@ -55,10 +49,8 @@ public class RouletteController {
   @FXML MenuItem mainMenu;
   @FXML MenuItem lobby;
   @FXML MenuItem exit;
-  @FXML FXMLLoader loader = new FXMLLoader();
 
   private final Roulette rouletteGame;
-  private final User user;
   private Label rolledNumberLabel = new Label();
   private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
   private List<Pane> chipList = new ArrayList<>();
@@ -83,7 +75,7 @@ public class RouletteController {
    */
 
   public RouletteController(User user) {
-    this.user = user;
+    super(user);
     rouletteGame = new Roulette(user);
   }
 
@@ -582,53 +574,6 @@ public class RouletteController {
     moneyLabel.setText("" + user.getBalance());
   }
 
-  /**
-   * Sends user back to main menu view.
-   *
-   * @param actionEvent onClick, run this method
-   *
-   * @throws IOException loader.load() can throw an exception.
-   */
-  @FXML
-  public void backToMainMenu(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(getClass().getResource("Start.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
-
-  @FXML
-  public void exit(ActionEvent actionEvent) {
-    System.exit(0);
-  }
-
-  /**
-   * Sends user back to lobby view.
-   *
-   * @param actionEvent onClick, run this method.
-   *
-   * @throws IOException loader.load() can throw exception.
-   */
-
-  @FXML
-  public void backToLobby(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(getClass().getResource("selectGameView.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
 
   public Roulette getRouletteGame() {
     return rouletteGame;

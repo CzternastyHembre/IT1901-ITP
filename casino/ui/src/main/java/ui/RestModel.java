@@ -35,6 +35,7 @@ public class RestModel {
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         User user = gson.fromJson(response.body(), User.class);
+        if (user.getUsername() == null) {return null;}
         return user;
     }
 
