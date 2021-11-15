@@ -26,8 +26,6 @@ public class StartController {
   private Stage stage;
   private Scene scene;
 
-
-
   /**
    * Button for the log in scene. Switches scene to the log in.
    *
@@ -36,12 +34,10 @@ public class StartController {
 
   @FXML
   public void log_in_scene(ActionEvent actionEvent) throws IOException {
-    Parent root = FXMLLoader.load(
+    FXMLLoader loader = new FXMLLoader(
             Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
-    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+    loader.setController(new LogInController());
+    loadView(actionEvent, loader);
   }
 
   /**
@@ -52,10 +48,15 @@ public class StartController {
 
   @FXML
   public void create_user_scene(ActionEvent actionEvent) throws IOException {
-    Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("CreateUser.fxml")));
+    FXMLLoader loader = new FXMLLoader(
+            Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
+    loader.setController(new CreateUserController());
+    loadView(actionEvent, loader);
+  }
+
+  private void loadView(ActionEvent actionEvent, FXMLLoader loader) throws IOException {
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(root);
+    scene = new Scene(loader.load());
     stage.setScene(scene);
     stage.show();
   }

@@ -14,7 +14,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import savehandler.UserSaveHandler;
 import user.User;
 
 /**
@@ -23,19 +22,19 @@ import user.User;
 
 public class LogInController {
   @FXML
-  private TextField logInField;
-  private Stage stage;
-  private Scene scene;
+  protected TextField usernameField;
+  protected Stage stage;
+  protected Scene scene;
   @FXML
-  MenuItem mainMenu;
+  protected MenuItem mainMenu;
   @FXML
-  MenuItem exit;
+  protected MenuItem exit;
   @FXML
-  FXMLLoader loader = new FXMLLoader();
+  protected FXMLLoader loader = new FXMLLoader();
   @FXML
-  AnchorPane anchorPane;
+  protected AnchorPane anchorPane;
   @FXML
-  Label errorLabel;
+  protected Label errorLabel;
 
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
@@ -46,24 +45,28 @@ public class LogInController {
    * @param actionEvent the event when pressing the button.
    */
 
+  @FXML
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
-    if (userSaveHandler.getUser(getUsername()) == null) {
+    if (RestModel.getUser(getUsername()) == null) {
       errorLabel.setText("Could not find user, please try again");
       throw new IllegalArgumentException("This user does not exist");
     }
     User user = RestModel.getUser(getUsername());
-    RestModel.setActive(user);
-    Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("selectGameView.fxml")));
+    openView(actionEvent, user);
+  }
+
+  protected void openView(ActionEvent actionEvent, User user) throws IOException {
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("selectGameView.fxml")));
+    loader.setController(new SelectGameController(user));
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(root);
+    scene = new Scene(loader.load());
     stage.setScene(scene);
     stage.show();
   }
 
   @FXML
   public String getUsername() {
-    return logInField.getText();
+    return usernameField.getText();
   }
 
   @FXML
