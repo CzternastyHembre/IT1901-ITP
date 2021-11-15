@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
-public class RestController {
+public class    RestController {
 
     private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 

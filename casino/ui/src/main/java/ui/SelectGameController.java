@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import user.User;
 
 
 /**
@@ -35,6 +36,19 @@ public class SelectGameController {
   @FXML
   AnchorPane anchorPane;
 
+  private User user;
+
+  public SelectGameController(User activeUser) {
+    System.out.println(activeUser);
+    this.user = activeUser;
+  }
+
+  private void loadView(ActionEvent actionEvent, FXMLLoader loader) throws IOException {
+    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    scene = new Scene(loader.load());
+    stage.setScene(scene);
+    stage.show();
+  }
 
   /**
    * Actionevent when pressing button to load roulette.
@@ -45,12 +59,9 @@ public class SelectGameController {
 
   @FXML
   public void loadRoulette(ActionEvent actionEvent) throws IOException {
-    Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("Roulette.fxml")));
-    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("Roulette.fxml")));
+    loader.setController(new RouletteController(user));
+    loadView(actionEvent, loader);
   }
 
   /**
@@ -62,12 +73,9 @@ public class SelectGameController {
 
   @FXML
   public void loadSlots(ActionEvent actionEvent) throws IOException {
-    Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("Slots.fxml")));
-    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("Slots.fxml")));
+    loader.setController(new SlotsController(user));
+    loadView(actionEvent, loader);
   }
 
   /**
@@ -79,12 +87,9 @@ public class SelectGameController {
 
   @FXML
   public void loadAddChips(ActionEvent actionEvent) throws IOException {
-    Parent root = FXMLLoader.load(
-            Objects.requireNonNull(getClass().getResource("AddMoney.fxml")));
-    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("AddMoney.fxml")));
+    loader.setController(new AddMoneyController(user));
+    loadView(actionEvent, loader);
   }
 
   @FXML

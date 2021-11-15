@@ -57,15 +57,15 @@ public class RouletteController {
   @FXML MenuItem exit;
   @FXML FXMLLoader loader = new FXMLLoader();
 
-  Label rolledNumberLabel = new Label();
-  private Roulette rouletteGame;
-  private User user;
+  private final Roulette rouletteGame;
+  private final User user;
+  private Label rolledNumberLabel = new Label();
   private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
-  
+
   /*
    * The number sequense on an European rouletteWheel.
    */
@@ -82,13 +82,16 @@ public class RouletteController {
    *
    */
 
+  public RouletteController(User user) {
+    this.user = user;
+    rouletteGame = new Roulette(user);
+  }
+
   @FXML
-  public void initialize() throws IOException {
+  public void initialize() {
     List<Label> labelList = new ArrayList<>(Arrays.asList(
             moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
             textLabel1, textLabel2, rolledNumberLabel));
-    user = userSaveHandler.getActiveUser();
-    rouletteGame = new Roulette(user);
     updateUserLables();
     nameLabel.setText(user.getUsername());
 

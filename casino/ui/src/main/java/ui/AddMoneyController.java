@@ -41,17 +41,20 @@ public class AddMoneyController {
   private Label errorLabel;
   @FXML
   private Label nameLabel;
-  private User user;
+  private final User user;
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
+  public AddMoneyController(User user) {
+    this.user = user;
+  }
+
   @FXML
-  public void initialize() throws IOException {
-    user = userSaveHandler.getActiveUser();
+  public void initialize() {
     nameLabel.setText("Welcome " + user.getUsername());
   }
 
   @FXML
-  private void addMoney() throws NumberFormatException {
+  public void addMoney() throws NumberFormatException {
     try {
       int amount = Integer.parseInt(amountField.getText());
       if (amount < 0) {
@@ -69,7 +72,7 @@ public class AddMoneyController {
   }
 
   @FXML
-  public void exit(ActionEvent actionEvent) {
+  public void exit() {
     System.exit(0);
   }
 

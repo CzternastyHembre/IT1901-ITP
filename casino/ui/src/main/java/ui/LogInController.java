@@ -36,8 +36,6 @@ public class LogInController {
   @FXML
   protected Label errorLabel;
 
-  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
-
   /**
    * Button to log in with the user written in the textfield.
    * Throws an exception if the user does not exist.
