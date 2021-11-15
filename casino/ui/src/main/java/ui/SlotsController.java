@@ -12,11 +12,12 @@ import slots.Slots;
  *
  */
 public class SlotsController extends SlotsDisplay {
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     try {
-      super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
+      super.slotMachine = new Slots(userSaveHandler.getActiveUser());
     } catch (IOException e) {
       e.printStackTrace();
     }
