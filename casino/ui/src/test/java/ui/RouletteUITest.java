@@ -16,10 +16,6 @@ public class RouletteUITest extends ApplicationTest {
 
     private RouletteController controller;
 
-    @AfterAll
-    static void cleanList(){
-        UserSaveHandler.cleanUserList();
-    }
 
     @Override
     public void start(final Stage stage) throws Exception{

@@ -64,6 +64,7 @@ public class RouletteController {
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
   
   /*
    * The number sequense on an European rouletteWheel.
@@ -86,7 +87,7 @@ public class RouletteController {
     List<Label> labelList = new ArrayList<>(Arrays.asList(
             moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
             textLabel1, textLabel2, rolledNumberLabel));
-    user = UserSaveHandler.getActiveUser();
+    user = userSaveHandler.getActiveUser();
     rouletteGame = new Roulette(user);
     updateUserLables();
     nameLabel.setText(user.getUsername());
@@ -263,7 +264,7 @@ public class RouletteController {
   @FXML
   public void run() throws IOException {
 
-    UserSaveHandler.updateUser(user);
+    userSaveHandler.updateUser(user);
     rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();

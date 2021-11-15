@@ -3,11 +3,9 @@ package savehandler;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import user.User;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,9 +24,24 @@ public class UserSaveHandler {
   /**
    * Variable SAVE_FILE is saved as the path to the saving destination.
    */
-  private static Path SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+  private final Path SAVE_FILE;
 
-  public static void createDirectory() {
+  public UserSaveHandler(){
+    this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+  }
+
+  public UserSaveHandler(boolean isTest){
+    if (isTest) {
+      this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "TestData", "users.json");
+    } else {
+      this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+    }
+  }
+
+
+
+
+  public void createDirectory() {
     String path = String.valueOf(SAVE_FILE);
     path = path.replaceAll("users.json", "");
     if (Files.exists(Path.of(path))) {return;}
@@ -41,21 +54,11 @@ public class UserSaveHandler {
 
 
 
-
-  // When running with "javafx:run", the working directory will be "ui".
-  // This method removes the path into "ui", so the path finds the file in "data"
-//  private static void adaptFilePath() {
-//    String s = SAVE_FILE.replace("/ui", "");
-//    s = s.replace("/casino/core/core", "/casino/core");
-//    s = s.replace("/rest", "");
-//    SAVE_FILE = s;
-//  }
-
   /**
    * Clears the user arrayList and overwrites the file with the new empty arraylist.
    */
 
-  public static void cleanUserList() {
+  public void cleanUserList() {
 
     try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
       fileWriter.write("");
@@ -69,7 +72,7 @@ public class UserSaveHandler {
    * @param user the user that is being created.
    */
 
-  public static void createUser(User user) throws IOException {
+  public void createUser(User user) throws IOException {
     List<User> userList = getUserList();
     if (userList.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
       throw new IllegalArgumentException("Username is taken");
@@ -79,7 +82,7 @@ public class UserSaveHandler {
   }
 
 
-  private static void updateFile(List<User> userList) {
+  private void updateFile(List<User> userList) {
     try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
       Gson gson = new Gson();
       String jsonSaveString = gson.toJson(userList);
@@ -94,7 +97,7 @@ public class UserSaveHandler {
    * @return true if the file has the length of 0.
    */
 
-  public static boolean isEmpty() {
+  public boolean isEmpty() {
     File file = new File(String.valueOf(SAVE_FILE));
     return file.length() == 0;
   }
@@ -105,7 +108,7 @@ public class UserSaveHandler {
   * @return userList is the arrayList of the object user.
    */
 
-  public static List<User> getUserList() throws IOException {
+  public List<User> getUserList() throws IOException {
     if(isEmpty()) {
       try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
 
@@ -132,7 +135,7 @@ public class UserSaveHandler {
    * @return null or the object user with the username.
    */
 
-  public static User getUser(String username) throws IOException {
+  public User getUser(String username) throws IOException {
 
     for (User user : Objects.requireNonNull(getUserList())) {
       if (user.getUsername().equals(username)) {
@@ -148,7 +151,7 @@ public class UserSaveHandler {
    * @param user is the user that is being logged in and set to active.
    */
 
-  public static void setActive(User user) throws IOException {
+  public void setActive(User user) throws IOException {
     List<User> userList = getUserList();
     for (int i = 0; i < userList.size(); i++) {
       if (userList.get(i).getUsername().equals(user.getUsername())) {
@@ -165,7 +168,7 @@ public class UserSaveHandler {
    * @param user is the user that is being updated.
    */
 
-  public static void updateUser(User user) throws IOException {
+  public void updateUser(User user) throws IOException {
     List<User> userList = getUserList();
     for (int i = 0; i < userList.size(); i++) {
       if (userList.get(i).getUsername().equals(user.getUsername())) {
@@ -177,13 +180,8 @@ public class UserSaveHandler {
   }
 
 
-  public static User getActiveUser() throws IOException {
+  public User getActiveUser() throws IOException {
     return getUserList().get(0);
-  }
-
-  public static void main(String[] args) throws IOException {
-    UserSaveHandler.createUser(new User("victoria", 500));
-    System.out.println(UserSaveHandler.getUserList());
   }
 }
 
