@@ -17,6 +17,11 @@ public class RestController {
         return UserSaveHandler.getUserList();
     }
 
+    @GetMapping("/users/{username}")
+    public User getUser(@PathVariable String username) throws IOException{
+        return UserSaveHandler.getUser(username);
+    }
+
     @PostMapping("/users/add")
     @ResponseStatus(HttpStatus.CREATED)
     public User addUser (@RequestBody User newUser) throws IOException {

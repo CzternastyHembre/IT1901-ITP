@@ -46,6 +46,7 @@ public class RestModel {
         userList = gson.fromJson(response.body(), userListType);
         return userList;
     }
+
     public static User getUser(String username) throws IOException, InterruptedException {
         for (User user : getUserList()) {
             if (user.getUsername().equals(username)) {

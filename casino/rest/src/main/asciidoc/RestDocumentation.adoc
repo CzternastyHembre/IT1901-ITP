@@ -1,0 +1,24 @@
+# Documentation of API
+
+## Creating a user
+
+### The request
+
+include::{snippets}/user/http-request.adoc[]
+
+### Response
+
+include::{snippets}/user/http-response.adoc[]
+
+## Getting the userlist
+
+### The request
+
+include::{snippets}/getRequst200ok/http-request.adoc[]
+
+### The response
+
+include::{snippets}/getRequst200ok/http-response.adoc[]
+
+
+
