@@ -4,32 +4,32 @@
 
 **The request**
 
-include::http-request.adoc[]
+include::{snippets}/user/http-request.adoc[]
 
 **Response**
 
-include::http-response.adoc[]
+include::{snippets}/user/http-response.adoc[]
 
 ### Getting the userlist
 
 **The request**
 
-include::http-requestUserList.adoc[]
+include::{snippets}/getRequest200ok/http-request.adoc[]
 
 **The response**
 
-include::http-responseUserList.adoc[]
-
+include::{snippets}/getRequest200ok/http-response.adoc[]
 
 ### Getting a user
 
+
 **The request**
 
-include::http-requestGetUser.adoc[]
+include::{snippets}/getUser/http-request.adoc[]
 
 **The response**
 
-include::http-responseGetUser.adoc[]
+include::{snippets}/getUser/http-response.adoc[]
 
 
 
