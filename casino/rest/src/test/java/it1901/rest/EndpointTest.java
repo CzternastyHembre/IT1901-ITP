@@ -52,8 +52,22 @@ public class EndpointTest {
 
     @Test
     public void getRequest200ok() throws Exception {
+
+        User testUser = new User("testUser", 500);
+        User mappingUser = new User("mappingUser", 100);
+
+        mockMvc.perform(
+                post("/users/add")
+                        .content(gson.toJson(testUser))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON));
+        mockMvc.perform(
+                post("/users/add")
+                        .content(gson.toJson(mappingUser))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON));
         this.mockMvc.perform(get("/users")).andDo(print()).andExpect(status().isOk())
-                .andDo(document("getRequst200ok"));
+                .andDo(document("getRequest200ok"));
     }
 
     @Test
@@ -90,5 +104,18 @@ public class EndpointTest {
                                         .description("Active user username"),
                                 fieldWithPath("balance")
                                         .description("Balance of the active user"))));
+    }
+
+    @Test
+    public void getUserTest() throws Exception{
+        User getUser = new User("gettingUser", 100);
+        mockMvc.perform(
+                post("/users/add")
+                        .content(gson.toJson(getUser))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON));
+
+        this.mockMvc.perform(get("/users/gettingUser")).andDo(print()).andExpect(status().isOk())
+                .andDo(document("getUser"));
     }
 }

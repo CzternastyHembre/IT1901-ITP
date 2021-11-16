@@ -48,12 +48,16 @@ public class RestModel {
     }
 
     public static User getUser(String username) throws IOException, InterruptedException {
-        for (User user : getUserList()) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null;
+        String endpoint = baseUri + "/users/" + username;
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .header("Content-type", "application/json")
+                .uri(URI.create(endpoint))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        Gson gson = new Gson();
+        return gson.fromJson(response.body(), User.class);
     }
 
 

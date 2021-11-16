@@ -88,6 +88,7 @@
 						<configuration>
 							<backend>html</backend>
 							<doctype>book</doctype>
+							<outputDirectory>rest/src/main/asciidoc</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
