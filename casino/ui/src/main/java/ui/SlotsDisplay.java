@@ -40,9 +40,6 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
 
   protected Slots slotMachine;
 
-  public SlotsDisplay(User user) {
-    super(user);
-  }
   @FXML
   private MenuItem mainMenu;
   @FXML

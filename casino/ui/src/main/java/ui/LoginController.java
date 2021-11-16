@@ -1,37 +1,36 @@
 package ui;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ui.MenuItem.LobbyMenu;
 import ui.MenuItem.LoginMenu;
-import ui.MenuItem.MainMenu;
 import user.User;
 
 /**
  * Controller for LogIn.fxml.
  */
 
-public class LogInController extends LoginMenu {
+public class LoginController extends LoginMenu implements Initializable {
 
   @FXML
   protected TextField usernameField;
   @FXML
-  protected AnchorPane anchorPane;
-  @FXML
   protected Label errorLabel;
-
+  @FXML
+  public Button submit;
 
   /**
    * Button to log in with the user written in the textfield.
@@ -52,11 +51,18 @@ public class LogInController extends LoginMenu {
 
   protected void openView(ActionEvent actionEvent, User user) throws IOException {
     FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("selectGameView.fxml")));
-    loader.setController(new SelectGameController(user));
+    nextController = new SelectGameController();
+    nextController.setUser(user);
+    loader.setController(nextController);
+
     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     Scene scene = new Scene(loader.load());
     stage.setScene(scene);
     stage.show();
+  }
+
+  protected void setButtonText(String text) {
+    submit.setText(text);
   }
 
   @FXML
@@ -64,4 +70,10 @@ public class LogInController extends LoginMenu {
     return usernameField.getText();
   }
 
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    if (this instanceof CreateUserController) {
+    setButtonText("Create user");
+    }
+  }
 }

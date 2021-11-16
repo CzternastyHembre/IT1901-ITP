@@ -1,26 +1,16 @@
 package ui;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import user.User;
 
 /**
  * Controller for when you create user
  */
 
-public class CreateUserController extends LogInController {
+public class CreateUserController extends LoginController {
 
   private static final double StartingBalance = 1000;
 

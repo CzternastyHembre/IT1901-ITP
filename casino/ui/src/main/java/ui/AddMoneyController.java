@@ -25,10 +25,6 @@ public class AddMoneyController extends CasinoMenu {
   private Label nameLabel;
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
-  public AddMoneyController(User user) {
-    super(user);
-  }
-
   @FXML
   public void initialize() {
     nameLabel.setText("Welcome " + user.getUsername());

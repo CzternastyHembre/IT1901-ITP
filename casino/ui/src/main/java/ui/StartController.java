@@ -6,17 +6,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import ui.MenuItem.MainMenu;
 
 /**
  * Controller for the Start.fxml
  */
 
-public class StartController {
+public class StartController extends MainMenu {
   @FXML
   private Button createUserButton;
   @FXML
@@ -25,6 +25,11 @@ public class StartController {
   private MenuItem exit;
   private Stage stage;
   private Scene scene;
+  private LoginController loginController;
+
+  public LoginController getLoginController() {
+    return loginController;
+  }
 
   /**
    * Button for the log in scene. Switches scene to the log in.
@@ -36,7 +41,7 @@ public class StartController {
   public void log_in_scene(ActionEvent actionEvent) throws IOException {
     FXMLLoader loader = new FXMLLoader(
             Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
-    loader.setController(new LogInController());
+    loginController = new LoginController();
     loadView(actionEvent, loader);
   }
 
@@ -50,19 +55,16 @@ public class StartController {
   public void create_user_scene(ActionEvent actionEvent) throws IOException {
     FXMLLoader loader = new FXMLLoader(
             Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
-    loader.setController(new CreateUserController());
+    loginController = new CreateUserController();
     loadView(actionEvent, loader);
   }
 
   private void loadView(ActionEvent actionEvent, FXMLLoader loader) throws IOException {
+    loader.setController(loginController);
     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     scene = new Scene(loader.load());
     stage.setScene(scene);
     stage.show();
   }
 
-  @FXML
-  public void exit(ActionEvent actionEvent) {
-    System.exit(0);
-  }
 }

@@ -15,10 +15,6 @@ import user.User;
 public class SlotsController extends SlotsDisplay {
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
-  public SlotsController(User user) {
-    super(user);
-  }
-
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     super.slotMachine = new Slots(user);

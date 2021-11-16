@@ -50,7 +50,7 @@ public class RouletteController extends CasinoMenu {
   @FXML MenuItem lobby;
   @FXML MenuItem exit;
 
-  private final Roulette rouletteGame;
+  private Roulette rouletteGame;
   private Label rolledNumberLabel = new Label();
   private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
   private List<Pane> chipList = new ArrayList<>();
@@ -74,13 +74,13 @@ public class RouletteController extends CasinoMenu {
    *
    */
 
-  public RouletteController(User user) {
-    super(user);
-    rouletteGame = new Roulette(user);
+  public RouletteController() {
   }
+
 
   @FXML
   public void initialize() {
+    rouletteGame = new Roulette(user);
     List<Label> labelList = new ArrayList<>(Arrays.asList(
             moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
             textLabel1, textLabel2, rolledNumberLabel));

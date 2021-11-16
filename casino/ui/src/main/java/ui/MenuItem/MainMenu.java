@@ -12,7 +12,6 @@ public abstract class MainMenu {
     @FXML
     protected FXMLLoader loader = new FXMLLoader();
 
-
     @FXML
     public void exit(ActionEvent actionEvent) {
         System.exit(0);
