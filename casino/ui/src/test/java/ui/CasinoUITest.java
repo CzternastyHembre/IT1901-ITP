@@ -1,15 +1,12 @@
 package ui;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testfx.framework.junit5.ApplicationTest;
 import savehandler.UserSaveHandler;
 import user.User;
@@ -18,43 +15,43 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CasinoUITest extends ApplicationTest {
 
-    private StartController controller;
-    private String userTest = "UserTest";
-    private RouletteController rouletteController;
-    private User user = new User("test", 100);
+    private StartController starController = new StartController();
+
+
 
     @Override
     public void start(final Stage stage) throws Exception{
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("StartTest.fxml"));
-        final Parent root = loader.load();
-        this.controller = loader.getController();
-        stage.setScene(new Scene(root));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+        loader.setController(starController);
+        stage.setScene(new Scene(loader.load()));
         stage.show();
     }
-
 
     @Test
     public void checkNewUser() throws IOException {
         clickOn("#createUserButton");
-        clickOn("#usernameField").write(userTest);
-        clickOn("#create");
-        assertEquals(userTest, UserSaveHandler.getActiveUser().getUsername());
+        clickOn("#usernameField").write("UserTest");
+        clickOn("#submit");
+        assertEquals("UserTest", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
-    public void logInUser() {
+    public void logInUser() throws IOException, InterruptedException {
+        User user = new User("LogTest", 500);
+        RestModel.createUser(user);
         clickOn("#logInButton");
-        clickOn("#logInField").write("test");
-        clickOn("#logIn");
-        assertEquals("test", user.getUsername());
+        clickOn("#usernameField").write("LogTest");
+        clickOn("#submit");
+        assertEquals("LogTest", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
-    public void moveAround() throws IOException {
-        UserSaveHandler.createUser(user);
+    public void moveAround() throws IOException, InterruptedException {
+        User user = new User("moveAroundTest", 500);
+        RestModel.createUser(user);
         clickOn("#logInButton");
-        clickOn("#logInField").write("test");
-        clickOn("#logIn");
+        clickOn("#usernameField").write("moveAroundTest");
+        clickOn("#submit");
         clickOn("#roulette");
         clickOn("#menyButton");
         clickOn("#lobby");
@@ -62,14 +59,14 @@ public class CasinoUITest extends ApplicationTest {
         clickOn("#mainMenu");
     }
     @Test
-    public void addMoneyTest() throws IOException {
-        UserSaveHandler.createUser(new User("addMoneyTest", 1000));
+    public void addMoneyTest() throws IOException, InterruptedException {
+        RestModel.createUser(new User("addMoneyTest", 1000));
         clickOn("#logInButton");
-        clickOn("#logInField").write("addMoneyTest");
-        clickOn("#logIn");
+        clickOn("#usernameField").write("addMoneyTest");
+        clickOn("#submit");
         clickOn("#addChips");
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
-        assertEquals(2000, Objects.requireNonNull(UserSaveHandler.getUser("addMoneyTest")).getBalance());
+        assertEquals(2000, RestModel.getUser("addMoneyTest").getBalance());
     }
 }

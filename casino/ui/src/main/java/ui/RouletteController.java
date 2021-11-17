@@ -7,16 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.animation.RotateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -25,7 +20,6 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import roulette.Guess;
 import roulette.ListGuess;
@@ -33,16 +27,16 @@ import roulette.NumberGuess;
 import roulette.PatternGuess;
 import roulette.Roulette;
 import savehandler.UserSaveHandler;
+import ui.MenuItem.CasinoMenu;
 import user.User;
 
 /**
  * Controller for the roulette game.
  */
 
-public class RouletteController {
+public class RouletteController extends CasinoMenu {
 
   @FXML Pane chipFolder;
-  @FXML Pane anchorPane;
   @FXML Pane rouletteBoardPane;
   @FXML Pane controllsFolder;
   @FXML Pane gridPane;
@@ -55,16 +49,15 @@ public class RouletteController {
   @FXML MenuItem mainMenu;
   @FXML MenuItem lobby;
   @FXML MenuItem exit;
-  @FXML FXMLLoader loader = new FXMLLoader();
 
-  Label rolledNumberLabel = new Label();
   private Roulette rouletteGame;
-  private User user;
+  private Label rolledNumberLabel = new Label();
   private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
-  
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+
   /*
    * The number sequense on an European rouletteWheel.
    */
@@ -81,24 +74,27 @@ public class RouletteController {
    *
    */
 
+  public RouletteController() {
+  }
+
+
   @FXML
-  public void initialize() throws IOException {
+  public void initialize() {
+    rouletteGame = new Roulette(user);
     List<Label> labelList = new ArrayList<>(Arrays.asList(
             moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
             textLabel1, textLabel2, rolledNumberLabel));
-    user = UserSaveHandler.getActiveUser();
-    rouletteGame = new Roulette(user);
     updateUserLables();
     nameLabel.setText(user.getUsername());
 
     int rouletteRows = 5;
-    int rouletteColums = 14;
-    double tileWidth = rouletteBoardPane.getPrefWidth() / rouletteColums;
+    int rouletteColumns = 14;
+    double tileWidth = rouletteBoardPane.getPrefWidth() / rouletteColumns;
     double tileHeight = rouletteBoardPane.getPrefHeight() / rouletteRows;
 
     // Adding all the "numberTiles" the tiles that have a single number to bet on
     for (int y = 0; y < rouletteRows - 2; y++) {
-      for (int x = 0; x < rouletteColums - 1; x++) {
+      for (int x = 0; x < rouletteColumns - 1; x++) {
         Pane tile = new Pane();
         Label tileLabel = new Label();
         int number = (x - 1) * 3 + (3 - y);
@@ -129,7 +125,7 @@ public class RouletteController {
     for (int y = 0; y < 3; y++) { // The rightmost Column
       Pane tile = new Pane();
       tile.setPrefSize(tileWidth, tileHeight);
-      tile.setTranslateX(tileWidth * (rouletteColums - 1));
+      tile.setTranslateX(tileWidth * (rouletteColumns - 1));
       tile.setTranslateY(tileHeight * y);
       Label tileLabel = new Label();
       tileLabel.setText("Row " + (y + 1));
@@ -263,7 +259,7 @@ public class RouletteController {
   @FXML
   public void run() throws IOException {
 
-    UserSaveHandler.updateUser(user);
+    userSaveHandler.updateUser(user);
     rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();
@@ -383,7 +379,7 @@ public class RouletteController {
   }
 
   /**
-   * Creates a {@Link NumberGuess} add calls the method {@code addGuess}.
+   * Creates a {@link NumberGuess} add calls the method {@code addGuess}.
    *
    * @param tile creates the {@link NumberGuess} when clicked on.
    * @param number creates the {@link NumberGuess} based on the number.
@@ -578,53 +574,6 @@ public class RouletteController {
     moneyLabel.setText("" + user.getBalance());
   }
 
-  /**
-   * Sends user back to main menu view.
-   *
-   * @param actionEvent onClick, run this method
-   *
-   * @throws IOException loader.load() can throw an exception.
-   */
-  @FXML
-  public void backToMainMenu(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(getClass().getResource("Start.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
-
-  @FXML
-  public void exit(ActionEvent actionEvent) {
-    System.exit(0);
-  }
-
-  /**
-   * Sends user back to lobby view.
-   *
-   * @param actionEvent onClick, run this method.
-   *
-   * @throws IOException loader.load() can throw exception.
-   */
-
-  @FXML
-  public void backToLobby(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(getClass().getResource("selectGameView.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
 
   public Roulette getRouletteGame() {
     return rouletteGame;

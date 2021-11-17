@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import savehandler.UserSaveHandler;
 import slots.Slots;
+import user.User;
 
 
 /**
@@ -12,14 +13,11 @@ import slots.Slots;
  *
  */
 public class SlotsController extends SlotsDisplay {
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    try {
-      super.slotMachine = new Slots(UserSaveHandler.getActiveUser());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    super.slotMachine = new Slots(user);
     super.updateStats();
     super.initializeHboxes();
     super.viewAtStart();

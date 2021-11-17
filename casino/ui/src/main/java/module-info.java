@@ -1,10 +1,11 @@
 module ui {
     requires core;
-    requires storage;
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
-
+    requires java.net.http;
+    requires com.google.gson;
 
     opens ui to javafx.graphics, javafx.fxml;
+    opens ui.MenuItem to javafx.fxml, javafx.graphics;
 }
