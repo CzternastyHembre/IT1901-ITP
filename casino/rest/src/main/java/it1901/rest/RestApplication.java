@@ -12,7 +12,7 @@ public class RestApplication {
 
 
 	public static void main(String[] args) {
-		new UserSaveHandler().createDirectory();
+		new UserSaveHandler();
 		SpringApplication.run(RestApplication.class, args);
-	}
+			}
 	}

@@ -27,7 +27,7 @@ public class UserSaveHandler {
   private final Path SAVE_FILE;
 
   public UserSaveHandler(){
-    this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+    this(false);
   }
 
   public UserSaveHandler(boolean isTest){
@@ -36,6 +36,7 @@ public class UserSaveHandler {
     } else {
       this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
     }
+    createDirectory();
   }
 
 
@@ -178,11 +179,6 @@ public class UserSaveHandler {
       }
     }
     updateFile(userList);
-  }
-
-
-  public User getActiveUser() throws IOException {
-    return getUserList().get(0);
   }
 }
 

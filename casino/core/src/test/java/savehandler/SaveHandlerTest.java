@@ -48,22 +48,4 @@ public class SaveHandlerTest {
         userSaveHandler.createUser(user);
         assertEquals(user.toString(), Objects.requireNonNull(userSaveHandler.getUser("karen")).toString());
     }
-
-    @Test
-    public void activeUserTest() throws IOException {
-        User activeUser = new User("activeUser", 100);
-        User nonActiveUser = new User("nonActive", 500);
-        userSaveHandler.createUser(activeUser);
-        userSaveHandler.createUser(nonActiveUser);
-        userSaveHandler.setActive(activeUser);
-        assertEquals(activeUser.toString(), userSaveHandler.getActiveUser().toString());
-    }
-
-    @Test
-    public void updateUserTest() throws IOException {
-        User updatedUser = new User("updatedUser", 1000);
-        userSaveHandler.createUser(updatedUser);
-        userSaveHandler.updateUser(updatedUser);
-        assertEquals(updatedUser.toString(), userSaveHandler.getActiveUser().toString());
-    }
 }
