@@ -26,6 +26,11 @@ public class RouletteUITest extends ApplicationTest {
         stage.show();
     }
 
+    @AfterAll
+    static void afterTests(){
+        UserSaveHandler.cleanUserList();
+    }
+
     @Test
     void run() {
         clickOn("#selectChip1");

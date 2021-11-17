@@ -38,6 +38,7 @@ public class RestModel {
         return user;
     }
 
+
     public static void setActive(User user) throws IOException, InterruptedException {
         String payload = gson.toJson(user);
         String endpoint = baseUri + "/users/set-active";

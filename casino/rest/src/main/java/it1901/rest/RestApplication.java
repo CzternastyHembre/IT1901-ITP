@@ -7,7 +7,6 @@ import savehandler.UserSaveHandler;
 import java.io.IOException;
 
 @SpringBootApplication
-
 public class RestApplication {
 
 

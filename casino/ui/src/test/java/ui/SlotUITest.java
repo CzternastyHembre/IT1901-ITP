@@ -6,8 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import savehandler.UserSaveHandler;
 import user.User;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,6 +26,7 @@ public class SlotUITest extends ApplicationTest{
         stage.setScene(new Scene(root));
         stage.show();
     }
+
 
 
     @Test
