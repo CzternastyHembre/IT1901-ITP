@@ -45,11 +45,6 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   @FXML
   private MenuItem lobby;
   @FXML
-  FXMLLoader loader = new FXMLLoader();
-  @FXML
-  AnchorPane anchorPane;
-
-  @FXML
   private Button spinButton;
 
   @FXML
