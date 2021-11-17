@@ -36,11 +36,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EnableWebMvc
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 public class EndpointTest {
+    private UserSaveHandler userSaveHandler = new UserSaveHandler(true);
+
 
 
     @AfterEach
     public void cleanUserList(){
-        UserSaveHandler.cleanUserList();
+        userSaveHandler.cleanUserList();
     }
 
 

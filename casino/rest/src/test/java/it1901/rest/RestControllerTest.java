@@ -27,24 +27,20 @@ public class RestControllerTest {
     public static final String baseUri = "http://localhost:8080";
     public final Gson gson = new Gson();
     private RestController restController = new RestController();
+    private UserSaveHandler userSaveHandler = new UserSaveHandler(true);
 
-
-    @BeforeEach
-    public void cleanUserList(){
-        UserSaveHandler.changeToTestPath();
-    }
 
     @AfterEach
     public void cleanListAfterTest(){
-        UserSaveHandler.cleanUserList();
+        userSaveHandler.cleanUserList();
     }
 
     @Test
     public void canCreateUser() {
         try {
-            User testUser = new User("testUser", 500);
+            User testUser = new User("endPointTestUser", 500);
             restController.addUser(testUser);
-            assertNotEquals(UserSaveHandler.getUserList(), null);
+            assertNotEquals(userSaveHandler.getUserList(), null);
         } catch (IOException e) {
             fail();
         }

@@ -2,7 +2,7 @@ package savehandler;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import user.User;
 import java.io.IOException;
 import java.util.ArrayList;
