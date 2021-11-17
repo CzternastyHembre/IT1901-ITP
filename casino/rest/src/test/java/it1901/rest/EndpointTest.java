@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(classes = RestController.class)
 @AutoConfigureMockMvc
-@AutoConfigureRestDocs
+@AutoConfigureRestDocs(outputDir = "src/main/asciidoc")
 @EnableWebMvc
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 public class EndpointTest {
