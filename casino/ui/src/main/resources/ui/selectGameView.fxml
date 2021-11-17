@@ -10,25 +10,19 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="roulette" alignment="CENTER" layoutX="35.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadRoulette" text="Roulette">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0" />
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Pane layoutX="294.0" layoutY="194.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="294.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="194.0">
-         <children>
-            <Button fx:id="slots" layoutX="-69.0" layoutY="-22.0" mnemonicParsing="false" onAction="#loadSlots" prefHeight="57.0" prefWidth="112.0" text="Slots">
+            <Button fx:id="addChips" layoutX="409.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="addChips" layoutX="102.0" layoutY="-22.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
+            <Button fx:id="slots" layoutX="244.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadSlots" prefHeight="57.0" prefWidth="112.0" text="Slots">
                <font>
                   <Font size="30.0" />
                </font>
