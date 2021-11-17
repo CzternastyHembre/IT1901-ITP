@@ -98,11 +98,34 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
-                <!-- Default configuration for running -->
-                <!-- Usage: mvn javafx:run -->
                 <configuration>
-                    <!-- syntax: module-name/full-app-class-name -->
-                    <mainClass>ui/ui.App</mainClass>
+                    <options>
+                        <option>--enable-preview</option>
+                    </options>
+                    <mainClass>ui.App</mainClass>
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <noManPages>true</noManPages>
+                    <launcher>casino</launcher>
+                    <jlinkImageName>casino</jlinkImageName>
+                    <jlinkZipName>casino</jlinkZipName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <name>CasinoFX</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>it1901</vendor>
+                    <destination>target/dist</destination>
+                    <module>ui/ui.App</module>
+                    <runtimeImage>target/casino</runtimeImage>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
                 </configuration>
             </plugin>
             <!-- Configure jacoco code coverage -->
@@ -155,6 +178,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 </project>

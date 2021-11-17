@@ -16,6 +16,7 @@ public class RouletteUITest extends ApplicationTest {
 
     private RouletteController controller;
 
+
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("RouletteTest.fxml"));

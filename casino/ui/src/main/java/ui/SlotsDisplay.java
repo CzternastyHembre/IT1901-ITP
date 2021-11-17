@@ -83,6 +83,7 @@ public abstract class SlotsDisplay implements Initializable {
   private ToggleButton keepBetButton;
 
   private final List<HBox> hboxesList = new ArrayList<>();
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
   protected void initializeHboxes() {
     hboxesList.add(slotHbox1);
@@ -114,7 +115,7 @@ public abstract class SlotsDisplay implements Initializable {
 
 
   private void updateUserState() throws IOException {
-    UserSaveHandler.updateUser(slotMachine.getUser());
+    userSaveHandler.updateUser(slotMachine.getUser());
   }
 
   /**

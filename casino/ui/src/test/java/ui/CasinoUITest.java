@@ -16,46 +16,41 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CasinoUITest extends ApplicationTest {
 
-    private StartController controller;
-    private String userTest = "UserTest";
-    private RouletteController rouletteController;
     private User user = new User("test", 100);
+    private final UserSaveHandler userSaveHandler = new UserSaveHandler(true);
+
+
 
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("StartTest.fxml"));
         final Parent root = loader.load();
-        this.controller = loader.getController();
+        StartController controller = loader.getController();
         stage.setScene(new Scene(root));
         stage.show();
-    }
-
-
-    @BeforeAll
-    static void setUp(){
-        UserSaveHandler.changeToTestPath();
     }
 
     @Test
     public void checkNewUser() throws IOException {
         clickOn("#createUserButton");
-        clickOn("#usernameField").write("newUserTest");
+        clickOn("#usernameField").write("UserTest");
         clickOn("#create");
-        assertEquals("Logtest", UserSaveHandler.getActiveUser().getUsername());
+        assertEquals("UserTest", userSaveHandler.getActiveUser().getUsername());
     }
 
     @Test
     public void logInUser() throws IOException {
-        UserSaveHandler.createUser(new User("Logtest", 500));
+        User user = new User("LogTest", 500);
+        userSaveHandler.createUser(user);
         clickOn("#logInButton");
-        clickOn("#logInField").write("Logtest");
+        clickOn("#logInField").write("LogTest");
         clickOn("#logIn");
-        assertEquals("Logtest", UserSaveHandler.getActiveUser().getUsername());
+        assertEquals("LogTest", user.getUsername());
     }
 
     @Test
     public void moveAround() throws IOException {
-        UserSaveHandler.createUser(user);
+        userSaveHandler.createUser(user);
         clickOn("#logInButton");
         clickOn("#logInField").write("test");
         clickOn("#logIn");
@@ -67,13 +62,13 @@ public class CasinoUITest extends ApplicationTest {
     }
     @Test
     public void addMoneyTest() throws IOException {
-        UserSaveHandler.createUser(new User("addMoneyTest", 1000));
+        userSaveHandler.createUser(new User("addMoneyTest", 1000));
         clickOn("#logInButton");
         clickOn("#logInField").write("addMoneyTest");
         clickOn("#logIn");
         clickOn("#addChips");
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
-        assertEquals(2000, Objects.requireNonNull(UserSaveHandler.getUser("addMoneyTest")).getBalance());
+        assertEquals(2000, Objects.requireNonNull(userSaveHandler.getUser("addMoneyTest")).getBalance());
     }
 }

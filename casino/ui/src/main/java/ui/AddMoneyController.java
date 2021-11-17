@@ -42,10 +42,11 @@ public class AddMoneyController {
   @FXML
   private Label nameLabel;
   private User user;
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
   @FXML
   public void initialize() throws IOException {
-    user = UserSaveHandler.getActiveUser();
+    user = userSaveHandler.getActiveUser();
     nameLabel.setText("Welcome " + user.getUsername());
   }
 
@@ -57,7 +58,7 @@ public class AddMoneyController {
         errorLabel.setText("You can only add positive numbers");
       }
       user.addMoney(amount);
-      UserSaveHandler.updateUser(user);
+      userSaveHandler.updateUser(user);
       errorLabel.setText("");
       responseLabel.setText(amount + " has been added to your account!");
 

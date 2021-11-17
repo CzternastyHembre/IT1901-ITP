@@ -11,10 +11,18 @@ import java.util.List;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
+    private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+
 
     @GetMapping("/users")
     public List<User> getUserList() throws IOException {
-        return UserSaveHandler.getUserList();
+        return userSaveHandler.getUserList();
+    }
+
+
+    @GetMapping("/users/{Username}")
+    public User getUser(@PathVariable("Username") String Username) throws IOException {
+        return userSaveHandler.getUser(Username);
     }
 
     @GetMapping("/users/{username}")
@@ -24,14 +32,14 @@ public class RestController {
 
     @PostMapping("/users/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public User addUser (@RequestBody User newUser) throws IOException {
-        UserSaveHandler.createUser(newUser);
-        return newUser;
+    public void addUser (@RequestBody User newUser) throws IOException {
+        userSaveHandler.createUser(newUser);
     }
 
     @PostMapping("/users/set-active")
-    public User activeUser(@RequestBody User newUser) throws IOException {
-        UserSaveHandler.setActive(newUser);
-        return newUser;
+    public void  activeUser(@RequestBody User newUser) throws IOException {
+        userSaveHandler.setActive(newUser);
     }
+
+
 }

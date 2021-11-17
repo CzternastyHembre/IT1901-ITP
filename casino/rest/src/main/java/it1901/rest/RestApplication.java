@@ -9,8 +9,10 @@ import java.io.IOException;
 @SpringBootApplication
 public class RestApplication {
 
+
+
 	public static void main(String[] args) {
-		UserSaveHandler.createDirectory();
+		new UserSaveHandler().createDirectory();
 		SpringApplication.run(RestApplication.class, args);
 	}
 	}

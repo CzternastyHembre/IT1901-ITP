@@ -37,6 +37,8 @@ public class LogInController {
   @FXML
   Label errorLabel;
 
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+
   /**
    * Button to log in with the user written in the textfield.
    * Throws an exception if the user does not exist.
@@ -45,7 +47,7 @@ public class LogInController {
    */
 
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
-    if (UserSaveHandler.getUser(getUsername()) == null) {
+    if (userSaveHandler.getUser(getUsername()) == null) {
       errorLabel.setText("Could not find user, please try again");
       throw new IllegalArgumentException("This user does not exist");
     }

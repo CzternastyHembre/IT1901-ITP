@@ -64,6 +64,7 @@ public class RouletteController {
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
   
   /*
    * The number sequense on an European rouletteWheel.
@@ -86,19 +87,19 @@ public class RouletteController {
     List<Label> labelList = new ArrayList<>(Arrays.asList(
             moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
             textLabel1, textLabel2, rolledNumberLabel));
-    user = UserSaveHandler.getActiveUser();
+    user = userSaveHandler.getActiveUser();
     rouletteGame = new Roulette(user);
     updateUserLables();
     nameLabel.setText(user.getUsername());
 
     int rouletteRows = 5;
-    int rouletteColums = 14;
-    double tileWidth = rouletteBoardPane.getPrefWidth() / rouletteColums;
+    int rouletteColumns = 14;
+    double tileWidth = rouletteBoardPane.getPrefWidth() / rouletteColumns;
     double tileHeight = rouletteBoardPane.getPrefHeight() / rouletteRows;
 
     // Adding all the "numberTiles" the tiles that have a single number to bet on
     for (int y = 0; y < rouletteRows - 2; y++) {
-      for (int x = 0; x < rouletteColums - 1; x++) {
+      for (int x = 0; x < rouletteColumns - 1; x++) {
         Pane tile = new Pane();
         Label tileLabel = new Label();
         int number = (x - 1) * 3 + (3 - y);
@@ -129,7 +130,7 @@ public class RouletteController {
     for (int y = 0; y < 3; y++) { // The rightmost Column
       Pane tile = new Pane();
       tile.setPrefSize(tileWidth, tileHeight);
-      tile.setTranslateX(tileWidth * (rouletteColums - 1));
+      tile.setTranslateX(tileWidth * (rouletteColumns - 1));
       tile.setTranslateY(tileHeight * y);
       Label tileLabel = new Label();
       tileLabel.setText("Row " + (y + 1));
@@ -263,7 +264,7 @@ public class RouletteController {
   @FXML
   public void run() throws IOException {
 
-    UserSaveHandler.updateUser(user);
+    userSaveHandler.updateUser(user);
     rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();
@@ -383,7 +384,7 @@ public class RouletteController {
   }
 
   /**
-   * Creates a {@Link NumberGuess} add calls the method {@code addGuess}.
+   * Creates a {@link NumberGuess} add calls the method {@code addGuess}.
    *
    * @param tile creates the {@link NumberGuess} when clicked on.
    * @param number creates the {@link NumberGuess} based on the number.
