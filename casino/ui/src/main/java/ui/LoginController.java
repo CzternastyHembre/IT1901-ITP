@@ -50,7 +50,8 @@ public class LoginController extends LoginMenu implements Initializable {
   }
 
   protected void openView(ActionEvent actionEvent, User user) throws IOException {
-    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("selectGameView.fxml")));
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(App.class.getResource("selectGameView.fxml"));
     nextController = new SelectGameController();
     nextController.setUser(user);
     loader.setController(nextController);

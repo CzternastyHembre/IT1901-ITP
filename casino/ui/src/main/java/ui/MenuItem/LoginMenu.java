@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.App;
 import ui.StartController;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public abstract class LoginMenu extends MainMenu {
     protected void backToMainMenu(ActionEvent actionEvent) throws IOException {
         // Sets location on the loader by getting the class and then the view file from
         // resources
-        loader.setLocation(getClass().getResource("Start.fxml"));
+        loader.setLocation(App.class.getResource("Start.fxml"));
         loader.setController(new StartController());
         Parent newGame = loader.load(); // Create a parent class of the loader.load()
         Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object

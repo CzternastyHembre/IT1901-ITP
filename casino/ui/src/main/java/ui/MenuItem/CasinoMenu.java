@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui.App;
 import ui.SelectGameController;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public abstract class CasinoMenu extends LobbyMenu {
     protected void backToLobby() throws IOException {
         // Sets location on the loader by getting the class and then the view file from
         // resources
-        loader.setLocation(getClass().getResource("selectGameView.fxml"));
+        loader.setLocation(App.class.getResource("selectGameView.fxml"));
         SelectGameController selectGameController = new SelectGameController();
         selectGameController.setUser(user);
         loader.setController(selectGameController);
