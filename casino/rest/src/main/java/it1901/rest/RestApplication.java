@@ -12,7 +12,6 @@ public class RestApplication {
 
 
 	public static void main(String[] args) {
-		new UserSaveHandler();
 		SpringApplication.run(RestApplication.class, args);
 			}
 	}

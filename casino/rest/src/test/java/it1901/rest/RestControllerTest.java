@@ -37,13 +37,9 @@ public class RestControllerTest {
 
     @Test
     public void canCreateUser() {
-        try {
-            User testUser = new User("endPointTestUser", 500);
-            restController.addUser(testUser);
-            assertNotEquals(userSaveHandler.getUserList(), null);
-        } catch (IOException e) {
-            fail();
-        }
+        User testUser = new User("endPointTestUser", 500);
+        restController.addUser(testUser);
+        assertNotEquals(userSaveHandler.getUserList(), null);
     }
 
     

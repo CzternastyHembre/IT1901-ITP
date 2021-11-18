@@ -1,6 +1,7 @@
 package it1901.rest;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import savehandler.*;
@@ -11,31 +12,36 @@ import java.util.List;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-    private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+    @Autowired
+    private final UserModelService userModelService = new UserModelService();
+
+    private void autosaveUserList(){
+        userModelService.autosaveUserList();
+    }
 
 
     @GetMapping("/users")
-    public List<User> getUserList() throws IOException {
-        return userSaveHandler.getUserList();
+    public List<User> getUserList() {
+        return userModelService.getUserList();
     }
 
 
     @GetMapping("/users/{Username}")
-    public User getUser(@PathVariable("Username") String Username) throws IOException {
-        return userSaveHandler.getUser(Username);
+    public User getUser(@PathVariable("Username") String Username){
+        return userModelService.getUser(Username);
     }
 
 
     @PostMapping("/users/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser (@RequestBody User newUser) throws IOException {
-        userSaveHandler.createUser(newUser);
+    public void addUser (@RequestBody User newUser){
+        userModelService.createUser(newUser);
     }
 
-    @PostMapping("/users/set-active")
-    public void  activeUser(@RequestBody User newUser) throws IOException {
-        userSaveHandler.setActive(newUser);
+    @PostMapping("/users/{Username}/update")
+    public void updateUser(@PathVariable("Username") String Username){
+        userModelService.updateUser(getUser(Username));
+        System.out.println(getUser(Username));
+        autosaveUserList();
     }
-
-
 }

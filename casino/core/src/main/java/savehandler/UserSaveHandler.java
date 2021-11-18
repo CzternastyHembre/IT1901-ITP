@@ -26,11 +26,11 @@ public class UserSaveHandler {
    */
   private final Path SAVE_FILE;
 
-  public UserSaveHandler(){
+  public UserSaveHandler() {
     this(false);
   }
 
-  public UserSaveHandler(boolean isTest){
+  public UserSaveHandler(boolean isTest) {
     if (isTest) {
       this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "TestData", "users.json");
     } else {
@@ -40,19 +40,18 @@ public class UserSaveHandler {
   }
 
 
-
-
   public void createDirectory() {
     String path = String.valueOf(SAVE_FILE);
     path = path.replaceAll("users.json", "");
-    if (Files.exists(Path.of(path))) {return;}
+    if (Files.exists(Path.of(path))) {
+      return;
+    }
     try {
       Files.createDirectory(Path.of(path));
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-
 
 
   /**
@@ -67,13 +66,14 @@ public class UserSaveHandler {
       e.printStackTrace();
     }
   }
+
   /**
    * Gets the existing userList and add a user to this. Updates the file with the new user.
    *
    * @param user the user that is being created.
    */
 
-  public void createUser(User user) throws IOException {
+  public void createUser(User user) {
     List<User> userList = getUserList();
     if (userList.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
       throw new IllegalArgumentException("Username is taken");
@@ -83,16 +83,16 @@ public class UserSaveHandler {
   }
 
 
-  private void updateFile(List<User> userList) {
+  public void updateFile(List<User> userList) {
     try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
       Gson gson = new Gson();
-      System.out.println(SAVE_FILE);
       String jsonSaveString = gson.toJson(userList);
       fileWriter.append(jsonSaveString);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
+
   /**
    * Checks if the json file is an empty file.
    *
@@ -105,30 +105,36 @@ public class UserSaveHandler {
   }
 
   /**
-  * Reads the file SAVE_FILE and return an arrayList of objects user.
-  *
-  * @return userList is the arrayList of the object user.
+   * Reads the file SAVE_FILE and return an arrayList of objects user.
+   *
+   * @return userList is the arrayList of the object user.
    */
 
-  public List<User> getUserList() throws IOException {
-    if(isEmpty()) {
+  public List<User> getUserList() {
+
+    if (isEmpty()) {
       createDirectory();
       try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
         fileWriter.write("");
-        fileWriter.close();
         return new ArrayList<>();
-        }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
-      Scanner sc = new Scanner(new File(String.valueOf(SAVE_FILE)), StandardCharsets.UTF_8);
+    }
+    try (Scanner sc = new Scanner(new File(String.valueOf(SAVE_FILE)), StandardCharsets.UTF_8)) {
+
       String userString = sc.nextLine();
       Gson gson = new Gson();
       ArrayList<User> userList;
       Type userListType = new TypeToken<ArrayList<User>>() {
       }.getType();
       userList = gson.fromJson(userString, userListType);
-      sc.close();
       return userList;
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+    return new ArrayList<>();
+  }
 
   /**
    * Checks if there exist a user with the given username.
@@ -137,7 +143,7 @@ public class UserSaveHandler {
    * @return null or the object user with the username.
    */
 
-  public User getUser(String username) throws IOException {
+  public User getUser(String username) {
 
     for (User user : Objects.requireNonNull(getUserList())) {
       if (user.getUsername().equals(username)) {
@@ -164,13 +170,14 @@ public class UserSaveHandler {
     userList.add(0, user);
     updateFile(userList);
   }
+
   /**
    * Updates a users balance, used if users wins or loses money.
    *
    * @param user is the user that is being updated.
    */
 
-  public void updateUser(User user) throws IOException {
+  public void updateUser(User user) {
     List<User> userList = getUserList();
     for (int i = 0; i < userList.size(); i++) {
       if (userList.get(i).getUsername().equals(user.getUsername())) {

@@ -56,6 +56,7 @@ public class RouletteController extends CasinoMenu {
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
+  private final RestModel restModel = new RestModel();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
   /*
@@ -257,9 +258,10 @@ public class RouletteController extends CasinoMenu {
    */
 
   @FXML
-  public void run() throws IOException {
-
-    userSaveHandler.updateUser(user);
+  public void run() throws IOException, InterruptedException {
+    System.out.println(user);
+    RestModel.updateUser(user);
+    System.out.println(user);
     rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();

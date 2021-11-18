@@ -24,8 +24,7 @@ public class SaveHandlerTest {
 
     //Makes the arrays strings to check if equal, the hash does not allow to be compared.
     @Test
-    public void getUsersTest() throws IOException {
-        userSaveHandler.cleanUserList();
+    public void getUsersTest(){
         User getUser = new User("bob", 1000);
         User get2User = new User("alice", 1000);
         userSaveHandler.createUser(getUser);
@@ -37,13 +36,13 @@ public class SaveHandlerTest {
     }
 
     @Test
-    public void resetUserList() throws IOException {
+    public void resetUserList(){
         userSaveHandler.cleanUserList();
         assertEquals(0, userSaveHandler.getUserList().size() );
     }
 
     @Test
-    public void getUserTest() throws IOException {
+    public void getUserTest(){
         User user = new User("karen", 500);
         userSaveHandler.createUser(user);
         assertEquals(user.toString(), Objects.requireNonNull(userSaveHandler.getUser("karen")).toString());
