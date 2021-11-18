@@ -259,9 +259,7 @@ public class RouletteController extends CasinoMenu {
 
   @FXML
   public void run() throws IOException, InterruptedException {
-    System.out.println(user);
     RestModel.updateUser(user);
-    System.out.println(user);
     rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();

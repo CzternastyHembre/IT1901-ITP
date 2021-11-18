@@ -12,8 +12,11 @@ import java.util.List;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
+    private UserSaveHandler userSaveHandler = new UserSaveHandler();
+
     @Autowired
-    private final UserModelService userModelService = new UserModelService();
+    private UserModelService userModelService = new UserModelService(userSaveHandler.getUserList());
+
 
     private void autosaveUserList(){
         userModelService.autosaveUserList();
@@ -38,10 +41,9 @@ public class RestController {
         userModelService.createUser(newUser);
     }
 
-    @PostMapping("/users/{Username}/update")
-    public void updateUser(@PathVariable("Username") String Username){
-        userModelService.updateUser(getUser(Username));
-        System.out.println(getUser(Username));
-        autosaveUserList();
+    @PostMapping("/users/update")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateUser(@RequestBody User user){
+        userModelService.updateUser(user);
     }
 }

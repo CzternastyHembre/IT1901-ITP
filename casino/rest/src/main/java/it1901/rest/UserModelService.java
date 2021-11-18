@@ -24,8 +24,7 @@ public class UserModelService {
         this(createDefaultList());
     }
 
-
-    private static List<User> createDefaultList() {
+    public static List<User> createDefaultList() {
         List<User> userList = new ArrayList<>();
         UserSaveHandler userSaveHandler = new UserSaveHandler();
         if (userSaveHandler.getUserList() != null) {
@@ -40,20 +39,19 @@ public class UserModelService {
         return userSaveHandler.getUserList();
     }
 
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void cleanUserList(){
+        userList.clear();
     }
 
 
+
     public void autosaveUserList() {
-            try {
-                userSaveHandler.updateFile(userList);
-                System.out.println(userList.toString());
-            } catch (IllegalStateException e) {
-                System.out.println("Could not autosave" + e);
-            }
+        try {
+            userSaveHandler.updateFile(userList);
+        } catch (IllegalStateException e) {
+            System.out.println("Could not autosave" + e);
         }
+    }
 
     public User getUser(String username) {
         for (User user : Objects.requireNonNull(getUserList())) {
@@ -65,7 +63,11 @@ public class UserModelService {
     }
 
     public void createUser(User user) {
-        userSaveHandler.createUser(user);
+        if (userList.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
+            throw new IllegalArgumentException("Username is taken");
+        }
+        userList.add(0, user);
+        userSaveHandler.updateFile(userList);
     }
 
     public void updateUser(User user) {
