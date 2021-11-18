@@ -25,6 +25,7 @@ public class RestController {
         return userSaveHandler.getUser(Username);
     }
 
+
     @PostMapping("/users/add")
     @ResponseStatus(HttpStatus.CREATED)
     public void addUser (@RequestBody User newUser) throws IOException {

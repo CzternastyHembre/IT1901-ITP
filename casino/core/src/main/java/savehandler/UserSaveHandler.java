@@ -27,7 +27,7 @@ public class UserSaveHandler {
   private final Path SAVE_FILE;
 
   public UserSaveHandler(){
-    this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+    this(false);
   }
 
   public UserSaveHandler(boolean isTest){
@@ -36,6 +36,7 @@ public class UserSaveHandler {
     } else {
       this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
     }
+    createDirectory();
   }
 
 
@@ -85,6 +86,7 @@ public class UserSaveHandler {
   private void updateFile(List<User> userList) {
     try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
       Gson gson = new Gson();
+      System.out.println(SAVE_FILE);
       String jsonSaveString = gson.toJson(userList);
       fileWriter.append(jsonSaveString);
     } catch (Exception e) {
@@ -110,8 +112,8 @@ public class UserSaveHandler {
 
   public List<User> getUserList() throws IOException {
     if(isEmpty()) {
+      createDirectory();
       try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
-
         fileWriter.write("");
         fileWriter.close();
         return new ArrayList<>();
@@ -177,11 +179,6 @@ public class UserSaveHandler {
       }
     }
     updateFile(userList);
-  }
-
-
-  public User getActiveUser() throws IOException {
-    return getUserList().get(0);
   }
 }
 

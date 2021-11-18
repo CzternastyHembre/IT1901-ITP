@@ -1,10 +1,9 @@
 package savehandler;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
-import org.testng.annotations.Test;
 import org.junit.jupiter.api.BeforeEach;
 import user.User;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -21,6 +20,7 @@ public class SaveHandlerTest {
     public void clearUserList(){
         userSaveHandler.cleanUserList();
     }
+
 
     //Makes the arrays strings to check if equal, the hash does not allow to be compared.
     @Test
@@ -47,23 +47,5 @@ public class SaveHandlerTest {
         User user = new User("karen", 500);
         userSaveHandler.createUser(user);
         assertEquals(user.toString(), Objects.requireNonNull(userSaveHandler.getUser("karen")).toString());
-    }
-
-    @Test
-    public void activeUserTest() throws IOException {
-        User activeUser = new User("activeUser", 100);
-        User nonActiveUser = new User("nonActive", 500);
-        userSaveHandler.createUser(activeUser);
-        userSaveHandler.createUser(nonActiveUser);
-        userSaveHandler.setActive(activeUser);
-        assertEquals(activeUser.toString(), userSaveHandler.getActiveUser().toString());
-    }
-
-    @Test
-    public void updateUserTest() throws IOException {
-        User updatedUser = new User("updatedUser", 1000);
-        userSaveHandler.createUser(updatedUser);
-        userSaveHandler.updateUser(updatedUser);
-        assertEquals(updatedUser.toString(), userSaveHandler.getActiveUser().toString());
     }
 }

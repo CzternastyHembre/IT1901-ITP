@@ -1,13 +1,14 @@
 package ui;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import savehandler.UserSaveHandler;
 import user.User;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,12 +19,14 @@ public class SlotUITest extends ApplicationTest{
 
     @Override
     public void start(final Stage stage) throws Exception{
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("SlotsTest.fxml"));
-        final Parent root = loader.load();
-        this.slotsController = loader.getController();
-        stage.setScene(new Scene(root));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("Slots.fxml"));
+        slotsController = new SlotsController();
+        slotsController.setUser(user);
+        loader.setController(slotsController);
+        stage.setScene(new Scene(loader.load()));
         stage.show();
     }
+
 
 
     @Test
@@ -37,7 +40,7 @@ public class SlotUITest extends ApplicationTest{
         var prevSpinsCounter = slotsController.getSpinsCounter().getText();
 
         clickOn("#betField").write("10");
-        clickOn("#spinButton");
+        clickOn("#betButton");
         for (HBox box : slotsController.getHboxesList()){
             assertTrue(box.getChildren().size()!=0);
         }
@@ -58,7 +61,7 @@ public class SlotUITest extends ApplicationTest{
     public void testKeepButton(){
         clickOn("#betField").write("10");
         clickOn("#keepBetButton");
-        clickOn("#spinButton");
+        clickOn("#betButton");
         sleep(4000);
         assertEquals("10", slotsController.getBetField().getText());
     }

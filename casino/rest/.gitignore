@@ -1,5 +1,14 @@
 HELP.md
 target/
+
+curl-request*
+httpie-request*
+reponse-body*
+request-fields*
+request-body*
+
+
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

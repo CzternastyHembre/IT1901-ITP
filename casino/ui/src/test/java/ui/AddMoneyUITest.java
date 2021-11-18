@@ -18,15 +18,16 @@ public class AddMoneyUITest extends ApplicationTest {
 
     @FXML
     TextField amountField;
-    private User user = new User("bob", 1000);
+    private final User user = new User("bob", 1000);
 
 
     @Override
     public void start(final Stage stage) throws Exception{
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("AddMoneyTest.fxml"));
-        final Parent root = loader.load();
-        this.controller = loader.getController();
-        stage.setScene(new Scene(root));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("AddMoney.fxml"));
+        controller = new AddMoneyController();
+        controller.setUser(user);
+        loader.setController(controller);
+        stage.setScene(new Scene(loader.load()));
         stage.show();
     }
 
