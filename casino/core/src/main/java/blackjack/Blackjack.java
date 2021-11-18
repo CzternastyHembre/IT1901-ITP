@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class Blackjack {
 // todo; Bets with decimals.
+//todo; button to start new game
+//todo; on hit that goes too much, automatically stand
+//todo; add field on view for balance
     private double bet;
     private double splitBet;
     private User user;
@@ -19,6 +22,7 @@ public class Blackjack {
     private boolean canSplit;
     private Hand targetHand;
     private boolean hasSplit;
+    private double payout;
 
 
 
@@ -26,12 +30,15 @@ public class Blackjack {
         this.user = user;
     }
 
+
+
     public void startGame(int bet){
         setBet(bet);
         this.dealingDeck = new Deck(13);
 
         this.playersHand1 = new Hand();
         this.playersHand2 = new Hand();
+        this.playersHand2.setActive(false);
         this.playerHands.add(playersHand1);
         this.playerHands.add(playersHand2);
 
@@ -40,6 +47,7 @@ public class Blackjack {
 
         deal();
         setCanSplit();
+        this.targetHand = playersHand1;
     }
 
     /**
@@ -79,18 +87,23 @@ public class Blackjack {
         }
         Card cardToAdd = dealingDeck.popTopCard();
         targetHand.getDeck().add(cardToAdd);
-        int sumOfDeck = deckSum(targetHand);
-        if (sumOfDeck >= 21){
+        int sumOfDeck = sumOfDeck(targetHand);
+        if (sumOfDeck > 21){
             targetHand.setActive(false);
         }
+
     }
 
-    private int deckSum(Deck targetDeck) {
-        return targetDeck.getSumOfDeck();
-    }
 
-    public void stand(Hand targetHand){
+    public void stand(Hand targetHand){ // todo; does this need targethand passed in
         targetHand.setActive(false);
+        if (isPlayerDone()){
+            dealerPlay();
+            return;
+        }
+        if (hasSplit){
+            toggleTargetHand();
+        }
     }
 
     public void split() {
@@ -105,20 +118,30 @@ public class Blackjack {
 
     public double calculateWinnings(){
         double payout = 0;
-        int hand1Sum = playersHand1.getSumOfDeck();
-        int hand2Sum = playersHand1.getSumOfDeck();
-        int dealerSum = dealersHand.getSumOfDeck();
-        if (!playersHand2.isActive() && !playersHand1.isActive() && !dealersHand.isActive()){
-            if (dealerSum == 21){
-                return payout;
+        int hand1Sum = sumOfDeck(playersHand1);
+        int hand2Sum = sumOfDeck(playersHand2);
+        int dealerSum = sumOfDeck(dealersHand);
+
+        if (dealerSum == 21){
+            return payout;
+        }
+        else if (dealerSum > 21){
+            if (hand1Sum <=21){
+                payout+=bet*2;
             }
+            if (hand2Sum <=21 && hand2Sum !=0){
+                payout+=bet*2;
+            }
+        }
+        else {
             if (hand1Sum<=21 && hand1Sum > dealerSum){
                 payout += bet*2;
             }
-            if (hand2Sum<21 && hand2Sum > dealerSum){
+            if (hand2Sum<21 && hand2Sum > dealerSum && hand2Sum !=0){
                 payout += splitBet*2;
             }
         }
+        this.payout = payout;
         return payout;
     }
 
@@ -182,11 +205,59 @@ public class Blackjack {
     }
 
     public void dealerPlay() {
-        while(dealersHand.getSumOfDeck() < 17){
-            dealersHand.getDeck().add(dealingDeck.popTopCard());
+        if (!(dealersHand.getSumOfDeck() == 21)){
+            while(dealersHand.getSumOfDeck() < 17){
+                dealersHand.getDeck().add(dealingDeck.popTopCard());
+            }
         }
         dealersHand.setActive(false);
         double payout = calculateWinnings();
         user.addMoney(payout);
     }
+
+    public double getPayout() {
+        return payout;
+    }
+
+    public int sumOfDeck(Hand hand){
+        int result = 0;
+        for (Card card : hand.getDeck()){
+            result += card.getCardValue();
+        }
+        return result;
+    }
+
+
+//    public static void main(String[] args) {
+//        User user = new User("Seb", 10000);
+//        Blackjack blackjack = new Blackjack(user);
+//        blackjack.startGame(10);
+//        System.out.println("---Player Hand---");
+//        for (Card card : blackjack.getPlayersHand1().getDeck()){
+//            System.out.println(card.getCardImage());
+//        }
+//        System.out.println(blackjack.getPlayersHand1().getSumOfDeck());
+//        System.out.println("---------");
+//        System.out.println("---Dealers Hand---");
+//        for (Card card : blackjack.getDealersHand().getDeck()){
+//            System.out.println(card.getCardImage());
+//        }
+//        System.out.println(blackjack.getDealersHand().getSumOfDeck());
+//        System.out.println("---------");
+//        System.out.println("---NEXT STAGE: HIT---");
+//        System.out.println("---------");
+//        blackjack.hit();
+//        System.out.println("---Players Hand---");
+//        for (Card card : blackjack.getPlayersHand1().getDeck()){
+//            System.out.println(card.getCardImage());
+//        }
+//        System.out.println(blackjack.getPlayersHand1().getSumOfDeck());
+//        System.out.println("---------");
+//        System.out.println("---Dealers Hand---");
+//        for (Card card : blackjack.getDealersHand().getDeck()){
+//            System.out.println(card.getCardImage());
+//        }
+//
+//    }
+
 }

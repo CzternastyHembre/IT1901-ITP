@@ -55,16 +55,24 @@
          </font>
       </Button>
       <TextField fx:id="betAmount" alignment="CENTER_RIGHT" layoutY="194.0" prefHeight="28.0" prefWidth="68.0" promptText="1" />
-      <Text fill="WHITE" layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn:" wrappingWidth="45.55810546875">
+      <Text fill="WHITE" layoutX="5.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn:" wrappingWidth="45.55810546875">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text fx:id="turnLabel" fill="WHITE" layoutX="4.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game not started" wrappingWidth="117.587890625">
+      <Text fx:id="turnLabel" fill="WHITE" layoutX="5.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game not started" wrappingWidth="117.587890625">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
+      <Text fill="WHITE" layoutX="5.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your total:" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer Total:" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payout:" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result:" />
+      <Text fx:id="playerTotal" fill="WHITE" layoutX="65.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="dealerTotal" fill="WHITE" layoutX="76.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="payout" fill="WHITE" layoutX="53.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="result" fill="WHITE" layoutX="47.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
    </Pane>
    <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="175.0">
       <VBox layoutY="45.0" prefHeight="200.0" prefWidth="350.0">

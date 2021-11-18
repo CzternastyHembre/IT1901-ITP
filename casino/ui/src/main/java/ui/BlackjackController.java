@@ -46,6 +46,11 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     @FXML Button stand;
     @FXML Button bet;
 
+    @FXML Text playerTotal;
+    @FXML Text dealerTotal;
+    @FXML Text payout;
+    @FXML Text result;
+
     @FXML RadioButton radioHand1;
     @FXML RadioButton radioHand2;
 
@@ -86,9 +91,17 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         }
         turnLabel.setText("Player");
         hand2.setDisable(true);
-        blackjack.setTargetHand(blackjack.getPlayerHands().get(0));
+
         showPlayerViewOnStart();
         showDealerViewOnStart();
+        showTextOnStart();
+    }
+
+    private void showTextOnStart() {
+        playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
+        dealerTotal.setText(blackjack.getDealersHand().getDeck().get(1).getCardValue() + " + ?");
+        payout.setVisible(false);
+        result.setVisible(false);
     }
 
 
@@ -102,29 +115,49 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
     public void hit() {
         blackjack.hit();
-        if (!blackjack.getTargetHand().isActive()){
+        if (!blackjack.getTargetHand().isActive() && blackjack.hasSplit()){
             toggleHandPanes();
         }
         updatePlayerViews();
+        if (blackjack.getTargetHand().getSumOfDeck() > 21){
+            hit.setDisable(true);
+        }
+        playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
     }
 
     public void stand() {
+        blackjack.stand(blackjack.getTargetHand());
+        if (blackjack.isPlayerDone()){
+            updateDealerViews();
+            endOfGameView();
+        }
         if (blackjack.hasSplit()) {
             if (!blackjack.isPlayerDone()){
-                blackjack.stand(blackjack.getTargetHand());
-                this.blackjack.toggleTargetHand();
-
                 toggleHandPanes();
+            }
+            else {
                 radioHand1.setDisable(true);
                 radioHand2.setDisable(true);
             }
         }
-        blackjack.dealerPlay();
+    }
+
+    private void endOfGameView() {
+        if (blackjack.getPayout() > 0){
+            result.setText("WIN!");
+        }
+        else {
+            result.setText("LOSS!");
+        }
+        dealerTotal.setText(""+blackjack.getDealersHand().getSumOfDeck());
+        result.setVisible(true);
+        payout.setVisible(true);
+        payout.setText(""+blackjack.getPayout());
     }
 
     private void toggleHandPanes() {
-        var activePane = playerHandPanes.stream().filter(
-                Node::isFocused).collect(Collectors.toList()).get(0);
+        var activePane = playerHandPanes.stream().filter(pane ->
+                !pane.isDisabled()).collect(Collectors.toList()).get(0);
         var disabledPane = playerHandPanes.stream().filter(
                 Node::isDisabled).collect(Collectors.toList()).get(0);
         activePane.setDisable(true);
@@ -162,6 +195,12 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         }
     }
 
+    public void updateDealerViews(){
+        dealerHandHBox.getChildren().clear();
+        for (Card card : blackjack.getDealersHand().getDeck()){
+            dealerHandHBox.getChildren().add(createImageView(card.getCardImage()));
+        }
+    }
 
 
 

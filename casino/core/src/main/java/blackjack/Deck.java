@@ -9,7 +9,6 @@ public class Deck {
 
     private List<Card> deck = new ArrayList<>();
     private final char[] validSuits = new char[] {'S', 'H', 'C', 'D'};
-    private int sumOfDeck = 0;
 
     public Deck() {
         this.deck = new ArrayList<>();
@@ -40,14 +39,17 @@ public class Deck {
         if (this.getDeck().size() == 0) {
             throw new IllegalStateException("Deck is empty");
         }
-        return this.deck.remove(0);
+        Card card = deck.get(0);
+        deck.remove(card);
+        return card;
     }
 
     public int getSumOfDeck() {
+        int sum = 0;
         for (Card card : this.getDeck()) {
-            sumOfDeck+= card.getCardValue();
+            sum += card.getCardValue();
         }
-        return sumOfDeck;
+        return sum;
     }
 
     public Card getLastCard(){
