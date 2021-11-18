@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.MenuItem.LobbyMenu;
@@ -25,6 +26,21 @@ public class SelectGameController extends LobbyMenu {
     stage.setScene(scene);
     stage.show();
   }
+
+  /**
+   * Actionevent when pressing button to load blackjack.
+   * Switches scene to Blackjack.fxml.
+   *
+   * @param actionEvent the actionevent when pressing the button.
+   */
+
+  @FXML
+  private void loadBlackjack(ActionEvent actionEvent) throws IOException {
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("Blackjack.fxml")));
+    nextController = new BlackjackController();
+    loadView(actionEvent, loader);
+  }
+
 
   /**
    * Actionevent when pressing button to load roulette.
