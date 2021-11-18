@@ -10,4 +10,5 @@ module core {
     exports slots;
     exports validators;
     exports savehandler;
+    exports blackjack;
 }
