@@ -17,6 +17,9 @@ public class User {
   }
 
   public User(String username, double balance) {
+    if (balance < 0) {
+      throw new IllegalStateException("Cannot create an user with negative balance");
+    }
     this.balance = balance;
     this.username = username;
   }
