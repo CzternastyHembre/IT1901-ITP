@@ -30,7 +30,6 @@ public class Guess {
   }
 
   /**
-   *
    * Creates a list of numbers from start to end (inclusive).
    *
    * @param amount amount, the amount of money the guess contains.
@@ -39,16 +38,15 @@ public class Guess {
    * @return {@code Guess} containing the list of guesses
    */
 
-    public static Guess listGuess(double amount, int start, int end) {
-      List<Integer> numbers = new ArrayList<>();
-      for (int i = start; i <= end; i++) {
-        numbers.add(i);
-      }
-      return new Guess(amount, numbers);
+  public static Guess listGuess(double amount, int start, int end) {
+    List<Integer> numbers = new ArrayList<>();
+    for (int i = start; i <= end; i++) {
+      numbers.add(i);
+    }
+    return new Guess(amount, numbers);
   }
 
   /**
-   *
    * Creates a list of numbers from start to end (inclusive).
    *
    * @param amount the amount of money the guess contains.
