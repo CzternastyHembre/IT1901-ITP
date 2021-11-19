@@ -23,13 +23,11 @@ This class contains the logic used for the Blackjack game.
 
 ## Roulette
 
-Roulette's logic is divided into five different classes.
+Roulette's logic is divided into two classes.
 
-- Guess.java
-- ListGuess
-- NumberGuess
-- PatternGuess
-- Roulette
+### Guess
+
+### Roulette
 
 ## SaveHandler
 
