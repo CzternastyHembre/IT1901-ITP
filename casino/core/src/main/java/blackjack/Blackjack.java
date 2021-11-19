@@ -50,7 +50,7 @@ public class Blackjack {
      * @param bet is the amount that the user is betting.
      */
 
-    public void setBet(double bet) {
+    private void setBet(double bet) {
         if (bet <= 0 || bet > this.user.getBalance()) {
             throw new IllegalArgumentException("Invalid bet");
         }
@@ -63,14 +63,12 @@ public class Blackjack {
                 && (this.bet * 2) <= user.getBalance();
     }
 
-    public void deal(){
+    private void deal(){
         for (int i = 0; i<2; i++){
             playersHand1.getDeck().add(dealingDeck.popTopCard());
             dealersHand.getDeck().add(dealingDeck.popTopCard());
         }
-        //todo; find way to calculate at beginning
     }
-
 
     public void hit() throws IllegalArgumentException {
         if (!targetHand.isActive()) {
@@ -85,7 +83,6 @@ public class Blackjack {
         }
 
     }
-
 
     public void stand(){
         this.targetHand.setActive(false);
@@ -105,7 +102,7 @@ public class Blackjack {
         hasSplit = true;
     }
 
-    public double calculateWinnings(){
+    private double calculateWinnings(){
         double payout = 0;
         int dealerSum = sumOfDeck(dealersHand);
         if (dealerSum == 21){
@@ -135,29 +132,8 @@ public class Blackjack {
         return 0;
     }
 
-
-    public void addCardToDeck(Deck deck, Deck activeDeck) {
-        activeDeck.getDeck().add(deck.popTopCard());
-    }
-
-
-    public Deck getDealingDeck() {
-        return dealingDeck;
-    }
-
     public Deck getDealersHand() {
         return dealersHand;
-    }
-
-    public Deck getPlayersHand1() {
-        return playersHand1;
-    }
-
-    public Deck getPlayersHand2() {return playersHand2;}
-
-
-    public double getBet() {
-        return bet;
     }
 
     public User getUser() {
@@ -215,38 +191,5 @@ public class Blackjack {
         }
         return result;
     }
-
-
-//    public static void main(String[] args) {
-//        User user = new User("Seb", 10000);
-//        Blackjack blackjack = new Blackjack(user);
-//        blackjack.startGame(10);
-//        System.out.println("---Player Hand---");
-//        for (Card card : blackjack.getPlayersHand1().getDeck()){
-//            System.out.println(card.getCardImage());
-//        }
-//        System.out.println(blackjack.getPlayersHand1().getSumOfDeck());
-//        System.out.println("---------");
-//        System.out.println("---Dealers Hand---");
-//        for (Card card : blackjack.getDealersHand().getDeck()){
-//            System.out.println(card.getCardImage());
-//        }
-//        System.out.println(blackjack.getDealersHand().getSumOfDeck());
-//        System.out.println("---------");
-//        System.out.println("---NEXT STAGE: HIT---");
-//        System.out.println("---------");
-//        blackjack.hit();
-//        System.out.println("---Players Hand---");
-//        for (Card card : blackjack.getPlayersHand1().getDeck()){
-//            System.out.println(card.getCardImage());
-//        }
-//        System.out.println(blackjack.getPlayersHand1().getSumOfDeck());
-//        System.out.println("---------");
-//        System.out.println("---Dealers Hand---");
-//        for (Card card : blackjack.getDealersHand().getDeck()){
-//            System.out.println(card.getCardImage());
-//        }
-//
-//    }
 
 }
