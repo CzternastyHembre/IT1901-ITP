@@ -79,4 +79,15 @@ public class UserModelService {
         }
         autosaveUserList();
     }
+
+    public void deleteUser(String username){
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getUsername().equals(username)){
+                userList.remove(i);
+                System.out.println(userList.toString());
+                autosaveUserList();
+                return;
+            }
+        }
+    }
 }
