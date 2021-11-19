@@ -73,7 +73,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         toggleButton.setDisable(true);
         playAgainButton.setDisable(true);
     }
-
+    
     public void playAgain(){
         blackjack = new Blackjack(user);
         disableGameButtons();
@@ -95,8 +95,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         this.balanceField.setText(""+user.getBalance());
     }
 
-    public void bet(){
+    public void bet() throws IOException {
         blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
+        userSaveHandler.updateUser(user);
         if (blackjack.getTargetHand().getSumOfDeck() < 21)
             hit.setDisable(false);
         stand.setDisable(false);
@@ -154,17 +155,22 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
     }
 
-    public void stand() {
+    public void stand() throws IOException {
         blackjack.stand();
         if (blackjack.isPlayerDone()){
-            updateDealerViews();
-            endOfGameView();
+            endGame();
         }
         else {
             if (blackjack.hasSplit()) {
                 toggle();
             }
         }
+    }
+
+    private void endGame() throws IOException {
+        updateDealerViews();
+        userSaveHandler.updateUser(user);
+        endOfGameView();
     }
 
     private void endOfGameView() {
