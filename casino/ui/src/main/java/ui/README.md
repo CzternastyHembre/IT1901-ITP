@@ -42,6 +42,8 @@ This class extends **LoginMenu** and in this class the menuItem **Lobby** is add
 
 ### LobbyMenu
 
+It extends the **LoginMenu** and allows the the other controllers to get the current user and also set the user.
+
 ### LoginMenu
 
 This class extends **MainMenu** and in this class the menuItem **Menu Menu** added so the user can go back to the main menu to either log in with a different username or to create a new one.

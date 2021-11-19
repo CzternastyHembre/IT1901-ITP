@@ -1,8 +1,8 @@
 # The Core module
 
-Core is the module that contains all the classes and logic for the application uses to play the different games and maintain the
+Core is the module that contains all the classes and logic for the application.
 
-It is divided into different parts depending on the logic the folders provide.
+It is divided into different folder depending on the logic the class contains.
 
 - blackjack
 - roulette
@@ -13,7 +13,7 @@ It is divided into different parts depending on the logic the folders provide.
 
 ## Blackjack
 
-This class contains the logic used for the Blackjack game.
+This folder contains the logic used for the Blackjack game.
 
 ### Card
 
@@ -23,7 +23,7 @@ This class contains the logic used for the Blackjack game.
 
 ## Roulette
 
-Roulette's logic is divided into two classes.
+This folder contains all the logic for the Roulette game.
 
 ### Guess
 
