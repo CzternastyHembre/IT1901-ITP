@@ -22,7 +22,7 @@ public class Roulette {
   }
 
   public void rollNumber() {
-    rolledNumber = rand.nextInt(37);
+    rolledNumber = rand.nextInt(rouletteSize + 1);
   }
 
   public int getRolledNumber() {
@@ -101,11 +101,7 @@ public class Roulette {
   /**
    * Removes the {@link Guess} at the end of the {@code guesses}.
    *
-   *
    * @throws IllegalArgumentException if there are no {@link Guess} in {@code guesses}.
-   *
-   *
-   * @throws if there are no {@link Guess} in {@code guesses}.
    *
    */
 
