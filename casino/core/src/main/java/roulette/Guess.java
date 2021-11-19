@@ -13,7 +13,7 @@ import java.util.List;
 public class Guess {
 
   protected double amount;
-  protected List<Integer> numbers = new ArrayList<>();
+  private final List<Integer> numbers;
 
   /**
    * Constructur of the guess class.
@@ -21,10 +21,11 @@ public class Guess {
    * @param amount the amount of money the guess contains.
    */
 
-  private Guess(double amount) {
+  public Guess(double amount, List<Integer> numbers) {
     if (amount <= 0) {
       throw new IllegalArgumentException("Guess amount must be a positive integer");
     }
+    this.numbers = numbers;
     this.amount = amount;
   }
 
@@ -39,13 +40,11 @@ public class Guess {
    */
 
     public static Guess listGuess(double amount, int start, int end) {
-      Guess guess = new Guess(amount);
       List<Integer> numbers = new ArrayList<>();
       for (int i = start; i <= end; i++) {
         numbers.add(i);
       }
-      guess.setNumbers(numbers);
-      return guess;
+      return new Guess(amount, numbers);
   }
 
   /**
@@ -58,13 +57,11 @@ public class Guess {
    */
 
   public static Guess numberGuess(double amount, int... numberArray) {
-    Guess guess = new Guess(amount);
     List<Integer> numbers = new ArrayList<>();
     for (int nums : numberArray) {
       numbers.add(nums);
     }
-    guess.setNumbers(numbers);
-    return guess;
+    return new Guess(amount, numbers);
   }
 
   /**
@@ -77,21 +74,12 @@ public class Guess {
    * @return {@code Guess} containing the list of guesses
    */
   public static Guess patternGuess(double amount, int start, int increment) {
-    Guess guess = new Guess(amount);
     List<Integer> numbers = new ArrayList<>();
     for (int i = start; i <= Roulette.rouletteSize; i += increment) {
       numbers.add(i);
     }
-    guess.setNumbers(numbers);
-    return guess;
+    return new Guess(amount, numbers);
   }
-
-
-
-  public void setNumbers(List<Integer> numbers) {
-    this.numbers = numbers;
-  }
-
 
   public List<Integer> getNumbers() {
     return new ArrayList<>(numbers);
