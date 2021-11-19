@@ -49,9 +49,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     @FXML Text dealerTotal;
     @FXML Text payout;
     @FXML Text result;
-
-    @FXML RadioButton radioHand1;
-    @FXML RadioButton radioHand2;
+    @FXML Text balanceField;
 
     @FXML Button split;
     @FXML TextField betAmount;
@@ -70,6 +68,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         disableGameButtons();
         playerHandPanes.add(hand1);
         playerHandPanes.add(hand2);
+        this.balanceField.setText(""+user.getBalance());
     }
 
     private void disableGameButtons() {
@@ -98,6 +97,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         dealerTotal.setText("0");
         payout.setVisible(false);
         result.setVisible(false);
+        this.balanceField.setText(""+user.getBalance());
     }
 
     public void bet(){
@@ -110,6 +110,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         turnLabel.setText("Player");
         hand2.setOpacity(0.5);
         bet.setDisable(true);
+        this.balanceField.setText(""+user.getBalance());
 
         showPlayerViewOnStart();
         showDealerViewOnStart();
@@ -168,8 +169,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
                 toggle();
             }
         }
-        //todo; disable split on stand even if hasn't split
-        //todo; hitting stand on split makes the hit button disable even if a player can still bet on one of the hands
     }
 
     private void endOfGameView() {
@@ -183,6 +182,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         result.setVisible(true);
         payout.setVisible(true);
         payout.setText(""+blackjack.getPayout());
+        this.balanceField.setText(""+user.getBalance());
         playAgainButton.setDisable(false);
     }
 

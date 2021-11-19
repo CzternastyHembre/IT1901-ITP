@@ -73,6 +73,8 @@
       <Text fx:id="dealerTotal" fill="WHITE" layoutX="76.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
       <Text fx:id="payout" fill="WHITE" layoutX="53.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
       <Text fx:id="result" fill="WHITE" layoutX="47.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
+      <Text fx:id="balanceField" fill="WHITE" layoutX="58.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
    </Pane>
    <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="175.0">
       <VBox layoutY="45.0" prefHeight="200.0" prefWidth="350.0">
