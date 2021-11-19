@@ -44,7 +44,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "1H", "1H");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("SUPER JACKPOT", slotMachine.getCombo());
+        Assertions.assertEquals("SUPER_JACKPOT", slotMachine.getCombo().name());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "2H", "3H");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("SUPER PERFECT STRAIGHT", slotMachine.getCombo());
+        Assertions.assertEquals("SUPER_PERFECT_STRAIGHT", slotMachine.getCombo().name());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "1D", "1C");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("JACKPOT", slotMachine.getCombo());
+        Assertions.assertEquals("JACKPOT", slotMachine.getCombo().name());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("6H", "6D", "6C");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("DEVIL", slotMachine.getCombo());
+        Assertions.assertEquals("DEVIL", slotMachine.getCombo().name());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "2D", "3C");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("PERFECT STRAIGHT", slotMachine.getCombo());
+        Assertions.assertEquals("PERFECT_STRAIGHT", slotMachine.getCombo().name());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "3D", "2C");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("STRAIGHT", slotMachine.getCombo());
+        Assertions.assertEquals("STRAIGHT", slotMachine.getCombo().name());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "6H", "8H");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("FLUSH", slotMachine.getCombo());
+        Assertions.assertEquals("FLUSH", slotMachine.getCombo().name());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "1D", "5C");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("PAIR", slotMachine.getCombo());
+        Assertions.assertEquals("PAIR", slotMachine.getCombo().name());
     }
 
     @Test
@@ -108,7 +108,7 @@ public class SlotsTest {
         List<String> symbols = Arrays.asList("1H", "2D", "7C");
         slotMachine.setSymbols(symbols);
         slotMachine.calculateWinnings();
-        Assertions.assertEquals("LOSS", slotMachine.getCombo());
+        Assertions.assertEquals("LOSS", slotMachine.getCombo().name());
     }
 
     @Test
