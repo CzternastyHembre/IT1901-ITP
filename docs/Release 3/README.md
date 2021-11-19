@@ -36,8 +36,8 @@ mvn javafx:run
 - Created **menuItems UIs** so that the same code in every UI would not be written multiple times. Instead they extends those menuItems.
 - Deleted the **CreateUser.fxml** and instead added functionality so that only one FXML is needed for both **LoginController** and **CreateUserController**.
 - Added **README** files in core, rest and ui to briefly explain their functionality.
-- Added **spring-boot** this is used for the rest API.
-- # TODO write about asciidoctor
+-
+- # TODO write about asciidoctor and spring-boot
 
 ## Status of the project
 
@@ -75,7 +75,7 @@ The group uses milestones for monitoring the sprints throughout the project. The
 Throughout the project the group uses issues to easily delegate tasks to other developers working on the project. The issues was made with labels, a due date and an assignee.
 The issues would also have a description that would explain what needs to be done in the issue. For bigger issues there would also be checkboxes for the developers to check if a part of the issue was finished.
 
-When commiting a new feature, in the commit message the developers would write this at the bottom of the commit"**issue: #X**" to link to the issue they have been working on. This ensures that the when a commit happens the other developers could see what issue it belongs to. If the issue is completed in a commit, then below the "**issue: #X**" the developer writes "**closed: #X**"
+When commiting a new feature, in the commit message the developers would write this at the bottom of the commit"**issue: #X**" to link to the issue they have been working on. This ensures that the when a commit happens the other developers could see what issue it belongs to. If the issue or a checkboxis completed or a in a commit, then below the "**issue: #X**" the developer writes "**closed: #X**"
 
 ### Labels
 
