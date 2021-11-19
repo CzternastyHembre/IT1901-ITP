@@ -1,8 +1,8 @@
 # Casino
 
-The Casino application is meant to serve as an entertainment application for users to play different types of casino games. The users of the application will be able to play blackjack, slots and roulette. The users will also be able to save their profiles with username and balance and load the game in later.
+The Casino application is meant to serve as an entertainment application for users to play different types of casino games. The users of the application will be able to play blackjack, slots and roulette. The users will also be able to save their profiles with username and balance and load the game in later. There is also a add money page in case the user is out of money. This is to ensure that the user can add more money to their balance so they can continue playing our games.
 
-The code in the application is divided into three main parts, core, ui and storage to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules.
+The code in the application is divided into three main parts, core, ui and rest to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules.
 
 ## Core
 
@@ -48,7 +48,7 @@ A PlantUML illustration showing the module dependencies and their packages.
 
 ![appDependencies](docs/Images/appDependencies.png)
 
-## Illstrations
+## Illustrations
 
 Illustrations of what the end product is going to look like:
 
@@ -58,7 +58,7 @@ Illustrations of what the end product is going to look like:
 
 ### Create a user screen
 
-![create_user](docs/Imagess/CreateUser.png)
+![create_user](docs/Images/CreateUser.png)
 
 ### Log in screen
 
@@ -75,3 +75,11 @@ Illustrations of what the end product is going to look like:
 ### Roulette game
 
 ![roulette](docs/Images/Roulette.png)
+
+### Slots game
+
+![slots](docs/Images/Slots.png)
+
+### Add money screen
+
+![addMoney](docs/Images/AddMoney.png)
