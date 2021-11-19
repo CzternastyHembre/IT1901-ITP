@@ -22,13 +22,9 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import roulette.Guess;
-import roulette.ListGuess;
-import roulette.NumberGuess;
-import roulette.PatternGuess;
 import roulette.Roulette;
 import savehandler.UserSaveHandler;
 import ui.MenuItem.CasinoMenu;
-import user.User;
 
 /**
  * Controller for the roulette game.
@@ -379,55 +375,55 @@ public class RouletteController extends CasinoMenu {
   }
 
   /**
-   * Creates a {@link NumberGuess} add calls the method {@code addGuess}.
+   * Creates a {@link Guess} add calls the method {@code addGuess}.
    *
-   * @param tile creates the {@link NumberGuess} when clicked on.
-   * @param number creates the {@link NumberGuess} based on the number.
+   * @param tile creates the {@link Guess} when clicked on.
+   * @param number creates the {@link Guess} based on the number.
    */
   
   private void setNumberGuess(Pane tile, int number) {
     tile.setOnMouseClicked(e -> {
-      NumberGuess guess = new NumberGuess(CasinoElements.getValue(chipValueIndex), number);
+      Guess guess = Guess.numberGuess(CasinoElements.getValue(chipValueIndex), number);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new NumberGuess(
+    setGuessAnimation(tile, Guess.numberGuess(
             CasinoElements.getValue(chipValueIndex),
             number).getNumbers());
   }
 
   /**
-   * Creates a {@link ListGuess} add calls the method {@code addGuess}.
+   * Creates a {@link Guess} add calls the method {@code addGuess}.
    *
-   * @param tile creates the {@link ListGuess} when clicked on.
-   * @param start the start parameter for {@link ListGuess}.
-   * @param end the end parameter for {@link ListGuess}.
+   * @param tile creates the {@link Guess} when clicked on.
+   * @param start the start parameter for {@link Guess}.
+   * @param end the end parameter for {@link Guess}.
    */
 
   private void setListGuess(Pane tile, int start, int end) {
     tile.setOnMouseClicked(e -> {
-      ListGuess guess = new ListGuess(CasinoElements.getValue(chipValueIndex), start, end);
+      Guess guess = Guess.listGuess(CasinoElements.getValue(chipValueIndex), start, end);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new ListGuess(
+    setGuessAnimation(tile, Guess.listGuess(
             CasinoElements.getValue(chipValueIndex),
             start, end).getNumbers());
   }
 
   /**
-   * Creates a {@link PatternGuess} add calls the method {@code addGuess}.
+   * Creates a {@link Guess} add calls the method {@code addGuess}.
    *
-   * @param tile creates the {@link PatternGuess} when clicked on.
-   * @param start the start parameter for {@link PatternGuess}.
-   * @param increment the end increment for {@link PatternGuess}.
+   * @param tile creates the {@link Guess} when clicked on.
+   * @param start the start parameter for {@link Guess}.
+   * @param increment the end increment for {@link Guess}.
    */
 
   private void setPatternGuess(Pane tile, int start, int increment) {
     tile.setOnMouseClicked(e -> {
-      PatternGuess guess = new PatternGuess(
+      Guess guess = Guess.patternGuess(
               CasinoElements.getValue(chipValueIndex), start, increment);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new PatternGuess(
+    setGuessAnimation(tile, Guess.patternGuess(
             CasinoElements.getValue(chipValueIndex), start, increment).getNumbers());
   }
 
