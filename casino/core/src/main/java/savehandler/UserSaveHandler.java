@@ -86,7 +86,6 @@ public class UserSaveHandler {
   private void updateFile(List<User> userList) {
     try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
       Gson gson = new Gson();
-      System.out.println(SAVE_FILE);
       String jsonSaveString = gson.toJson(userList);
       fileWriter.append(jsonSaveString);
     } catch (Exception e) {
