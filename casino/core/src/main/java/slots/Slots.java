@@ -30,8 +30,6 @@ enum Combo{
  */
 
 public class Slots {
-  //todo; method that takes enum name into string and removes underscore
-
   // Fields
   private List<String> symbols = new ArrayList<>();
   private int spins;
@@ -220,6 +218,14 @@ public class Slots {
 
   public double getCurrentWinnings() {
     return currentWinnings;
+  }
+
+  public String enumToString(Enum e){
+    if (e.name().contains("_"))
+      return e.name().replaceAll("_"," ");
+    else{
+      return e.name();
+    }
   }
 
   public Enum getCombo() {

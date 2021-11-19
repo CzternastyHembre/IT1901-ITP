@@ -148,7 +148,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     if (slotMachine.getCombo() == null) {
       comboSlot.setText("Bet and Spin to start!");
     } else {
-      comboSlot.setText("" + slotMachine.getCombo().name());
+      comboSlot.setText(slotMachine.enumToString(slotMachine.getCombo()));
     }
     avgPayout.setText("" + (Math.round(slotMachine.getAveragePayout() * 100.0) / 100.0));
     spinsCounter.setText("" + slotMachine.getSpins());
