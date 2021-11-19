@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Blackjack {
-//todo; add field on view for balance
     private double bet;
     private double splitBet;
     private User user;
@@ -92,8 +91,11 @@ public class Blackjack {
     }
 
     public void split() {
-        this.splitBet = bet;
-        user.setBalance(user.getBalance()-splitBet);
+        setCanSplit();
+        if (!canSplit){
+            return;
+        }
+        user.setBalance(user.getBalance()-bet);
         Card card = playersHand1.getLastCard();
         this.playersHand1.getDeck().remove(card);
         this.playersHand2.getDeck().add(card);
@@ -103,7 +105,8 @@ public class Blackjack {
     }
 
     private double calculateWinnings(){
-        double payout = 0;
+        //todo; create validator
+        double payout;
         int dealerSum = sumOfDeck(dealersHand);
         if (dealerSum == 21){
             return 0;
@@ -132,7 +135,7 @@ public class Blackjack {
         return 0;
     }
 
-    public Deck getDealersHand() {
+    public Hand getDealersHand() {
         return dealersHand;
     }
 
@@ -191,5 +194,39 @@ public class Blackjack {
         }
         return result;
     }
+
+
+    public double getBet() {
+        return bet;
+    }
+
+    public double getSplitBet() {
+        return splitBet;
+    }
+
+    public Deck getDealingDeck() {
+        return dealingDeck;
+    }
+
+    public Hand getPlayersHand1() {
+        return playersHand1;
+    }
+
+    public Hand getPlayersHand2() {
+        return playersHand2;
+    }
+
+    public boolean isCanSplit() {
+        return canSplit;
+    }
+
+    public boolean isHasSplit() {
+        return hasSplit;
+    }
+
+    public void setPlayersHand1(Hand playersHand1) {
+        this.playersHand1 = playersHand1;
+    }
+
 
 }
