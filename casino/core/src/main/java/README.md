@@ -31,7 +31,7 @@ This folder contains all the logic for the Roulette game.
 
 ## SaveHandler
 
-This is the class for writing the users into json objects and also for reading the json objects so they can be fetched.
+This class helps save the data of the users in the home directory. It is saved a json objects and it also helps read from this file.
 
 ## Slots
 
