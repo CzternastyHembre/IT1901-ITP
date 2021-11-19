@@ -101,7 +101,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     }
 
     public void bet(){
-        blackjack.startGame(Integer.parseInt(this.betAmount.getText()));
+        blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
         hit.setDisable(false);
         stand.setDisable(false);
         if (blackjack.canSplit()){

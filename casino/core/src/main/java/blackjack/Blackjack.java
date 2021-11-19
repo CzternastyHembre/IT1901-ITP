@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Blackjack {
-// todo; Bets with decimals.
 //todo; add field on view for balance
     private double bet;
     private double splitBet;
@@ -27,7 +26,7 @@ public class Blackjack {
     }
 
 
-    public void startGame(int bet){
+    public void startGame(double bet){
         setBet(bet);
         this.dealingDeck = new Deck(13);
 
@@ -51,7 +50,7 @@ public class Blackjack {
      * @param bet is the amount that the user is betting.
      */
 
-    public void setBet(int bet) {
+    public void setBet(double bet) {
         if (bet <= 0 || bet > this.user.getBalance()) {
             throw new IllegalArgumentException("Invalid bet");
         }
