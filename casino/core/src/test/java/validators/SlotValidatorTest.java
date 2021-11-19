@@ -53,6 +53,9 @@ class SlotValidatorTest {
         symbols.remove(symbols.get(2));
         symbols.add("2H");
         Assertions.assertFalse(SlotsValidator.isJackpot(symbols));
+        symbols.remove(symbols.get(2));
+        symbols.add("10H");
+        Assertions.assertFalse(SlotsValidator.isJackpot(symbols));
     }
 
     @Test
@@ -100,6 +103,9 @@ class SlotValidatorTest {
         symbols.add("3D");
         symbols.add("1C");
         Assertions.assertTrue(SlotsValidator.isPair(symbols));
+        symbols.remove(2);
+        symbols.add("10C");
+        Assertions.assertFalse(SlotsValidator.isPair(symbols));
     }
 }
 
