@@ -12,10 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -44,6 +41,8 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     @FXML AnchorPane anchorPane;
     @FXML Button hit;
     @FXML Button stand;
+    @FXML ToggleButton toggleButton;
+    @FXML Button playAgainButton;
     @FXML Button bet;
 
     @FXML Text playerTotal;
@@ -73,14 +72,31 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         playerHandPanes.add(hand2);
     }
 
-    public void disableGameButtons() {
+    private void disableGameButtons() {
         hit.setDisable(true);
         stand.setDisable(true);
         split.setDisable(true);
-        radioHand1.setDisable(true);
-        radioHand2.setDisable(true);
+        toggleButton.setDisable(true);
+        playAgainButton.setDisable(true);
     }
 
+    public void playAgain(){
+        blackjack = new Blackjack(user);
+        disableGameButtons();
+        for (Pane pane : playerHandPanes){
+            pane.getChildren().clear();
+        }
+        dealerHandHBox.getChildren().clear();
+        resetText();
+        bet.setDisable(false);
+    }
+
+    private void resetText() {
+        playerTotal.setText("0");
+        dealerTotal.setText("0");
+        payout.setVisible(false);
+        result.setVisible(false);
+    }
 
     public void bet(){
         blackjack.startGame(Integer.parseInt(this.betAmount.getText()));
@@ -91,6 +107,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         }
         turnLabel.setText("Player");
         hand2.setDisable(true);
+        bet.setDisable(true);
 
         showPlayerViewOnStart();
         showDealerViewOnStart();
@@ -107,11 +124,18 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
     public void split(){
         blackjack.split();
-        radioHand1.setDisable(false);
-        radioHand2.setDisable(false);
-        radioHand1.setSelected(true);
+        toggleButton.setDisable(false);
+        updatePlayerViews();
+        hand2.setDisable(true);
     }
 
+    public void toggle(){
+        blackjack.toggleTargetHand();
+        toggleHandPanes();
+        turnLabel.setText("Player (Hand)"
+                + blackjack.getPlayerHands().indexOf(blackjack.getTargetHand()));
+        playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
+    }
 
     public void hit() {
         blackjack.hit();
@@ -135,10 +159,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
             if (!blackjack.isPlayerDone()){
                 toggleHandPanes();
             }
-            else {
-                radioHand1.setDisable(true);
-                radioHand2.setDisable(true);
-            }
         }
     }
 
@@ -153,6 +173,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         result.setVisible(true);
         payout.setVisible(true);
         payout.setText(""+blackjack.getPayout());
+        playAgainButton.setDisable(false);
     }
 
     private void toggleHandPanes() {
@@ -165,7 +186,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     }
 
 
-    public ImageView createImageView(String name){
+    private ImageView createImageView(String name){
         ImageView imageView = new ImageView(new Image(Objects.requireNonNull(
                 BlackjackController.class.getResourceAsStream("/images/cards/" + name))));
         imageView.setFitHeight(100);
@@ -173,20 +194,20 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         return imageView;
     }
 
-    public void showPlayerViewOnStart(){
+    private void showPlayerViewOnStart(){
         for (Card card : blackjack.getPlayerHands().get(0).getDeck()){
             playerHandPanes.get(0).getChildren().add(createImageView(card.getCardImage()));
         }
     }
 
-    public void showDealerViewOnStart(){
+    private void showDealerViewOnStart(){
         ImageView firstCard = createImageView("backOfCard.jpg");
         ImageView secondCard = createImageView(blackjack.getDealersHand().getDeck().get(1).getCardImage());
         dealerHandHBox.getChildren().add(firstCard);
         dealerHandHBox.getChildren().add(secondCard);
     }
 
-    public void updatePlayerViews(){
+    private void updatePlayerViews(){
         for (int i = 0; i<2; i++){
             playerHandPanes.get(i).getChildren().clear();
             for (Card card : blackjack.getPlayerHands().get(i).getDeck()){
@@ -195,7 +216,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         }
     }
 
-    public void updateDealerViews(){
+    private void updateDealerViews(){
         dealerHandHBox.getChildren().clear();
         for (Card card : blackjack.getDealersHand().getDeck()){
             dealerHandHBox.getChildren().add(createImageView(card.getCardImage()));
@@ -204,21 +225,21 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
 
 
-    public void radioButtonClick(ActionEvent event){
-        RadioButton buttonClicked = (RadioButton) event.getTarget();
-        switch (buttonClicked.getText().toLowerCase()){
-            case "hand 1" -> {
-                playerHandPanes.get(0).setDisable(false);
-                playerHandPanes.get(1).setDisable(true);
-                blackjack.setTargetHand(blackjack.getPlayerHands().get(0));
-            }
-            case "hand 2" -> {
-                playerHandPanes.get(0).setDisable(true);
-                playerHandPanes.get(1).setDisable(false);
-                blackjack.setTargetHand(blackjack.getPlayerHands().get(1));
-            }
-        }
-    }
+//    private void radioButtonClick(ActionEvent event){
+//        RadioButton buttonClicked = (RadioButton) event.getTarget();
+//        switch (buttonClicked.getText().toLowerCase()){
+//            case "hand 1" -> {
+//                playerHandPanes.get(0).setDisable(false);
+//                playerHandPanes.get(1).setDisable(true);
+//                blackjack.setTargetHand(blackjack.getPlayerHands().get(0));
+//            }
+//            case "hand 2" -> {
+//                playerHandPanes.get(0).setDisable(true);
+//                playerHandPanes.get(1).setDisable(false);
+//                blackjack.setTargetHand(blackjack.getPlayerHands().get(1));
+//            }
+//        }
+//    }
 
 
 }

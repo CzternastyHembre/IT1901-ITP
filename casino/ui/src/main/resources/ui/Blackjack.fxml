@@ -4,8 +4,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -30,23 +30,23 @@
       <HBox fx:id="dealerHandHBox" layoutX="125.0" layoutY="8.0" prefHeight="100.0" prefWidth="350.0" />
    </Pane>
    <Pane prefHeight="253.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
-      <Button fx:id="hit" layoutX="38.0" layoutY="137.0" mnemonicParsing="false" onAction="#hit" prefHeight="26.0" prefWidth="49.0" text="Hit">
+      <Button fx:id="hit" layoutX="37.0" layoutY="46.0" mnemonicParsing="false" onAction="#hit" prefHeight="26.0" prefWidth="49.0" text="Hit">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="stand" layoutX="35.0" layoutY="171.0" mnemonicParsing="false" onAction="#stand" text="Stand">
+      <Button fx:id="stand" layoutX="34.0" layoutY="81.0" mnemonicParsing="false" onAction="#stand" text="Stand">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="split" layoutX="40.0" layoutY="205.0" mnemonicParsing="false" onAction="#split" text="Split">
+      <Button fx:id="split" layoutX="39.0" layoutY="116.0" mnemonicParsing="false" onAction="#split" text="Split">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <RadioButton fx:id="radioHand1" layoutY="52.0" mnemonicParsing="false" onAction="#radioButtonClick" text="Hand 1" textFill="WHITE" />
-      <RadioButton fx:id="radioHand2" layoutY="81.0" mnemonicParsing="false" onAction="#radioButtonClick" text="Hand 2" textFill="WHITE" />
+      <Button fx:id="playAgainButton" layoutX="24.0" layoutY="213.0" mnemonicParsing="false" onAction="#playAgain" text="Play Again" />
+      <ToggleButton fx:id="toggleButton" layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#toggle" text="Toggle Hands" />
    </Pane>
    <Pane prefHeight="253.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="175.0">
       <Button fx:id="bet" layoutX="80.0" layoutY="195.0" mnemonicParsing="false" onAction="#bet" text="Bet">

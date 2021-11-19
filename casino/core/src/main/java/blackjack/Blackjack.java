@@ -113,6 +113,7 @@ public class Blackjack {
         this.playersHand1.getDeck().remove(card);
         this.playersHand2.getDeck().add(card);
         playersHand2.setActive(true);
+        setTargetHand(playersHand1);
         hasSplit = true;
     }
 
