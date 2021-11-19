@@ -89,6 +89,8 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         dealerHandHBox.getChildren().clear();
         resetText();
         bet.setDisable(false);
+        hand1.setOpacity(1);
+        hand2.setOpacity(1);
     }
 
     private void resetText() {
@@ -106,7 +108,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
             split.setDisable(false);
         }
         turnLabel.setText("Player");
-        hand2.setDisable(true);
+        hand2.setOpacity(0.5);
         bet.setDisable(true);
 
         showPlayerViewOnStart();
@@ -126,40 +128,48 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         blackjack.split();
         toggleButton.setDisable(false);
         updatePlayerViews();
-        hand2.setDisable(true);
+        hand2.setOpacity(0.5);
+        split.setDisable(true);
+        playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
+        turnLabel.setText("Player (Hand "
+                + (blackjack.getPlayerHands().indexOf(blackjack.getTargetHand()) + 1) + ")");
     }
 
     public void toggle(){
         blackjack.toggleTargetHand();
         toggleHandPanes();
-        turnLabel.setText("Player (Hand)"
-                + blackjack.getPlayerHands().indexOf(blackjack.getTargetHand()));
+        turnLabel.setText("Player (Hand "
+                + (blackjack.getPlayerHands().indexOf(blackjack.getTargetHand()) + 1) + ")");
         playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
     }
 
     public void hit() {
         blackjack.hit();
-        if (!blackjack.getTargetHand().isActive() && blackjack.hasSplit()){
-            toggleHandPanes();
+
+        if (!split.isDisabled()){ // works
+            split.setDisable(true);
         }
-        updatePlayerViews();
         if (blackjack.getTargetHand().getSumOfDeck() > 21){
             hit.setDisable(true);
         }
+
+        updatePlayerViews();
         playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
     }
 
     public void stand() {
-        blackjack.stand(blackjack.getTargetHand());
+        blackjack.stand();
         if (blackjack.isPlayerDone()){
             updateDealerViews();
             endOfGameView();
         }
-        if (blackjack.hasSplit()) {
-            if (!blackjack.isPlayerDone()){
-                toggleHandPanes();
+        else {
+            if (blackjack.hasSplit()) {
+                toggle();
             }
         }
+        //todo; disable split on stand even if hasn't split
+        //todo; hitting stand on split makes the hit button disable even if a player can still bet on one of the hands
     }
 
     private void endOfGameView() {
@@ -178,11 +188,14 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
     private void toggleHandPanes() {
         var activePane = playerHandPanes.stream().filter(pane ->
-                !pane.isDisabled()).collect(Collectors.toList()).get(0);
-        var disabledPane = playerHandPanes.stream().filter(
-                Node::isDisabled).collect(Collectors.toList()).get(0);
-        activePane.setDisable(true);
-        disabledPane.setDisable(false);
+                pane.getOpacity() == 1).collect(Collectors.toList()).get(0);
+        var disabledPane = playerHandPanes.stream().filter(pane ->
+                pane.getOpacity() == 0.5).collect(Collectors.toList()).get(0);
+        activePane.setOpacity(0.5);
+        disabledPane.setOpacity(1);
+
+        hit.setDisable(!blackjack.getTargetHand().isActive());
+
     }
 
 

@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 
 public class Blackjack {
 // todo; Bets with decimals.
-//todo; button to start new game
-//todo; on hit that goes too much, automatically stand
 //todo; add field on view for balance
     private double bet;
     private double splitBet;
@@ -24,12 +22,9 @@ public class Blackjack {
     private boolean hasSplit;
     private double payout;
 
-
-
     public Blackjack(User user) {
         this.user = user;
     }
-
 
 
     public void startGame(int bet){
@@ -41,7 +36,7 @@ public class Blackjack {
         this.playersHand2.setActive(false);
         this.playerHands.add(playersHand1);
         this.playerHands.add(playersHand2);
-
+        this.payout = 0;
         this.dealersHand = new Hand();
 
 
@@ -78,31 +73,25 @@ public class Blackjack {
     }
 
 
-
-
-
     public void hit() throws IllegalArgumentException {
         if (!targetHand.isActive()) {
             throw new IllegalArgumentException("Deck is inactive, cannot hit");
         }
+        canSplit=false;
         Card cardToAdd = dealingDeck.popTopCard();
         targetHand.getDeck().add(cardToAdd);
         int sumOfDeck = sumOfDeck(targetHand);
         if (sumOfDeck > 21){
-            targetHand.setActive(false);
+            this.targetHand.setActive(false);
         }
 
     }
 
 
-    public void stand(Hand targetHand){ // todo; does this need targethand passed in
-        targetHand.setActive(false);
+    public void stand(){
+        this.targetHand.setActive(false);
         if (isPlayerDone()){
             dealerPlay();
-            return;
-        }
-        if (hasSplit){
-            toggleTargetHand();
         }
     }
 
@@ -119,33 +108,33 @@ public class Blackjack {
 
     public double calculateWinnings(){
         double payout = 0;
-        int hand1Sum = sumOfDeck(playersHand1);
-        int hand2Sum = sumOfDeck(playersHand2);
         int dealerSum = sumOfDeck(dealersHand);
-
         if (dealerSum == 21){
-            return payout;
+            return 0;
         }
         else if (dealerSum > 21){
-            if (hand1Sum <=21){
-                payout+=bet*2;
-            }
-            if (hand2Sum <=21 && hand2Sum !=0){
-                payout+=bet*2;
-            }
+            dealerSum = 0;
         }
-        else {
-            if (hand1Sum<=21 && hand1Sum > dealerSum){
-                payout += bet*2;
-            }
-            if (hand2Sum<21 && hand2Sum > dealerSum && hand2Sum !=0){
-                payout += splitBet*2;
-            }
+        double hand1Score = calculateHand(playersHand1, dealerSum);
+        double hand2Score = 0;
+        if (playersHand2.getSumOfDeck()!=0){
+            hand2Score = calculateHand(playersHand2, dealerSum);
         }
+        payout = hand1Score + hand2Score;
         this.payout = payout;
         return payout;
     }
 
+    private double calculateHand(Hand hand, double dealerSum) {
+
+        if (hand.getSumOfDeck() == 0 || hand.getSumOfDeck() > 21){
+            return 0;
+        }
+        if (hand.getSumOfDeck() <= 21 && hand.getSumOfDeck() > dealerSum)
+            return bet*2;
+
+        return 0;
+    }
 
 
     public void addCardToDeck(Deck deck, Deck activeDeck) {
