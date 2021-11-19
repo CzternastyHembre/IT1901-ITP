@@ -73,7 +73,8 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         toggleButton.setDisable(true);
         playAgainButton.setDisable(true);
     }
-    
+
+    @FXML
     public void playAgain(){
         blackjack = new Blackjack(user);
         disableGameButtons();
@@ -95,6 +96,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         this.balanceField.setText(""+user.getBalance());
     }
 
+    @FXML
     public void bet() throws IOException {
         blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
         userSaveHandler.updateUser(user);
@@ -121,7 +123,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         result.setVisible(false);
     }
 
-
+    @FXML
     public void split(){
         blackjack.split();
         toggleButton.setDisable(false);
@@ -133,6 +135,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
                 + (blackjack.getPlayerHands().indexOf(blackjack.getTargetHand()) + 1) + ")");
     }
 
+    @FXML
     public void toggle(){
         blackjack.toggleTargetHand();
         toggleHandPanes();
@@ -141,6 +144,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
     }
 
+    @FXML
     public void hit() {
         blackjack.hit();
 
@@ -155,6 +159,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
     }
 
+    @FXML
     public void stand() throws IOException {
         blackjack.stand();
         if (blackjack.isPlayerDone()){
