@@ -96,10 +96,10 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    * This is run when the spinButton is clicked. This "spins" the cards,
    * and play's the bet.
    *
-   *
    */
 
-  public void spin(ActionEvent actionEvent) throws IOException {
+  @FXML
+  public void spin() throws IOException {
     int bet = Integer.parseInt(betField.getText());
     slotMachine.play(bet);
     for (HBox box : hboxesList) {
