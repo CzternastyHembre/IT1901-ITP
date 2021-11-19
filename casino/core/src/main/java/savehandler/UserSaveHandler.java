@@ -154,24 +154,6 @@ public class UserSaveHandler {
   }
 
   /**
-   * Makes the user given the active user, used to log in.
-   *
-   * @param user is the user that is being logged in and set to active.
-   */
-
-  public void setActive(User user) throws IOException {
-    List<User> userList = getUserList();
-    for (int i = 0; i < userList.size(); i++) {
-      if (userList.get(i).getUsername().equals(user.getUsername())) {
-        userList.remove(i);
-        break;
-      }
-    }
-    userList.add(0, user);
-    updateFile(userList);
-  }
-
-  /**
    * Updates a users balance, used if users wins or loses money.
    *
    * @param user is the user that is being updated.

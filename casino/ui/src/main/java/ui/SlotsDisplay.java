@@ -77,7 +77,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   private ToggleButton keepBetButton;
 
   private final List<HBox> hboxesList = new ArrayList<>();
-  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+  private final RestModel restModel = new RestModel();
 
   protected void initializeHboxes() {
     hboxesList.add(slotHbox1);
@@ -99,7 +99,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    *
    */
 
-  public void spin(ActionEvent actionEvent) throws IOException {
+  public void spin(ActionEvent actionEvent) throws InterruptedException {
     int bet = Integer.parseInt(betField.getText());
     slotMachine.play(bet);
     for (HBox box : hboxesList) {
@@ -108,8 +108,8 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   }
 
 
-  private void updateUserState() throws IOException {
-    userSaveHandler.updateUser(slotMachine.getUser());
+  private void updateUserState() throws InterruptedException {
+    RestModel.updateUser(user);
   }
 
   /**
@@ -181,7 +181,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    *
    */
 
-  private void rotateCard(Node card, int stage) throws IOException {
+  private void rotateCard(Node card, int stage) throws InterruptedException {
     switch (stage) {
       case 0 -> {
         animateCard(card, 90, stage);
@@ -228,7 +228,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     rotator.setOnFinished(event -> {
       try {
         rotateCard(card, stage + 1);
-      } catch (IOException e) {
+      } catch (InterruptedException e) {
         e.printStackTrace();
       }
     });

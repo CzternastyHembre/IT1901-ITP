@@ -59,9 +59,9 @@ public class RouletteController extends CasinoMenu {
   private final RestModel restModel = new RestModel();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
-  /*
+  /**
    * The number sequense on an European rouletteWheel.
-   */
+   **/
   
   private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(
           0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27,
