@@ -34,11 +34,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
 
     protected Blackjack blackjack;
-    @FXML MenuItem mainMenu;
-    @FXML MenuItem lobby;
-    @FXML MenuItem exit;
-    @FXML FXMLLoader loader = new FXMLLoader();
-    @FXML AnchorPane anchorPane;
     @FXML Button hit;
     @FXML Button stand;
     @FXML ToggleButton toggleButton;
