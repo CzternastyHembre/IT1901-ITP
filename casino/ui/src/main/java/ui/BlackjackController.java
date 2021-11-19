@@ -2,30 +2,20 @@ package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
-import blackjack.Hand;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import savehandler.UserSaveHandler;
 import ui.MenuItem.CasinoMenu;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -33,26 +23,25 @@ import java.util.stream.Collectors;
 public class BlackjackController extends CasinoMenu implements Initializable {
 
 
-    protected Blackjack blackjack;
-    @FXML Button hit;
-    @FXML Button stand;
-    @FXML ToggleButton toggleButton;
-    @FXML Button playAgainButton;
-    @FXML Button bet;
-
-    @FXML Text playerTotal;
-    @FXML Text dealerTotal;
-    @FXML Text payout;
-    @FXML Text result;
-    @FXML Text balanceField;
-
-    @FXML Button split;
-    @FXML TextField betAmount;
-    @FXML Text turnLabel;
-    private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
+    private Blackjack blackjack;
+    @FXML private Button hit;
+    @FXML private Button stand;
+    @FXML private ToggleButton toggleButton;
+    @FXML private Button playAgainButton;
+    @FXML private Button bet;
+    @FXML private Text playerTotal;
+    @FXML private Text dealerTotal;
+    @FXML private Text payout;
+    @FXML private Text result;
+    @FXML private Text balanceField;
+    @FXML private Button split;
+    @FXML private TextField betAmount;
+    @FXML private Text turnLabel;
     @FXML private Pane hand1;
     @FXML private Pane hand2;
     @FXML private HBox dealerHandHBox;
+    private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
+
 
 
     private final UserSaveHandler userSaveHandler = new UserSaveHandler();
@@ -242,25 +231,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
             dealerHandHBox.getChildren().add(createImageView(card.getCardImage()));
         }
     }
-
-
-
-//    private void radioButtonClick(ActionEvent event){
-//        RadioButton buttonClicked = (RadioButton) event.getTarget();
-//        switch (buttonClicked.getText().toLowerCase()){
-//            case "hand 1" -> {
-//                playerHandPanes.get(0).setDisable(false);
-//                playerHandPanes.get(1).setDisable(true);
-//                blackjack.setTargetHand(blackjack.getPlayerHands().get(0));
-//            }
-//            case "hand 2" -> {
-//                playerHandPanes.get(0).setDisable(true);
-//                playerHandPanes.get(1).setDisable(false);
-//                blackjack.setTargetHand(blackjack.getPlayerHands().get(1));
-//            }
-//        }
-//    }
-
 
 }
 
