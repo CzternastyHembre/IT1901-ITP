@@ -2,21 +2,20 @@ package it1901.rest;
 
 
 import com.google.gson.Gson;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.testng.annotations.AfterMethod;
 import savehandler.UserSaveHandler;
 import user.User;
 
@@ -34,22 +33,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs(outputDir = "src/main/asciidoc")
 @EnableWebMvc
+@ContextConfiguration(classes = { RestController.class, UserModelService.class, RestApplication.class })
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
+
 public class EndpointTest {
     private UserSaveHandler userSaveHandler = new UserSaveHandler(true);
-
-
-
-    @AfterEach
-    public void cleanUserList(){
-        userSaveHandler.cleanUserList();
-    }
-
+    private UserModelService userModelService = new UserModelService();
 
     @Autowired
     private MockMvc mockMvc;
 
     private final Gson gson = new Gson();
+
+    @AfterEach
+    public void cleanUserList(){
+        userModelService.cleanUserList();
+    }
 
 
     @Test
@@ -90,26 +89,9 @@ public class EndpointTest {
                                         .description("the balance"))));
     }
 
-    @Test
-    public void setActiveUserRequest() throws Exception{
-        User activeUser = new User("setActiveUserTest", 50);
-
-        mockMvc.perform(
-                        post("/users/set-active")
-                                .content(gson.toJson(activeUser))
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(document("activeUser",
-                        requestFields(
-                                fieldWithPath("username")
-                                        .description("Active user username"),
-                                fieldWithPath("balance")
-                                        .description("Balance of the active user"))));
-    }
 
     @Test
-    public void getUserTest() throws Exception{
+    public void getUserTest() throws Exception {
         User getUser = new User("gettingUser", 100);
         mockMvc.perform(
                 post("/users/add")
@@ -120,4 +102,34 @@ public class EndpointTest {
         this.mockMvc.perform(get("/users/gettingUser")).andDo(print()).andExpect(status().isOk())
                 .andDo(document("getUser"));
     }
+
+    @Test
+    public void updateUserTest() throws Exception {
+        User originalUser = new User("updatedUser", 100);
+        mockMvc.perform(
+                post("/users/add")
+                        .content(gson.toJson(originalUser))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(document("updatedUser",
+                        requestFields(
+                                fieldWithPath("username")
+                                        .description("the username"),
+                                fieldWithPath("balance")
+                                        .description("the balance"))));
+
+        User updatedUser = new User("updatedUser", 500);
+        mockMvc.perform(
+                post("/users/update")
+                        .content(gson.toJson(updatedUser))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(document("updatedUser",
+                        requestFields(
+                                fieldWithPath("username")
+                                        .description("the username"),
+                                fieldWithPath("balance")
+                                        .description("the balance"))));
+    }
 }
+

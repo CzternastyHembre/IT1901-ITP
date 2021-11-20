@@ -34,7 +34,22 @@ public class RestModel {
                 .uri(URI.create(endpoint))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        User user = gson.fromJson(response.body(), User.class);
-        return user;
+        return gson.fromJson(response.body(), User.class);
+    }
+
+    public static void updateUser(User user) throws InterruptedException {
+        try {
+            String endpoint = baseUri + "/users/update";
+            String payload = gson.toJson(user);
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(endpoint))
+                    .header("Content-type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(payload))
+                    .build();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

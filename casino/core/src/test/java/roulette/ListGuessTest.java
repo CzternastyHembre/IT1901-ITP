@@ -26,7 +26,7 @@ public class ListGuessTest {
     			berforeEach();
     			roulette.setRolledNumber(j);    			
 				
-    			roulette.addGuess(new ListGuess(amount, i * 12 + 1, (i + 1) * 12));
+    			roulette.addGuess(Guess.listGuess(amount, i * 12 + 1, (i + 1) * 12));
     			assertEquals(roulette.calculateGuessWinnings(), Roulette.rouletteSize * amount / 12);
 			}	
 		}
@@ -41,7 +41,7 @@ public class ListGuessTest {
     			berforeEach();
     			roulette.setRolledNumber(-1);    			
 				
-    			roulette.addGuess(new ListGuess(amount, i * 12 + 1, (i + 1) * 12));
+    			roulette.addGuess(Guess.listGuess(amount, i * 12 + 1, (i + 1) * 12));
     			assertEquals(roulette.calculateGuessWinnings(), 0);
 			}	
 		}

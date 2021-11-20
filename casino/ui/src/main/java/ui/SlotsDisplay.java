@@ -76,6 +76,10 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   @FXML
   private ToggleButton keepBetButton;
 
+  @FXML
+  private final ImageView backImageView = new ImageView(new Image(Objects.requireNonNull(
+          SlotsDisplay.class.getResourceAsStream("/images/cards/backOfImage.jpg"))));
+
   private final List<HBox> hboxesList = new ArrayList<>();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
@@ -87,7 +91,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
 
   protected void viewAtStart() {
     for (HBox box : hboxesList) {
-      box.getChildren().add(createImageView("backOfCard"));
+      box.getChildren().add(this.backImageView);
     }
   }
 
@@ -96,10 +100,10 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    * This is run when the spinButton is clicked. This "spins" the cards,
    * and play's the bet.
    *
-   *
    */
 
-  public void spin(ActionEvent actionEvent) throws IOException {
+  @FXML
+  public void spin() throws IOException {
     int bet = Integer.parseInt(betField.getText());
     slotMachine.play(bet);
     for (HBox box : hboxesList) {
@@ -131,7 +135,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    */
   public void displayBackOfCard() {
     for (HBox box : hboxesList) {
-      box.getChildren().set(0, createImageView("backOfCard"));
+      box.getChildren().set(0, backImageView);
     }
   }
 
@@ -148,7 +152,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     if (slotMachine.getCombo() == null) {
       comboSlot.setText("Bet and Spin to start!");
     } else {
-      comboSlot.setText("" + slotMachine.getCombo());
+      comboSlot.setText(slotMachine.enumToString(slotMachine.getCombo()));
     }
     avgPayout.setText("" + (Math.round(slotMachine.getAveragePayout() * 100.0) / 100.0));
     spinsCounter.setText("" + slotMachine.getSpins());
