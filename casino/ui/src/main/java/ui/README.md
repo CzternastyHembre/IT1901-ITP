@@ -8,6 +8,8 @@ This file launches the application.
 
 ## Blackjack
 
+This is where all the JavaFX logic for the Blackjack game is. It uses the **Blackjack.fxml** as its core and most of the UI is written as code. It also extends the **CasinoMenu** so the user can maneuver between all the menus in the application.
+
 ## Menu
 
 In this folder there are all the controller which can be catogorized as the menu controller. These controller are not related to any of the games, but instead they are a part of the path to get to the games. The AddMoneyController is an exception. This controller can be used to alter the user's balance.
@@ -66,7 +68,7 @@ This is a class where some of the casino elements are made. The UI chips in the 
 
 ### RouletteController
 
-In this controller there is most of the logic used in the Roulette JavaFX, only the chips are made by the use of **CasinoElements**. The rest of the JavaFX is in this controller. The controller uses **Roulette.fxml**, which is a pretty simple FXML file. Most of the UI is written in code. This controller also extends **CasinoMenu** so it can use all of the menuItems to manuever between the menus.
+In this controller there is most of the logic used in the Roulette JavaFX, only the chips are made by the use of **CasinoElements**. The rest of the JavaFX is in this controller. The controller uses **Roulette.fxml**, which is a pretty simple FXML file. Most of the UI is written in code. This controller also extends **CasinoMenu** so it can use all of the menuItems to maneuver between the menus.
 
 ## Slots
 
