@@ -22,13 +22,26 @@ When inside the casino directory, the next step is to install the project:
 
 ```powershell
 mvn install
+cd rest/
+mvn install
+mvn spring-boot:run
+cd ..
 cd ui/
 mvn javafx:run
+
 ```
+
+## Convert to executable: 
+
+After installing and running the application in the steps above: 
+
+```powershell 
+mvn clean compile javafx:jlink jpackage:jpacakge
+````
+Keep in mind, the webserver has to run for the applcation to work. 
 
 ## Changes from previous release
 
-# Most likely need to write more here about changes. I dont know all the changes
 
 - Moved **saveHandler** from storage into a own folder in core and deleted storage.
 - Created **Blackjack** so the user has another game to choose between.
@@ -36,8 +49,8 @@ mvn javafx:run
 - Created **menuItems UIs** so that the same code in every UI would not be written multiple times. Instead they extends those menuItems.
 - Deleted the **CreateUser.fxml** and instead added functionality so that only one FXML is needed for both **LoginController** and **CreateUserController**.
 - Added **README** files in core, rest and ui to briefly explain their functionality.
--
-- # TODO write about asciidoctor and spring-boot
+- Added **Jpackage** and **Jlink** such that users can convert the application to a executable desktop application. 
+- Added **SpringBoot** framework for the rest module. Users will now be saved on a webserver. 
 
 ## Status of the project
 
@@ -47,7 +60,7 @@ Including the main features there are three addition features which are designed
 
 ## Code architecture
 
-The project is a multi module project to easily divide the different parts of the code. The project is divided in three main modules: Core, UI and rest.
+The project is a multi module project to easily divide the different parts of the code. The project is divided in three main modules: Core, UI and Rest.
 
 ### Core
 
@@ -64,6 +77,12 @@ All the classes and logic of how the UI and buttons work happens in the [UI modu
 The UI is made with JavaFX, FXML, css and images. Those are divided into different folders. The FXML controllers are in **[UI/src/main/java/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/java/ui)**. FXML, css and images are in **[UI/src/main/java/resources](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources)** where they are further divided into new folders. The FXML files are in **[UI/src/main/java/resources/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/ui)**, the css is in **[UI/src/main/java/resources/css](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/css)** and the images are in **[UI/src/main/java/resources/images](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images)**.
 
 ### Rest
+
+The rest module uses the Springboot framework for setting up an API. The classes in this module are used to communicate between the webserver and the application. By setting up an API, the users are being saved on a webserver and also locally. The UI module will send Http requests to the API while the RestController will decide what happens with these requests. 
+
+To see how these request and reponses from the webserver look like, [click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/47-create-documentations-for-release-3/casino/rest/src/main/asciidoc/RestDocumentation.adoc). 
+
+
 
 # Workflow
 
@@ -130,7 +149,7 @@ All of the plugins are run using the **verify** lifecycle.
 
 We have created tests to check if the method, logic and features in the different classes function as they are intended to.
 
-For this release our goal was that the Jacoco test coverage would have a minimum percentage of **80%** in each module to ensure good code quality.
+For this release our goal was that the Jacoco test coverage would have a minimum percentage of **85%** in each module to ensure good code quality.
 
 ## Illustrations
 
