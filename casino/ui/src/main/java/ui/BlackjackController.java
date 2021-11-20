@@ -41,10 +41,8 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     @FXML private Pane hand2;
     @FXML private HBox dealerHandHBox;
     private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
-
-
-
     private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,7 +93,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         if (blackjack.canSplit()){
             split.setDisable(false);
         }
-        turnLabel.setText("Player");
         hand2.setOpacity(0.5);
         bet.setDisable(true);
         this.balanceField.setText(""+user.getBalance());
@@ -108,6 +105,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     private void showTextOnStart() {
         playerTotal.setText(""+blackjack.getTargetHand().getSumOfDeck());
         dealerTotal.setText(blackjack.getDealersHand().getDeck().get(1).getCardValue() + " + ?");
+        turnLabel.setText("Player");
         payout.setVisible(false);
         result.setVisible(false);
     }
@@ -137,10 +135,10 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     public void hit() {
         blackjack.hit();
 
-        if (!split.isDisabled()){ // works
+        if (!split.isDisabled()){
             split.setDisable(true);
         }
-        if (blackjack.getTargetHand().getSumOfDeck() > 21){
+        if (blackjack.getTargetHand().getSumOfDeck() >= 21){
             hit.setDisable(true);
         }
 
@@ -232,5 +230,80 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         }
     }
 
+    public Blackjack getBlackjack() {
+        return blackjack;
+    }
+
+    public Button getHit() {
+        return hit;
+    }
+
+    public Button getStand() {
+        return stand;
+    }
+
+    public ToggleButton getToggleButton() {
+        return toggleButton;
+    }
+
+    public Button getPlayAgainButton() {
+        return playAgainButton;
+    }
+
+    public Button getBet() {
+        return bet;
+    }
+
+    public Text getPlayerTotal() {
+        return playerTotal;
+    }
+
+    public Text getDealerTotal() {
+        return dealerTotal;
+    }
+
+    public Text getPayout() {
+        return payout;
+    }
+
+    public Text getResult() {
+        return result;
+    }
+
+    public Text getBalanceField() {
+        return balanceField;
+    }
+
+    public Button getSplit() {
+        return split;
+    }
+
+    public TextField getBetAmount() {
+        return betAmount;
+    }
+
+    public Text getTurnLabel() {
+        return turnLabel;
+    }
+
+    public Pane getHand1() {
+        return hand1;
+    }
+
+    public Pane getHand2() {
+        return hand2;
+    }
+
+    public HBox getDealerHandHBox() {
+        return dealerHandHBox;
+    }
+
+    public ObservableList<Pane> getPlayerHandPanes() {
+        return playerHandPanes;
+    }
+
+    public UserSaveHandler getUserSaveHandler() {
+        return userSaveHandler;
+    }
 }
 
