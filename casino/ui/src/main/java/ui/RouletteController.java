@@ -52,11 +52,12 @@ public class RouletteController extends CasinoMenu {
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
+  private final RestModel restModel = new RestModel();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
-  /*
+  /**
    * The number sequense on an European rouletteWheel.
-   */
+   **/
   
   private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(
           0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27,
@@ -253,9 +254,8 @@ public class RouletteController extends CasinoMenu {
    */
 
   @FXML
-  public void run() throws IOException {
-
-    userSaveHandler.updateUser(user);
+  public void run() throws IOException, InterruptedException {
+    RestModel.updateUser(user);
     rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();
