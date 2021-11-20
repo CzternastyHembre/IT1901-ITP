@@ -22,6 +22,9 @@ class BlackjackTest {
 
     @Test
     void startGame() {
+        assertThrows(IllegalArgumentException.class, () ->{
+            blackjack.startGame(-1);
+        });
         blackjack.startGame(10);
         Assertions.assertEquals(blackjack.getBet(), 10);
         Assertions.assertEquals(blackjack.getDealingDeck().getDeck().size(),48);
@@ -43,10 +46,15 @@ class BlackjackTest {
         Assertions.assertEquals(blackjack.getTargetHand().getLastCard(), cardToAdd);
         if (blackjack.getTargetHand().getSumOfDeck() > 21){
             Assertions.assertFalse(blackjack.getTargetHand().isActive());
+            blackjack.stand();
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                blackjack.hit();
+            });
         }
         else {
             Assertions.assertTrue(blackjack.getTargetHand().isActive());
         }
+
     }
 
     @Test
@@ -101,7 +109,11 @@ class BlackjackTest {
         blackjack.dealerPlay();
         Assertions.assertTrue(blackjack.getDealersHand().getSumOfDeck() >= 17);
         Assertions.assertFalse(blackjack.getDealersHand().isActive());
-        //todo; test payout
-        //todo; test user balance
+        if (blackjack.getDealersHand().getSumOfDeck() == 21){
+            assertEquals(0, blackjack.getPayout());
+        }
+        if (blackjack.getPlayersHand2().getSumOfDeck()!=0){
+            assertTrue(blackjack.getPayout()-blackjack.getBet() != blackjack.getPayout());
+        }
     }
 }
