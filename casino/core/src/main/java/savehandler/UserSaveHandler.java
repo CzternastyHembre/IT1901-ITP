@@ -2,7 +2,6 @@ package savehandler;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import user.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+import user.User;
 
 
 /**
@@ -24,25 +24,37 @@ public class UserSaveHandler {
   /**
    * Variable SAVE_FILE is saved as the path to the saving destination.
    */
-  private final Path SAVE_FILE;
+  private final Path SaveFile;
 
   public UserSaveHandler() {
     this(false);
   }
 
+
+  /**
+   * Constructor for UserSaveHandler.
+   * The savehandler will save the files in different folder if used in a test.
+   *
+   * @param isTest a boolean for checking if it is used for a test or not.
+   */
+
   public UserSaveHandler(boolean isTest) {
     if (isTest) {
-      this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "TestData", "users.json");
+      this.SaveFile = Paths.get(System.getProperty("user.home"), "TestData", "users.json");
     } else {
-      this.SAVE_FILE = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+      this.SaveFile = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
     }
     createDirectory();
   }
 
 
+  /**
+   * Method that creates a directory based off of SaveFile path.
+   *
+   */
 
   public void createDirectory() {
-    String path = String.valueOf(SAVE_FILE);
+    String path = String.valueOf(SaveFile);
     path = path.replaceAll("users.json", "");
     if (Files.exists(Path.of(path))) {
       return;
@@ -61,18 +73,25 @@ public class UserSaveHandler {
    * @param user the user that is being created.
    */
 
-  public void createUser(User user) throws IOException {
+  public void createUser(User user) {
     List<User> userList = getUserList();
-    if (userList.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
+    if (userList.stream().anyMatch(u -> u.getUsername()
+            .equals(user.getUsername()))) {
       throw new IllegalArgumentException("Username is taken");
     }
     userList.add(0, user);
     updateFile(userList);
   }
 
+  /**
+   * Updates the file with a new userList. Overwrites the existing file.
+   *
+   * @param userList takes in the new userList and overwrites.
+   */
 
   public void updateFile(List<User> userList) {
-    try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
+    try (FileWriter fileWriter = new FileWriter(String.valueOf(SaveFile),
+            StandardCharsets.UTF_8)) {
       Gson gson = new Gson();
       String jsonSaveString = gson.toJson(userList);
       fileWriter.append(jsonSaveString);
@@ -88,7 +107,7 @@ public class UserSaveHandler {
    */
 
   public boolean isEmpty() {
-    File file = new File(String.valueOf(SAVE_FILE));
+    File file = new File(String.valueOf(SaveFile));
     return file.length() == 0;
   }
 
@@ -98,24 +117,30 @@ public class UserSaveHandler {
    * @return userList is the arrayList of the object user.
    */
 
-  public List<User> getUserList() throws IOException {
+  public List<User> getUserList() {
     if (isEmpty()) {
       createDirectory();
-      try (FileWriter fileWriter = new FileWriter(String.valueOf(SAVE_FILE), StandardCharsets.UTF_8)) {
+      try (FileWriter fileWriter = new FileWriter(String.valueOf(SaveFile),
+              StandardCharsets.UTF_8)) {
         fileWriter.write("");
         fileWriter.close();
         return new ArrayList<>();
+      } catch (IOException e) {
+        e.printStackTrace();
       }
     }
-    Scanner sc = new Scanner(new File(String.valueOf(SAVE_FILE)), StandardCharsets.UTF_8);
-    String userString = sc.nextLine();
-    Gson gson = new Gson();
-    ArrayList<User> userList;
-    Type userListType = new TypeToken<ArrayList<User>>() {
-    }.getType();
-    userList = gson.fromJson(userString, userListType);
-    sc.close();
-    return userList;
+    try (Scanner sc = new Scanner(new File(String.valueOf(SaveFile)), StandardCharsets.UTF_8)) {
+      String userString = sc.nextLine();
+      Gson gson = new Gson();
+      ArrayList<User> userList;
+      Type userListType = new TypeToken<ArrayList<User>>() {
+      }.getType();
+      userList = gson.fromJson(userString, userListType);
+      return userList;
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   /**
@@ -125,7 +150,7 @@ public class UserSaveHandler {
    * @return null or the object user with the username.
    */
 
-  public User getUser(String username) throws IOException {
+  public User getUser(String username) {
 
     for (User user : Objects.requireNonNull(getUserList())) {
       if (user.getUsername().equals(username)) {
@@ -141,7 +166,7 @@ public class UserSaveHandler {
    * @param user is the user that is being updated.
    */
 
-  public void updateUser(User user) throws IOException {
+  public void updateUser(User user) {
     List<User> userList = getUserList();
     for (int i = 0; i < userList.size(); i++) {
       if (userList.get(i).getUsername().equals(user.getUsername())) {

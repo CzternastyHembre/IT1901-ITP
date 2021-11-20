@@ -73,7 +73,7 @@ public class SlotsValidator {
 
   // Help methods
   private static int splitStringForInt(String string) {
-    String substring = string.substring(0,string.indexOf(string.charAt(string.length()-1)));
+    String substring = string.substring(0, string.indexOf(string.charAt(string.length() - 1)));
     return Integer.parseInt(substring);
   }
 

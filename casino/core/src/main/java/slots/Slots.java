@@ -1,18 +1,23 @@
 package slots;
 
-import java.util.*;
+
 
 import user.User;
 import validators.SlotsValidator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Arrays;
+import java.util.Collections;
 
-enum CardColor{
+enum CardColor {
   S,
   D,
   H,
   C
 }
 
-enum Combo{
+enum Combo {
   LOSS,
   PAIR,
   FLUSH,
@@ -103,7 +108,7 @@ public class Slots {
   }
 
 
-  private Enum randomSuit(){
+  private Enum randomSuit() {
     var enumList = Collections.unmodifiableList(Arrays.asList(CardColor.values()));
     return enumList.get(random.nextInt(CardColor.values().length));
   }
@@ -220,10 +225,10 @@ public class Slots {
     return currentWinnings;
   }
 
-  public String enumToString(Enum e){
-    if (e.name().contains("_"))
-      return e.name().replaceAll("_"," ");
-    else{
+  public String enumToString(Enum e) {
+    if (e.name().contains("_")) {
+      return e.name().replaceAll("_", " ");
+    } else {
       return e.name();
     }
   }
