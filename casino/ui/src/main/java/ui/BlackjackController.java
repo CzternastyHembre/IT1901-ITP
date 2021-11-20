@@ -42,6 +42,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     @FXML private HBox dealerHandHBox;
     private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
     private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+    private boolean dealerIsFlipped;
 
 
     @Override
@@ -51,6 +52,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         playerHandPanes.add(hand1);
         playerHandPanes.add(hand2);
         this.balanceField.setText(""+user.getBalance());
+        turnLabel.setText("Start a game");
     }
 
     private void disableGameButtons() {
@@ -81,6 +83,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         payout.setVisible(false);
         result.setVisible(false);
         this.balanceField.setText(""+user.getBalance());
+        turnLabel.setText("Start a game");
     }
 
     @FXML
@@ -150,6 +153,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     public void stand() throws IOException {
         blackjack.stand();
         if (blackjack.isPlayerDone()){
+            stand.setDisable(true);
+            split.setDisable(true);
+            hit.setDisable(true);
             endGame();
         }
         else {
@@ -228,6 +234,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         for (Card card : blackjack.getDealersHand().getDeck()){
             dealerHandHBox.getChildren().add(createImageView(card.getCardImage()));
         }
+        dealerIsFlipped = true;
     }
 
     public Blackjack getBlackjack() {
@@ -278,16 +285,8 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         return split;
     }
 
-    public TextField getBetAmount() {
-        return betAmount;
-    }
-
     public Text getTurnLabel() {
         return turnLabel;
-    }
-
-    public Pane getHand1() {
-        return hand1;
     }
 
     public Pane getHand2() {
@@ -302,8 +301,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
         return playerHandPanes;
     }
 
-    public UserSaveHandler getUserSaveHandler() {
-        return userSaveHandler;
+
+    public boolean isDealerIsFlipped() {
+        return dealerIsFlipped;
     }
 }
 

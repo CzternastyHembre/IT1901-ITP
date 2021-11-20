@@ -228,5 +228,7 @@ public class Blackjack {
         this.playersHand1 = playersHand1;
     }
 
-
+    public void setCanSplit(boolean canSplit) {
+        this.canSplit = canSplit;
+    }
 }
