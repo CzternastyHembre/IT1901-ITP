@@ -1,68 +1,63 @@
 package blackjack;
 
+import java.util.Arrays;
 
 
+/**
+ * This is a blueprint of how a card object should act.
+ */
 public class Card {
 
-    private int faceValue;
-    private char suit;
-    private int cardValue;
-    private final char[] validSuits = new char[] {'S', 'H', 'C', 'D'};
-    private String cardString;
-    private String backCard;
-    private String cardImage;
+  private int cardValue;
+  private final String cardImage;
 
 
-    public Card(int faceValue, char suit) {
-        if (faceValue > 13 || faceValue < 1) {
-            throw new IllegalStateException("Must be an number between 1 and 13");
-        }
-        this.faceValue = faceValue;
-
-        if (new String(validSuits).indexOf(suit) == -1) {
-            throw new IllegalStateException("Suit must be either S, H, C, D");
-        }
-
-        this.cardString = "" + faceValue + suit;
-        this.cardImage = "" + faceValue + suit + ".jpg";
-        this.backCard = "backOfCard.jpg";
-        setCardValue(faceValue);
+  /**
+   * This constructor creates a card object and sets the cardImage and the cardValue.
+   *
+   * @param faceValue the face value of the card being created.
+   * @param suit the suit of the card being created.
+   * @throws IllegalArgumentException if the card has an illegal face value or suit.
+   */
+  public Card(int faceValue, char suit) throws IllegalArgumentException {
+    if (faceValue > 13 || faceValue < 1) {
+      throw new IllegalStateException("Must be an number between 1 and 13");
     }
 
-    public int getFaceValue() {
-        return faceValue;
-    }
+    String suitString = Character.toString(suit);
 
-    public char getSuit() {
-        return suit;
+    if (Arrays.stream(CardColor.values()).noneMatch(
+            element -> element.toString().equals(suitString))) {
+      throw new IllegalStateException("Suit must be either S, H, C, D");
     }
+    this.cardImage = "" + faceValue + suit + ".jpg";
+    setCardValue(faceValue);
+  }
 
-    public int getCardValue() {
-        return cardValue;
-    }
+  public int getCardValue() {
+    return cardValue;
+  }
 
-    public void setCardValue(int faceValue) {
-        if (faceValue < 10 && faceValue != 1) {
-            this.cardValue = faceValue;
-        }
-        if (faceValue > 9) {
-            this.cardValue = 10;
-        }
-        if (faceValue == 1){
-            this.cardValue = 11;
-        }
+  /**
+   * Set the card value of the card. Jack, queen and king have values of 10,
+   * aces have a value of 11.
+   *
+   * @param faceValue the face value of the card
+   */
+  public void setCardValue(int faceValue) {
+    if (faceValue < 10 && faceValue != 1) {
+      this.cardValue = faceValue;
     }
+    if (faceValue > 9) {
+      this.cardValue = 10;
+    }
+    if (faceValue == 1) {
+      this.cardValue = 11;
+    }
+  }
 
-    public String getCardString() {
-        return cardString;
-    }
-
-    public String getBackCard() {
-        return backCard;
-    }
-
-    public String getCardImage() {
-        return cardImage;
-    }
+  public String getCardImage() {
+    return cardImage;
+  }
 }
 
