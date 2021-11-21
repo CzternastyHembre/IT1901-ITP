@@ -1,27 +1,21 @@
 package blackjack;
 
+/**
+ * A hand is a deck that can be active or inactive.
+ * If active, it can be played on, if not, it can't
+ */
 public class Hand extends Deck {
-    private boolean isActive = true;
-    private boolean isValid = true;
+  private boolean isActive = true;
 
+  public Hand() {
 
-    public Hand() {
+  }
 
-    }
+  public boolean isActive() {
+    return isActive;
+  }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public boolean isValid() {
-        return isValid;
-    }
-
-    public void setValid(boolean valid) {
-        isValid = valid;
-    }
+  public void setActive(boolean active) {
+    isActive = active;
+  }
 }
