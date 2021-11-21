@@ -78,7 +78,7 @@ class BlackjackTest {
 
         blackjack.setPlayersHand1(insplittableHand);
         blackjack.split();
-        Assertions.assertEquals(blackjack.getSplitBet(), 0); // If this is true, the rest of the method hasn't been called
+        Assertions.assertEquals(userBalance, user.getBalance()); // If this is true, the rest of the method hasn't been called
 
         blackjack.setPlayersHand1(splittableHand);
         blackjack.split();
