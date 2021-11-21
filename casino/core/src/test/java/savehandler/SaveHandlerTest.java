@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class SaveHandlerTest {
@@ -24,7 +25,7 @@ public class SaveHandlerTest {
 
     //Makes the arrays strings to check if equal, the hash does not allow to be compared.
     @Test
-    public void getUsersTest() throws IOException {
+    public void getUsersTest() {
         userSaveHandler.updateFile(new ArrayList<>());
         User getUser = new User("bob", 1000);
         User get2User = new User("alice", 1000);
@@ -37,15 +38,31 @@ public class SaveHandlerTest {
     }
 
     @Test
-    public void resetUserList() throws IOException {
+    public void resetUserList() {
         userSaveHandler.updateFile(new ArrayList<>());
         assertEquals(0, userSaveHandler.getUserList().size());
     }
 
     @Test
-    public void getUserTest() throws IOException {
+    public void getUserTest() {
         User user = new User("karen", 500);
         userSaveHandler.createUser(user);
         assertEquals(user.toString(), Objects.requireNonNull(userSaveHandler.getUser("karen")).toString());
+    }
+
+    @Test
+    void updateUserTest(){
+        User user = new User("updateUser", 2000);
+        userSaveHandler.createUser(user);
+        user.setBalance(5000);
+        userSaveHandler.updateUser(user);
+        assertEquals(5000, user.getBalance());
+    }
+
+    @Test
+    void createDirectoryTest() {
+        UserSaveHandler userSaveHandler = new UserSaveHandler();
+        userSaveHandler.createDirectory();
+        assertFalse(userSaveHandler.isEmpty());
     }
 }

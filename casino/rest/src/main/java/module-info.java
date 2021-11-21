@@ -7,5 +7,4 @@ module rest {
     requires core;
     requires com.google.gson;
     opens it1901.rest;
-
 }

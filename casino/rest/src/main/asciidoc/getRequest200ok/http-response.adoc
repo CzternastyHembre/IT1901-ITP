@@ -2,7 +2,7 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 84
+Content-Length: 41
 
-[{"balance":100.0,"username":"mappingUser"},{"balance":500.0,"username":"testUser"}]
+[{"balance":500.0,"username":"testUser"}]
 ----

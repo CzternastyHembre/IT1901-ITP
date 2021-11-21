@@ -52,4 +52,15 @@ public class RestModel {
             e.printStackTrace();
         }
     }
+
+    public static void deleteUser(String username) throws IOException, InterruptedException {
+        String endpoint = baseUri + "/delete/" + username;
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .DELETE()
+                .header("Content-type", "application/json")
+                .uri(URI.create(endpoint))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
 }
