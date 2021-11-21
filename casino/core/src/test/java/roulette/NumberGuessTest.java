@@ -23,7 +23,7 @@ public class NumberGuessTest {
     		berforeEach();
         	roulette.setRolledNumber(-1);
     		
-            roulette.addGuess(new NumberGuess(10, i));
+            roulette.addGuess(Guess.numberGuess(10, i));
             assertEquals(roulette.calculateGuessWinnings(), 0);
     		}
     }
@@ -35,7 +35,7 @@ public class NumberGuessTest {
     		berforeEach();
         	roulette.setRolledNumber(i);
 	
-            roulette.addGuess(new NumberGuess(10, i));
+            roulette.addGuess(Guess.numberGuess(10, i));
             assertEquals(roulette.calculateGuessWinnings(), 36 * 10);
     		}
     }
@@ -49,7 +49,7 @@ public class NumberGuessTest {
 	
         	for (int j = 0; j <= Roulette.rouletteSize; j++) {
         		if (j != i) {
-        			roulette.addGuess(new NumberGuess(10, j));
+        			roulette.addGuess(Guess.numberGuess(10, j));
 				}        		
     		}
         	assertEquals(roulette.calculateGuessWinnings(), 0);					
@@ -63,7 +63,7 @@ public class NumberGuessTest {
         	roulette.setRolledNumber(i);
 	
         	for (int j = 0; j <= Roulette.rouletteSize; j++) {
-    			roulette.addGuess(new NumberGuess(10, j));
+    			roulette.addGuess(Guess.numberGuess(10, j));
     		}
         	assertEquals(roulette.calculateGuessWinnings(), 36 * 10);					
 		}
@@ -78,7 +78,7 @@ public class NumberGuessTest {
 
         	int bettingSum = 0;
 			for (int j = 1; j <= i; j++) {
-				roulette.addGuess(new NumberGuess(j, 0));
+				roulette.addGuess(Guess.numberGuess(j, 0));
 				bettingSum += j;
 				
 			}

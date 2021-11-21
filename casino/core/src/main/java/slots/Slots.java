@@ -1,10 +1,33 @@
 package slots;
 
+
+
+import user.User;
+import validators.SlotsValidator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import user.User;
-import validators.SlotsValidator;
+import java.util.Arrays;
+import java.util.Collections;
+
+enum CardColor {
+  S,
+  D,
+  H,
+  C
+}
+
+enum Combo {
+  LOSS,
+  PAIR,
+  FLUSH,
+  STRAIGHT,
+  PERFECT_STRAIGHT,
+  JACKPOT,
+  SUPER_PERFECT_STRAIGHT,
+  SUPER_JACKPOT,
+  DEVIL
+}
 
 
 /**
@@ -12,7 +35,6 @@ import validators.SlotsValidator;
  */
 
 public class Slots {
-
   // Fields
   private List<String> symbols = new ArrayList<>();
   private int spins;
@@ -20,10 +42,9 @@ public class Slots {
   private int bet;
   private final Random random;
   private double currentWinnings;
-  private String combo;
+  private Enum combo;
   private double averagePayout;
   private User user;
-  private final String[] validSuits = new String[] { "S", "D", "H", "C" };
 
   /**
    * Constructor that sets the spins, netgain and bet to 0.
@@ -81,8 +102,15 @@ public class Slots {
     this.user.setBalance(this.user.getBalance() - getBet());
   }
 
+
   private String generateSymbol() {
-    return random.nextInt(10) + 1 + validSuits[random.nextInt(validSuits.length)];
+    return random.nextInt(10) + 1 + randomSuit().name();
+  }
+
+
+  private Enum randomSuit() {
+    var enumList = Collections.unmodifiableList(Arrays.asList(CardColor.values()));
+    return enumList.get(random.nextInt(CardColor.values().length));
   }
 
   /**
@@ -94,44 +122,44 @@ public class Slots {
   public double calculateWinnings() {
 
     if (SlotsValidator.isDevil(symbols)) {
-      this.combo = "DEVIL";
+      this.combo = Combo.DEVIL;
       return 0;
     }
 
     if (SlotsValidator.isSuperJackpot(symbols)) {
-      this.combo = "SUPER JACKPOT";
+      this.combo = Combo.SUPER_JACKPOT;
       return getBet() * 500;
     }
 
     if (SlotsValidator.isSuperPerfectStraight(symbols)) {
-      this.combo = "SUPER PERFECT STRAIGHT";
+      this.combo = Combo.SUPER_PERFECT_STRAIGHT;
       return getBet() * 400;
     }
 
     if (SlotsValidator.isJackpot(symbols)) {
-      this.combo = "JACKPOT";
+      this.combo = Combo.JACKPOT;
       return getBet() * 16;
     }
 
     if (SlotsValidator.isPerfectStraight(symbols)) {
-      this.combo = "PERFECT STRAIGHT";
+      this.combo = Combo.PERFECT_STRAIGHT;
       return getBet() * 2.25;
     }
     if (SlotsValidator.isStraight(symbols)) {
-      this.combo = "STRAIGHT";
+      this.combo = Combo.STRAIGHT;
       return getBet() * 1.65;
     }
 
     if (SlotsValidator.isFlush(symbols)) {
-      this.combo = "FLUSH";
+      this.combo = Combo.FLUSH;
       return getBet() * 1.35;
     }
 
     if (SlotsValidator.isPair(symbols)) {
-      this.combo = "PAIR";
+      this.combo = Combo.PAIR;
       return getBet() * 1.25;
     } else {
-      this.combo = "LOSS";
+      this.combo = Combo.LOSS;
       return 0;
     }
   }
@@ -197,7 +225,15 @@ public class Slots {
     return currentWinnings;
   }
 
-  public String getCombo() {
+  public String enumToString(Enum e) {
+    if (e.name().contains("_")) {
+      return e.name().replaceAll("_", " ");
+    } else {
+      return e.name();
+    }
+  }
+
+  public Enum getCombo() {
     return combo;
   }
 

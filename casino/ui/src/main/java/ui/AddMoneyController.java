@@ -42,7 +42,7 @@ public class AddMoneyController extends CasinoMenu {
       errorLabel.setText("");
       responseLabel.setText(amount + " has been added to your account!");
 
-    } catch (NumberFormatException | IOException e) {
+    } catch (NumberFormatException e) {
       responseLabel.setText("");
       errorLabel.setText("We only accept integers, try again");
     }

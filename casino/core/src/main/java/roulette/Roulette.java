@@ -12,9 +12,8 @@ import user.User;
 public class Roulette {
 
   public static final int rouletteSize = 36;
-  private Random rand = new Random();
-  private User user;
-  private List<Guess> guesses = new ArrayList<>();
+  private final User user;
+  private final List<Guess> guesses = new ArrayList<>();
   private int rolledNumber;
 
   public Roulette(User user) {
@@ -22,7 +21,7 @@ public class Roulette {
   }
 
   public void rollNumber() {
-    rolledNumber = rand.nextInt(37);
+    rolledNumber = new Random().nextInt(rouletteSize + 1);
   }
 
   public int getRolledNumber() {
@@ -101,11 +100,7 @@ public class Roulette {
   /**
    * Removes the {@link Guess} at the end of the {@code guesses}.
    *
-   *
    * @throws IllegalArgumentException if there are no {@link Guess} in {@code guesses}.
-   *
-   *
-   * @throws if there are no {@link Guess} in {@code guesses}.
    *
    */
 
