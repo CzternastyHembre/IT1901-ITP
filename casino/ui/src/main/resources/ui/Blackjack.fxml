@@ -27,7 +27,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <HBox fx:id="dealerHandHBox" layoutX="125.0" layoutY="8.0" prefHeight="100.0" prefWidth="350.0" />
+      <HBox fx:id="dealerHandHbox" layoutX="125.0" layoutY="8.0" prefHeight="100.0" prefWidth="350.0" />
    </Pane>
    <Pane prefHeight="253.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
       <Button fx:id="hit" layoutX="37.0" layoutY="46.0" mnemonicParsing="false" onAction="#hit" prefHeight="26.0" prefWidth="49.0" text="Hit">

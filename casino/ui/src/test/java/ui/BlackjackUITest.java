@@ -5,8 +5,6 @@ import blackjack.Card;
 import blackjack.Hand;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +13,6 @@ import org.testfx.framework.junit5.ApplicationTest;
 import user.User;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -167,7 +164,7 @@ class BlackjackUITest extends ApplicationTest {
         if (blackjack.isPlayerDone()){
             assertTrue(blackjackController.isDealerIsFlipped());
         }
-        assertEquals(blackjack.getDealersHand().getDeck().size(), blackjackController.getDealerHandHBox().getChildren().size());
+        assertEquals(blackjack.getDealersHand().getDeck().size(), blackjackController.getDealerHandHbox().getChildren().size());
         assertEquals(user.getBalance(),prevBalance + blackjack.getPayout());
         assertTrue(blackjackController.getResult().getText().equals("WIN!")
                 || blackjackController.getResult().getText().equals("LOSS!"));
@@ -216,7 +213,7 @@ class BlackjackUITest extends ApplicationTest {
         assertTrue(blackjackController.getPlayAgainButton().isDisabled());
         assertTrue(blackjackController.getPlayerHandPanes().get(0).getChildren().isEmpty());
         assertTrue(blackjackController.getPlayerHandPanes().get(1).getChildren().isEmpty());
-        assertTrue(blackjackController.getDealerHandHBox().getChildren().isEmpty());
+        assertTrue(blackjackController.getDealerHandHbox().getChildren().isEmpty());
 
         assertSame("0", blackjackController.getPlayerTotal().getText());
         assertSame("0", blackjackController.getDealerTotal().getText());
