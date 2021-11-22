@@ -4,13 +4,54 @@ The Casino application is meant to serve as an entertainment application for use
 
 The code in the application is divided into three main parts, core, ui and rest to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules.
 
+## Techstack
+
+- Java
+- Maven
+- JavaFX
+- SpringBoot
+
+## Running the code:
+
+Start by routing into the casino directory.
+
+```powershell
+cd casino
+```
+
+When inside the casino directory, the next step is to install the project:
+
+```powershell
+mvn install -DskipTests
+```
+
+When the application is installed, you have to set up the API before using the appliaction: 
+
+```powershell
+cd rest/
+mvn spring-boot:run
+````
+Then run the application:
+``` powershell
+cd ..
+cd ui/
+mvn javafx:run
+```
+
+For testing, move into the root and use maven test: 
+```powershell
+cd ..
+mvn clean test
+```
+
+
 ## Core
 
 The core module contains all the classes and logic that the application uses to play the different casino games. It is independent of all the UI and filesaving.
 
 Since our app is a casino, all the logic of how blackjack, roulette and slots are played, happens here in the different packages inside the module. The core module contains classes to handle and represent the logic behind these games.
 
-[Click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/RestModel/casino/core/src/main/java) to read more about the core module.
+[Click here](casino/core/src/main/java) to read more about the core module.
 
 ## UI
 
@@ -18,11 +59,11 @@ All the classes and logic of how the UI and buttons work happens in the UI modul
 
 The UI is made with JavaFX and FXML, where the FXML files and the controllers of the FXML files are divided in different packages, where the controllers are in the **UI/src/main/java/ui** and the FXML files are in the **main/resources/ui**.
 
-[Click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/RestModel/casino/ui/src/main/java) to read more about the UI module.
+[Click here](casino/ui/src/main/java/ui) to read more about the UI module.
 
 ## Rest
 
-The Rest module is the module for setting up the REST API. The rest module uses the framwork Springboot to easily set up the API. The application will save the users both locally and inside the API. It is a webserver such that the RestModel class in the UI can communicate with the server. [Click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/RestModel/casino/rest/src/main) to read more about the REST API.
+The Rest module is the module for setting up the REST API. The rest module uses the framwork Springboot to easily set up the API. The application will save the users both locally and inside the API. It is a webserver such that the RestModel class in the UI can communicate with the server. [Click here](casino/rest/src/main/java/rest) to read more about the REST API.
 
 ## Building with Maven
 
