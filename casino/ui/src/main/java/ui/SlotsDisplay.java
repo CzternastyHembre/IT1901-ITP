@@ -14,8 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -25,10 +23,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import savehandler.UserSaveHandler;
 import slots.Slots;
+import ui.MenuItem.CasinoMenu;
+import user.User;
 
 
 /**
@@ -37,7 +36,7 @@ import slots.Slots;
  *
  */
 
-public abstract class SlotsDisplay implements Initializable {
+public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
 
   protected Slots slotMachine;
 
@@ -45,11 +44,6 @@ public abstract class SlotsDisplay implements Initializable {
   private MenuItem mainMenu;
   @FXML
   private MenuItem lobby;
-  @FXML
-  FXMLLoader loader = new FXMLLoader();
-  @FXML
-  AnchorPane anchorPane;
-
   @FXML
   private Button spinButton;
 
@@ -82,6 +76,10 @@ public abstract class SlotsDisplay implements Initializable {
   @FXML
   private ToggleButton keepBetButton;
 
+
+  private final Image backImage = new Image(Objects.requireNonNull(
+          SlotsDisplay.class.getResourceAsStream("/images/cards/backOfCard.jpg")));
+
   private final List<HBox> hboxesList = new ArrayList<>();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
@@ -102,10 +100,10 @@ public abstract class SlotsDisplay implements Initializable {
    * This is run when the spinButton is clicked. This "spins" the cards,
    * and play's the bet.
    *
-   *
    */
 
-  public void spin(ActionEvent actionEvent) throws IOException {
+  @FXML
+  public void spin() throws IOException {
     int bet = Integer.parseInt(betField.getText());
     slotMachine.play(bet);
     for (HBox box : hboxesList) {
@@ -154,7 +152,7 @@ public abstract class SlotsDisplay implements Initializable {
     if (slotMachine.getCombo() == null) {
       comboSlot.setText("Bet and Spin to start!");
     } else {
-      comboSlot.setText("" + slotMachine.getCombo());
+      comboSlot.setText(slotMachine.enumToString(slotMachine.getCombo()));
     }
     avgPayout.setText("" + (Math.round(slotMachine.getAveragePayout() * 100.0) / 100.0));
     spinsCounter.setText("" + slotMachine.getSpins());
@@ -170,9 +168,15 @@ public abstract class SlotsDisplay implements Initializable {
    */
 
   private ImageView createImageView(String imageName) {
-    ImageView imageView = new ImageView(new Image(
-        Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
-                "/images/cards/" + imageName + ".jpg"))));
+    ImageView imageView;
+    if (imageName.equals("backOfCard")) {
+      imageView = new ImageView(backImage);
+    }
+    else {
+      imageView = new ImageView(new Image(
+              Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
+                      "/images/cards/" + imageName + ".jpg"))));
+    }
     imageView.setFitWidth(148);
     imageView.setFitHeight(210);
     return imageView;
@@ -238,50 +242,6 @@ public abstract class SlotsDisplay implements Initializable {
         e.printStackTrace();
       }
     });
-  }
-
-  @FXML
-  public void exit(ActionEvent actionEvent) {
-    System.exit(0);
-  }
-
-
-  /**
-   * Takes the user back to the main menu view.
-   *
-   *
-   */
-  @FXML
-  public void backToMainMenu(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(SlotsDisplay.class.getResource("Start.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
-
-  /**
-   * Takes the user back to the lobby view.
-   *
-   *
-   */
-  @FXML
-  public void backToLobby(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(SlotsDisplay.class.getResource("selectGameView.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
   }
 
   @Override

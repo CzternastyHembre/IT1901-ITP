@@ -1,6 +1,7 @@
 package it1901.rest;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import savehandler.*;
@@ -11,31 +12,46 @@ import java.util.List;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-    private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+    private UserSaveHandler userSaveHandler = new UserSaveHandler();
+
+    @Autowired
+    private UserModelService userModelService = new UserModelService(userSaveHandler.getUserList());
+
+
+    private void autosaveUserList(){
+        userModelService.autosaveUserList();
+    }
 
 
     @GetMapping("/users")
-    public List<User> getUserList() throws IOException {
-        return userSaveHandler.getUserList();
+    public List<User> getUserList() {
+        return userModelService.getUserList();
     }
 
 
     @GetMapping("/users/{Username}")
-    public User getUser(@PathVariable("Username") String Username) throws IOException {
-        return userSaveHandler.getUser(Username);
+    public User getUser(@PathVariable("Username") String Username){
+        return userModelService.getUser(Username);
     }
 
 
     @PostMapping("/users/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser (@RequestBody User newUser) throws IOException {
-        userSaveHandler.createUser(newUser);
+    public void addUser (@RequestBody User newUser){
+        userModelService.createUser(newUser);
     }
 
-    @PostMapping("/users/set-active")
-    public void  activeUser(@RequestBody User newUser) throws IOException {
-        userSaveHandler.setActive(newUser);
+    @PostMapping("/users/update")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public boolean updateUser(@RequestBody User user){
+        userModelService.updateUser(user);
+        return true;
     }
 
-
+    @DeleteMapping("/delete/{Username}")
+    public boolean removeUser(@PathVariable ("Username") String username) {
+        userModelService.deleteUser(username);
+        return true;
+    }
 }
+

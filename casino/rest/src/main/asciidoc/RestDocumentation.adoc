@@ -31,6 +31,21 @@ include::getUser/http-request.adoc[]
 
 include::getUser/http-response.adoc[]
 
+### Deleting a user
+
+include::deleteUser/http-request.adoc[]
+
+**The response**
+
+include::deleteUser/http-response.adoc[]
+
+### Updating a user
+
+include::updatedUser/http-request.adoc[]
+
+**The response**
+
+include::updatedUser/http-response.adoc[]
 
 
 

@@ -7,16 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.animation.RotateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -25,24 +20,19 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import roulette.Guess;
-import roulette.ListGuess;
-import roulette.NumberGuess;
-import roulette.PatternGuess;
 import roulette.Roulette;
 import savehandler.UserSaveHandler;
-import user.User;
+import ui.MenuItem.CasinoMenu;
 
 /**
  * Controller for the roulette game.
  */
 
-public class RouletteController {
+public class RouletteController extends CasinoMenu {
 
   @FXML Pane chipFolder;
-  @FXML Pane anchorPane;
   @FXML Pane rouletteBoardPane;
   @FXML Pane controllsFolder;
   @FXML Pane gridPane;
@@ -55,20 +45,19 @@ public class RouletteController {
   @FXML MenuItem mainMenu;
   @FXML MenuItem lobby;
   @FXML MenuItem exit;
-  @FXML FXMLLoader loader = new FXMLLoader();
 
-  Label rolledNumberLabel = new Label();
   private Roulette rouletteGame;
-  private User user;
+  private Label rolledNumberLabel = new Label();
   private Map<Integer, Pane> numbersTilesMap = new HashMap<>();
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
+  private final RestModel restModel = new RestModel();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
-  
-  /*
+
+  /**
    * The number sequense on an European rouletteWheel.
-   */
+   **/
   
   private final List<Integer> rouletteWheelNumberSequence = Arrays.asList(
           0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27,
@@ -82,13 +71,16 @@ public class RouletteController {
    *
    */
 
+  public RouletteController() {
+  }
+
+
   @FXML
-  public void initialize() throws IOException {
+  public void initialize() {
+    rouletteGame = new Roulette(user);
     List<Label> labelList = new ArrayList<>(Arrays.asList(
             moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
             textLabel1, textLabel2, rolledNumberLabel));
-    user = userSaveHandler.getActiveUser();
-    rouletteGame = new Roulette(user);
     updateUserLables();
     nameLabel.setText(user.getUsername());
 
@@ -262,9 +254,8 @@ public class RouletteController {
    */
 
   @FXML
-  public void run() throws IOException {
-
-    userSaveHandler.updateUser(user);
+  public void run() throws IOException, InterruptedException {
+    RestModel.updateUser(user);
     rouletteGame.rollNumber();
 
     int number = rouletteGame.getRolledNumber();
@@ -384,55 +375,55 @@ public class RouletteController {
   }
 
   /**
-   * Creates a {@link NumberGuess} add calls the method {@code addGuess}.
+   * Creates a {@link Guess} add calls the method {@code addGuess}.
    *
-   * @param tile creates the {@link NumberGuess} when clicked on.
-   * @param number creates the {@link NumberGuess} based on the number.
+   * @param tile creates the {@link Guess} when clicked on.
+   * @param number creates the {@link Guess} based on the number.
    */
   
   private void setNumberGuess(Pane tile, int number) {
     tile.setOnMouseClicked(e -> {
-      NumberGuess guess = new NumberGuess(CasinoElements.getValue(chipValueIndex), number);
+      Guess guess = Guess.numberGuess(CasinoElements.getValue(chipValueIndex), number);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new NumberGuess(
+    setGuessAnimation(tile, Guess.numberGuess(
             CasinoElements.getValue(chipValueIndex),
             number).getNumbers());
   }
 
   /**
-   * Creates a {@link ListGuess} add calls the method {@code addGuess}.
+   * Creates a {@link Guess} add calls the method {@code addGuess}.
    *
-   * @param tile creates the {@link ListGuess} when clicked on.
-   * @param start the start parameter for {@link ListGuess}.
-   * @param end the end parameter for {@link ListGuess}.
+   * @param tile creates the {@link Guess} when clicked on.
+   * @param start the start parameter for {@link Guess}.
+   * @param end the end parameter for {@link Guess}.
    */
 
   private void setListGuess(Pane tile, int start, int end) {
     tile.setOnMouseClicked(e -> {
-      ListGuess guess = new ListGuess(CasinoElements.getValue(chipValueIndex), start, end);
+      Guess guess = Guess.listGuess(CasinoElements.getValue(chipValueIndex), start, end);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new ListGuess(
+    setGuessAnimation(tile, Guess.listGuess(
             CasinoElements.getValue(chipValueIndex),
             start, end).getNumbers());
   }
 
   /**
-   * Creates a {@link PatternGuess} add calls the method {@code addGuess}.
+   * Creates a {@link Guess} add calls the method {@code addGuess}.
    *
-   * @param tile creates the {@link PatternGuess} when clicked on.
-   * @param start the start parameter for {@link PatternGuess}.
-   * @param increment the end increment for {@link PatternGuess}.
+   * @param tile creates the {@link Guess} when clicked on.
+   * @param start the start parameter for {@link Guess}.
+   * @param increment the end increment for {@link Guess}.
    */
 
   private void setPatternGuess(Pane tile, int start, int increment) {
     tile.setOnMouseClicked(e -> {
-      PatternGuess guess = new PatternGuess(
+      Guess guess = Guess.patternGuess(
               CasinoElements.getValue(chipValueIndex), start, increment);
       addGuess(guess, tile);
     });
-    setGuessAnimation(tile, new PatternGuess(
+    setGuessAnimation(tile, Guess.patternGuess(
             CasinoElements.getValue(chipValueIndex), start, increment).getNumbers());
   }
 
@@ -579,53 +570,6 @@ public class RouletteController {
     moneyLabel.setText("" + user.getBalance());
   }
 
-  /**
-   * Sends user back to main menu view.
-   *
-   * @param actionEvent onClick, run this method
-   *
-   * @throws IOException loader.load() can throw an exception.
-   */
-  @FXML
-  public void backToMainMenu(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(getClass().getResource("Start.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
-
-  @FXML
-  public void exit(ActionEvent actionEvent) {
-    System.exit(0);
-  }
-
-  /**
-   * Sends user back to lobby view.
-   *
-   * @param actionEvent onClick, run this method.
-   *
-   * @throws IOException loader.load() can throw exception.
-   */
-
-  @FXML
-  public void backToLobby(ActionEvent actionEvent) throws IOException {
-    // Sets location on the loader by getting the class and then the view file from
-    // resources
-    loader.setLocation(getClass().getResource("selectGameView.fxml"));
-    Parent newGame = loader.load(); // Create a parent class of the loader.load()
-    Scene newGameScene = new Scene(newGame); // Create a new Scene from the parent object
-
-    Stage window = (Stage) anchorPane.getScene().getWindow();
-    window.setScene(newGameScene); // Set the window to the previous chosen scene
-
-    window.show(); // Opens the window
-  }
 
   public Roulette getRouletteGame() {
     return rouletteGame;
