@@ -2,6 +2,8 @@
 package ui;
 import user.User;
 import com.google.gson.Gson;
+
+import java.io.IOError;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -13,7 +15,7 @@ public class RestModel {
     public static final Gson gson = new Gson();
 
 
-    public static void createUser(User newUser) throws IOException, InterruptedException {
+    public void createUser(User newUser) throws IOException, InterruptedException {
         String endpoint = baseUri + "/users/add";
         String payload = gson.toJson(newUser);
         HttpClient client = HttpClient.newHttpClient();
@@ -25,7 +27,7 @@ public class RestModel {
         client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    public static User getUser(String username) throws IOException, InterruptedException {
+    public User getUser(String username) throws IOException, InterruptedException {
         String endpoint = baseUri + "/users/" + username;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -37,7 +39,7 @@ public class RestModel {
         return gson.fromJson(response.body(), User.class);
     }
 
-    public static void updateUser(User user) throws InterruptedException {
+    public void updateUser(User user) throws InterruptedException {
         try {
             String endpoint = baseUri + "/users/update";
             String payload = gson.toJson(user);
@@ -53,7 +55,8 @@ public class RestModel {
         }
     }
 
-    public static void deleteUser(String username) throws IOException, InterruptedException {
+    public void deleteUser(String username) throws InterruptedException {
+        try{
         String endpoint = baseUri + "/delete/" + username;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -61,6 +64,10 @@ public class RestModel {
                 .header("Content-type", "application/json")
                 .uri(URI.create(endpoint))
                 .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        client.send(request, HttpResponse.BodyHandlers.ofString());
     }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+}
 }

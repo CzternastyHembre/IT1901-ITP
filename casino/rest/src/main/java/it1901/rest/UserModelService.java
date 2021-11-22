@@ -1,37 +1,35 @@
 package it1901.rest;
 
 import org.springframework.stereotype.Service;
-import savehandler.UserSaveHandler;
-import user.User;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import savehandler.UserSaveHandler;
+import user.User;
 
 @Service
 public class UserModelService {
 
-    private List<User> userList;
-    private final UserSaveHandler userSaveHandler;
+  private List<User> userList;
+  private final UserSaveHandler userSaveHandler;
 
-    public UserModelService(List<User> userList) {
-        this.userList = userList;
-        this.userSaveHandler = new UserSaveHandler();
-    }
+  public UserModelService(List<User> userList) {
+    this.userList = userList;
+    this.userSaveHandler = new UserSaveHandler();
+  }
 
-    public UserModelService() {
-        this(createDefaultList());
-    }
+  public UserModelService() {
+    this(createDefaultList());
+  }
 
-    public static List<User> createDefaultList() {
-        List<User> userList = new ArrayList<>();
-        UserSaveHandler userSaveHandler = new UserSaveHandler();
-        if (userSaveHandler.getUserList() != null) {
-            userList = userSaveHandler.getUserList();
-            return userList;
-        }
-        return userList;
+  public static List<User> createDefaultList() {
+    List<User> userList = new ArrayList<>();
+    UserSaveHandler userSaveHandler = new UserSaveHandler();
+    if (userSaveHandler.getUserList() != null) {
+      userList = userSaveHandler.getUserList();
+      return userList;
+      }
+      return userList;
     }
 
 
@@ -39,7 +37,7 @@ public class UserModelService {
         return userSaveHandler.getUserList();
     }
 
-    public void cleanUserList(){
+    public void cleanUserList() {
         userList.clear();
         autosaveUserList();
     }
@@ -81,9 +79,9 @@ public class UserModelService {
         autosaveUserList();
     }
 
-    public void deleteUser(String username){
+    public void deleteUser(String username) {
         for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUsername().equals(username)){
+            if (userList.get(i).getUsername().equals(username)) {
                 userList.remove(i);
                 autosaveUserList();
                 return;
