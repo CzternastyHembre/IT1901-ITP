@@ -76,9 +76,9 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   @FXML
   private ToggleButton keepBetButton;
 
-  @FXML
-  private final ImageView backImageView = new ImageView(new Image(Objects.requireNonNull(
-          SlotsDisplay.class.getResourceAsStream("/images/cards/backOfImage.jpg"))));
+
+  private final Image backImage = new Image(Objects.requireNonNull(
+          SlotsDisplay.class.getResourceAsStream("/images/cards/backOfCard.jpg")));
 
   private final List<HBox> hboxesList = new ArrayList<>();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
@@ -91,7 +91,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
 
   protected void viewAtStart() {
     for (HBox box : hboxesList) {
-      box.getChildren().add(this.backImageView);
+      box.getChildren().add(createImageView("backOfCard"));
     }
   }
 
@@ -135,7 +135,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    */
   public void displayBackOfCard() {
     for (HBox box : hboxesList) {
-      box.getChildren().set(0, backImageView);
+      box.getChildren().set(0, createImageView("backOfCard"));
     }
   }
 
@@ -168,9 +168,15 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    */
 
   private ImageView createImageView(String imageName) {
-    ImageView imageView = new ImageView(new Image(
-        Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
-                "/images/cards/" + imageName + ".jpg"))));
+    ImageView imageView;
+    if (imageName.equals("backOfCard")) {
+      imageView = new ImageView(backImage);
+    }
+    else {
+      imageView = new ImageView(new Image(
+              Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
+                      "/images/cards/" + imageName + ".jpg"))));
+    }
     imageView.setFitWidth(148);
     imageView.setFitHeight(210);
     return imageView;
