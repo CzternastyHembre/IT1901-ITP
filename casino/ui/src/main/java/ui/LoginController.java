@@ -32,6 +32,8 @@ public class LoginController extends LoginMenu implements Initializable {
   @FXML
   public Button submit;
 
+  private final RestModel restModel = new RestModel();
+
   /**
    * Button to log in with the user written in the textfield.
    * Throws an exception if the user does not exist.
@@ -41,11 +43,11 @@ public class LoginController extends LoginMenu implements Initializable {
 
   @FXML
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
-    if (RestModel.getUser(getUsername()) == null) {
+    if (restModel.getUser(getUsername()) == null) {
       errorLabel.setText("Could not find user, please try again");
       throw new IllegalArgumentException("This user does not exist");
     }
-    User user = RestModel.getUser(getUsername());
+    User user = restModel.getUser(getUsername());
     openView(actionEvent, user);
   }
 

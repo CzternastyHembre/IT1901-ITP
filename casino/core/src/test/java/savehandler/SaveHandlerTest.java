@@ -49,20 +49,4 @@ public class SaveHandlerTest {
         userSaveHandler.createUser(user);
         assertEquals(user.toString(), Objects.requireNonNull(userSaveHandler.getUser("karen")).toString());
     }
-
-    @Test
-    void updateUserTest(){
-        User user = new User("updateUser", 2000);
-        userSaveHandler.createUser(user);
-        user.setBalance(5000);
-        userSaveHandler.updateUser(user);
-        assertEquals(5000, user.getBalance());
-    }
-
-    @Test
-    void createDirectoryTest() {
-        UserSaveHandler userSaveHandler = new UserSaveHandler();
-        userSaveHandler.createDirectory();
-        assertFalse(userSaveHandler.isEmpty());
-    }
 }

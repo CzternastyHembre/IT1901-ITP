@@ -63,8 +63,11 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   @FXML
   private HBox dealerHandHbox;
   private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
-  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+  private final RestModel restModel = new RestModel();
   private boolean dealerIsFlipped;
+
+  public BlackjackController() {
+  }
 
 
   @Override
@@ -120,12 +123,12 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * bet is run when the bet button is clicked. This starts the blackjack game,
    * updates the user's balance, and sets the view for the start of the game.
    *
-   * @throws IOException from updateUser (writing to a file)
+   * @throws InterruptedException sending HTTP request.
    */
   @FXML
-  public void bet() throws IOException {
+  public void bet() throws InterruptedException {
     blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
-    userSaveHandler.updateUser(user);
+    restModel.updateUser(user);
     if (blackjack.getTargetHand().getSumOfDeck() < 21) {
       hit.setDisable(false);
     }
@@ -204,10 +207,10 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * the dealer's view is updated, and buttons are disabled (and play again button is enabled).
    * If not, then the view is toggled.
    *
-   * @throws IOException when writing to a file to update the user's balance.
+   * @throws InterruptedException sends HTTP request.
    */
   @FXML
-  public void stand() throws IOException {
+  public void stand() throws InterruptedException {
     blackjack.stand();
     if (blackjack.isPlayerDone()) {
       stand.setDisable(true);
@@ -221,9 +224,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     }
   }
 
-  private void endGame() throws IOException {
+  private void endGame() throws InterruptedException {
     updateDealerViews();
-    userSaveHandler.updateUser(user);
+    restModel.updateUser(user);
     endOfGameView();
   }
 
