@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Menu mnemonicParsing="false" text="File">
+         <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
+         <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
+         <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
+      </Menu>
+   </MenuBar>
+   <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="252.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.5">
+      <Text fill="WHITE" layoutX="241.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Hand" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <HBox fx:id="dealerHandHbox" layoutX="125.0" layoutY="8.0" prefHeight="100.0" prefWidth="350.0" />
+   </Pane>
+   <Pane prefHeight="253.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0">
+      <Button fx:id="hit" layoutX="37.0" layoutY="46.0" mnemonicParsing="false" onAction="#hit" prefHeight="26.0" prefWidth="49.0" text="Hit">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="stand" layoutX="34.0" layoutY="81.0" mnemonicParsing="false" onAction="#stand" text="Stand">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="split" layoutX="39.0" layoutY="116.0" mnemonicParsing="false" onAction="#split" text="Split">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="playAgainButton" layoutX="24.0" layoutY="213.0" mnemonicParsing="false" onAction="#playAgain" text="Play Again" />
+      <ToggleButton fx:id="toggleButton" layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#toggle" text="Toggle Hands" />
+   </Pane>
+   <Pane prefHeight="253.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="175.0">
+      <Button fx:id="bet" layoutX="80.0" layoutY="195.0" mnemonicParsing="false" onAction="#bet" text="Bet">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="betAmount" alignment="CENTER_RIGHT" layoutY="194.0" prefHeight="28.0" prefWidth="68.0" promptText="1" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn:" wrappingWidth="45.55810546875">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text fx:id="turnLabel" fill="WHITE" layoutX="5.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game not started" wrappingWidth="117.587890625">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="5.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your total:" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer Total:" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payout:" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result:" />
+      <Text fx:id="playerTotal" fill="WHITE" layoutX="65.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="dealerTotal" fill="WHITE" layoutX="76.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="payout" fill="WHITE" layoutX="53.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="result" fill="WHITE" layoutX="47.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fill="WHITE" layoutX="5.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
+      <Text fx:id="balanceField" fill="WHITE" layoutX="58.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+   </Pane>
+   <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="175.0">
+      <VBox layoutY="45.0" prefHeight="200.0" prefWidth="350.0">
+         <HBox fx:id="hand1" prefHeight="100.0" prefWidth="200.0" />
+         <HBox fx:id="hand2" prefHeight="100.0" prefWidth="200.0" />
+      </VBox>
+      <Text fill="#fdfcfc" layoutX="84.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player's Hand" textAlignment="CENTER" wrappingWidth="181.21630859375">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+   </Pane>
+</AnchorPane>

@@ -2,32 +2,13 @@ package slots;
 
 
 
-import user.User;
-import validators.SlotsValidator;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import java.util.Arrays;
 import java.util.Collections;
-
-enum CardColor {
-  S,
-  D,
-  H,
-  C
-}
-
-enum Combo {
-  LOSS,
-  PAIR,
-  FLUSH,
-  STRAIGHT,
-  PERFECT_STRAIGHT,
-  JACKPOT,
-  SUPER_PERFECT_STRAIGHT,
-  SUPER_JACKPOT,
-  DEVIL
-}
+import java.util.List;
+import java.util.Random;
+import user.User;
+import validators.SlotsValidator;
 
 
 /**
@@ -225,6 +206,12 @@ public class Slots {
     return currentWinnings;
   }
 
+  /**
+   * Turns an enum into a string.
+   *
+   * @param e the enum being turned into a string.
+   * @return the string of the enum name.
+   */
   public String enumToString(Enum e) {
     if (e.name().contains("_")) {
       return e.name().replaceAll("_", " ");

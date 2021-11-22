@@ -27,6 +27,11 @@
                   <Font size="30.0" />
                </font>
             </Button>
+            <Button fx:id="blackjack" alignment="CENTER" layoutX="220.0" layoutY="261.0" mnemonicParsing="false" onAction="#loadBlackjack" text="Blackjack">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
