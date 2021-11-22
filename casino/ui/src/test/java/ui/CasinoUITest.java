@@ -15,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CasinoUITest extends ApplicationTest {
 
-    private StartController starController = new StartController();
+    private final StartController starController = new StartController();
+    private final RestModel restModel = new RestModel();
 
 
 
@@ -28,8 +29,8 @@ public class CasinoUITest extends ApplicationTest {
     }
 
     @AfterEach
-    void deleteUser() throws IOException, InterruptedException {
-        RestModel.deleteUser("testUser");
+    void deleteUser() throws InterruptedException {
+        restModel.deleteUser("testUser");
     }
 
     @Test
@@ -43,7 +44,7 @@ public class CasinoUITest extends ApplicationTest {
     @Test
     public void logInUser() throws IOException, InterruptedException {
         User user = new User("testUser", 500);
-        RestModel.createUser(user);
+        restModel.createUser(user);
         clickOn("#logInButton");
         clickOn("#usernameField").write("testUser");
         clickOn("#submit");
@@ -53,7 +54,7 @@ public class CasinoUITest extends ApplicationTest {
     @Test
     public void moveAround() throws IOException, InterruptedException {
         User user = new User("testUser", 500);
-        RestModel.createUser(user);
+        restModel.createUser(user);
         clickOn("#logInButton");
         clickOn("#usernameField").write("testUser");
         clickOn("#submit");
@@ -65,13 +66,13 @@ public class CasinoUITest extends ApplicationTest {
     }
     @Test
     public void addMoneyTest() throws IOException, InterruptedException {
-        RestModel.createUser(new User("testUser", 1000));
+        restModel.createUser(new User("testUser", 1000));
         clickOn("#logInButton");
         clickOn("#usernameField").write("testUser");
         clickOn("#submit");
         clickOn("#addChips");
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
-        assertEquals(2000, RestModel.getUser("testUser").getBalance());
+        assertEquals(2000, restModel.getUser("testUser").getBalance());
     }
 }
