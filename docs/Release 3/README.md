@@ -21,14 +21,26 @@ cd casino
 When inside the casino directory, the next step is to install the project:
 
 ```powershell
-mvn install
+mvn install -DskipTests
+```
+
+When the application is installed, you have to set up the API before using the appliaction: 
+
+```powershell
 cd rest/
-mvn install
 mvn spring-boot:run
+````
+Then run the application:
+``` powershell
 cd ..
 cd ui/
 mvn javafx:run
+```
 
+For testing, move into the root and use maven test: 
+```powershell
+cd ..
+mvn clean test
 ```
 
 ## Convert to executable: 
@@ -38,7 +50,11 @@ After installing and running the application in the steps above:
 ```powershell 
 mvn clean compile javafx:jlink jpackage:jpacakge
 ````
-Keep in mind, the webserver has to run for the applcation to work. 
+
+**You have to be inside the UI module for this to work**
+
+
+Keep in mind, the webserver has to run for the applcation to work.
 
 ## Changes from previous release
 
