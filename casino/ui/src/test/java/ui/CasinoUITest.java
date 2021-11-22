@@ -47,7 +47,7 @@ public class CasinoUITest extends ApplicationTest {
         clickOn("#logInButton");
         clickOn("#usernameField").write("testUser");
         clickOn("#submit");
-        assertEquals("LogTest", starController.getLoginController().getNextController().getUser().getUsername());
+        assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
