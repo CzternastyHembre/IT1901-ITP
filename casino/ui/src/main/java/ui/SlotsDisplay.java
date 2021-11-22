@@ -77,8 +77,8 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   private ToggleButton keepBetButton;
 
   @FXML
-  private final ImageView backImageView = new ImageView(new Image(Objects.requireNonNull(
-          SlotsDisplay.class.getResourceAsStream("/images/cards/backOfImage.jpg"))));
+  protected final ImageView backImageView = new ImageView(new Image(Objects.requireNonNull(
+          SlotsDisplay.class.getResourceAsStream("/images/cards/backOfCard.jpg"))));
 
   private final List<HBox> hboxesList = new ArrayList<>();
   private final UserSaveHandler userSaveHandler = new UserSaveHandler();
@@ -90,6 +90,8 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   }
 
   protected void viewAtStart() {
+    backImageView.setFitWidth(148);
+    backImageView.setFitHeight(210);
     for (HBox box : hboxesList) {
       box.getChildren().add(this.backImageView);
     }
