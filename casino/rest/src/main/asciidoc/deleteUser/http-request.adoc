@@ -1,6 +1,6 @@
 [source,http,options="nowrap"]
 ----
-GET /users/testUser HTTP/1.1
+DELETE /delete/testUser HTTP/1.1
 Host: localhost:8080
 
 ----

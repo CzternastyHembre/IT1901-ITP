@@ -30,7 +30,6 @@ public class RestController {
 
 
     @GetMapping("/users/{Username}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public User getUser(@PathVariable("Username") String Username){
         return userModelService.getUser(Username);
     }
@@ -44,8 +43,9 @@ public class RestController {
 
     @PostMapping("/users/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateUser(@RequestBody User user){
+    public boolean updateUser(@RequestBody User user){
         userModelService.updateUser(user);
+        return true;
     }
 
     @DeleteMapping("/delete/{Username}")

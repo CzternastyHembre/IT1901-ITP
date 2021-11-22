@@ -22,10 +22,9 @@ import user.User;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -45,9 +44,13 @@ public class EndpointTest {
 
     private final Gson gson = new Gson();
 
+
     @AfterEach
-    public void cleanUserList(){
-        userModelService.cleanUserList();
+    public void cleanUserList() throws Exception {
+        mockMvc.perform(
+                delete("/delete/testUser")
+        );
+        userModelService.deleteUser("testUser");
     }
 
 
@@ -55,16 +58,10 @@ public class EndpointTest {
     public void getRequest200ok() throws Exception {
 
         User testUser = new User("testUser", 500);
-        User mappingUser = new User("mappingUser", 100);
 
         mockMvc.perform(
                 post("/users/add")
                         .content(gson.toJson(testUser))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON));
-        mockMvc.perform(
-                post("/users/add")
-                        .content(gson.toJson(mappingUser))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON));
         this.mockMvc.perform(get("/users")).andDo(print()).andExpect(status().isOk())
@@ -74,7 +71,7 @@ public class EndpointTest {
     @Test
     public void postRequest() throws Exception {
 
-        User user = new User("addUserTest", 100);
+        User user = new User("testUser", 100);
         mockMvc.perform(
                         post("/users/add")
                                 .content(gson.toJson(user))
@@ -92,33 +89,27 @@ public class EndpointTest {
 
     @Test
     public void getUserTest() throws Exception {
-        User getUser = new User("gettingUser", 100);
+        User getUser = new User("testUser", 100);
         mockMvc.perform(
                 post("/users/add")
                         .content(gson.toJson(getUser))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON));
 
-        this.mockMvc.perform(get("/users/gettingUser")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/users/testUser")).andDo(print()).andExpect(status().isOk())
                 .andDo(document("getUser"));
     }
 
     @Test
     public void updateUserTest() throws Exception {
-        User originalUser = new User("updatedUser", 100);
+        User originalUser = new User("testUser", 100);
         mockMvc.perform(
                 post("/users/add")
                         .content(gson.toJson(originalUser))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andDo(document("updatedUser",
-                        requestFields(
-                                fieldWithPath("username")
-                                        .description("the username"),
-                                fieldWithPath("balance")
-                                        .description("the balance"))));
+                        .accept(MediaType.APPLICATION_JSON));
 
-        User updatedUser = new User("updatedUser", 500);
+        User updatedUser = new User("testUser", 500);
         mockMvc.perform(
                 post("/users/update")
                         .content(gson.toJson(updatedUser))
@@ -130,6 +121,25 @@ public class EndpointTest {
                                         .description("the username"),
                                 fieldWithPath("balance")
                                         .description("the balance"))));
+    }
+
+    @Test
+    void deleteUserTest() throws Exception {
+        User user = new User("testUser", 100);
+        mockMvc.perform(
+                        post("/users/add")
+                                .content(gson.toJson(user))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON))
+                .andDo(document("updatedUser",
+                        requestFields(
+                                fieldWithPath("username")
+                                        .description("the username"),
+                                fieldWithPath("balance")
+                                        .description("the balance"))));
+
+        this.mockMvc.perform(delete("/delete/testUser")).andDo(print()).andExpect(status().isOk())
+                .andDo(document("deleteUser"));
     }
 }
 
