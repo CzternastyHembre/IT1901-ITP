@@ -4,33 +4,48 @@
 
 **The request**
 
-include::{snippets}/user/http-request.adoc[]
+include::user/http-request.adoc[]
 
 **Response**
 
-include::{snippets}/user/http-response.adoc[]
+include::user/http-response.adoc[]
 
 ### Getting the userlist
 
 **The request**
 
-include::{snippets}/getRequest200ok/http-request.adoc[]
+include::getRequest200ok/http-request.adoc[]
 
 **The response**
 
-include::{snippets}/getRequest200ok/http-response.adoc[]
+include::getRequest200ok/http-response.adoc[]
 
 ### Getting a user
 
 
 **The request**
 
-include::{snippets}/getUser/http-request.adoc[]
+include::getUser/http-request.adoc[]
 
 **The response**
 
-include::{snippets}/getUser/http-response.adoc[]
+include::getUser/http-response.adoc[]
 
+### Deleting a user
+
+include::deleteUser/http-request.adoc[]
+
+**The response**
+
+include::deleteUser/http-response.adoc[]
+
+### Updating a user
+
+include::updatedUser/http-request.adoc[]
+
+**The response**
+
+include::updatedUser/http-response.adoc[]
 
 
 

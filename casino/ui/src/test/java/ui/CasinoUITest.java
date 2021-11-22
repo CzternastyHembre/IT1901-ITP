@@ -27,30 +27,35 @@ public class CasinoUITest extends ApplicationTest {
         stage.show();
     }
 
+    @AfterEach
+    void deleteUser() throws IOException, InterruptedException {
+        RestModel.deleteUser("testUser");
+    }
+
     @Test
-    public void checkNewUser() throws IOException {
+    public void checkNewUser() {
         clickOn("#createUserButton");
-        clickOn("#usernameField").write("UserTest");
+        clickOn("#usernameField").write("testUser");
         clickOn("#submit");
-        assertEquals("UserTest", starController.getLoginController().getNextController().getUser().getUsername());
+        assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
     public void logInUser() throws IOException, InterruptedException {
-        User user = new User("LogTest", 500);
+        User user = new User("testUser", 500);
         RestModel.createUser(user);
         clickOn("#logInButton");
-        clickOn("#usernameField").write("LogTest");
+        clickOn("#usernameField").write("testUser");
         clickOn("#submit");
         assertEquals("LogTest", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
     public void moveAround() throws IOException, InterruptedException {
-        User user = new User("moveAroundTest", 500);
+        User user = new User("testUser", 500);
         RestModel.createUser(user);
         clickOn("#logInButton");
-        clickOn("#usernameField").write("moveAroundTest");
+        clickOn("#usernameField").write("testUser");
         clickOn("#submit");
         clickOn("#roulette");
         clickOn("#menyButton");
@@ -60,13 +65,13 @@ public class CasinoUITest extends ApplicationTest {
     }
     @Test
     public void addMoneyTest() throws IOException, InterruptedException {
-        RestModel.createUser(new User("addMoneyTest", 1000));
+        RestModel.createUser(new User("testUser", 1000));
         clickOn("#logInButton");
-        clickOn("#usernameField").write("addMoneyTest");
+        clickOn("#usernameField").write("testUser");
         clickOn("#submit");
         clickOn("#addChips");
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
-        assertEquals(2000, RestModel.getUser("addMoneyTest").getBalance());
+        assertEquals(2000, RestModel.getUser("testUser").getBalance());
     }
 }

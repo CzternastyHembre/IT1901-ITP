@@ -41,6 +41,7 @@ public class UserModelService {
 
     public void cleanUserList(){
         userList.clear();
+        autosaveUserList();
     }
 
 
@@ -84,7 +85,6 @@ public class UserModelService {
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getUsername().equals(username)){
                 userList.remove(i);
-                System.out.println(userList.toString());
                 autosaveUserList();
                 return;
             }
