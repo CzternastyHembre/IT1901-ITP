@@ -234,6 +234,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
       result.setText("LOSS!");
     }
     dealerTotal.setText("" + blackjack.getDealersHand().getSumOfDeck());
+    turnLabel.setText("Game Over");
     result.setVisible(true);
     payout.setVisible(true);
     payout.setText("" + blackjack.getPayout());
