@@ -4,6 +4,7 @@ package it1901.rest;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class EndpointTest {
     private final Gson gson = new Gson();
 
 
-    @AfterEach
+    @BeforeEach
     public void cleanUserList() throws Exception {
         mockMvc.perform(
                 delete("/delete/testUser")
