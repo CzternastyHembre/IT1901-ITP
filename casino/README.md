@@ -9,6 +9,47 @@ The code in the application is divided into three main parts:
 core, ui and rest. This helps us easily divide the different parts of the code. The project uses Maven as its building tool. 
 It also contains JUnit testing for all three modules.
 
+## Techstack
+
+- Java
+- Maven
+- JavaFX
+- SpringBoot
+
+## Running the code:
+
+Start by routing into the casino directory.
+
+```powershell
+cd casino
+```
+
+When inside the casino directory, the next step is to install the project:
+
+```powershell
+mvn install -DskipTests
+```
+
+When the application is installed, you have to set up the API before using the appliaction: 
+
+```powershell
+cd rest/
+mvn spring-boot:run
+````
+Then run the application:
+``` powershell
+cd ..
+cd ui/
+mvn javafx:run
+```
+
+For testing, move into the root and use maven test: 
+```powershell
+cd ..
+mvn clean test
+```
+
+
 ## Core
 
 The core module contains the classes and logic that the application uses to 
@@ -18,7 +59,7 @@ Since our app is a casino, all the logic of how blackjack, roulette and slots ar
 happens here in the different packages inside the module. 
 The core module contains classes to handle and represent the logic behind these games.
 
-[Click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/RestModel/casino/core/src/main/java) to read more about the core module.
+[Click here](casino/core/src/main/java) to read more about the core module.
 
 ## UI
 
