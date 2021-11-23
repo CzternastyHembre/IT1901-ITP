@@ -38,8 +38,7 @@ public class IntegrationTest extends ApplicationTest {
 
     @BeforeAll
     public static void setUp(){
-        RestApplication.isTest(true);
-        RestApplication.main(new String[]{});
+        RestApplication.isTestMode();
     }
 
     private void logIn() throws InterruptedException {

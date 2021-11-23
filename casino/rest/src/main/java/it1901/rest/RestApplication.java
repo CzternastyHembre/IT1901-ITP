@@ -28,10 +28,15 @@ public class RestApplication implements WebServerFactoryCustomizer<ConfigurableS
    */
 
     public static void main(String[] args) {
-        new UserSaveHandler().createDirectory();
         isTest(false);
+        new UserSaveHandler().createDirectory();
         SpringApplication.run(RestApplication.class, args);
 	}
+
+    public static Object isTestMode(){
+        isTest(true);
+        return SpringApplication.run(RestApplication.class);
+    }
 
     @Override
     public void customize(ConfigurableServletWebServerFactory factory) {
