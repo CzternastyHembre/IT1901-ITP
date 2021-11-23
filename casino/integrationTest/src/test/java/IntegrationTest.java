@@ -1,24 +1,32 @@
-package ui;
-
+import it1901.rest.RestApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.Objects;
-
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import savehandler.UserSaveHandler;
+import ui.RestModel;
+import ui.StartController;
 import user.User;
-import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 
-public class CasinoUITest extends ApplicationTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+public class IntegrationTest extends ApplicationTest {
+
+    private final RestModel restModel = new RestModel(true);
     private final StartController starController = new StartController();
-    private final RestModel restModel = new RestModel();
 
+    @BeforeEach
+    public void removeUser() throws InterruptedException {
+        restModel.deleteUser("testUser");
+    }
 
+    private void setTest() {
+        this.starController.getLoginController().setTestMode(true);
+    }
 
     @Override
     public void start(final Stage stage) throws Exception{
@@ -28,24 +36,34 @@ public class CasinoUITest extends ApplicationTest {
         stage.show();
     }
 
-    @AfterEach
-    void deleteUser() throws InterruptedException {
-        restModel.deleteUser("testUser");
+    @BeforeAll
+    public static void setUp(){
+        RestApplication.isTest(true);
+        RestApplication.main(new String[]{}, true);
     }
 
     @Test
     public void checkNewUser() {
+        System.out.println(restModel.baseUri);
         clickOn("#createUserButton");
         clickOn("#usernameField").write("testUser");
+        setTest();
         clickOn("#submit");
         assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
+    private void login(String userName) {
+
+    }
+
+
     @Test
     public void logInUser() throws IOException, InterruptedException {
+        System.out.println(RestApplication.portNumber);
         User user = new User("testUser", 500);
         restModel.createUser(user);
         clickOn("#logInButton");
+        setTest();
         clickOn("#usernameField").write("testUser");
         clickOn("#submit");
         assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
@@ -57,6 +75,7 @@ public class CasinoUITest extends ApplicationTest {
         restModel.createUser(user);
         clickOn("#logInButton");
         clickOn("#usernameField").write("testUser");
+        setTest();
         clickOn("#submit");
         clickOn("#roulette");
         clickOn("#menyButton");
@@ -69,6 +88,7 @@ public class CasinoUITest extends ApplicationTest {
         restModel.createUser(new User("testUser", 1000));
         clickOn("#logInButton");
         clickOn("#usernameField").write("testUser");
+        setTest();
         clickOn("#submit");
         clickOn("#addChips");
         clickOn("#amountField").write("1000");

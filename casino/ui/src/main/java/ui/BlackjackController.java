@@ -63,11 +63,8 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   @FXML
   private HBox dealerHandHbox;
   private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
-  private final RestModel restModel = new RestModel();
+  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
   private boolean dealerIsFlipped;
-
-  public BlackjackController() {
-  }
 
 
   @Override
@@ -123,12 +120,12 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * bet is run when the bet button is clicked. This starts the blackjack game,
    * updates the user's balance, and sets the view for the start of the game.
    *
-   * @throws InterruptedException sending HTTP request.
+   * @throws IOException from updateUser (writing to a file)
    */
   @FXML
-  public void bet() throws InterruptedException {
+  public void bet() {
     blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
-    restModel.updateUser(user);
+    userSaveHandler.updateUser(user);
     if (blackjack.getTargetHand().getSumOfDeck() < 21) {
       hit.setDisable(false);
     }
@@ -207,10 +204,10 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * the dealer's view is updated, and buttons are disabled (and play again button is enabled).
    * If not, then the view is toggled.
    *
-   * @throws InterruptedException sends HTTP request.
+   * @throws IOException when writing to a file to update the user's balance.
    */
   @FXML
-  public void stand() throws InterruptedException {
+  public void stand() throws IOException {
     blackjack.stand();
     if (blackjack.isPlayerDone()) {
       stand.setDisable(true);
@@ -224,9 +221,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     }
   }
 
-  private void endGame() throws InterruptedException {
+  private void endGame() {
     updateDealerViews();
-    restModel.updateUser(user);
+    userSaveHandler.updateUser(user);
     endOfGameView();
   }
 

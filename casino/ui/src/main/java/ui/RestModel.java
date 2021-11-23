@@ -11,10 +11,17 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RestModel {
-    public static final String baseUri = "http://localhost:8080";
+    public String baseUri;
     public static final Gson gson = new Gson();
 
-
+    public RestModel(boolean test) {
+        if (test){
+            baseUri = "http://localhost:8042";
+        }
+        else {
+            baseUri = "http://localhost:8080";
+        }
+    }
     public void createUser(User newUser) throws IOException, InterruptedException {
         String endpoint = baseUri + "/users/add";
         String payload = gson.toJson(newUser);
