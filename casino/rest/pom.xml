@@ -11,6 +11,8 @@
 
 	<properties>
 		<java.version>16</java.version>
+			<start-class>it1901.rest.RestApplication</start-class>
+
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -91,10 +93,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

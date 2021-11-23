@@ -11,20 +11,31 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RestModel {
-    public static final String baseUri = "http://localhost:8080";
+    public String baseUri;
     public static final Gson gson = new Gson();
 
-
-    public void createUser(User newUser) throws IOException, InterruptedException {
-        String endpoint = baseUri + "/users/add";
-        String payload = gson.toJson(newUser);
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("Content-type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(payload))
-                .build();
-        client.send(request, HttpResponse.BodyHandlers.ofString());
+    public RestModel(boolean test) {
+        if (test){
+            baseUri = "http://localhost:8042";
+        }
+        else {
+            baseUri = "http://localhost:8080";
+        }
+    }
+    public void createUser(User newUser) throws InterruptedException {
+        try {
+            String endpoint = baseUri + "/users/add";
+            String payload = gson.toJson(newUser);
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(endpoint))
+                    .header("Content-type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(payload))
+                    .build();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public User getUser(String username) throws IOException, InterruptedException {

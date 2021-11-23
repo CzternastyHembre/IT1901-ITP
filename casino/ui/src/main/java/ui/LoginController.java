@@ -30,7 +30,11 @@ public class LoginController extends LoginMenu implements Initializable {
   @FXML
   public Button submit;
 
-  private final RestModel restModel = new RestModel();
+  protected RestModel restModel = new RestModel(false);
+
+  public void setTestMode(boolean bool) {
+    restModel = new RestModel(bool);
+  }
 
   /**
    * Button to log in with the user written in the textfield.

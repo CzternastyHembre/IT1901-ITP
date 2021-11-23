@@ -14,7 +14,6 @@ import user.User;
 public class CreateUserController extends LoginController {
 
   private static final double StartingBalance = 1000;
-  private final RestModel restModel = new RestModel();
 
 
   /**
@@ -26,12 +25,12 @@ public class CreateUserController extends LoginController {
   @FXML
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
 
-    if (restModel.getUser(getUsername()) != null) {
+    if (super.restModel.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
       throw new IllegalArgumentException("Username already exist");
     }
     User newUser = new User(getUsername(), StartingBalance);
-    restModel.createUser(newUser);
+    super.restModel.createUser(newUser);
     super.openView(actionEvent, newUser);
   }
 }

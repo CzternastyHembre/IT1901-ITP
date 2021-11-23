@@ -178,5 +178,6 @@
         <module>core</module>
         <module>ui</module>
         <module>rest</module>
+        <module>integrationTest</module>
     </modules>
 </project>
