@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import ui.MenuItem.MainMenu;
+import ui.menuItem.MainMenu;
 
 /**
  * Controller for the Start.fxml

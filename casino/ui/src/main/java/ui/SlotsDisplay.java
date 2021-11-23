@@ -8,9 +8,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
@@ -21,13 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import savehandler.UserSaveHandler;
 import slots.Slots;
-import ui.MenuItem.CasinoMenu;
-import user.User;
+import ui.menuItem.CasinoMenu;
 
 
 /**

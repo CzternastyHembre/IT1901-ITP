@@ -2,7 +2,7 @@ package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -19,8 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import savehandler.UserSaveHandler;
-import ui.MenuItem.CasinoMenu;
+import ui.menuItem.CasinoMenu;
 
 
 /**

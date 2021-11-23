@@ -7,5 +7,5 @@ module ui {
     requires com.google.gson;
 
     opens ui to javafx.graphics, javafx.fxml;
-    opens ui.MenuItem to javafx.fxml, javafx.graphics;
+    opens ui.menuItem to javafx.fxml, javafx.graphics;
 }

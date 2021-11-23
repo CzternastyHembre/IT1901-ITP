@@ -1,4 +1,4 @@
-package ui.MenuItem;
+package ui.menuItem;
 
 import user.User;
 
