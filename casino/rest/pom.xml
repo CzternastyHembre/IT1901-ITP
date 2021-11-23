@@ -11,6 +11,8 @@
 
 	<properties>
 		<java.version>16</java.version>
+			<start-class>it1901.rest.RestApplication</start-class>
+
 	</properties>
 	<dependencyManagement>
 		<dependencies>

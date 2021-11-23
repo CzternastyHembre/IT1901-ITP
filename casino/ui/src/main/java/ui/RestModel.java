@@ -22,16 +22,20 @@ public class RestModel {
             baseUri = "http://localhost:8080";
         }
     }
-    public void createUser(User newUser) throws IOException, InterruptedException {
-        String endpoint = baseUri + "/users/add";
-        String payload = gson.toJson(newUser);
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .header("Content-type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(payload))
-                .build();
-        client.send(request, HttpResponse.BodyHandlers.ofString());
+    public void createUser(User newUser) throws InterruptedException {
+        try {
+            String endpoint = baseUri + "/users/add";
+            String payload = gson.toJson(newUser);
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(endpoint))
+                    .header("Content-type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(payload))
+                    .build();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public User getUser(String username) throws IOException, InterruptedException {

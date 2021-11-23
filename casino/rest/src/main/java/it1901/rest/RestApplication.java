@@ -27,10 +27,10 @@ public class RestApplication implements WebServerFactoryCustomizer<ConfigurableS
    * @param args the arguments for the main function.
    */
 
-    public static void main(String[] args, boolean isTest) {
-    new UserSaveHandler().createDirectory();
-    isTest(isTest);
-    SpringApplication.run(RestApplication.class, args);
+    public static void main(String[] args) {
+        new UserSaveHandler().createDirectory();
+        isTest(false);
+        SpringApplication.run(RestApplication.class, args);
 	}
 
     @Override

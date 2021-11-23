@@ -36,8 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 
 public class EndpointTest {
-    private UserSaveHandler userSaveHandler = new UserSaveHandler(true);
-    private UserModelService userModelService = new UserModelService();
+    private final UserModelService userModelService = new UserModelService();
 
     @Autowired
     private MockMvc mockMvc;

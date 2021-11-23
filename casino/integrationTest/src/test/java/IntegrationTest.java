@@ -39,12 +39,20 @@ public class IntegrationTest extends ApplicationTest {
     @BeforeAll
     public static void setUp(){
         RestApplication.isTest(true);
-        RestApplication.main(new String[]{}, true);
+        RestApplication.main(new String[]{});
+    }
+
+    private void logIn() throws InterruptedException {
+        User user = new User("testUser", 1000);
+        restModel.createUser(user);
+        clickOn("#logInButton");
+        setTest();
+        clickOn("#usernameField").write("testUser");
+        clickOn("#submit");
     }
 
     @Test
     public void checkNewUser() {
-        System.out.println(restModel.baseUri);
         clickOn("#createUserButton");
         clickOn("#usernameField").write("testUser");
         setTest();
@@ -52,31 +60,16 @@ public class IntegrationTest extends ApplicationTest {
         assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
-    private void login(String userName) {
-
-    }
-
 
     @Test
-    public void logInUser() throws IOException, InterruptedException {
-        System.out.println(RestApplication.portNumber);
-        User user = new User("testUser", 500);
-        restModel.createUser(user);
-        clickOn("#logInButton");
-        setTest();
-        clickOn("#usernameField").write("testUser");
-        clickOn("#submit");
+    public void logInUser() throws InterruptedException {
+        logIn();
         assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
-    public void moveAround() throws IOException, InterruptedException {
-        User user = new User("testUser", 500);
-        restModel.createUser(user);
-        clickOn("#logInButton");
-        clickOn("#usernameField").write("testUser");
-        setTest();
-        clickOn("#submit");
+    public void moveAround() throws InterruptedException {
+        logIn();
         clickOn("#roulette");
         clickOn("#menyButton");
         clickOn("#lobby");
@@ -85,14 +78,12 @@ public class IntegrationTest extends ApplicationTest {
     }
     @Test
     public void addMoneyTest() throws IOException, InterruptedException {
-        restModel.createUser(new User("testUser", 1000));
-        clickOn("#logInButton");
-        clickOn("#usernameField").write("testUser");
-        setTest();
-        clickOn("#submit");
+        logIn();
         clickOn("#addChips");
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
         assertEquals(2000, restModel.getUser("testUser").getBalance());
+        assertEquals(2000, this.starController.getLoginController().getNextController().getUser().getBalance());
     }
+
 }

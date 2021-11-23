@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>integrationtests</artifactId>
-    <packaging>war</packaging>
 
     <properties>
         <slf4jVersion>1.7.25</slf4jVersion>
@@ -38,13 +37,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>LATEST</version>
-        </dependency>
-
         <!-- Test with TextFX -->
         <dependency>
             <groupId>org.testfx</groupId>
@@ -98,28 +90,17 @@
             <version>2.6.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-
-
     </dependencies>
-    <profiles>
-        <profile>
-            <id>headless</id>
-            <properties>
-                <headlessTests>true</headlessTests>
-            </properties>
-            <dependencies>
-                <!-- https://mvnrepository.com/artifact/org.testfx/openjfx-monocle -->
-            </dependencies>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
-            <!-- Reservere porter og tilordne dem til variabler -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 </project>
