@@ -1,4 +1,4 @@
-package ui.MenuItem;
+package ui.menuItem;
 
 import javafx.fxml.FXML;
 import javafx.scene.Parent;

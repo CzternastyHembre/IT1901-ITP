@@ -1,13 +1,10 @@
 package ui;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import savehandler.UserSaveHandler;
-import ui.MenuItem.CasinoMenu;
-import user.User;
+import ui.menuItem.CasinoMenu;
 
 /**
  * Controller for adding money AddMoney.fxml.

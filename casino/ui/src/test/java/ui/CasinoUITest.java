@@ -4,18 +4,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Objects;
 
 import org.junit.jupiter.api.*;
 import org.testfx.framework.junit5.ApplicationTest;
-import savehandler.UserSaveHandler;
 import user.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class CasinoUITest extends ApplicationTest {
 
-    private final StartController starController = new StartController();
+    private final StartController startController = new StartController();
     private final RestModel restModel = new RestModel();
 
 
@@ -23,7 +21,7 @@ public class CasinoUITest extends ApplicationTest {
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
-        loader.setController(starController);
+        loader.setController(startController);
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
@@ -38,7 +36,7 @@ public class CasinoUITest extends ApplicationTest {
         clickOn("#createUserButton");
         clickOn("#usernameField").write("testUser");
         clickOn("#submit");
-        assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
+        assertEquals("testUser", startController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
@@ -48,7 +46,7 @@ public class CasinoUITest extends ApplicationTest {
         clickOn("#logInButton");
         clickOn("#usernameField").write("testUser");
         clickOn("#submit");
-        assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
+        assertEquals("testUser", startController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
