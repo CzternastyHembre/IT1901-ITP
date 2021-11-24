@@ -1,3 +1,5 @@
 ## Sequence diagram of the UI
 
-![sequence](docs/Images/rouletteDiagram.png)
+A sequence diagram to show how the application works when creating a new user. 
+
+![sequence](docs/Images/updatedSequence.png)
