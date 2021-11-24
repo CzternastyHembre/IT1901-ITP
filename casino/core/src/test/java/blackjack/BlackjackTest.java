@@ -31,9 +31,41 @@ class BlackjackTest {
         Assertions.assertEquals(blackjack.getDealingDeck().getDeck().size(),48);
         Assertions.assertTrue(blackjack.getPlayersHand1().isActive());
         Assertions.assertFalse(blackjack.getPlayersHand2().isActive());
-        Assertions.assertEquals(blackjack.getPayout(), 0);
+        if (blackjack.isInstantBlackjack()){
+            if (blackjack.getDealersHand().getSumOfDeck() == 21){
+                assertEquals(blackjack.getPayout(), blackjack.getBet());
+            }
+            else{
+                assertEquals(blackjack.getPayout(), blackjack.getBet()*1.5);
+            }
+        }
+        else {
+            Assertions.assertEquals(blackjack.getPayout(), 0);
+        }
         Assertions.assertEquals(blackjack.getDealersHand().getDeck().size(),2);
         Assertions.assertEquals(blackjack.getTargetHand(),blackjack.getPlayersHand1());
+    }
+
+    @Test
+    void hit() {
+        blackjack.startGame(10);
+        int handSize = blackjack.getTargetHand().getDeck().size();
+        Card cardToAdd = blackjack.getDealingDeck().getDeck().get(0);
+        blackjack.hit();
+        assertFalse(blackjack.isCanSplit());
+        Assertions.assertEquals(blackjack.getTargetHand().getDeck().size(),handSize+1);
+        Assertions.assertEquals(blackjack.getTargetHand().getLastCard(), cardToAdd);
+        if (blackjack.getTargetHand().getSumOfDeck() > 21){
+            Assertions.assertFalse(blackjack.getTargetHand().isActive());
+            blackjack.stand();
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                blackjack.hit();
+            });
+        }
+        else {
+            Assertions.assertTrue(blackjack.getTargetHand().isActive());
+        }
+
     }
 
     @Test
@@ -58,7 +90,6 @@ class BlackjackTest {
         blackjack.setPlayersHand1(insplittableHand);
         blackjack.split();
         Assertions.assertEquals(userBalance, user.getBalance()); // If this is true, the rest of the method hasn't been called
-
         blackjack.setPlayersHand1(splittableHand);
         blackjack.split();
         assertEquals(blackjack.getUser().getBalance(), userBalance - blackjack.getBet());
@@ -82,9 +113,6 @@ class BlackjackTest {
     @Test
     void dealerPlay() {
         blackjack.startGame(10);
-//        Hand dealerHand = new Hand();
-//        dealerHand.getDeck().add(new Card(2,'C'));
-//        dealerHand.getDeck().add(new Card(3,'C'));
         blackjack.dealerPlay();
         Assertions.assertTrue(blackjack.getDealersHand().getSumOfDeck() >= 17);
         Assertions.assertFalse(blackjack.getDealersHand().isActive());
