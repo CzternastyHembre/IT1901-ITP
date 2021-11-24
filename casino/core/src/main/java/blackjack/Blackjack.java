@@ -75,7 +75,7 @@ public class Blackjack {
       playersHand1.getDeck().add(dealingDeck.popTopCard());
       dealersHand.getDeck().add(dealingDeck.popTopCard());
     }
-    if (playersHand1.getSumOfDeck() == 21){
+    if (playersHand1.getSumOfDeck() == 21) {
       instantBlackjack = true;
       endGame();
     }
@@ -163,11 +163,10 @@ public class Blackjack {
 
   private void calculateWinnings() {
     int dealerSum = dealersHand.getSumOfDeck();
-    if (instantBlackjack){
-      if (dealerSum == 21){
+    if (instantBlackjack) {
+      if (dealerSum == 21) {
         this.payout = bet;
-      }
-      else {
+      } else {
         this.payout = bet * 1.5;
       }
       return;

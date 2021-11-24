@@ -2,7 +2,6 @@ package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
-
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -125,10 +124,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   public void bet() throws InterruptedException {
     blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
     restModel.updateUser(user);
-    if (blackjack.isInstantBlackjack()){
+    if (blackjack.isInstantBlackjack()) {
       instantWinView();
-    }
-    else {
+    } else {
       if (blackjack.getTargetHand().getSumOfDeck() < 21) {
         hit.setDisable(false);
       }
@@ -239,14 +237,12 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
   private void endOfGameView() {
     if (blackjack.getPayout() > 0) {
-      if (blackjack.getPayout() == blackjack.getBet()){
+      if (blackjack.getPayout() == blackjack.getBet()) {
         result.setText("NO GAIN!");
-      }
-      else {
+      } else {
         result.setText("WIN!");
       }
-    }
-    else {
+    } else {
       result.setText("LOSS!");
     }
     playerTotal.setText("" + blackjack.getTargetHand().getSumOfDeck());

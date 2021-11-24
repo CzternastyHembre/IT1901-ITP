@@ -167,8 +167,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     ImageView imageView;
     if (imageName.equals("backOfCard")) {
       imageView = new ImageView(backImage);
-    }
-    else {
+    } else {
       imageView = new ImageView(new Image(
               Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
                       "/images/cards/" + imageName + ".jpg"))));
