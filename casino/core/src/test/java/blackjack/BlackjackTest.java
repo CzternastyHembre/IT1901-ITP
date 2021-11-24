@@ -7,12 +7,118 @@ import user.User;
 import blackjack.Hand;
 import blackjack.Deck;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BlackjackTest {
 
     private User user;
     private Blackjack blackjack;
+    // Tests use cards from this deck instead of creating new card objects for every test
+    private Deck cardDeck = new Deck(13);
+    private Deck testDeck = new Deck();
+
+
+    void naturalBlackjackWinDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("10D"),
+                selectCard("2C"),
+                selectCard("1C"),
+                selectCard("3C")));
+    }
+
+    void naturalBlackjackTieDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("10D"),
+                selectCard("10C"),
+                selectCard("1C"),
+                selectCard("1H")));
+    }
+
+    void setSplittableDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("5D"),
+                selectCard("6C"),
+                selectCard("5C"),
+                selectCard("7H")));
+    }
+
+    void setInsplittableDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("5D"),
+                selectCard("6C"),
+                selectCard("4C"),
+                selectCard("7H")));
+    }
+
+    void hitOverLimitDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("9D"),
+                selectCard("6C"),
+                selectCard("9C"),
+                selectCard("5H"),
+                selectCard("8S")));
+    }
+
+    void hitUnderLimitDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("2D"),
+                selectCard("6C"),
+                selectCard("4C"),
+                selectCard("5H"),
+                selectCard("3S")));
+    }
+
+    void standWinDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("10D"),
+                selectCard("10C"),
+                selectCard("9C"),
+                selectCard("8H"),
+                selectCard("2S")));
+    }
+
+    void standLoseDeck(){
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("2D"),
+                selectCard("10C"),
+                selectCard("3C"),
+                selectCard("8H"),
+                selectCard("2S")));
+    }
+
+    void splitWinOneDeck(){
+        splittableDeck();
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("8D"),
+                selectCard("8C"),
+                selectCard("10C"),
+                selectCard("10H"),
+                selectCard("10D")));
+    }
+
+    void splitLose(){
+        splittableDeck();
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("10D"),
+                selectCard("10S"),
+                selectCard("10C"),
+                selectCard("10H"),
+                selectCard("8D")));
+    }
+
+    void splitWinBothDeck(){
+        splittableDeck();
+        testDeck.getDeck().addAll(Arrays.asList(
+                selectCard("8D"),
+                selectCard("8C"),
+                selectCard("8S"),
+                selectCard("8H"),
+                selectCard("10D")));
+    }
 
     @BeforeEach
     void setUp() {
