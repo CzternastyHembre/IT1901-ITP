@@ -66,6 +66,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    createMenu();
     blackjack = new Blackjack(user);
     disableGameButtons();
     playerHandPanes.add(hand1);

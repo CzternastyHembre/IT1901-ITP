@@ -20,7 +20,7 @@ import user.User;
  * Controller for LogIn.fxml.
  */
 
-public class LoginController extends LoginMenu implements Initializable {
+public class LoginController extends LoginMenu {
 
   @FXML
   protected TextField usernameField;
@@ -72,5 +72,6 @@ public class LoginController extends LoginMenu implements Initializable {
     if (this instanceof CreateUserController) {
       setButtonText("Create user");
     }
+    createMenu();
   }
 }
