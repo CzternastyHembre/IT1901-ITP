@@ -129,7 +129,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
       if (blackjack.getTargetHand().getSumOfDeck() < 21) {
         hit.setDisable(false);
       }
-      if (blackjack.canSplit()) {
+      if (blackjack.isCanSplit()) {
         split.setDisable(false);
       }
       stand.setDisable(false);
@@ -222,7 +222,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
       hit.setDisable(true);
       endGame();
     } else {
-      if (blackjack.hasSplit()) {
+      if (blackjack.isHasSplit()) {
         toggle();
       }
     }
