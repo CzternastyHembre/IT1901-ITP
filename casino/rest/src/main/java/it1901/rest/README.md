@@ -8,3 +8,7 @@ The rest module contains two classes:
 The RestApplication only contains a main method that will start the Springboot server and create a directory in the home directory of the user.
 
 The RestController is the controller of the API. Depending on the request from the RestModel class in the UI-module, the corresponding reponse will be returned.
+
+## Class diagram for the module: 
+
+![classdiagram](docs/Images/classRest.png)
