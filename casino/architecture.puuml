@@ -1,36 +1,62 @@
 @startuml
 
-component ui {
-	package ui.
-}
-
-
-component storage {
-	package savehandler
-}
-
-
 component core {
+	package saveHandler
 	package roulette
+	package user
 	package slots
 	package validators
-	package user
 }
 
-component com.google.gson{
+saveHandler ..> user
+slots ..> validators
+slots ..> user
+roulette ..> user
+saveHandler ..> com.google.gson
+
+component ui {
+	package ui.
+	package menuItems
 }
 
+ui. ..> menuItems
 
-storage ..> com.google.gson
+component com.google.gson {
+}
 
 component javafx {
-	package fxml
-	package graphics
-	package controls
+	component fxml
+	component fxml.graphics
+	component fxml.controls
 }
 
 ui ..> javafx
 ui ..> core
-ui ..> storage
-storage ..> core
+
+component rest {
+	package restapi
+}
+
+component spring.boot.web {
+}
+
+component spring.boot{
+}
+
+component spring.boot.autoconfigure{
+}
+
+restapi ..> spring.boot
+restapi ..> spring.boot.autoconfigure
+restapi ..> spring.boot.web
+
+component integrationTest {
+	 component IntegrationTest
+}
+
+integrationTest ..> ui
+integrationTest ..> core
+integrationTest ..> rest
+rest ..> core
+
 @enduml
