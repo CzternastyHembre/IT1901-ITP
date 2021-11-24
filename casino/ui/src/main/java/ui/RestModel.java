@@ -31,9 +31,10 @@ public class RestModel {
     } else {
       baseUri = "http://localhost:8080";
     }
-    public RestModel(){
-        this(false);
-    }
+  }
+  public RestModel(){
+    this(false);
+  }
 
   /**
    * Method for creating a user. Send Http request to /users/add
