@@ -75,7 +75,7 @@ A PlantUML illustration showing the module dependencies and their packages.
 
 ## Illstrations
 
-Illustrations of what the end product is going to look like:
+Illustrations of the different scenes in the application: 
 
 ### The opening scene
 
@@ -100,3 +100,6 @@ Illustrations of what the end product is going to look like:
 ### Roulette game
 
 ![roulette](docs/Images/Roulette.png)
+
+### Blackjack
+![blackjack](docs/Images/Blackjack.png)
