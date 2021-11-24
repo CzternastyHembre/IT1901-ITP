@@ -1,13 +1,10 @@
 package ui;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import savehandler.UserSaveHandler;
-import ui.MenuItem.CasinoMenu;
-import user.User;
+import ui.menuItem.CasinoMenu;
 
 /**
  * Controller for adding money AddMoney.fxml.
@@ -29,6 +26,14 @@ public class AddMoneyController extends CasinoMenu {
   public void initialize() {
     nameLabel.setText("Welcome " + user.getUsername());
   }
+
+
+  /**
+   * Method for adding money to a user.
+   * Tries to add money and checks if the input is a positive integer.
+   *
+   * @throws NumberFormatException if the input is not an integer.
+   */
 
   @FXML
   public void addMoney() throws NumberFormatException {

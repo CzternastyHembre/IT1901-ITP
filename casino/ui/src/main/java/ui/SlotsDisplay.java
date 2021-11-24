@@ -8,9 +8,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
@@ -21,13 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import savehandler.UserSaveHandler;
 import slots.Slots;
-import ui.MenuItem.CasinoMenu;
-import user.User;
+import ui.menuItem.CasinoMenu;
 
 
 /**
@@ -102,7 +98,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    */
 
   @FXML
-  public void spin() throws IOException, InterruptedException {
+  public void spin() throws InterruptedException {
     int bet = Integer.parseInt(betField.getText());
     slotMachine.play(bet);
     for (HBox box : hboxesList) {
@@ -170,8 +166,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     ImageView imageView;
     if (imageName.equals("backOfCard")) {
       imageView = new ImageView(backImage);
-    }
-    else {
+    } else {
       imageView = new ImageView(new Image(
               Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
                       "/images/cards/" + imageName + ".jpg"))));
@@ -190,7 +185,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    *
    */
 
-  private void rotateCard(Node card, int stage) throws IOException, InterruptedException {
+  private void rotateCard(Node card, int stage) throws InterruptedException {
     switch (stage) {
       case 0 -> {
         animateCard(card, 90, stage);
@@ -237,7 +232,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     rotator.setOnFinished(event -> {
       try {
         rotateCard(card, stage + 1);
-      } catch (IOException | InterruptedException e) {
+      } catch (InterruptedException e) {
         e.printStackTrace();
       }
     });

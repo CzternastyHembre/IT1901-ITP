@@ -21,6 +21,7 @@ public class Blackjack {
   private Hand targetHand;
   private boolean hasSplit;
   private double payout;
+  private boolean instantBlackjack;
 
   /**
    * Creates a new blackjack game.
@@ -73,6 +74,10 @@ public class Blackjack {
     for (int i = 0; i < 2; i++) {
       playersHand1.getDeck().add(dealingDeck.popTopCard());
       dealersHand.getDeck().add(dealingDeck.popTopCard());
+    }
+    if (playersHand1.getSumOfDeck() == 21) {
+      instantBlackjack = true;
+      endGame();
     }
   }
 
@@ -147,16 +152,27 @@ public class Blackjack {
         dealersHand.getDeck().add(dealingDeck.popTopCard());
       }
     }
-    dealersHand.setActive(false);
-    double payout = calculateWinnings();
-    user.addMoney(payout);
+    endGame();
   }
 
-  private double calculateWinnings() {
-    double payout;
+  private void endGame() {
+    dealersHand.setActive(false);
+    calculateWinnings();
+    user.addMoney(this.payout);
+  }
+
+  private void calculateWinnings() {
     int dealerSum = dealersHand.getSumOfDeck();
+    if (instantBlackjack) {
+      if (dealerSum == 21) {
+        this.payout = bet;
+      } else {
+        this.payout = bet * 1.5;
+      }
+      return;
+    }
     if (dealerSum == 21) {
-      return 0;
+      return;
     } else if (dealerSum > 21) {
       dealerSum = 0;
     }
@@ -165,9 +181,7 @@ public class Blackjack {
     if (playersHand2.getSumOfDeck() != 0) {
       hand2Score = calculateHand(playersHand2, dealerSum);
     }
-    payout = hand1Score + hand2Score;
-    this.payout = payout;
-    return payout;
+    this.payout = hand1Score + hand2Score;
   }
 
   private double calculateHand(Hand hand, double dealerSum) {
@@ -246,4 +260,7 @@ public class Blackjack {
     this.playersHand1 = playersHand1;
   }
 
+  public boolean isInstantBlackjack() {
+    return instantBlackjack;
+  }
 }

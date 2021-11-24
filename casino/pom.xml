@@ -144,7 +144,7 @@
                         <artifactId>jpackage-maven-plugin</artifactId>
                         <configuration>
                             <modulePaths>
-                                <modulePath>target/jmods</modulePath>
+                                <modulePath>target/casino</modulePath>
                             </modulePaths>
                         </configuration>
                     </plugin>

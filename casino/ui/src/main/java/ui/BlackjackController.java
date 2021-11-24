@@ -2,7 +2,6 @@ package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -19,8 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import savehandler.UserSaveHandler;
-import ui.MenuItem.CasinoMenu;
+import ui.menuItem.*;
 
 
 /**
@@ -119,26 +117,36 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * bet is run when the bet button is clicked. This starts the blackjack game,
    * updates the user's balance, and sets the view for the start of the game.
    *
-   * @throws IOException from updateUser (writing to a file)
+   * @throws InterruptedException from restModel (Sending Http request)
    */
   @FXML
   public void bet() throws InterruptedException {
     blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
     restModel.updateUser(user);
-    if (blackjack.getTargetHand().getSumOfDeck() < 21) {
-      hit.setDisable(false);
+    if (blackjack.isInstantBlackjack()) {
+      instantWinView();
+    } else {
+      if (blackjack.getTargetHand().getSumOfDeck() < 21) {
+        hit.setDisable(false);
+      }
+      if (blackjack.canSplit()) {
+        split.setDisable(false);
+      }
+      stand.setDisable(false);
+      showDealerViewOnStart();
+      showTextOnStart();
+      this.balanceField.setText("" + user.getBalance());
     }
-    stand.setDisable(false);
-    if (blackjack.canSplit()) {
-      split.setDisable(false);
-    }
+
     hand2.setOpacity(0.5);
     bet.setDisable(true);
-    this.balanceField.setText("" + user.getBalance());
-
     showPlayerViewOnStart();
-    showDealerViewOnStart();
-    showTextOnStart();
+  }
+
+  private void instantWinView() throws InterruptedException {
+    updateDealerViews();
+    stand.setDisable(true);
+    endGame();
   }
 
   private void showTextOnStart() {
@@ -203,10 +211,10 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * the dealer's view is updated, and buttons are disabled (and play again button is enabled).
    * If not, then the view is toggled.
    *
-   * @throws IOException when writing to a file to update the user's balance.
+   * @throws InterruptedException from RestModel sending Http Request.
    */
   @FXML
-  public void stand() throws IOException, InterruptedException {
+  public void stand() throws InterruptedException {
     blackjack.stand();
     if (blackjack.isPlayerDone()) {
       stand.setDisable(true);
@@ -228,10 +236,15 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
   private void endOfGameView() {
     if (blackjack.getPayout() > 0) {
-      result.setText("WIN!");
+      if (blackjack.getPayout() == blackjack.getBet()) {
+        result.setText("NO GAIN!");
+      } else {
+        result.setText("WIN!");
+      }
     } else {
       result.setText("LOSS!");
     }
+    playerTotal.setText("" + blackjack.getTargetHand().getSumOfDeck());
     dealerTotal.setText("" + blackjack.getDealersHand().getSumOfDeck());
     turnLabel.setText("Game Over");
     result.setVisible(true);

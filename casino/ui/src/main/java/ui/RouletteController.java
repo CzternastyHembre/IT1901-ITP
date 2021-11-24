@@ -24,7 +24,7 @@ import javafx.util.Duration;
 import roulette.Guess;
 import roulette.Roulette;
 import savehandler.UserSaveHandler;
-import ui.MenuItem.CasinoMenu;
+import ui.menuItem.CasinoMenu;
 
 /**
  * Controller for the roulette game.

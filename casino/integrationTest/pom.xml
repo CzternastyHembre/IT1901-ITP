@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>integrationtests</artifactId>
+    <packaging>war</packaging>
 
     <properties>
         <slf4jVersion>1.7.25</slf4jVersion>
@@ -22,6 +23,12 @@
             <artifactId>rest</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>it1901</groupId>
@@ -107,6 +114,13 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
             </plugin>
         </plugins>
     </build>

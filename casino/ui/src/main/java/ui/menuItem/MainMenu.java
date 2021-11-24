@@ -1,4 +1,4 @@
-package ui.MenuItem;
+package ui.menuItem;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

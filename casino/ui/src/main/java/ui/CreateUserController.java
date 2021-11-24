@@ -1,14 +1,12 @@
 package ui;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import savehandler.UserSaveHandler;
 import user.User;
 
 /**
- * Controller for when you create user
+ * Controller for when you create user.
  */
 
 public class CreateUserController extends LoginController {

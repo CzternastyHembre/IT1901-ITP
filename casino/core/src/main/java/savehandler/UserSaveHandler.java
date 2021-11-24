@@ -24,7 +24,7 @@ public class UserSaveHandler {
   /**
    * Variable SAVE_FILE is saved as the path to the saving destination.
    */
-  private final Path SaveFile;
+  private final Path saveFile;
 
   public UserSaveHandler() {
     this(false);
@@ -40,9 +40,9 @@ public class UserSaveHandler {
 
   public UserSaveHandler(boolean isTest) {
     if (isTest) {
-      this.SaveFile = Paths.get(System.getProperty("user.home"), "TestData", "users.json");
+      this.saveFile = Paths.get(System.getProperty("user.home"), "TestData", "users.json");
     } else {
-      this.SaveFile = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
+      this.saveFile = Paths.get(System.getProperty("user.home"), "CasinoData", "users.json");
     }
     createDirectory();
   }
@@ -54,7 +54,7 @@ public class UserSaveHandler {
    */
 
   public void createDirectory() {
-    String path = String.valueOf(SaveFile);
+    String path = String.valueOf(saveFile);
     path = path.replaceAll("users.json", "");
     if (Files.exists(Path.of(path))) {
       return;
@@ -90,7 +90,7 @@ public class UserSaveHandler {
    */
 
   public void updateFile(List<User> userList) {
-    try (FileWriter fileWriter = new FileWriter(String.valueOf(SaveFile),
+    try (FileWriter fileWriter = new FileWriter(String.valueOf(saveFile),
             StandardCharsets.UTF_8)) {
       Gson gson = new Gson();
       String jsonSaveString = gson.toJson(userList);
@@ -107,7 +107,7 @@ public class UserSaveHandler {
    */
 
   public boolean isEmpty() {
-    File file = new File(String.valueOf(SaveFile));
+    File file = new File(String.valueOf(saveFile));
     return file.length() == 0;
   }
 
@@ -120,7 +120,7 @@ public class UserSaveHandler {
   public List<User> getUserList() {
     if (isEmpty()) {
       createDirectory();
-      try (FileWriter fileWriter = new FileWriter(String.valueOf(SaveFile),
+      try (FileWriter fileWriter = new FileWriter(String.valueOf(saveFile),
               StandardCharsets.UTF_8)) {
         fileWriter.write("");
         fileWriter.close();
@@ -129,7 +129,7 @@ public class UserSaveHandler {
         e.printStackTrace();
       }
     }
-    try (Scanner sc = new Scanner(new File(String.valueOf(SaveFile)), StandardCharsets.UTF_8)) {
+    try (Scanner sc = new Scanner(new File(String.valueOf(saveFile)), StandardCharsets.UTF_8)) {
       String userString = sc.nextLine();
       Gson gson = new Gson();
       ArrayList<User> userList;
