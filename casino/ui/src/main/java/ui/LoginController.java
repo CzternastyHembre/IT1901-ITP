@@ -46,7 +46,6 @@ public class LoginController extends LoginMenu implements Initializable {
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
     if (restModel.getUser(getUsername()) == null) {
       errorLabel.setText("Could not find user, please try again");
-      throw new IllegalArgumentException("This user does not exist");
     }
     User user = restModel.getUser(getUsername());
     openView(actionEvent, user);

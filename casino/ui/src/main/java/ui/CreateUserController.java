@@ -25,7 +25,6 @@ public class CreateUserController extends LoginController {
 
     if (super.restModel.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
-      throw new IllegalArgumentException("Username already exist");
     }
     User newUser = new User(getUsername(), StartingBalance);
     super.restModel.createUser(newUser);

@@ -1,3 +1,5 @@
+
+import java.io.IOException;
 import it1901.rest.RestApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -6,18 +8,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import ui.BlackjackController;
 import ui.RestModel;
 import ui.StartController;
 import user.User;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IntegrationTest extends ApplicationTest {
 
     private final RestModel restModel = new RestModel(true);
-    private final StartController starController = new StartController();
+    private final StartController startController = new StartController();
+
 
     @BeforeEach
     public void removeUser() throws InterruptedException {
@@ -25,13 +27,13 @@ public class IntegrationTest extends ApplicationTest {
     }
 
     private void setTest() {
-        this.starController.getLoginController().setTestMode(true);
+        this.startController.getLoginController().setTestMode(true);
     }
 
     @Override
     public void start(final Stage stage) throws Exception {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/Start.fxml"));
-        loader.setController(starController);
+        loader.setController(startController);
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
@@ -56,24 +58,14 @@ public class IntegrationTest extends ApplicationTest {
         clickOn("#usernameField").write("testUser");
         setTest();
         clickOn("#submit");
-        assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
+        assertEquals("testUser", startController.getLoginController().getNextController().getUser().getUsername());
     }
 
 
     @Test
     public void logInUser() throws InterruptedException {
         logIn();
-        assertEquals("testUser", starController.getLoginController().getNextController().getUser().getUsername());
-    }
-
-    @Test
-    public void moveAround() throws InterruptedException {
-        logIn();
-        clickOn("#roulette");
-        clickOn("#menyButton");
-        clickOn("#lobby");
-        clickOn("#menyButton");
-        clickOn("#mainMenu");
+        assertEquals("testUser", startController.getLoginController().getNextController().getUser().getUsername());
     }
 
     @Test
@@ -83,6 +75,21 @@ public class IntegrationTest extends ApplicationTest {
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
         assertEquals(2000, restModel.getUser("testUser").getBalance());
-        assertEquals(2000, this.starController.getLoginController().getNextController().getUser().getBalance());
+        assertEquals(2000, this.startController.getLoginController().getNextController().getUser().getBalance());
+    }
+
+    @Test
+    public void updateUserTest() throws InterruptedException, IOException {
+        logIn();
+        clickOn("#blackjack");
+        clickOn("#betAmount").write("50");
+        clickOn("#bet");
+        BlackjackController blackjackController = (BlackjackController) startController.getLoginController().getNextController().getNextController();
+        while (blackjackController.getBlackjack().getPlayersHand1().getSumOfDeck() < 21) {
+            clickOn("#hit");
+        }
+        clickOn("#stand");
+        clickOn("#playAgainButton");
+        assertEquals(950, restModel.getUser("testUser").getBalance());
     }
 }
