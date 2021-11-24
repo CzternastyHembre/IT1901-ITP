@@ -1,0 +1,125 @@
+@startuml
+
+Class AddMoneyController {
+    restModel: RestModel
+    void initialize()
+    void addMoney
+}
+
+Class App {
+    void main()
+}
+
+Class BlackJackController {
+    restModel: RestModel
+    void initialize()
+    void disableGameButtons()
+    void disableGameButtons()
+    void disableGameButtons()
+    void resetText()
+    void bet()
+    void split()
+    void toggle()
+    void hit()
+    void stand()
+    void endGame()
+}
+
+
+Class CreateUserController {
+    StartingBalance: double
+    void run()
+}
+
+Class LogInController {
+    restModel: RestModel
+    void setTestMode()
+    void run()
+    void initialize()
+}
+
+Class RestModel {
+    baseUri: String
+    gson: Gson
+    void createUser()
+    User getUser()
+    void updateUser()
+    void deleteUser()
+}
+
+Class RouletteController {
+    rouletteGame: Roulette
+    chipList: List<Pane>
+    void initialize()
+    void run()
+    void clearChips()
+    void addChip()
+    void undoGuess()
+    void addGuess()
+    Pane createRouletteWheel()
+    
+}
+
+Class SelectGameController {
+    void loadBlackJack()
+    void loadSlots()
+    void loadRoulette()
+    void addChips()
+}
+
+Class SlotsController {
+    void initialize()
+}
+
+Class SlotsDisplay {
+    void spin()
+    void updateUserState()
+    void updateStats()
+    void rotateCard()
+    void initialize()
+}
+
+Class StartController {
+    void create_user_scene()
+    void log_in_scene()
+}
+
+abstract CasinoMenu{
+    void backToLobby()
+}
+
+Class LobbyMenu{
+    user: User
+    User getUser()
+    void setUser()
+}
+
+abstract LoginMenu{
+    nextController: LobbyMenu
+    void backToMainMenu()
+    Lobbymenu getNextController()
+    
+}
+
+abstract MainMenu{
+    void exit()
+}
+
+Interface Initializable{
+}
+
+AddMoneyController ..> CasinoMenu
+BlackJackController ..> CasinoMenu 
+BlackJackController ..> Initializable 
+CreateUserController ..> LogInController
+LogInController ..> LoginMenu
+LogInController ..> Initializable
+RouletteController ..> CasinoMenu
+SelectGameController ..> LobbyMenu
+SlotsController ..> SlotsDisplay
+StartController ..> MainMenu
+
+
+
+
+@enduml
