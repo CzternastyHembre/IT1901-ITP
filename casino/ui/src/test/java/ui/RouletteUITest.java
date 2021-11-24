@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import savehandler.UserSaveHandler;
 import user.User;
+import static org.mockito.Mockito.*;
 
 
 public class RouletteUITest extends ApplicationTest {
@@ -23,6 +24,7 @@ public class RouletteUITest extends ApplicationTest {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("Roulette.fxml"));
         controller = new RouletteController();
         controller.setUser(user);
+        controller.setRestModel(mock(RestModel.class));
         loader.setController(controller);
         stage.setScene(new Scene(loader.load()));
         stage.show();

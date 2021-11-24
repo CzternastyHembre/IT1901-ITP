@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import user.User;
+import static org.mockito.Mockito.*;
+
 
 import java.util.Arrays;
 
@@ -26,6 +28,7 @@ class BlackjackUITest extends ApplicationTest {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("Blackjack.fxml"));
         blackjackController = new BlackjackController();
         blackjackController.setUser(user);
+        blackjackController.setRestModel(mock(RestModel.class));
         loader.setController(blackjackController);
         stage.setScene(new Scene(loader.load()));
         stage.show();

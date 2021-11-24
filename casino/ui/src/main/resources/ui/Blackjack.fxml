@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Menu mnemonicParsing="false" text="File">
+      <Menu fx:id="menyButton" mnemonicParsing="false" text="File">
          <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
          <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
          <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />

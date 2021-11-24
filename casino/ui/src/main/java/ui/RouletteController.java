@@ -52,8 +52,6 @@ public class RouletteController extends CasinoMenu {
   private List<Pane> chipList = new ArrayList<>();
 
   private int chipValueIndex = 0;
-  private final RestModel restModel = new RestModel(false);
-  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
   /**
    * The number sequense on an European rouletteWheel.
