@@ -208,7 +208,7 @@ public class Blackjack {
     return playerHands;
   }
 
-  public boolean canSplit() {
+  public boolean isCanSplit() {
     return canSplit;
   }
 
@@ -218,10 +218,6 @@ public class Blackjack {
 
   public Hand getTargetHand() {
     return targetHand;
-  }
-
-  public boolean hasSplit() {
-    return hasSplit;
   }
 
   public boolean isPlayerDone() {
@@ -246,10 +242,6 @@ public class Blackjack {
 
   public Hand getPlayersHand2() {
     return playersHand2;
-  }
-
-  public boolean isCanSplit() {
-    return canSplit;
   }
 
   public boolean isHasSplit() {

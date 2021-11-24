@@ -181,7 +181,7 @@ class BlackjackTest {
         setSplittableDeck();
         blackjack.setDealingDeck(testDeck);
         blackjack.startGame(10);
-        assertTrue(blackjack.canSplit());
+        assertTrue(blackjack.isCanSplit());
         assertEquals(blackjack.getTargetHand(), blackjack.getPlayersHand1());
     }
 
@@ -192,16 +192,55 @@ class BlackjackTest {
         blackjack.startGame(10);
         blackjack.hit();
         assertFalse(blackjack.getTargetHand().isActive());
-        assertFalse(blackjack.canSplit());
+        assertFalse(blackjack.isCanSplit());
         assertEquals(3, blackjack.getTargetHand().getDeck().size());
     }
 
-//    @Test
-//    void hitUnderLimit(){
-//        hitUnderLimitDeck();
-//        blackjack.setDealingDeck(testDeck);
-//
-//    }
+    @Test
+    void hitUnderLimit(){
+        hitUnderLimitDeck();
+        blackjack.setDealingDeck(testDeck);
+        blackjack.startGame(10);
+        blackjack.hit();
+        assertTrue(blackjack.getTargetHand().isActive());
+        assertFalse(blackjack.isCanSplit());
+        assertEquals(3, blackjack.getTargetHand().getDeck().size());
+    }
+
+    @Test
+    void splitTest(){
+        setSplittableDeck();
+        blackjack.setDealingDeck(testDeck);
+        blackjack.startGame(10);
+        double prevBalance = blackjack.getUser().getBalance();
+        blackjack.split();
+        assertEquals(blackjack.getUser().getBalance(), prevBalance - blackjack.getBet());
+        assertTrue(blackjack.getPlayersHand2().isActive());
+        assertTrue(blackjack.isHasSplit());
+        assertFalse(blackjack.isCanSplit());
+        assertEquals(1, blackjack.getPlayersHand1().getDeck().size());
+        assertEquals(1, blackjack.getPlayersHand2().getDeck().size());
+    }
+
+    @Test
+    void toggleTest(){
+        setSplittableDeck();
+        blackjack.setDealingDeck(testDeck);
+        blackjack.startGame(10);
+        blackjack.split();
+        blackjack.toggleTargetHand();
+        assertEquals(blackjack.getTargetHand(), blackjack.getPlayersHand2());
+        assertNotEquals(blackjack.getTargetHand(), blackjack.getPlayersHand1());
+    }
+
+    @Test
+    void standSplitNotDone(){
+        setSplittableDeck();
+        blackjack.setDealingDeck(testDeck);
+        blackjack.startGame(10);
+        blackjack.split();
+        blackjack.stand();
+    }
 
 
 
