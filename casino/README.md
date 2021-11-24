@@ -108,7 +108,7 @@ Our maven build also includes the following:
 
 A PlantUML illustration showing the module dependencies and their packages.
 
-![appDependencies](docs/Images/appDependencies.png)
+![appDependencies](docs/Images/DiagramForModules.png)
 
 ## Illustrations
 
