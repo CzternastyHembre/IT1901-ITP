@@ -61,7 +61,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   @FXML
   private HBox dealerHandHbox;
   private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
-  private final RestModel restModel = new RestModel(false);
   private boolean dealerIsFlipped;
 
 

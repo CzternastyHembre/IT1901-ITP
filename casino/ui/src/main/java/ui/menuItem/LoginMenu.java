@@ -6,11 +6,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.App;
+import ui.RestModel;
 import ui.StartController;
 
 import java.io.IOException;
 
 public abstract class LoginMenu extends MainMenu {
+
+    protected RestModel restModel = new RestModel(false);
+
+    public void setRestModel(RestModel restModel) {
+        this.restModel = restModel;
+    }
+
 
     protected LobbyMenu nextController;
 

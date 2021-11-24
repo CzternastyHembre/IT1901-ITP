@@ -27,7 +27,7 @@ public class IntegrationTest extends ApplicationTest {
     }
 
     private void setTest() {
-        this.startController.getLoginController().setTestMode(true);
+        this.starController.getLoginController().setRestModel(new RestModel(true));
     }
 
     @Override

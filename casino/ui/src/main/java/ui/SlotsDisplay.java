@@ -77,7 +77,6 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
           SlotsDisplay.class.getResourceAsStream("/images/cards/backOfCard.jpg")));
 
   private final List<HBox> hboxesList = new ArrayList<>();
-  private final RestModel restModel = new RestModel(false);
 
   protected void initializeHboxes() {
     hboxesList.add(slotHbox1);
