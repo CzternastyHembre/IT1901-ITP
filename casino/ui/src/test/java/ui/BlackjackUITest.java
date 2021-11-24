@@ -40,9 +40,28 @@ class BlackjackUITest extends ApplicationTest {
 
     @Test
     void bet() {
-
+        double prevBalance = user.getBalance();
         clickOn("#betAmount").write("10");
         clickOn("#bet");
+
+        if (blackjack.getTargetHand().getSumOfDeck() == 21){
+            assertTrue(blackjackController.isDealerIsFlipped());
+            assertEquals(blackjackController.getDealerHandHbox().getChildren().size(), 2);
+            assertEquals(user.getBalance(),prevBalance + blackjack.getPayout());
+            if (blackjack.getDealersHand().getSumOfDeck() == 21){
+              assertEquals("NO GAIN!", blackjackController.getResult().getText());
+            }
+            else {
+              assertEquals("WIN!", blackjackController.getResult().getText());
+            }
+            assertEquals(Double.parseDouble(blackjackController.getDealerTotal().getText()), blackjack.getDealersHand().getSumOfDeck());
+            assertTrue(blackjackController.getResult().isVisible());
+            assertTrue(blackjackController.getPayout().isVisible());
+            assertEquals(Double.parseDouble(blackjackController.getPayout().getText()), blackjack.getPayout());
+            assertEquals(Double.parseDouble(blackjackController.getBalanceField().getText()), user.getBalance());
+            assertFalse(blackjackController.getPlayAgainButton().isDisabled());
+
+        }
 
         if (blackjack.getTargetHand().getSumOfDeck() < 21)
             assertFalse(blackjackController.getHit().isDisabled());
@@ -54,24 +73,10 @@ class BlackjackUITest extends ApplicationTest {
         assertTrue(blackjackController.getBet().isDisabled());
         assertEquals(Double.parseDouble(blackjackController.getBalanceField().getText()), blackjackController.getUser().getBalance());
 
-//        String playerFirstCard = blackjack.getPlayerHands().get(0).getDeck().get(0).getCardImage();
-//        ImageView playerCardImageView = new ImageView(new Image(Objects.requireNonNull(
-//                BlackjackUITest.class.getResourceAsStream("/images/cards/" + playerFirstCard))));
-//        ImageView dealerCardImageView = new ImageView(new Image(Objects.requireNonNull(
-//                BlackjackUITest.class.getResourceAsStream("/images/cards/backOfCard.jpg"))));
-//
-//        ImageView playerInGameImage = (ImageView) blackjackController.getHand1().getChildren().get(0);
-//        ImageView dealerInGameImage = (ImageView) blackjackController.getDealerHandHBox().getChildren().get(0);
-//
-//        assertEquals(playerInGameImage.getImage(), playerCardImageView.getImage());
-//        assertEquals(dealerInGameImage.getImage(), dealerCardImageView.getImage());
-
         assertEquals(2, blackjackController.getPlayerHandPanes().get(0).getChildren().size());
         if (blackjack.canSplit()){
             assertFalse(blackjackController.getSplit().isDisabled());
         }
-//        assertEquals(2, blackjackController.getDealerHandHBox().getChildren().size());
-
         assertEquals(blackjackController.getPlayerTotal().getText(), ""+blackjack.getTargetHand().getSumOfDeck());
         assertEquals(blackjackController.getDealerTotal().getText(), blackjack.getDealersHand().getDeck().get(1).getCardValue() + " + ?");
         assertSame("Player", blackjackController.getTurnLabel().getText());
@@ -100,10 +105,6 @@ class BlackjackUITest extends ApplicationTest {
             assertEquals(3, blackjackController.getPlayerHandPanes().get(0).getChildren().size());
         }
         assertEquals(blackjackController.getPlayerTotal().getText(), "" + blackjack.getTargetHand().getSumOfDeck());
-//        blackjackController.getSplit().setDisable(false);
-//        blackjackController.getHit().setDisable(false);
-//        clickOn("#hit");
-//        assertTrue(blackjackController.getSplit().isDisabled());
     }
 
     @Test

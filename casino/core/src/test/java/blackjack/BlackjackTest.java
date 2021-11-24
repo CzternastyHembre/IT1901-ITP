@@ -31,7 +31,17 @@ class BlackjackTest {
         Assertions.assertEquals(blackjack.getDealingDeck().getDeck().size(),48);
         Assertions.assertTrue(blackjack.getPlayersHand1().isActive());
         Assertions.assertFalse(blackjack.getPlayersHand2().isActive());
-        Assertions.assertEquals(blackjack.getPayout(), 0);
+        if (blackjack.isInstantBlackjack()){
+            if (blackjack.getDealersHand().getSumOfDeck() == 21){
+                assertEquals(blackjack.getPayout(), blackjack.getBet());
+            }
+            else{
+                assertEquals(blackjack.getPayout(), blackjack.getBet()*1.5);
+            }
+        }
+        else {
+            Assertions.assertEquals(blackjack.getPayout(), 0);
+        }
         Assertions.assertEquals(blackjack.getDealersHand().getDeck().size(),2);
         Assertions.assertEquals(blackjack.getTargetHand(),blackjack.getPlayersHand1());
     }

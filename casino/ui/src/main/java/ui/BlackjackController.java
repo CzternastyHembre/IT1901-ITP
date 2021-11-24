@@ -2,7 +2,7 @@ package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -125,20 +125,31 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   public void bet() throws InterruptedException {
     blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
     restModel.updateUser(user);
-    if (blackjack.getTargetHand().getSumOfDeck() < 21) {
-      hit.setDisable(false);
+    if (blackjack.isInstantBlackjack()){
+      instantWinView();
     }
-    stand.setDisable(false);
-    if (blackjack.canSplit()) {
-      split.setDisable(false);
+    else {
+      if (blackjack.getTargetHand().getSumOfDeck() < 21) {
+        hit.setDisable(false);
+      }
+      if (blackjack.canSplit()) {
+        split.setDisable(false);
+      }
+      stand.setDisable(false);
+      showDealerViewOnStart();
+      showTextOnStart();
+      this.balanceField.setText("" + user.getBalance());
     }
+
     hand2.setOpacity(0.5);
     bet.setDisable(true);
-    this.balanceField.setText("" + user.getBalance());
-
     showPlayerViewOnStart();
-    showDealerViewOnStart();
-    showTextOnStart();
+  }
+
+  private void instantWinView() throws InterruptedException {
+    updateDealerViews();
+    stand.setDisable(true);
+    endGame();
   }
 
   private void showTextOnStart() {
@@ -228,10 +239,17 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
   private void endOfGameView() {
     if (blackjack.getPayout() > 0) {
-      result.setText("WIN!");
-    } else {
+      if (blackjack.getPayout() == blackjack.getBet()){
+        result.setText("NO GAIN!");
+      }
+      else {
+        result.setText("WIN!");
+      }
+    }
+    else {
       result.setText("LOSS!");
     }
+    playerTotal.setText("" + blackjack.getTargetHand().getSumOfDeck());
     dealerTotal.setText("" + blackjack.getDealersHand().getSumOfDeck());
     turnLabel.setText("Game Over");
     result.setVisible(true);
