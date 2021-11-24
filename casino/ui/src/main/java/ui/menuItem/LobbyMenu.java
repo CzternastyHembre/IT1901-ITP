@@ -4,7 +4,7 @@ import user.User;
 
 public class LobbyMenu extends LoginMenu {
 
-    protected  User user;
+    protected User user;
 
     public User getUser() {
         return user;

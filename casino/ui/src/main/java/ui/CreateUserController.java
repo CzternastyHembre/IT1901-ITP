@@ -13,6 +13,9 @@ public class CreateUserController extends LoginController {
 
   private static final double StartingBalance = 1000;
 
+  public void createRestUser(User user) throws InterruptedException {
+    restModel.createUser(user);
+  }
 
   /**
    * Button for creating the user.
@@ -22,12 +25,11 @@ public class CreateUserController extends LoginController {
 
   @FXML
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
-
-    if (super.restModel.getUser(getUsername()) != null) {
+    if (restModel.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
     }
     User newUser = new User(getUsername(), StartingBalance);
-    super.restModel.createUser(newUser);
-    super.openView(actionEvent, newUser);
+    createRestUser(newUser);
+    openView(actionEvent, newUser);
   }
 }
