@@ -1,0 +1,63 @@
+@startuml
+
+Class Roulette {
+    rand: Random
+    user: User
+    guesses: List<User>
+    rolledNumber: int
+    void rollNumber()
+    double calculate()
+    double calculateGuessWinnings()
+    double getSumoBets()
+    void undoGuess()
+}
+
+Class UserSaveHandler{
+    SaveFile: Path
+    void createDirectory()
+    void cleanUserList()
+    void createUser()
+    void updateFile()
+    List<User> getUserList()
+    User getUser()
+    void updateUser()
+}
+
+Class Slots {
+    symbols: List<String>
+    spins:int
+    netGain:int
+    bet:int
+    random:Random
+    currentWinings:double
+    averagePayout:double
+    user:User
+    combo:enum
+    cardColor:enum
+    void play()
+    void spin()
+    void withdrawMoney()
+    String generateSymbol()
+    double calculateWinnings()
+    void updateWinnings()
+    void calculateAveragePayout()
+    double getCurrentWinnings()
+}
+
+Class SlotsValidator{
+    void checkCombo()
+}
+
+Class User {
+    balance:double
+    username:String
+    void addMoney()
+    void withdraw()
+}
+
+Roulette ..> User
+UserSaveHandler ..> User
+Slots ..> SlotsValidator
+Slots ..> User
+
+@enduml
