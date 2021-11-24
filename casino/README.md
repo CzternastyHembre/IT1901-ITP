@@ -7,7 +7,7 @@ There is also an "add money" page, in case the user goes broke. The user can the
 
 The code in the application is divided into three main parts:
 core, ui and rest. This helps us easily divide the different parts of the code. The project uses Maven as its building tool. 
-It also contains JUnit testing for all three modules.
+It also contains JUnit testing for all four modules.
 
 ## Techstack
 
@@ -15,41 +15,9 @@ It also contains JUnit testing for all three modules.
 - Maven
 - JavaFX
 - SpringBoot
+- JUnit
 
-## Running the code:
 
-Start by routing into the casino directory.
-
-```powershell
-cd casino
-```
-
-When inside the casino directory, the next step is to install the project:
-
-```powershell
-mvn install -DskipTests
-```
-
-When the application is installed, you have to set up the API before using the appliaction: 
-
-```powershell
-cd rest/
-mvn spring-boot:run
-````
-Then run the application:
-``` powershell
-cd ..
-cd ui/
-mvn javafx:run
-```
-
-For testing, move into the root and use maven test: 
-```powershell
-cd ..
-mvn clean test
-```
-
-The code in the application is divided into three main parts, core, ui and storage to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules.
 ## Running the code:
 
 Start by routing into the casino directory.
@@ -76,7 +44,12 @@ cd casino/ui/
 mvn javafx:run
 ```
 
-## Core
+## Modules:
+
+The code in the application is divided into three main parts, core, ui and storage to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules.
+
+
+### Core
 
 The core module contains the classes and logic that the application uses to 
 play the different casino games. It is independent of the UI and file-saving.
@@ -87,7 +60,7 @@ The core module contains classes to handle and represent the logic behind these 
 
 [Click here](casino/core/src/main/java) to read more about the core module.
 
-## UI
+### UI
 
 The UI module contains classes which determine how the UI should be manipulated. 
 
@@ -102,7 +75,7 @@ while the FXML files are located in the **main/resources/ui**.
 
 [Click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/RestModel/casino/ui/src/main/java) to read more about the UI module.
 
-## Rest
+### Rest
 
 The Rest module is the module for setting up the REST API. 
 The rest module uses the framework Springboot to easily set up the API. 
@@ -110,9 +83,14 @@ The application will save the users both locally and inside the API.
 It is a webserver which lets the RestModel class in the UI communicate with the server.
 [Click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/RestModel/casino/rest/src/main) to read more about the REST API.
 
+
+### IntegrationTest
+
+The IntegrationTest module is used to test the application as a whole. It requires all modules to test the different features togheter. This could be creating the user in the UI and making sure the webserver saves the created user. [Click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/integrationTest/src/test/java) to read more about the module.
+
 ## Building with Maven
 
-Since this project is a large-scale java application, it is useful to use a building tool, 
+Since this project is a bigger java application, it is useful to use a building tool, 
 like Maven, to run tests, check the quality of the code, etc.
 Our project is configured to use Maven, and therefore has a pom.xml file for the configuration:
 The pom.xml file contains different types of information about the project:
@@ -134,7 +112,7 @@ Our maven build also includes the following:
 
 A PlantUML illustration showing the module dependencies and their packages.
 
-![appDependencies](docs/Images/updatedModuleDiagram.png)
+![appDependencies](docs/Images/DiagramForModules.png)
 
 ## Illustrations
 
