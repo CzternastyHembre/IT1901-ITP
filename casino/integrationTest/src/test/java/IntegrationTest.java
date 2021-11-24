@@ -29,15 +29,15 @@ public class IntegrationTest extends ApplicationTest {
     }
 
     @Override
-    public void start(final Stage stage) throws Exception{
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+    public void start(final Stage stage) throws Exception {
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/Start.fxml"));
         loader.setController(starController);
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         RestApplication.isTestMode();
     }
 
@@ -75,6 +75,7 @@ public class IntegrationTest extends ApplicationTest {
         clickOn("#menyButton");
         clickOn("#mainMenu");
     }
+
     @Test
     public void addMoneyTest() throws IOException, InterruptedException {
         logIn();
@@ -84,5 +85,4 @@ public class IntegrationTest extends ApplicationTest {
         assertEquals(2000, restModel.getUser("testUser").getBalance());
         assertEquals(2000, this.starController.getLoginController().getNextController().getUser().getBalance());
     }
-
 }
