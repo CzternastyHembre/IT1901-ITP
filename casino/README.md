@@ -49,6 +49,32 @@ cd ..
 mvn clean test
 ```
 
+The code in the application is divided into three main parts, core, ui and storage to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules.
+## Running the code:
+
+Start by routing into the casino directory.
+
+```powershell
+cd casino
+```
+
+When inside the casino directory, the next step is to install the project:
+
+```powershell
+mvn install
+```
+
+When the application is installed, you have to set up the API before using the appliaction: 
+
+```powershell
+cd rest/
+mvn spring-boot:run
+````
+Then run the application by opening another terminal: 
+``` powershell
+cd casino/ui/
+mvn javafx:run
+```
 
 ## Core
 
@@ -108,11 +134,11 @@ Our maven build also includes the following:
 
 A PlantUML illustration showing the module dependencies and their packages.
 
-![appDependencies](docs/Images/DiagramForModules.png)
+![appDependencies](docs/Images/updatedModuleDiagram.png)
 
 ## Illustrations
 
-Illustrations of what the end product should look like:
+Illustrations of the different scenes in the application: 
 
 ### The opening scene
 
@@ -138,10 +164,5 @@ Illustrations of what the end product should look like:
 
 ![roulette](docs/Images/Roulette.png)
 
-### Slots game
-
-![slots](docs/Images/Slots.png)
-
-### Add money screen
-
-![addMoney](docs/Images/AddMoney.png)
+### Blackjack
+![blackjack](docs/Images/Blackjack.png)

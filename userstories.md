@@ -34,4 +34,18 @@ The user has the need to be entertained by being able to play different casino g
 * Being able to keep their bets in slots to save time.
 * Be able to add money to an existing user
 
+## Playing Blackjack (us-3)
 
+As a new card and blackjack player I want to be able to practice with a simple blackjack version within a safe environment. 
+
+The user has a need to be able to play a simple blackjack version. The user wants to store his/hers balance as he/she plays. The user wants the game to calculate the current score and not worry about caculating the card scores. 
+
+**Important to see**
+* Seeing the current score.
+* See the dealers and the players cards.
+* Able to see which hand is being used when split.
+
+**Important to do** 
+* Play blackjack. 
+* Split the hand if the possiblity is there.
+* Play infinite amount of games by simply adding chips in the lobby, 

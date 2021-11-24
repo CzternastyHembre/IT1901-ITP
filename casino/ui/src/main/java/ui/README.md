@@ -97,6 +97,6 @@ This class diagram shows how the different classes work togheter.
 
 ## Sequence diagram of the UI
 
-This is a sequence diagram of how the UI path from launch of application to playing Roulette.
+A sequence diagram to show how the application works when creating a new user. 
 
 ![sequence](docs/Images/updatedSequence.png)
