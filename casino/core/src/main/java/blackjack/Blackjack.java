@@ -121,7 +121,7 @@ public class Blackjack {
   public void split() {
     setCanSplit();
     if (!canSplit) {
-      return;
+      throw new IllegalStateException("Cannot split this deck");
     }
     user.setBalance(user.getBalance() - bet);
     Card card = playersHand1.getLastCard();
@@ -266,10 +266,6 @@ public class Blackjack {
 
   public void setPlayersHand2(Hand playersHand2) {
     this.playersHand2 = playersHand2;
-  }
-
-  public void setCanSplit(boolean canSplit) {
-    this.canSplit = canSplit;
   }
 
   public void setHasSplit(boolean hasSplit) {
