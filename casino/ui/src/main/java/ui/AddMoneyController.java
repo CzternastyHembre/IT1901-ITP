@@ -27,6 +27,14 @@ public class AddMoneyController extends CasinoMenu {
     nameLabel.setText("Welcome " + user.getUsername());
   }
 
+
+  /**
+   * Method for adding money to a user.
+   * Tries to add money and checks if the input is a positive integer.
+   *
+   * @throws NumberFormatException if the input is not an integer.
+   */
+
   @FXML
   public void addMoney() throws NumberFormatException {
     try {

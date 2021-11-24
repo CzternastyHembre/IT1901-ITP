@@ -3,7 +3,6 @@ package ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,7 +77,7 @@ public class LoginController extends LoginMenu implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     if (this instanceof CreateUserController) {
-    setButtonText("Create user");
+      setButtonText("Create user");
     }
   }
 }
