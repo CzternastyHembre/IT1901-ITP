@@ -1,0 +1,62 @@
+@startuml
+
+component core {
+	package saveHandler
+	package roulette
+	package user
+	package slots
+	package validators
+}
+
+saveHandler ..> user
+slots ..> validators
+slots ..> user
+roulette ..> user
+saveHandler ..> com.google.gson
+
+component ui {
+	package ui.
+	package menuItems
+}
+
+ui. ..> menuItems
+
+component com.google.gson {
+}
+
+component javafx {
+	component fxml
+	component fxml.graphics
+	component fxml.controls
+}
+
+ui ..> javafx
+ui ..> core
+
+component rest {
+	package restapi
+}
+
+component spring.boot.web {
+}
+
+component spring.boot{
+}
+
+component spring.boot.autoconfigure{
+}
+
+restapi ..> spring.boot
+restapi ..> spring.boot.autoconfigure
+restapi ..> spring.boot.web
+
+component integrationTest {
+	 component IntegrationTest
+}
+
+integrationTest ..> ui
+integrationTest ..> core
+integrationTest ..> rest
+rest ..> core
+
+@enduml
