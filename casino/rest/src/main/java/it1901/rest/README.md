@@ -13,3 +13,7 @@ The RestController is the controller of the API. Depending on the request from t
 The UserModelService class is used to do the responses RestController tells it to do. The UserModelService uses saveHandler to write to file. 
 
 Too see documentation for the webservers Http requests and responses, [click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/main/casino/rest/src/main/asciidoc/RestDocumentation.adoc)
+
+## Class diagram: 
+
+![class diagram](docs/Images/classRest.png)
