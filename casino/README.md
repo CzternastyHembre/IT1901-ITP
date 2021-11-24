@@ -44,6 +44,19 @@ cd casino/ui/
 mvn javafx:run
 ```
 
+## Convert to executable: 
+
+After installing and running the application in the steps above: 
+
+```powershell 
+mvn clean compile javafx:jlink jpackage:jpacakge
+````
+
+**You have to be inside the UI module for this to work**
+
+
+Keep in mind, the webserver has to run for the applcation to work.
+
 ## Modules:
 
 The code in the application is divided into three main parts, core, ui and storage to easily divide the different parts of the code. The project uses Maven as its building tool. The project also contains tests for testing the different modules.
