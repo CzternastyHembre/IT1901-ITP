@@ -92,24 +92,24 @@ public class CasinoUITest extends ApplicationTest {
         clickOn("#submit");
 
         clickOn("#roulette");
-        clickOn("#menyButton");
+        clickOn("#menuButton");
         clickOn("#lobby");
 
         clickOn("#addChips");
-        clickOn("#menyButton");
+        clickOn("#menuButton");
         clickOn("#lobby");
 
         clickOn("#slots");
-        clickOn("#menyButton");
+        clickOn("#menuButton");
         clickOn("#lobby");
 
         clickOn("#blackjack");
-        clickOn("#menyButton");
+        clickOn("#menuButton");
         clickOn("#lobby");
 
-        clickOn("#menyButton");
+        clickOn("#menuButton");
         clickOn("#mainMenu");
 
-        clickOn("#menyButton");
+        clickOn("#menuButton");
     }
 }
