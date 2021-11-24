@@ -91,4 +91,4 @@ This file launches the application.
 
 This is a sequence diagram of how the UI path from launch of application to playing Roulette.
 
-![sequence](docs/Images/rouletteDiagram.png)
+![sequence](docs/Images/updatedSequence.png)
