@@ -87,6 +87,14 @@ This is a class where some casino elements are made. The UI chips in the Roulett
 
 This file launches the application.
 
+## Class diagram:
+
+This class diagram shows how the different classes work togheter. 
+
+**Keep in mind** this diagram does **not** show every method in the classes. It only shows the main methods and how the different classes uses each other. 
+
+![class diagram](docs/Images/UIDiagram.png)
+
 ## Sequence diagram of the UI
 
 This is a sequence diagram of how the UI path from launch of application to playing Roulette.
