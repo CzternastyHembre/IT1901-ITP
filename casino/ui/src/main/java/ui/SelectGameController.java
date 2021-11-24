@@ -35,7 +35,8 @@ public class SelectGameController extends LobbyMenu {
 
   @FXML
   private void loadBlackjack(ActionEvent actionEvent) throws IOException {
-    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("Blackjack.fxml")));
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass()
+            .getResource("Blackjack.fxml")));
     nextController = new BlackjackController();
     loadView(actionEvent, loader);
   }
@@ -50,7 +51,8 @@ public class SelectGameController extends LobbyMenu {
 
   @FXML
   private void loadRoulette(ActionEvent actionEvent) throws IOException {
-    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("Roulette.fxml")));
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass()
+            .getResource("Roulette.fxml")));
     nextController = new RouletteController();
     loadView(actionEvent, loader);
   }
@@ -64,7 +66,8 @@ public class SelectGameController extends LobbyMenu {
 
   @FXML
   private void loadSlots(ActionEvent actionEvent) throws IOException {
-    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("Slots.fxml")));
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass()
+            .getResource("Slots.fxml")));
     nextController = new SlotsController();
     loadView(actionEvent, loader);
   }
@@ -78,7 +81,8 @@ public class SelectGameController extends LobbyMenu {
 
   @FXML
   private void loadAddChips(ActionEvent actionEvent) throws IOException {
-    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("AddMoney.fxml")));
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass()
+            .getResource("AddMoney.fxml")));
     nextController = new AddMoneyController();
     loadView(actionEvent, loader);
   }
