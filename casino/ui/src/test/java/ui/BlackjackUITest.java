@@ -86,7 +86,7 @@ class BlackjackUITest extends ApplicationTest {
 
     @Test
     void hit() {
-
+        boolean isSplitDisabled = blackjackController.getSplit().isDisabled();
         Hand validHitHand = new Hand();
         validHitHand.getDeck().add(new Card(2,'C'));
         validHitHand.getDeck().add(new Card(5,'S'));
@@ -97,7 +97,9 @@ class BlackjackUITest extends ApplicationTest {
         clickOn("#bet");
         clickOn("#hit");
 
-        assertTrue(blackjackController.getSplit().isDisabled());
+        if (!isSplitDisabled) {
+            assertTrue(blackjackController.getSplit().isDisabled());
+        }
         if (blackjack.getTargetHand().getSumOfDeck() >= 21){
             assertTrue(blackjackController.getHit().isDisabled());
         }

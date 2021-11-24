@@ -47,6 +47,28 @@ class BlackjackTest {
     }
 
     @Test
+    void hit() {
+        blackjack.startGame(10);
+        int handSize = blackjack.getTargetHand().getDeck().size();
+        Card cardToAdd = blackjack.getDealingDeck().getDeck().get(0);
+        blackjack.hit();
+        assertFalse(blackjack.isCanSplit());
+        Assertions.assertEquals(blackjack.getTargetHand().getDeck().size(),handSize+1);
+        Assertions.assertEquals(blackjack.getTargetHand().getLastCard(), cardToAdd);
+        if (blackjack.getTargetHand().getSumOfDeck() > 21){
+            Assertions.assertFalse(blackjack.getTargetHand().isActive());
+            blackjack.stand();
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                blackjack.hit();
+            });
+        }
+        else {
+            Assertions.assertTrue(blackjack.getTargetHand().isActive());
+        }
+
+    }
+
+    @Test
     void stand() {
         blackjack.startGame(10);
         blackjack.stand();
@@ -68,7 +90,6 @@ class BlackjackTest {
         blackjack.setPlayersHand1(insplittableHand);
         blackjack.split();
         Assertions.assertEquals(userBalance, user.getBalance()); // If this is true, the rest of the method hasn't been called
-
         blackjack.setPlayersHand1(splittableHand);
         blackjack.split();
         assertEquals(blackjack.getUser().getBalance(), userBalance - blackjack.getBet());
@@ -92,9 +113,6 @@ class BlackjackTest {
     @Test
     void dealerPlay() {
         blackjack.startGame(10);
-//        Hand dealerHand = new Hand();
-//        dealerHand.getDeck().add(new Card(2,'C'));
-//        dealerHand.getDeck().add(new Card(3,'C'));
         blackjack.dealerPlay();
         Assertions.assertTrue(blackjack.getDealersHand().getSumOfDeck() >= 17);
         Assertions.assertFalse(blackjack.getDealersHand().isActive());
