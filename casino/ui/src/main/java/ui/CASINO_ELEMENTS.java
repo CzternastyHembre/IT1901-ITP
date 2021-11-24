@@ -15,20 +15,19 @@ import javafx.scene.text.FontWeight;
  * Creates standard circles and chips in the UI.
  */
 
-public class CasinoElements {
+public class CASINO_ELEMENTS {
 
   private static final String[] COLORS = {
     "#a60000", "#cfc132", "#1b32a8", "#ffffff", "#4a4a4a", "ed3434", "12ff34" };
   private static final int[] VALUES = { 1, 5, 25, 50, 100, 500, 1000, 5000, 10000, 50000 };
-  private static final String[] TEXTVALUES = {
+  private static final String[] TEXT_VALUES = {
     "  1", "  5", " 25", " 50", "100", "500", " 1k", " 5k", "10k", "50k" };
-  public static final double CHIPRADIUS = 20;
+  public static final double CHIP_RADIUS = 20;
   public static final double FONTSIZE = 15;
-  public static final double LARGEFONTSIZE = 30;
-  public static final Font TEXTFONT = Font.font("Arial", FontWeight.BOLD, FONTSIZE);
-  public static final Font LARGETEXTFONT = Font.font("Arial", FontWeight.BOLD, LARGEFONTSIZE);
-  public static final Color TEXTCOLOR = Color.WHITE;
-  public static final String BACKGROUNDSTYLE = "-fx-background-color:#075600";
+  public static final double LARGE_FONTSIZE = 30;
+  public static final Font TEXT_FONT = Font.font("Arial", FontWeight.BOLD, FONTSIZE);
+  public static final Font LARGE_TEXT_FONT = Font.font("Arial", FontWeight.BOLD, LARGE_FONTSIZE);
+  public static final Color TEXT_COLOR = Color.WHITE;
 
   public static String getColor(int index) {
     return COLORS[index % COLORS.length];
@@ -43,7 +42,7 @@ public class CasinoElements {
   }
 
   public static String getTextValue(int index) {
-    return TEXTVALUES[index];
+    return TEXT_VALUES[index];
   }
 
   /**
@@ -53,8 +52,8 @@ public class CasinoElements {
   public static Pane getChip(int valueIndex) {
 
     Circle circle = new Circle();
-    circle.setRadius(CHIPRADIUS);
-    circle.setFill(Color.valueOf(CasinoElements.getColor(valueIndex)));
+    circle.setRadius(CHIP_RADIUS);
+    circle.setFill(Color.valueOf(CASINO_ELEMENTS.getColor(valueIndex)));
     circle.setStroke(Paint.valueOf("black"));
     circle.setStrokeWidth(6);
     circle.setStrokeLineCap(StrokeLineCap.BUTT); // The poker chip border design
@@ -62,7 +61,7 @@ public class CasinoElements {
     circle.setStyle("-fx-stroke-dash-array:8;");
 
     Circle circle2 = new Circle(); // To get a "second border on the chip
-    circle2.setRadius(CHIPRADIUS);
+    circle2.setRadius(CHIP_RADIUS);
     circle2.setStroke(Paint.valueOf("black"));
 
     Pane chipContainer = new Pane();
@@ -70,8 +69,8 @@ public class CasinoElements {
     chipContainer.getChildren().add(circle2);
     chipContainer.getChildren().add(circle);
 
-    Label chipLabel = new Label(CasinoElements.getTextValue(valueIndex));
-    chipLabel.setFont(TEXTFONT);
+    Label chipLabel = new Label(CASINO_ELEMENTS.getTextValue(valueIndex));
+    chipLabel.setFont(TEXT_FONT);
     chipLabel.setTranslateX(-FONTSIZE / 3 * 2 - 3);
     chipLabel.setTranslateY(-FONTSIZE / 2 - 2);
     chipLabel.setTextFill(Paint.valueOf("black"));
