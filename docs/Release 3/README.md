@@ -21,7 +21,7 @@ cd casino
 When inside the casino directory, the next step is to install the project:
 
 ```powershell
-mvn install -DskipTests
+mvn install
 ```
 
 When the application is installed, you have to set up the API before using the appliaction: 
@@ -30,17 +30,10 @@ When the application is installed, you have to set up the API before using the a
 cd rest/
 mvn spring-boot:run
 ````
-Then run the application:
+Then run the application by opening another terminal: 
 ``` powershell
-cd ..
-cd ui/
+cd casino/ui/
 mvn javafx:run
-```
-
-For testing, move into the root and use maven test: 
-```powershell
-cd ..
-mvn clean test
 ```
 
 ## Convert to executable: 
@@ -66,7 +59,8 @@ Keep in mind, the webserver has to run for the applcation to work.
 - Deleted the **CreateUser.fxml** and instead added functionality so that only one FXML is needed for both **LoginController** and **CreateUserController**.
 - Added **README** files in core, rest and ui to briefly explain their functionality.
 - Added **Jpackage** and **Jlink** such that users can convert the application to a executable desktop application. 
-- Added **SpringBoot** framework for the rest module. Users will now be saved on a webserver. 
+- Added **SpringBoot** framework for the rest module. Users will now be saved on a webserver.
+- Added new module **integrationTest** for integration testing of the application.  
 
 ## Status of the project
 
@@ -76,7 +70,7 @@ Including the main features there are three addition features which are designed
 
 ## Code architecture
 
-The project is a multi module project to easily divide the different parts of the code. The project is divided in three main modules: Core, UI and Rest.
+The project is a multi module project to easily divide the different parts of the code. The project is divided in four main modules: Core, UI, Rest and integrationTest. 
 
 ### Core
 
@@ -99,18 +93,24 @@ The rest module uses the Springboot framework for setting up an API. The classes
 To see how these request and reponses from the webserver look like, [click here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/blob/47-create-documentations-for-release-3/casino/rest/src/main/asciidoc/RestDocumentation.adoc). 
 
 
+### integrationTest
+
+The integrationTest module is module for testing the application as a whole. Testing within the other modules will not involve each other and only test their own functionality. During the integration testing the application will test updating the user, creating new users and logging in with existing users. This will involve both the rest module and the UI module. 
+
+
 
 # Workflow
 
 For ensuring a steady and good workflow the group of developers have used the framework scrum with milestones and issues.
 The group uses milestones for monitoring the sprints throughout the project. The milestone for the third release is called **Third Group Assignment**. The sprints will have the duration 1-2 weeks, this depends on the size of the milestone.
 
+
 ## Issues
 
-Throughout the project the group uses issues to easily delegate tasks to other developers working on the project. The issues was made with labels, a due date and an assignee.
+Throughout the project the group uses issues to easily delegate tasks to other developers working on the project. The issues was made with labels, a due date and an assignee. 
 The issues would also have a description that would explain what needs to be done in the issue. For bigger issues there would also be checkboxes for the developers to check if a part of the issue was finished.
 
-When commiting a new feature, in the commit message the developers would write this at the bottom of the commit"**issue: #X**" to link to the issue they have been working on. This ensures that the when a commit happens the other developers could see what issue it belongs to. If the issue or a checkboxis completed or a in a commit, then below the "**issue: #X**" the developer writes "**closed: #X**"
+When commiting a new feature, the developers will have a header with the type of the commit, a description and a footer with the issue. This ensures that the when a commit happens the other developers could see what issue it belongs to. If the issue or a checkboxis completed or a in a commit, then below the "**issue: #X**" the developer writes "**closed: #X**"
 
 ### Labels
 
@@ -144,7 +144,7 @@ The reason for this is to ensure that the **main** branch would always work. We 
 
 ### Merge-request
 
-Before merge-requesting the developer of the branch had to inform the other developers in the group that he would be performing a merge-request. The requirement for performing the merge-request would be that the application in the branch with the new feature is running as intended in the issue. As well as the merge-request must be approved and merged in by another developer then themself. As mentioned in **Branch** we push the branches to remote, so we can test the new functionalities and bulletproof that the new changes are functional and coded well.
+Before merge-requesting the developer of the branch had to inform the other developers in the group that he would be performing a merge-request. The requirement for performing the merge-request would be that the application in the branch with the new feature is running as intended in the issue. As well as the merge-request must be approved and merged in by another developer then themself. As mentioned in **Branch** we push the branches to remote, so we can test the new functionalities and bulletproof that the new changes are functional and coded well. The merge requst will also have header, description and a footer to add more information about why the merge request was being done and potentially what issue it will be closing. 
 
 ## Code quality
 
@@ -165,7 +165,7 @@ All of the plugins are run using the **verify** lifecycle.
 
 We have created tests to check if the method, logic and features in the different classes function as they are intended to.
 
-For this release our goal was that the Jacoco test coverage would have a minimum percentage of **85%** in each module to ensure good code quality.
+For this release our goal was that the Jacoco test coverage would have a minimum percentage of **80%** in each module to ensure good code quality.
 
 ## Illustrations
 
