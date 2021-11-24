@@ -63,7 +63,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   @FXML
   private HBox dealerHandHbox;
   private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
-  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
   private boolean dealerIsFlipped;
 
 
@@ -123,9 +122,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * @throws IOException from updateUser (writing to a file)
    */
   @FXML
-  public void bet() {
+  public void bet() throws InterruptedException {
     blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
-    userSaveHandler.updateUser(user);
+    restModel.updateUser(user);
     if (blackjack.getTargetHand().getSumOfDeck() < 21) {
       hit.setDisable(false);
     }
@@ -207,7 +206,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * @throws IOException when writing to a file to update the user's balance.
    */
   @FXML
-  public void stand() throws IOException {
+  public void stand() throws IOException, InterruptedException {
     blackjack.stand();
     if (blackjack.isPlayerDone()) {
       stand.setDisable(true);
@@ -221,9 +220,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     }
   }
 
-  private void endGame() {
+  private void endGame() throws InterruptedException {
     updateDealerViews();
-    userSaveHandler.updateUser(user);
+    restModel.updateUser(user);
     endOfGameView();
   }
 

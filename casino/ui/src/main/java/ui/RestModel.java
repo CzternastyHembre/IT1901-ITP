@@ -22,6 +22,9 @@ public class RestModel {
             baseUri = "http://localhost:8080";
         }
     }
+    public RestModel(){
+        this(false);
+    }
     public void createUser(User newUser) throws InterruptedException {
         try {
             String endpoint = baseUri + "/users/add";

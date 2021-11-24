@@ -11,6 +11,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import savehandler.UserSaveHandler;
 import user.User;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 
 public class SlotUITest extends ApplicationTest{
@@ -22,6 +23,7 @@ public class SlotUITest extends ApplicationTest{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("Slots.fxml"));
         slotsController = new SlotsController();
         slotsController.setUser(user);
+        slotsController.setRestModel(mock(RestModel.class));
         loader.setController(slotsController);
         stage.setScene(new Scene(loader.load()));
         stage.show();
@@ -64,12 +66,6 @@ public class SlotUITest extends ApplicationTest{
         clickOn("#betButton");
         sleep(4000);
         assertEquals("10", slotsController.getBetField().getText());
-    }
-
-    @Test
-    public void backToLobby(){
-        clickOn("#fileButton");
-        clickOn("#lobby");
     }
 
 }
