@@ -52,7 +52,7 @@ public class SlotsValidator {
     var second = splitStringForInt(copyOfSymbols.get(1));
     var third = splitStringForInt(copyOfSymbols.get(2));
 
-    return isIncrementingOrDecrementing(first, second, third);
+    return isIncrementing(first, second, third);
   }
 
   public static boolean isDevil(List<String> symbols) { // 666
