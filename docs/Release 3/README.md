@@ -51,7 +51,7 @@ Keep in mind, the webserver has to run for the applcation to work.
 - Created **Blackjack** so the user has another game to choose between.
 - Created a **rest module** and a **rest API**.
 - Created **menuItems UIs** so that the same code in every UI would not be written multiple times. Instead they extends those menuItems.
-- Deleted the **CreateUser.fxml** and instead added functionality so that only one FXML is needed for both **LoginController** and **CreateUserController**.
+- Deleted the **CreateUser.fxml** and instead added functionality so that only one FXML is needed for both **LoginController** and **CreateUserController**. **CreateUserController** also extends **LoginController** to get rid of duplicate code.
 - Added **README** files in core, rest and ui to briefly explain their functionality.
 - Added **Jpackage** and **Jlink** such that users can convert the application to a executable desktop application.
 - Added **SpringBoot** framework for the rest module. Users will now be saved on a webserver.
@@ -59,9 +59,9 @@ Keep in mind, the webserver has to run for the applcation to work.
 
 ## Status of the project
 
-In this release there are main six features. Logging in with an existing user, creating a user, playing roulette, playing slots and playing blackjack. After logging in or creating a user the user is redirected to a lobby menu where the user can choose between playing roulette, slots or blackjack. Then the user is redirected to the chosen game. The last feature allows the user to add more money to their balance. This is available from the lobby menu.
+In this release there are six main features. Logging in with an existing user, creating a user, playing roulette, playing slots and playing blackjack. After logging in or creating a user the user is redirected to a lobby menu where the user can choose between playing roulette, slots or blackjack. Then the user is redirected to the chosen game. The last feature allows the user to add more money to their balance. This is available from the lobby menu.
 
-Including the main features there are three addition features which are designed as menuItems in the menuBar. The features are **Close**(closes the application), **Main Menu**(redirects the user to the main menu) and **Lobby**(redirects the user to the lobby). These features are available depending on where the user is in the application. In the main menu only the Close feature is available, in log-in page, create-user page and lobby page the Close and Main Menu features are available. Lastly, in addMoney, roulette, slots and blackjack all of the features are available.
+Including the main features there are three additional features which are designed as menuItems in the menuBar. The features are **Close**(closes the application), **Main Menu**(redirects the user to the main menu) and **Lobby**(redirects the user to the lobby). These features are available depending on where the user is in the application. In the main menu only the Close feature is available, in log-in page, create-user page and lobby page the Close and Main Menu features are available. Lastly, in addMoney, roulette, slots and blackjack all of the features are available.
 
 ## Code architecture
 
@@ -69,15 +69,15 @@ The project is a multi module project to easily divide the different parts of th
 
 ### Core
 
-The [core module](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/core/src/main/java) contains all the classes and logic that the application uses to play the different casino games. It is independent of all the UI.
+The [core module](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/core/src/main/java) contains all the classes and logic that the application uses to play the different casino games. It is independent of all the other modules.
 
 Since our app is a casino, all the logic involving the roulette, slots, blackjack, user and writing and reading from saved data happens here in the different packages inside the module. The core module contains classes to handle and represent the logic behind these games.
 
 ### UI
 
-All the classes and logic of how the UI and buttons work happens in the [UI module](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/java/ui). The UI of our project is to show a start-page where users could either log in or create a new user. Then the user will be routed to the lobby page where the user can choose between roulette and slot. The user used in the log in or the newly created user is the active user.
+All the classes and logic of how the UI and buttons work happens in the [UI module](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/java/ui). The UI of our project is to show a start-page where users could either log in or create a new user. Then the user will be routed to the lobby page where the user can choose between roulette, slot, blackjack and adding money. The user used in the log in or the newly created user is passed throughout the controllers inside of the login page.
 
-The UI is made with JavaFX, FXML, css and images. Those are divided into different folders. The FXML controllers are in **[UI/src/main/java/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/java/ui)**. FXML, css and images are in **[UI/src/main/java/resources](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources)** where they are further divided into new folders. The FXML files are in **[UI/src/main/java/resources/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/ui)**, the css is in **[UI/src/main/java/resources/css](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/css)** and the images are in **[UI/src/main/java/resources/images](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images)**.
+The UI is made with JavaFX, FXML, CSS and images. Those are divided into different folders. The FXML controllers are in **[UI/src/main/java/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/java/ui)**. FXML, css and images are in **[UI/src/main/java/resources](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources)** where they are further divided into new folders. The FXML files are in **[UI/src/main/java/resources/ui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/ui)**, the css is in **[UI/src/main/java/resources/css](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/css)** and the images are in **[UI/src/main/java/resources/images](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2124/gr2124/-/tree/main/casino/ui/src/main/resources/images)**.
 
 ### Rest
 
