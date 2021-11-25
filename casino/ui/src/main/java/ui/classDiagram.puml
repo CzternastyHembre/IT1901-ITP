@@ -1,8 +1,6 @@
 @startuml
 
 Class AddMoneyController {
-    restModel: RestModel
-    void initialize()
     void addMoney
 }
 
@@ -11,8 +9,6 @@ Class App {
 }
 
 Class BlackJackController {
-    restModel: RestModel
-    void initialize()
     void disableGameButtons()
     void disableGameButtons()
     void disableGameButtons()
@@ -32,10 +28,7 @@ Class CreateUserController {
 }
 
 Class LogInController {
-    restModel: RestModel
-    void setTestMode()
     void run()
-    void initialize()
 }
 
 Class RestModel {
@@ -50,7 +43,6 @@ Class RestModel {
 Class RouletteController {
     rouletteGame: Roulette
     chipList: List<Pane>
-    void initialize()
     void run()
     void clearChips()
     void addChip()
@@ -68,34 +60,34 @@ Class SelectGameController {
 }
 
 Class SlotsController {
-    void initialize()
 }
 
-Class SlotsDisplay {
+abstract SlotsDisplay {
     void spin()
     void updateUserState()
     void updateStats()
     void rotateCard()
-    void initialize()
 }
 
 Class StartController {
-    void create_user_scene()
-    void log_in_scene()
+    void createUserScene()
+    void logInScene()
 }
 
 abstract CasinoMenu{
     void backToLobby()
 }
 
-Class LobbyMenu{
+abstract LobbyMenu{
     user: User
     User getUser()
     void setUser()
 }
 
 abstract LoginMenu{
+    restModel: RestModel
     nextController: LobbyMenu
+    void setRestModel()
     void backToMainMenu()
     Lobbymenu getNextController()
     
@@ -110,14 +102,18 @@ Interface Initializable{
 
 AddMoneyController ..> CasinoMenu
 BlackJackController ..> CasinoMenu 
-BlackJackController ..> Initializable 
 CreateUserController ..> LogInController
 LogInController ..> LoginMenu
-LogInController ..> Initializable
 RouletteController ..> CasinoMenu
 SelectGameController ..> LobbyMenu
 SlotsController ..> SlotsDisplay
 StartController ..> MainMenu
+CasinoMenu ..> LobbyMenu
+LobbyMenu ..> LoginMenu
+SlotsDisplay ..> CasinoMenu
+LoginMenu ..> MainMenu
+MainMenu --|> Initializable
+LoginMenu --> RestModel
 
 
 
