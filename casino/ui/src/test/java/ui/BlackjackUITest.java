@@ -1,8 +1,8 @@
+package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
 import blackjack.Deck;
-import blackjack.Hand;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
