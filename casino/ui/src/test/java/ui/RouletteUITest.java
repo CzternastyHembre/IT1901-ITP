@@ -32,9 +32,9 @@ public class RouletteUITest extends ApplicationTest {
         clickOn("#1");
         clickOn("#1");
         clickOn("#playButton");
-        Assertions.assertTrue(controller.getRouletteWheelContainer().isVisible());
+        Assertions.assertTrue(controller.isRouletteWheelContainerShown());
         sleep(4000);
-        Assertions.assertEquals(controller.getRouletteGame().getRolledNumber(), Integer.parseInt(controller.getRolledNumberLabel().getText().strip()));
+        Assertions.assertEquals(controller.getRouletteGame().getRolledNumber(), Integer.parseInt(controller.getRolledNumberLabelText().strip()));
     }
 
     @Test
@@ -42,9 +42,9 @@ public class RouletteUITest extends ApplicationTest {
         clickOn("#selectChip1");
         clickOn("#3");
         clickOn("#5");
-        var guesses = controller.getChipList().size();
+        var guesses = controller.getChipListSize();
         clickOn("#undoButton");
-        Assertions.assertEquals(guesses-controller.getChipList().size(), 1);
+        Assertions.assertEquals(guesses - 1, controller.getChipListSize());
 
     }
 }

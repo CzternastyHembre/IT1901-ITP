@@ -454,16 +454,16 @@ public class RouletteController extends CasinoMenu {
     }
   }
 
-  public Pane getRouletteWheelContainer() {
-    return rouletteWheelContainer;
+  public boolean isRouletteWheelContainerShown() {
+    return rouletteWheelContainer.isVisible();
   }
 
-  public Label getRolledNumberLabel() {
-    return rolledNumberLabel;
+  public String getRolledNumberLabelText() {
+    return rolledNumberLabel.getText();
   }
 
-  public List<Pane> getChipList() {
-    return chipList;
+  public int getChipListSize() {
+    return chipList.size();
   }
 
   /**
