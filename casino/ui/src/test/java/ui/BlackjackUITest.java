@@ -208,9 +208,16 @@ class BlackjackUITest extends ApplicationTest {
         assertEquals(3, blackjackController.getPlayerHandPanes().get(0).getChildren().size());
     }
 
-
-
-    //todo; test hit on splittabledeck
+    @Test
+    void hitOnSplittable(){
+        setSplittableDeck();
+        blackjack.setDealingDeck(testDeck);
+        clickOn("#betAmount").write("10");
+        clickOn("#bet");
+        clickOn("#hit");
+        assertTrue(blackjackController.getSplit().isDisabled());
+    }
+    
 
 //    @Test
 //    void bet() {
