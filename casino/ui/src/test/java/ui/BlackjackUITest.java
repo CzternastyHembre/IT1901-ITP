@@ -119,9 +119,9 @@ class BlackjackUITest extends ApplicationTest {
     void splitWinBothDeck(){
         setSplittableDeck();
         testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("8D"),
+                selectCard("7D"),
                 selectCard("8C"),
-                selectCard("8S"),
+                selectCard("7S"),
                 selectCard("8H"),
                 selectCard("10D")));
     }
@@ -168,7 +168,6 @@ class BlackjackUITest extends ApplicationTest {
         clickOn("#bet");
         assertTrue(blackjackController.getHit().isDisabled());
         assertTrue(blackjackController.getSplit().isDisabled());
-        clickOn("#stand");
         assertFalse(blackjackController.getPlayAgainButton().isDisabled());
         assertEquals(Double.parseDouble(blackjackController.getPlayerTotal().getText()),21);
         assertEquals(blackjackController.getResult().getText(), "WIN!");
@@ -180,7 +179,6 @@ class BlackjackUITest extends ApplicationTest {
         blackjack.setDealingDeck(testDeck);
         clickOn("#betAmount").write("10");
         clickOn("#bet");
-        clickOn("#stand");
         assertEquals("NO GAIN!", blackjackController.getResult().getText());
     }
 
@@ -217,7 +215,126 @@ class BlackjackUITest extends ApplicationTest {
         clickOn("#hit");
         assertTrue(blackjackController.getSplit().isDisabled());
     }
-    
+
+    @Test
+    void standWithoutSplit(){
+        standWinDeck();
+        blackjack.setDealingDeck(testDeck);
+        clickOn("#betAmount").write("10");
+        clickOn("#bet");
+        double prevBalance = user.getBalance();
+        clickOn("#stand");
+        //Buttons
+        assertTrue(blackjackController.getStand().isDisabled());
+        assertTrue(blackjackController.getSplit().isDisabled());
+        assertTrue(blackjackController.getHit().isDisabled());
+        assertFalse(blackjackController.getPlayAgainButton().isDisabled());
+        assertTrue(blackjackController.getResult().isVisible());
+        assertTrue(blackjackController.getPayout().isVisible());
+
+        // Text
+        assertEquals(blackjack.getUser().getBalance(),
+                Double.parseDouble(blackjackController.getBalanceField().getText()));
+
+        assertEquals("WIN!", blackjackController.getResult().getText());
+
+        assertEquals(blackjack.getDealersHand().getDeck().size(),
+                blackjackController.getDealerHandHbox().getChildren().size());
+
+        assertEquals(user.getBalance(),prevBalance + blackjack.getPayout());
+
+        assertEquals(Double.parseDouble(blackjackController.getDealerTotal().getText()),
+                blackjack.getDealersHand().getSumOfDeck());
+        assertEquals(Double.parseDouble(blackjackController.getPayout().getText()),
+                blackjack.getPayout());
+        assertEquals(Double.parseDouble(blackjackController.getBalanceField().getText()),
+                user.getBalance());
+    }
+
+    @Test
+    void standWithSplit(){
+        splitWinBothDeck();
+        blackjack.setDealingDeck(testDeck);
+        clickOn("#betAmount").write("10");
+        clickOn("#bet");
+        clickOn("#split");
+
+        // Test for split
+        assertFalse(blackjackController.getToggleButton().isDisabled());
+        for (Pane pane : blackjackController.getPlayerHandPanes())
+            assertEquals(1, pane.getChildren().size());
+
+        assertEquals(blackjackController.getHand2().getOpacity(), 0.5);
+        assertTrue(blackjackController.getSplit().isDisabled());
+        assertEquals(blackjackController.getPlayerTotal().getText(), "5");
+        assertEquals(blackjackController.getTurnLabel().getText(), "Player (Hand 1)");
+
+        // Hit
+        clickOn("#hit");
+        clickOn("#hit");
+
+        // Toggle
+        clickOn("#toggleButton");
+
+        assertEquals(0.5, blackjackController.getPlayerHandPanes().get(0).getOpacity());
+        assertEquals(1, blackjackController.getPlayerHandPanes().get(1).getOpacity());
+        assertEquals(blackjackController.getTurnLabel().getText(), "Player (Hand 2)");
+        assertEquals(blackjackController.getPlayerTotal().getText(), "5");
+
+        // Hit
+        clickOn("#hit");
+        clickOn("#hit");
+
+        // Stand
+        clickOn("#stand");
+        // Test that it toggled
+        assertEquals(1, blackjackController.getPlayerHandPanes().get(0).getOpacity());
+        assertEquals(0.5, blackjackController.getPlayerHandPanes().get(1).getOpacity());
+
+        // Toggle again
+        clickOn("#toggleButton");
+        assertTrue(blackjackController.getHit().isDisabled());
+
+        // Toggle back to stand final hand
+        clickOn("#toggleButton");
+        assertFalse(blackjackController.getHit().isDisabled());
+        assertFalse(blackjackController.getStand().isDisabled());
+
+        // Stand
+        clickOn("#stand");
+        assertTrue(blackjackController.getHit().isDisabled());
+        assertTrue(blackjackController.getStand().isDisabled());
+        assertTrue(blackjackController.getToggleButton().isDisabled());
+        assertFalse(blackjackController.getPlayAgainButton().isDisabled());
+
+    }
+
+    @Test
+    void playAgain() {
+        clickOn("#betAmount").write("10");
+        clickOn("#bet");
+        clickOn("#stand");
+        clickOn("#playAgainButton");
+
+        assertNotSame(blackjackController.getBlackjack(), blackjack);
+        assertTrue(blackjackController.getHit().isDisabled());
+        assertTrue(blackjackController.getStand().isDisabled());
+        assertTrue(blackjackController.getSplit().isDisabled());
+        assertTrue(blackjackController.getToggleButton().isDisabled());
+        assertTrue(blackjackController.getPlayAgainButton().isDisabled());
+        assertTrue(blackjackController.getPlayerHandPanes().get(0).getChildren().isEmpty());
+        assertTrue(blackjackController.getPlayerHandPanes().get(1).getChildren().isEmpty());
+        assertTrue(blackjackController.getDealerHandHbox().getChildren().isEmpty());
+
+        assertSame("0", blackjackController.getPlayerTotal().getText());
+        assertSame("0", blackjackController.getDealerTotal().getText());
+        assertFalse(blackjackController.getPayout().isVisible());
+        assertFalse(blackjackController.getResult().isVisible());
+        assertEquals(Double.parseDouble(blackjackController.getBalanceField().getText()), user.getBalance());
+        assertEquals(blackjackController.getTurnLabel().getText(), "Start a game");
+
+    }
+
 
 //    @Test
 //    void bet() {

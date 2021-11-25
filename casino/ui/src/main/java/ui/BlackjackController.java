@@ -61,7 +61,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   @FXML
   private HBox dealerHandHbox;
   private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
-  private boolean dealerIsFlipped;
 
 
   @Override
@@ -244,6 +243,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     } else {
       result.setText("LOSS!");
     }
+    toggleButton.setDisable(true);
     playerTotal.setText("" + blackjack.getTargetHand().getSumOfDeck());
     dealerTotal.setText("" + blackjack.getDealersHand().getSumOfDeck());
     turnLabel.setText("Game Over");
@@ -303,7 +303,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     for (Card card : blackjack.getDealersHand().getDeck()) {
       dealerHandHbox.getChildren().add(createImageView(card.getCardImage()));
     }
-    dealerIsFlipped = true;
   }
 
   public Blackjack getBlackjack() {
@@ -324,10 +323,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
   public Button getPlayAgainButton() {
     return playAgainButton;
-  }
-
-  public Button getBet() {
-    return bet;
   }
 
   public Text getPlayerTotal() {
@@ -370,9 +365,5 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     return playerHandPanes;
   }
 
-
-  public boolean isDealerIsFlipped() {
-    return dealerIsFlipped;
-  }
 }
 
