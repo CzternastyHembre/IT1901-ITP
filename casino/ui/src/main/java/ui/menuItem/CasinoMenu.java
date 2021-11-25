@@ -1,14 +1,11 @@
 package ui.menuItem;
 
-import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import ui.App;
 import ui.SelectGameController;
-
-import java.io.IOException;
 
 public abstract class CasinoMenu extends LobbyMenu {
 
