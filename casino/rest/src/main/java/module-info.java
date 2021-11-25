@@ -6,6 +6,6 @@ module rest {
     requires spring.boot.autoconfigure;
     requires core;
     requires com.google.gson;
-    opens it1901.rest;
-    exports it1901.rest;
+    opens api.rest;
+    exports api.rest;
 }

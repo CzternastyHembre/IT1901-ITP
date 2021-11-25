@@ -1,4 +1,4 @@
-package it1901.rest;
+package api.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
