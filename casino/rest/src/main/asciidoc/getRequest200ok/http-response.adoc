@@ -2,7 +2,7 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 151
+Content-Length: 41
 
-[{"balance":500.0,"username":"testUser"},{"balance":860.0,"username":"Oskar"},{"balance":790.0,"username":"Mattis"},{"balance":1000.0,"username":"wo"}]
+[{"balance":500.0,"username":"testUser"}]
 ----

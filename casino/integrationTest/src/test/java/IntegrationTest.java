@@ -26,7 +26,11 @@ public class IntegrationTest extends ApplicationTest {
     }
 
     private void setTest() {
-        this.startController.getLoginController().setRestModel(new RestModel(true));
+        startController.getLoginController().setRestModel(new RestModel(true));
+    }
+
+    private void setTestCasino() {
+        startController.getLoginController().getNextController().getNextController().setRestModel(new RestModel(true));
     }
 
     @Override
@@ -84,13 +88,16 @@ public class IntegrationTest extends ApplicationTest {
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
         assertEquals(2000, restModel.getUser("testUser").getBalance());
-        assertEquals(2000, this.startController.getLoginController().getNextController().getUser().getBalance());
     }
+
     @Test
     public void updateUserTest() throws InterruptedException, IOException {
-        logIn();
-        clickOn("#blackjack");
+        clickOn("#createUserButton");
+        clickOn("#usernameField").write("testUser");
         setTest();
+        clickOn("#submit");
+        clickOn("#blackjack");
+        setTestCasino();
         clickOn("#betAmount").write("50");
         clickOn("#bet");
         BlackjackController blackjackController = (BlackjackController) startController.getLoginController().getNextController().getNextController();
