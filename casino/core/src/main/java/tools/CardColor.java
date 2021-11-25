@@ -1,4 +1,4 @@
-package card;
+package tools;
 
 /**
  * Enum of valid card colors (suits).

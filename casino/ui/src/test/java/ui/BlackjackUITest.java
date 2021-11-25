@@ -1,7 +1,7 @@
 package ui;
 
 import blackjack.Blackjack;
-import card.Card;
+import blackjack.Card;
 import blackjack.Deck;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

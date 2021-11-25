@@ -1,10 +1,10 @@
 package slots;
 
-import card.CardColor;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import tools.CardColor;
+import tools.Combo;
 import user.User;
 import validators.SlotsValidator;
 

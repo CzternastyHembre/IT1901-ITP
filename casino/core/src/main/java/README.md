@@ -87,6 +87,15 @@ When playing a game of slots, the user can place a bet, and spin the slot machin
 The machine will then generate a random combination of symbols, and depending on these symbols, 
 a user might either win or lose. The payout is dependent on the combination of symbols.
 
+## Tools
+This package includes two enums which are used in slots and blackjack
+
+### CardColor
+CardColor enum provides the card colors (suits).
+
+### Combo
+Combo enum provides the combo's for slots.
+
 ## User
 
 This class contains the logic of the user.
