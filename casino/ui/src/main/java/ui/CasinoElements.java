@@ -10,6 +10,9 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /**
  * Class for setting standards in the UI.
  * Creates standard circles and chips in the UI.
@@ -45,6 +48,12 @@ public class CasinoElements {
     return textValues[index];
   }
 
+
+  public static String getColorName(int value){
+    return Arrays.stream(ChipColor.values())
+            .collect(Collectors.toList())
+            .get(value).getColorName();
+  }
   /**
    * //TODO.
    */
@@ -53,7 +62,7 @@ public class CasinoElements {
 
     Circle circle = new Circle();
     circle.setRadius(chipRadius);
-    circle.setFill(Color.valueOf(CasinoElements.getColor(valueIndex)));
+    circle.setFill(Color.valueOf(getColorName(valueIndex)));
     circle.setStroke(Paint.valueOf("black"));
     circle.setStrokeWidth(6);
     circle.setStrokeLineCap(StrokeLineCap.BUTT); // The poker chip border design
