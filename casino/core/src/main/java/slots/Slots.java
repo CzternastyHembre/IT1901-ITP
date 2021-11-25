@@ -213,11 +213,7 @@ public class Slots {
    * @return the string of the enum name.
    */
   public String enumToString(Enum e) {
-    if (e.name().contains("_")) {
-      return e.name().replaceAll("_", " ");
-    } else {
-      return e.name();
-    }
+    return e.name().replaceAll("_", " ");
   }
 
   public Enum getCombo() {
