@@ -119,7 +119,7 @@ Our maven build also includes the following:
 
 A PlantUML illustration showing the module dependencies and their packages.
 
-![appDependencies](docs/Images/DiagramForModules.png)
+![appDependencies](docs/Images/archiUML.png)
 
 ## Illustrations
 
