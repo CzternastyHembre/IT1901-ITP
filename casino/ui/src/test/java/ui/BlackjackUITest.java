@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import ui.BlackjackController;
 import user.User;
 import static org.mockito.Mockito.*;
 
@@ -33,6 +32,7 @@ public class BlackjackUITest extends ApplicationTest {
                 selectCard("2C"),
                 selectCard("1C"),
                 selectCard("3C")));
+        blackjack.setDealingDeck(testDeck);
     }
 
     void naturalBlackjackTieDeck(){
@@ -41,6 +41,7 @@ public class BlackjackUITest extends ApplicationTest {
                 selectCard("10C"),
                 selectCard("1C"),
                 selectCard("1H")));
+        blackjack.setDealingDeck(testDeck);
     }
 
     void setSplittableDeck(){
@@ -50,14 +51,7 @@ public class BlackjackUITest extends ApplicationTest {
                 selectCard("5C"),
                 selectCard("7H"),
                 selectCard("5H")));
-    }
-
-    void setInsplittableDeck(){
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("5D"),
-                selectCard("6C"),
-                selectCard("4C"),
-                selectCard("7H")));
+        blackjack.setDealingDeck(testDeck);
     }
 
     void hitOverLimitDeck(){
@@ -67,6 +61,7 @@ public class BlackjackUITest extends ApplicationTest {
                 selectCard("9C"),
                 selectCard("5H"),
                 selectCard("8S")));
+        blackjack.setDealingDeck(testDeck);
     }
 
     void hitUnderLimitDeck(){
@@ -76,6 +71,7 @@ public class BlackjackUITest extends ApplicationTest {
                 selectCard("4C"),
                 selectCard("5H"),
                 selectCard("3S")));
+        blackjack.setDealingDeck(testDeck);
     }
 
     void standWinDeck(){
@@ -85,35 +81,7 @@ public class BlackjackUITest extends ApplicationTest {
                 selectCard("9C"),
                 selectCard("8H"),
                 selectCard("2S")));
-    }
-
-    void standLoseDeck(){
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("2D"),
-                selectCard("10C"),
-                selectCard("3C"),
-                selectCard("8H"),
-                selectCard("2S")));
-    }
-
-    void splitWinOneDeck(){
-        setSplittableDeck();
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("8D"),
-                selectCard("8C"),
-                selectCard("10C"),
-                selectCard("10H"),
-                selectCard("10D")));
-    }
-
-    void splitLose(){
-        setSplittableDeck();
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("10D"),
-                selectCard("10S"),
-                selectCard("10C"),
-                selectCard("10H"),
-                selectCard("8D")));
+        blackjack.setDealingDeck(testDeck);
     }
 
     void splitWinBothDeck(){
@@ -124,23 +92,8 @@ public class BlackjackUITest extends ApplicationTest {
                 selectCard("7S"),
                 selectCard("8H"),
                 selectCard("10D")));
+        blackjack.setDealingDeck(testDeck);
     }
-
-    void unHittableDeck(){
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("10D"),
-                selectCard("10S"),
-                selectCard("10C"),
-                selectCard("10H"),
-                selectCard("8D"),
-                selectCard("4H")));
-    }
-
-
-
-
-
-
 
     @Override
     public void start(final Stage stage) throws Exception{
@@ -163,9 +116,7 @@ public class BlackjackUITest extends ApplicationTest {
     @Test
     void naturalBlackjackWin() {
         naturalBlackjackWinDeck();
-        blackjack.setDealingDeck(testDeck);
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
+        betClicks();
         assertTrue(blackjackController.getHit().isDisabled());
         assertTrue(blackjackController.getSplit().isDisabled());
         assertFalse(blackjackController.getPlayAgainButton().isDisabled());
@@ -176,19 +127,14 @@ public class BlackjackUITest extends ApplicationTest {
     @Test
     void naturalBlackjackTie(){
         naturalBlackjackTieDeck();
-        blackjack.setDealingDeck(testDeck);
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
+        betClicks();
         assertEquals("NO GAIN!", blackjackController.getResult().getText());
     }
 
     @Test
     void hitOverLimit(){
         hitOverLimitDeck();
-        blackjack.setDealingDeck(testDeck);
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
-        clickOn("#hit");
+        betAndHit();
         assertTrue(blackjackController.getHit().isDisabled());
         assertTrue(blackjackController.getSplit().isDisabled());
         assertEquals(Double.parseDouble(blackjackController.getPlayerTotal().getText())
@@ -198,10 +144,7 @@ public class BlackjackUITest extends ApplicationTest {
     @Test
     void hitUnderLimit(){
         hitUnderLimitDeck();
-        blackjack.setDealingDeck(testDeck);
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
-        clickOn("#hit");
+        betAndHit();
         assertFalse(blackjackController.getHit().isDisabled());
         assertEquals(3, blackjackController.getPlayerHandPanes().get(0).getChildren().size());
     }
@@ -209,19 +152,14 @@ public class BlackjackUITest extends ApplicationTest {
     @Test
     void hitOnSplittable(){
         setSplittableDeck();
-        blackjack.setDealingDeck(testDeck);
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
-        clickOn("#hit");
+        betAndHit();
         assertTrue(blackjackController.getSplit().isDisabled());
     }
 
     @Test
     void standWithoutSplit(){
         standWinDeck();
-        blackjack.setDealingDeck(testDeck);
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
+        betClicks();
         double prevBalance = user.getBalance();
         clickOn("#stand");
         //Buttons
@@ -252,11 +190,9 @@ public class BlackjackUITest extends ApplicationTest {
     }
 
     @Test
-    void standWithSplit(){
+    void playSplitGame(){
         splitWinBothDeck();
-        blackjack.setDealingDeck(testDeck);
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
+        betClicks();
         clickOn("#split");
 
         // Test for split
@@ -270,8 +206,7 @@ public class BlackjackUITest extends ApplicationTest {
         assertEquals(blackjackController.getTurnLabel().getText(), "Player (Hand 1)");
 
         // Hit
-        clickOn("#hit");
-        clickOn("#hit");
+        doubleHit();
 
         // Toggle
         clickOn("#toggleButton");
@@ -282,8 +217,7 @@ public class BlackjackUITest extends ApplicationTest {
         assertEquals(blackjackController.getPlayerTotal().getText(), "5");
 
         // Hit
-        clickOn("#hit");
-        clickOn("#hit");
+        doubleHit();
 
         // Stand
         clickOn("#stand");
@@ -311,8 +245,7 @@ public class BlackjackUITest extends ApplicationTest {
 
     @Test
     void playAgain() {
-        clickOn("#betAmount").write("10");
-        clickOn("#bet");
+        betClicks();
         clickOn("#stand");
         clickOn("#playAgainButton");
 
@@ -322,19 +255,37 @@ public class BlackjackUITest extends ApplicationTest {
         assertTrue(blackjackController.getSplit().isDisabled());
         assertTrue(blackjackController.getToggleButton().isDisabled());
         assertTrue(blackjackController.getPlayAgainButton().isDisabled());
+
         assertTrue(blackjackController.getPlayerHandPanes().get(0).getChildren().isEmpty());
         assertTrue(blackjackController.getPlayerHandPanes().get(1).getChildren().isEmpty());
         assertTrue(blackjackController.getDealerHandHbox().getChildren().isEmpty());
 
         assertSame("0", blackjackController.getPlayerTotal().getText());
         assertSame("0", blackjackController.getDealerTotal().getText());
+
         assertFalse(blackjackController.getPayout().isVisible());
         assertFalse(blackjackController.getResult().isVisible());
+
         assertEquals(Double.parseDouble(blackjackController.getBalanceField().getText()), user.getBalance());
         assertEquals(blackjackController.getTurnLabel().getText(), "Start a game");
 
     }
-    
+
+    private void doubleHit() {
+        clickOn("#hit");
+        clickOn("#hit");
+    }
+
+    private void betClicks(){
+        clickOn("#betAmount").write("10");
+        clickOn("#bet");
+    }
+
+    private void betAndHit(){
+        clickOn("#betAmount").write("10");
+        clickOn("#bet");
+        clickOn("#hit");
+    }
 
     private Card selectCard(String name){
         return cardDeck.getDeck().stream().filter(
