@@ -1,3 +1,4 @@
+package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import ui.BlackjackController;
 import user.User;
 import static org.mockito.Mockito.*;
 
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BlackjackUITest extends ApplicationTest {
+public class BlackjackUITest extends ApplicationTest {
     private BlackjackController blackjackController;
     private User user = new User("slotsTest", 100);
     private Blackjack blackjack;
