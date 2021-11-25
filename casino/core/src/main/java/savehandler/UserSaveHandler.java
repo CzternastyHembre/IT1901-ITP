@@ -160,20 +160,4 @@ public class UserSaveHandler {
     return null;
   }
 
-  /**
-   * Updates a users balance, used if users wins or loses money.
-   *
-   * @param user is the user that is being updated.
-   */
-
-  public void updateUser(User user) {
-    List<User> userList = getUserList();
-    for (int i = 0; i < userList.size(); i++) {
-      if (userList.get(i).getUsername().equals(user.getUsername())) {
-        userList.remove(userList.get(i));
-        userList.add(0, user);
-      }
-    }
-    updateFile(userList);
-  }
 }
