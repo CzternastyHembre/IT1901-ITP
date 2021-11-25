@@ -1,11 +1,9 @@
 package ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.URL;
+import java.util.*;
+
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -73,8 +71,9 @@ public class RouletteController extends CasinoMenu {
   }
 
 
-  @FXML
-  public void initialize() {
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    createMenu();
     rouletteGame = new Roulette(user);
     List<Label> labelList = new ArrayList<>(Arrays.asList(
             moneyLabel, moneyBettedLabel, feedBackLabel, nameLabel,
@@ -572,4 +571,5 @@ public class RouletteController extends CasinoMenu {
   public Roulette getRouletteGame() {
     return rouletteGame;
   }
+
 }

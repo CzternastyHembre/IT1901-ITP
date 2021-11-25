@@ -6,6 +6,9 @@ import javafx.scene.control.TextField;
 import savehandler.UserSaveHandler;
 import ui.menuItem.CasinoMenu;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 /**
  * Controller for adding money AddMoney.fxml.
  */
@@ -22,8 +25,9 @@ public class AddMoneyController extends CasinoMenu {
   private Label nameLabel;
   private final RestModel restModel = new RestModel(false);
 
-  @FXML
-  public void initialize() {
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    createMenu();
     nameLabel.setText("Welcome " + user.getUsername());
   }
 

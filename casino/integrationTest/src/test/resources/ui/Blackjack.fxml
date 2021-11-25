@@ -14,13 +14,6 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="427.5" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <MenuBar AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Menu mnemonicParsing="false" text="File">
-         <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
-         <MenuItem fx:id="lobby" mnemonicParsing="false" onAction="#backToLobby" text="Lobby" />
-         <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
-      </Menu>
-   </MenuBar>
    <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="252.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.5">
       <Text fill="WHITE" layoutX="241.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer's Hand" textAlignment="CENTER">
          <font>

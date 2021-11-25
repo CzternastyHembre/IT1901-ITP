@@ -7,23 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/frontPageImage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Menu">
-            <items>
-              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Pane layoutY="199.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="320.0">
-         <children>
-            <Button fx:id="logInButton" layoutX="42.0" layoutY="2.0" mnemonicParsing="false" onAction="#log_in_scene" prefHeight="27.0" prefWidth="81.0" text="Log in" />
-            <Button fx:id="createUserButton" layoutX="288.0" layoutY="3.0" mnemonicParsing="false" onAction="#create_user_scene" text="Create user" />
-         </children>
-      </Pane>
-      <Pane layoutX="40.0" layoutY="66.0" prefHeight="87.0" prefWidth="520.0" styleClass="headline" stylesheets="@../css/frontPageImage.css" AnchorPane.bottomAnchor="247.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="66.0" />
-   </children>
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/frontPageImage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <Pane layoutY="199.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="320.0">
+    <Button fx:id="logInButton" layoutX="42.0" layoutY="2.0" mnemonicParsing="false" onAction="#log_in_scene" prefHeight="27.0" prefWidth="81.0" text="Log in" />
+    <Button fx:id="createUserButton" layoutX="288.0" layoutY="3.0" mnemonicParsing="false" onAction="#create_user_scene" text="Create user" />
+  </Pane>
+  <Pane layoutX="40.0" layoutY="66.0" prefHeight="87.0" prefWidth="520.0" styleClass="headline" stylesheets="@../css/frontPageImage.css" AnchorPane.bottomAnchor="247.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="66.0" />
 </AnchorPane>
