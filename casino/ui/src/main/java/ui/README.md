@@ -93,7 +93,7 @@ This class diagram shows how the different classes work togheter.
 
 **Keep in mind** this diagram does **not** show every method in the classes. It only shows the main methods and how the different classes uses each other. 
 
-![class diagram](docs/Images/UIDiagram.png)
+![class diagram](docs/Images/classDiagramUI.png)
 
 ## Sequence diagram of the UI
 
