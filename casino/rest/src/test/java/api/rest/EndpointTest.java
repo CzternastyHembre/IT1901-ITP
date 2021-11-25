@@ -33,7 +33,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = { RestController.class, UserModelService.class, RestApplication.class })
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 
-public class EndpointTest {
+public class
+EndpointTest {
     private final UserModelService userModelService = new UserModelService();
 
     @Autowired

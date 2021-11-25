@@ -49,12 +49,6 @@ public class UserModelService {
     return userSaveHandler.getUserList();
   }
 
-  public void cleanUserList() {
-    userList.clear();
-    autosaveUserList();
-  }
-
-
   /**
   * Method that save a userlist.
   * Overwrites an existing userlist to the a file.
