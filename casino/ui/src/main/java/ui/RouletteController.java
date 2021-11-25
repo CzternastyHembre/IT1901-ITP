@@ -21,8 +21,8 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import roulette.Guess;
 import roulette.Roulette;
-import savehandler.UserSaveHandler;
-import ui.menuItem.CasinoMenu;
+import ui.casinoelements.CasinoElements;
+import ui.menuitem.CasinoMenu;
 
 /**
  * Controller for the roulette game.
@@ -194,12 +194,12 @@ public class RouletteController extends CasinoMenu {
     }
 
     // Adding the select poker chips
-    for (int i = 0; i < CASINO_ELEMENTS.getValuesSize(); i++) {
-      Pane chipContainer = CASINO_ELEMENTS.getChip(i);
+    for (int i = 0; i < CasinoElements.getValuesSize(); i++) {
+      Pane chipContainer = CasinoElements.getChip(i);
       String style = chipContainer.getStyle();
       chipContainer.setId("selectChip" + i);
 
-      chipContainer.setTranslateX(i * (CASINO_ELEMENTS.CHIP_RADIUS * 2 + 4) + 20);
+      chipContainer.setTranslateX(i * (CasinoElements.chipRadius * 2 + 4) + 20);
       chipContainer.setTranslateY(chipFolder.getPrefHeight() / 2);
       int currentIndex = i;
       chipFolder.getChildren().add(chipContainer);
@@ -217,8 +217,8 @@ public class RouletteController extends CasinoMenu {
 
     }
     labelList.forEach(label -> {
-      label.setFont(CASINO_ELEMENTS.TEXT_FONT);
-      label.setTextFill(CASINO_ELEMENTS.TEXT_COLOR);
+      label.setFont(CasinoElements.textFont);
+      label.setTextFill(CasinoElements.textColor);
     });
 
     //Creating the rouletteWheel.
@@ -227,7 +227,7 @@ public class RouletteController extends CasinoMenu {
     rouletteWheelContainer.setVisible(false);
 
     Circle circleWheelPointer = new Circle();
-    circleWheelPointer.setRadius(CASINO_ELEMENTS.FONTSIZE - 2);
+    circleWheelPointer.setRadius(CasinoElements.fontSize - 2);
     circleWheelPointer.setStroke(Color.WHITE);
     circleWheelPointer.setStrokeWidth(2);
     circleWheelPointer.setTranslateX(rouletteWheelContainer.getPrefWidth() / 2);
@@ -235,11 +235,11 @@ public class RouletteController extends CasinoMenu {
     circleWheelPointer.setTranslateY(15);
     rouletteWheelContainer.getChildren().add(circleWheelPointer);
 
-    rolledNumberLabel.setFont(CASINO_ELEMENTS.LARGE_TEXT_FONT);
+    rolledNumberLabel.setFont(CasinoElements.largeTextFont);
     rolledNumberLabel.setTranslateX(rouletteBoardPane.getPrefWidth()
-            / 2 - CASINO_ELEMENTS.LARGE_FONTSIZE / 2);
+            / 2 - CasinoElements.largeFontSize / 2);
     rolledNumberLabel.setTranslateY(rouletteBoardPane.getPrefHeight()
-            / 2 - CASINO_ELEMENTS.LARGE_FONTSIZE / 2);
+            / 2 - CasinoElements.largeFontSize / 2);
     rouletteWheelContainer.getChildren().add(rolledNumberLabel);
   }
 
@@ -332,7 +332,7 @@ public class RouletteController extends CasinoMenu {
     double tileWidth = tile.getPrefWidth();
     double tileHeight = tile.getPrefHeight();
 
-    Pane chipContainer = CASINO_ELEMENTS.getChip(chipValueIndex);
+    Pane chipContainer = CasinoElements.getChip(chipValueIndex);
     chipContainer.setTranslateX(tileWidth / 2);
     chipContainer.setTranslateY(tileHeight / 2);
 
@@ -380,11 +380,11 @@ public class RouletteController extends CasinoMenu {
   
   private void setNumberGuess(Pane tile, int number) {
     tile.setOnMouseClicked(e -> {
-      Guess guess = Guess.numberGuess(CASINO_ELEMENTS.getValue(chipValueIndex), number);
+      Guess guess = Guess.numberGuess(CasinoElements.getValue(chipValueIndex), number);
       addGuess(guess, tile);
     });
     setGuessAnimation(tile, Guess.numberGuess(
-            CASINO_ELEMENTS.getValue(chipValueIndex),
+            CasinoElements.getValue(chipValueIndex),
             number).getNumbers());
   }
 
@@ -398,11 +398,11 @@ public class RouletteController extends CasinoMenu {
 
   private void setListGuess(Pane tile, int start, int end) {
     tile.setOnMouseClicked(e -> {
-      Guess guess = Guess.listGuess(CASINO_ELEMENTS.getValue(chipValueIndex), start, end);
+      Guess guess = Guess.listGuess(CasinoElements.getValue(chipValueIndex), start, end);
       addGuess(guess, tile);
     });
     setGuessAnimation(tile, Guess.listGuess(
-            CASINO_ELEMENTS.getValue(chipValueIndex),
+            CasinoElements.getValue(chipValueIndex),
             start, end).getNumbers());
   }
 
@@ -417,11 +417,11 @@ public class RouletteController extends CasinoMenu {
   private void setPatternGuess(Pane tile, int start, int increment) {
     tile.setOnMouseClicked(e -> {
       Guess guess = Guess.patternGuess(
-              CASINO_ELEMENTS.getValue(chipValueIndex), start, increment);
+              CasinoElements.getValue(chipValueIndex), start, increment);
       addGuess(guess, tile);
     });
     setGuessAnimation(tile, Guess.patternGuess(
-            CASINO_ELEMENTS.getValue(chipValueIndex), start, increment).getNumbers());
+            CasinoElements.getValue(chipValueIndex), start, increment).getNumbers());
   }
 
   /**
@@ -504,7 +504,7 @@ public class RouletteController extends CasinoMenu {
       int number = rouletteWheelNumberSequence.get(i);
       String text = number < 10 ? " " + number : "" + number;
       Label l = new Label(text);
-      l.setFont(CASINO_ELEMENTS.TEXT_FONT);
+      l.setFont(CasinoElements.textFont);
       l.setTextFill(Paint.valueOf("white"));
       l.setTranslateY(-radius);
 

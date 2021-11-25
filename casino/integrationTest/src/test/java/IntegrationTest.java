@@ -76,6 +76,7 @@ public class IntegrationTest extends ApplicationTest {
     @Test
     public void addMoneyTest() throws IOException, InterruptedException {
         logIn();
+        setTestCasino();
         clickOn("#addChips");
         setTestCasino();
         clickOn("#amountField").write("1000");

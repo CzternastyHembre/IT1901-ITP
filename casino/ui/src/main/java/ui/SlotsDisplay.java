@@ -1,6 +1,5 @@
 package ui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +20,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
-import savehandler.UserSaveHandler;
 import slots.Slots;
-import ui.menuItem.CasinoMenu;
+import ui.menuitem.CasinoMenu;
 
 
 /**

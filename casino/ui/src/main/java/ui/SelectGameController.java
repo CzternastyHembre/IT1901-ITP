@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ui.menuItem.LobbyMenu;
+import ui.menuitem.LobbyMenu;
 
 
 /**
