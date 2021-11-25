@@ -99,4 +99,4 @@ This class diagram shows how the different classes work togheter.
 
 A sequence diagram to show how the application works when creating a new user. 
 
-![sequence](docs/Images/updatedSequence.png)
+![sequence](docs/Images/sequenceUI.png)
