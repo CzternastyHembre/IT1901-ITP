@@ -22,16 +22,8 @@ import ui.menuItem.MainMenu;
  */
 
 public class StartController extends MainMenu {
-  @FXML
-  private Button createUserButton;
-  @FXML
-  private Button logInButton;
-  @FXML
-  private MenuItem exit;
-  private Stage stage;
-  private Scene scene;
-  private LoginController loginController;
 
+  private LoginController loginController;
   public LoginController getLoginController() {
     return loginController;
   }
@@ -66,8 +58,8 @@ public class StartController extends MainMenu {
 
   private void loadView(ActionEvent actionEvent, FXMLLoader loader) throws IOException {
     loader.setController(loginController);
-    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(loader.load());
+    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Scene scene = new Scene(loader.load());
     stage.setScene(scene);
     stage.show();
   }
