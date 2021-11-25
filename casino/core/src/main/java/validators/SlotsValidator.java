@@ -107,7 +107,7 @@ public class SlotsValidator {
 
   private static boolean isIncrementing(int ...ints) {
     //Flipping the array
-    return isDecrementing(IntStream.range(0,ints.length).map(i -> ints[ints.length-i-1])
+    return isDecrementing(IntStream.range(0, ints.length).map(i -> ints[ints.length - i - 1])
             .toArray());
   }
 

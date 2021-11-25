@@ -21,6 +21,7 @@ import ui.menuitem.MainMenu;
 public class StartController extends MainMenu {
 
   private LoginController loginController;
+
   public LoginController getLoginController() {
     return loginController;
   }
