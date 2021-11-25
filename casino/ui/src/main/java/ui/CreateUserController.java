@@ -1,13 +1,12 @@
 package ui;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import user.User;
 
 /**
- * Controller for when you create user
+ * Controller for when you create user.
  */
 
 public class CreateUserController extends LoginController {
@@ -24,12 +23,12 @@ public class CreateUserController extends LoginController {
   @FXML
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
 
-    if (RestModel.getUser(getUsername()) != null) {
+    if (super.restModel.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
       throw new IllegalArgumentException("Username already exist");
     }
     User newUser = new User(getUsername(), StartingBalance);
-    RestModel.createUser(newUser);
+    super.restModel.createUser(newUser);
     super.openView(actionEvent, newUser);
   }
 }

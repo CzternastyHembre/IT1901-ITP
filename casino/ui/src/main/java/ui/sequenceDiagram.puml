@@ -1,0 +1,12 @@
+actor User
+User -> "~#createUser: Button" as createUserButton: click
+createUserButton -> createUserController: createUserScene()
+createUserController -> "~#username: TextField" as usernameField: getText()
+createUserController -> LobbyController: Load(User)
+createUserController -> RestModel: createUser(User)
+RestModel --> RestController: createUser(POST Http Request)
+RestController -> UserModelService: createUser(User)
+LobbyController -> RouletteController: Load(User)
+RouletteController -> RouletteController: run()
+RouletteController -> RestModel: updateUser(User)
+RestModel --> RestController: updateUser(POST Http request)

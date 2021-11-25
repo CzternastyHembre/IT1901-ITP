@@ -2,9 +2,7 @@ package ui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import ui.MenuItem.LobbyMenu;
-import ui.MenuItem.LoginMenu;
+import ui.menuItem.LoginMenu;
 import user.User;
 
 /**
@@ -32,6 +29,12 @@ public class LoginController extends LoginMenu implements Initializable {
   @FXML
   public Button submit;
 
+  protected RestModel restModel = new RestModel(false);
+
+  public void setTestMode(boolean bool) {
+    restModel = new RestModel(bool);
+  }
+
   /**
    * Button to log in with the user written in the textfield.
    * Throws an exception if the user does not exist.
@@ -41,11 +44,11 @@ public class LoginController extends LoginMenu implements Initializable {
 
   @FXML
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
-    if (RestModel.getUser(getUsername()) == null) {
+    if (restModel.getUser(getUsername()) == null) {
       errorLabel.setText("Could not find user, please try again");
       throw new IllegalArgumentException("This user does not exist");
     }
-    User user = RestModel.getUser(getUsername());
+    User user = restModel.getUser(getUsername());
     openView(actionEvent, user);
   }
 
@@ -74,7 +77,7 @@ public class LoginController extends LoginMenu implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     if (this instanceof CreateUserController) {
-    setButtonText("Create user");
+      setButtonText("Create user");
     }
   }
 }

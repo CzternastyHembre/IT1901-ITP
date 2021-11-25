@@ -16,7 +16,16 @@ public class User {
 
   }
 
+  /**
+   * Creates a new user with a username and a balance.
+   *
+   * @param username the username of the created user.
+   * @param balance the amount of money they have.
+   */
   public User(String username, double balance) {
+    if (balance < 0) {
+      throw new IllegalStateException("Cannot create an user with negative balance");
+    }
     this.balance = balance;
     this.username = username;
   }

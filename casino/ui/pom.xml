@@ -56,6 +56,13 @@
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
         	<groupId>it1901</groupId>
@@ -136,27 +143,6 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.panteleyev</groupId>
-                <artifactId>jpackage-maven-plugin</artifactId>
-                <version>1.4.0</version>
-                <configuration>
-                    <name>CasinoApp</name>
-                    <appVersion>1.0.0</appVersion>
-                    <vendor>com.gr2124</vendor>
-                    <destination>~/Desktop</destination>
-                    <module>ui.App</module>
-                    <runtimeImage>target/treefx</runtimeImage>
-                    <linuxShortcut>true</linuxShortcut>
-                    <linuxPackageName>treefx</linuxPackageName>
-                    <linuxAppCategory>Utilities</linuxAppCategory>
-                    <linuxMenuGroup>Utilities</linuxMenuGroup>
-                    <icon>${project.basedir}/duke.png</icon>
-                    <javaOptions>
-                        <option>-Dfile.encoding=UTF-8</option>
-                    </javaOptions>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

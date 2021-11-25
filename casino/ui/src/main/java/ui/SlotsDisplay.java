@@ -8,9 +8,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
@@ -21,13 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import savehandler.UserSaveHandler;
 import slots.Slots;
-import ui.MenuItem.CasinoMenu;
-import user.User;
+import ui.menuItem.CasinoMenu;
 
 
 /**
@@ -76,8 +72,12 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   @FXML
   private ToggleButton keepBetButton;
 
+
+  private final Image backImage = new Image(Objects.requireNonNull(
+          SlotsDisplay.class.getResourceAsStream("/images/cards/backOfCard.jpg")));
+
   private final List<HBox> hboxesList = new ArrayList<>();
-  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
+  private final RestModel restModel = new RestModel(false);
 
   protected void initializeHboxes() {
     hboxesList.add(slotHbox1);
@@ -96,10 +96,10 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    * This is run when the spinButton is clicked. This "spins" the cards,
    * and play's the bet.
    *
-   *
    */
 
-  public void spin(ActionEvent actionEvent) throws IOException {
+  @FXML
+  public void spin() throws InterruptedException {
     int bet = Integer.parseInt(betField.getText());
     slotMachine.play(bet);
     for (HBox box : hboxesList) {
@@ -108,8 +108,8 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   }
 
 
-  private void updateUserState() throws IOException {
-    userSaveHandler.updateUser(slotMachine.getUser());
+  private void updateUserState() throws InterruptedException {
+    restModel.updateUser(slotMachine.getUser());
   }
 
   /**
@@ -148,7 +148,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     if (slotMachine.getCombo() == null) {
       comboSlot.setText("Bet and Spin to start!");
     } else {
-      comboSlot.setText("" + slotMachine.getCombo());
+      comboSlot.setText(slotMachine.enumToString(slotMachine.getCombo()));
     }
     avgPayout.setText("" + (Math.round(slotMachine.getAveragePayout() * 100.0) / 100.0));
     spinsCounter.setText("" + slotMachine.getSpins());
@@ -164,9 +164,14 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    */
 
   private ImageView createImageView(String imageName) {
-    ImageView imageView = new ImageView(new Image(
-        Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
-                "/images/cards/" + imageName + ".jpg"))));
+    ImageView imageView;
+    if (imageName.equals("backOfCard")) {
+      imageView = new ImageView(backImage);
+    } else {
+      imageView = new ImageView(new Image(
+              Objects.requireNonNull(SlotsDisplay.class.getResourceAsStream(
+                      "/images/cards/" + imageName + ".jpg"))));
+    }
     imageView.setFitWidth(148);
     imageView.setFitHeight(210);
     return imageView;
@@ -181,7 +186,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    *
    */
 
-  private void rotateCard(Node card, int stage) throws IOException {
+  private void rotateCard(Node card, int stage) throws InterruptedException {
     switch (stage) {
       case 0 -> {
         animateCard(card, 90, stage);
@@ -228,7 +233,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     rotator.setOnFinished(event -> {
       try {
         rotateCard(card, stage + 1);
-      } catch (IOException e) {
+      } catch (InterruptedException e) {
         e.printStackTrace();
       }
     });

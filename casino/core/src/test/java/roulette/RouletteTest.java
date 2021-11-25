@@ -27,13 +27,13 @@ public class RouletteTest {
     	double amount = 10;
     	roulette.setRolledNumber(0);
 
-    	NumberGuess guess = new NumberGuess(amount, 0);
+    	Guess guess = Guess.numberGuess(amount, 0);
     	roulette.addGuess(guess);
     	balance -= guess.getAmount();
     	
     	
     	double amount2 = 100;
-    	NumberGuess guess2 = new NumberGuess(amount2, 0);
+    	Guess guess2 = Guess.numberGuess(amount2, 0);
     	roulette.addGuess(guess2);
 
     	balance -= amount2;
@@ -53,9 +53,9 @@ public class RouletteTest {
     	
     	for (int i = 0; i < iterations; i++) {//Roulette.calculate rolls a random number each time
     		
-	    	Guess guess1 = new NumberGuess(amount1, 1);
-	    	Guess guess2 = new ListGuess(amount2, 1, 12);
-	    	Guess guess3 = new PatternGuess(amount3, 1, 2);
+	    	Guess guess1 = Guess.numberGuess(amount1, 1);
+	    	Guess guess2 = Guess.listGuess(amount2, 1, 12);
+	    	Guess guess3 = Guess.patternGuess(amount3, 1, 2);
 	    	
 	    	roulette.addGuess(guess1);
 	    	assertEquals(roulette.getSumOfBets(), amount1);
@@ -86,8 +86,8 @@ public class RouletteTest {
     	double amount1 = 10;
     	double amount2 = 15;
     	    		
-    	Guess guess1 = new NumberGuess(amount1, 1);
-    	Guess guess2 = new ListGuess(amount2, 1, 12);
+    	Guess guess1 = Guess.numberGuess(amount1, 1);
+    	Guess guess2 = Guess.listGuess(amount2, 1, 12);
     	
     	
     	roulette.addGuess(guess1);
@@ -108,8 +108,8 @@ public class RouletteTest {
     	double amount1 = 10;
     	double amount2 = 15;
     	    		
-    	Guess guess1 = new NumberGuess(amount1, 1);
-    	Guess guess2 = new ListGuess(amount2, 1, 12);
+    	Guess guess1 = Guess.numberGuess(amount1, 1);
+    	Guess guess2 = Guess.listGuess(amount2, 1, 12);
     	
     	
     	roulette.addGuess(guess1);

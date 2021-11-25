@@ -5,9 +5,11 @@ module core {
     opens slots;
     opens validators;
     opens savehandler;
+    opens blackjack;
     exports roulette;
     exports user;
     exports slots;
     exports validators;
     exports savehandler;
+    exports blackjack;
 }

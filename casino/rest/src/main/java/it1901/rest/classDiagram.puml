@@ -1,0 +1,32 @@
+@startuml
+
+Class RestApplication {
+    portNumber: int
+    void isTest()
+    Object isTestMode()
+    void main()
+}
+
+Class RestController{
+    userModelService: UserModelService
+    List<User> getUserList()
+    User getUser()
+    void addUser()
+    boolean updateUser()
+    boolean removeUser()
+}
+
+Class UserModelService{
+    userList: List<User>
+    userSaveHandler: UserSaveHandler
+    List<User> createDefaultList()
+    void autoSavesUserList()
+    void createUser()
+    void updateUser()
+    void deleteUser()
+}
+
+RestController ..> UserModelService
+
+
+@enduml

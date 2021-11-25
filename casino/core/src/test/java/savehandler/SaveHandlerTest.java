@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class SaveHandlerTest {
@@ -18,14 +19,14 @@ public class SaveHandlerTest {
 
     @BeforeEach
     public void clearUserList(){
-        userSaveHandler.cleanUserList();
+        userSaveHandler.updateFile(new ArrayList<>());
     }
 
 
     //Makes the arrays strings to check if equal, the hash does not allow to be compared.
     @Test
-    public void getUsersTest() throws IOException {
-        userSaveHandler.cleanUserList();
+    public void getUsersTest() {
+        userSaveHandler.updateFile(new ArrayList<>());
         User getUser = new User("bob", 1000);
         User get2User = new User("alice", 1000);
         userSaveHandler.createUser(getUser);
@@ -37,13 +38,13 @@ public class SaveHandlerTest {
     }
 
     @Test
-    public void resetUserList() throws IOException {
-        userSaveHandler.cleanUserList();
-        assertEquals(0, userSaveHandler.getUserList().size() );
+    public void resetUserList() {
+        userSaveHandler.updateFile(new ArrayList<>());
+        assertEquals(0, userSaveHandler.getUserList().size());
     }
 
     @Test
-    public void getUserTest() throws IOException {
+    public void getUserTest() {
         User user = new User("karen", 500);
         userSaveHandler.createUser(user);
         assertEquals(user.toString(), Objects.requireNonNull(userSaveHandler.getUser("karen")).toString());
