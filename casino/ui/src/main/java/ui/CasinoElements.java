@@ -32,10 +32,6 @@ public class CasinoElements {
   public static final Font largeTextFont = Font.font("Arial", FontWeight.BOLD, largeFontSize);
   public static final Color textColor = Color.WHITE;
 
-  public static String getColor(int index) {
-    return colors[index % colors.length];
-  }
-
   public static int getValue(int index) {
     return values[index];
   }
