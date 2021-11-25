@@ -21,7 +21,8 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import roulette.Guess;
 import roulette.Roulette;
-import ui.menuItem.CasinoMenu;
+import ui.casinoelements.CasinoElements;
+import ui.menuitem.CasinoMenu;
 
 /**
  * Controller for the roulette game.

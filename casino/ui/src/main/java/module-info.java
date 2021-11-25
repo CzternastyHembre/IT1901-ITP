@@ -7,5 +7,6 @@ module ui {
     requires com.google.gson;
 
     opens ui to javafx.fxml, javafx.graphics;
-    opens ui.menuItem;
+    opens ui.menuitem;
+  opens ui.casinoelements to javafx.fxml, javafx.graphics;
 }

@@ -1,5 +1,7 @@
-package ui;
+package ui.casinoelements;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -9,9 +11,6 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Class for setting standards in the UI.
@@ -36,22 +35,25 @@ public class CasinoElements {
     return values.length;
   }
 
-
-  public static String getColorName(int value){
+  private static String getColorName(int value) {
     return Arrays.stream(ChipColor.values())
             .collect(Collectors.toList())
             .get(value).getColorName();
   }
 
-  public static String getTextColor(int value){
-    return Arrays.stream(TextColor.values())
+  private static String getTextColor(int value) {
+    return Arrays.stream(TextValue.values())
             .collect(Collectors.toList())
-            .get(value).getTextColor();
+            .get(value).getTextValue();
   }
-  /**
-   * //TODO.
-   */
 
+  /**
+   * Creates and returns a chip pane with color and text.
+   *
+   * @param valueIndex which chip should be created.
+   *
+   * @return the chip pane.
+   */
   public static Pane getChip(int valueIndex) {
 
     Circle circle = new Circle();

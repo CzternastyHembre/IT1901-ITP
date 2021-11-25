@@ -3,8 +3,7 @@ package ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import savehandler.UserSaveHandler;
-import ui.menuItem.CasinoMenu;
+import ui.menuitem.CasinoMenu;
 
 import java.net.URL;
 import java.util.ResourceBundle;

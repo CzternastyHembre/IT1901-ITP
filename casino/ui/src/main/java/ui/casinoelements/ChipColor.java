@@ -1,4 +1,4 @@
-package ui;
+package ui.casinoelements;
 
 enum ChipColor {
   RED("#a60000"),
@@ -18,7 +18,7 @@ enum ChipColor {
     return colorName;
   }
 
-  ChipColor(String colorName){
+  ChipColor(String colorName) {
     this.colorName = colorName;
   }
 
