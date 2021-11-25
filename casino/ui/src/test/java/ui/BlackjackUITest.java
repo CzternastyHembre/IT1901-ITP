@@ -1,4 +1,3 @@
-package ui;
 
 import blackjack.Blackjack;
 import blackjack.Card;
