@@ -9,38 +9,26 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="image" stylesheets="@../css/generelBackgroundImage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button fx:id="roulette" alignment="CENTER" layoutX="35.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadRoulette" text="Roulette">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Button>
-            <Button fx:id="addChips" layoutX="409.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Button>
-            <Button fx:id="slots" layoutX="244.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadSlots" prefHeight="57.0" prefWidth="112.0" text="Slots">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Button>
-            <Button fx:id="blackjack" alignment="CENTER" layoutX="220.0" layoutY="261.0" mnemonicParsing="false" onAction="#loadBlackjack" text="Blackjack">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <MenuBar AnchorPane.bottomAnchor="372.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-           <Menu fx:id="menyButton" mnemonicParsing="false" text="Menu">
-              <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" />
-              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Close" />
-           </Menu>
-        </menus>
-      </MenuBar>
-   </children>
+   <Pane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button fx:id="roulette" alignment="CENTER" layoutX="35.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadRoulette" text="Roulette">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="addChips" layoutX="409.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadAddChips" text="Add Chips">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="slots" layoutX="244.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadSlots" prefHeight="57.0" prefWidth="112.0" text="Slots">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="blackjack" alignment="CENTER" layoutX="220.0" layoutY="261.0" mnemonicParsing="false" onAction="#loadBlackjack" text="Blackjack">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+   </Pane>
 </AnchorPane>

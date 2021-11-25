@@ -2,8 +2,10 @@ package ui.menuItem;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import ui.App;
 import ui.RestModel;
@@ -27,17 +29,13 @@ public abstract class LoginMenu extends MainMenu {
     }
 
     /**
-     * Sends user back to main menu view.
-     *
-     * @param actionEvent onClick, run this method
-     *
-     * @throws IOException loader.load() can throw an exception.
+     * Method that sends user back to main menu view.
      */
 
-    @FXML
-    protected void backToMainMenu(ActionEvent actionEvent) throws IOException {
+    private void backToMainMenu() {
         // Sets location on the loader by getting the class and then the view file from
         // resources
+        try {
         loader.setLocation(App.class.getResource("Start.fxml"));
         loader.setController(new StartController());
         Parent newGame = loader.load(); // Create a parent class of the loader.load()
@@ -47,7 +45,20 @@ public abstract class LoginMenu extends MainMenu {
         window.setScene(newGameScene); // Set the window to the previous chosen scene
 
         window.show(); // Opens the window
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Creates a menuItem and adds it in the menu and supers the class to create next item
+     */
 
+    public void createMenu() {
+        MenuItem menuItem = new MenuItem("Main Menu");
+        menuItem.setId("mainMenu");
+        menuItem.setOnAction(event -> backToMainMenu());
+        menu.getItems().add(menuItem);
+        super.createMenu();
+    }
 }

@@ -17,6 +17,7 @@ public class SlotsController extends SlotsDisplay {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    createMenu();
     super.slotMachine = new Slots(user);
     super.updateStats();
     super.initializeHboxes();

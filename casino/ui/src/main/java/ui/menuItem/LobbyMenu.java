@@ -2,7 +2,7 @@ package ui.menuItem;
 
 import user.User;
 
-public class LobbyMenu extends LoginMenu {
+public abstract class LobbyMenu extends LoginMenu {
 
     protected User user;
 

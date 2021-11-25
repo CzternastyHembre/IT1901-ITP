@@ -3,6 +3,7 @@ package ui.menuItem;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import ui.App;
 import ui.SelectGameController;
@@ -12,15 +13,13 @@ import java.io.IOException;
 public abstract class CasinoMenu extends LobbyMenu {
 
     /**
-     * Sends user back to lobby view.
-     *
-     * @throws IOException loader.load() can throw exception.
+     * Method that sends user back to lobby view.
      */
 
-    @FXML
-    protected void backToLobby() throws IOException {
+    private void backToLobby() {
         // Sets location on the loader by getting the class and then the view file from
         // resources
+        try {
         loader.setLocation(App.class.getResource("selectGameView.fxml"));
         SelectGameController selectGameController = new SelectGameController();
         selectGameController.setUser(user);
@@ -32,6 +31,22 @@ public abstract class CasinoMenu extends LobbyMenu {
         window.setScene(newGameScene); // Set the window to the previous chosen scene
 
         window.show(); // Opens the window
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    /**
+     * Creates a menuItem and adds it in the menu and supers the class to create next item
+     */
+
+    public void createMenu() {
+        MenuItem menuItem = new MenuItem("Lobby");
+        menuItem.setId("lobby");
+        menuItem.setOnAction(event -> backToLobby());
+        menu.getItems().add(menuItem);
+        super.createMenu();
+    }
+
 
 }
