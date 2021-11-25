@@ -89,7 +89,7 @@ class BlackjackTest {
     }
 
     void splitWinOneDeck(){
-        splittableDeck();
+        setSplittableDeck();
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("8D"),
                 selectCard("8C"),
@@ -99,7 +99,7 @@ class BlackjackTest {
     }
 
     void splitLose(){
-        splittableDeck();
+        setSplittableDeck();
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("10D"),
                 selectCard("10S"),
@@ -109,7 +109,7 @@ class BlackjackTest {
     }
 
     void splitWinBothDeck(){
-        splittableDeck();
+        setSplittableDeck();
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("8D"),
                 selectCard("8C"),
@@ -283,7 +283,7 @@ class BlackjackTest {
         assertThrows(IllegalStateException.class, () ->{
             blackjack.split();
         });
-    }   
+    }
 
     private Card selectCard(String name){
         return cardDeck.getDeck().stream().filter(
