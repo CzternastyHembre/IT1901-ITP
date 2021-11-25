@@ -96,10 +96,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
+                    <rerunFailingTestsCount>2</rerunFailingTestsCount>
                     <argLine>
                         @{argLine} --add-opens ui/ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
                 </configuration>
+
 	        </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
