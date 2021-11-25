@@ -49,7 +49,7 @@ public class CASINO_ELEMENTS {
    * //TODO.
    */
 
-  public static Pane getChip(int valueIndex) {
+  protected static Pane getChip(int valueIndex) {
 
     Circle circle = new Circle();
     circle.setRadius(CHIP_RADIUS);

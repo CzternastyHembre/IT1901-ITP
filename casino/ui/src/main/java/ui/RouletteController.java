@@ -30,19 +30,26 @@ import ui.menuItem.CasinoMenu;
 
 public class RouletteController extends CasinoMenu {
 
-  @FXML Pane chipFolder;
-  @FXML Pane rouletteBoardPane;
-  @FXML Pane controllsFolder;
-  @FXML Pane gridPane;
-  @FXML Label moneyLabel;
-  @FXML Label moneyBettedLabel;
-  @FXML Label feedBackLabel;
-  @FXML Label nameLabel;
-  @FXML Label textLabel1;
-  @FXML Label textLabel2;
-  @FXML MenuItem mainMenu;
-  @FXML MenuItem lobby;
-  @FXML MenuItem exit;
+  @FXML
+  private Pane chipFolder;
+  @FXML
+  private Pane rouletteBoardPane;
+  @FXML
+  private Pane controllsFolder;
+  @FXML
+  private Pane gridPane;
+  @FXML
+  private Label moneyLabel;
+  @FXML
+  private Label moneyBettedLabel;
+  @FXML
+  private Label feedBackLabel;
+  @FXML
+  private Label nameLabel;
+  @FXML
+  private Label textLabel1;
+  @FXML
+  private Label textLabel2;
 
   private Roulette rouletteGame;
   private Label rolledNumberLabel = new Label();
@@ -247,7 +254,7 @@ public class RouletteController extends CasinoMenu {
    */
 
   @FXML
-  public void run() throws IOException, InterruptedException {
+  private void run() throws IOException, InterruptedException {
     restModel.updateUser(user);
     rouletteGame.rollNumber();
 
@@ -287,6 +294,7 @@ public class RouletteController extends CasinoMenu {
    *
    * @param bool a boolean that is either true or false.
    */
+
   private void setShowRouletteWheel(boolean bool) {
     if (bool) {
       rouletteWheelContainer.setVisible(true);
@@ -306,6 +314,7 @@ public class RouletteController extends CasinoMenu {
   /**
    * Methos thats removes all the chips places on the {@code rouletteBoardPane}.
    */
+
   private void clearChips() {
     rouletteBoardPane.getChildren().forEach((n) -> {
       Pane tile = (Pane) n;

@@ -54,7 +54,7 @@ public abstract class LoginMenu extends MainMenu {
      * Creates a menuItem and adds it in the menu and supers the class to create next item
      */
 
-    public void createMenu() {
+    protected void createMenu() {
         MenuItem menuItem = new MenuItem("Main Menu");
         menuItem.setId("mainMenu");
         menuItem.setOnAction(event -> backToMainMenu());

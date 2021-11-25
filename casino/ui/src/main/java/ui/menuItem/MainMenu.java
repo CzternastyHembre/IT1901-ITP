@@ -41,7 +41,7 @@ public abstract class MainMenu implements Initializable {
      * Method that creates the menuItem and adds them, then calls the method createMenuBare
      */
 
-    public void createMenu() {
+    protected void createMenu() {
         MenuItem menuItem = new MenuItem("Close");
         menuItem.setId("exit");
         menuItem.setOnAction(event -> System.exit(0));

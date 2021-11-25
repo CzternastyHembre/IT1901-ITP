@@ -37,7 +37,7 @@ public class LoginController extends LoginMenu {
    */
 
   @FXML
-  public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
+  private void run(ActionEvent actionEvent) throws IOException, InterruptedException {
     User user = restModel.getUser(getUsername());
     if (user == null) {
       errorLabel.setText("Could not find user, please try again");

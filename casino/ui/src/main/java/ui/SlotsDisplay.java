@@ -100,7 +100,7 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    */
 
   @FXML
-  public void spin() throws InterruptedException {
+  private void spin() throws InterruptedException {
     int bet;
     String numberText = betField.getText();
 
