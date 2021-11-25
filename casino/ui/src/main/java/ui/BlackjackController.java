@@ -1,7 +1,7 @@
 package ui;
 
 import blackjack.Blackjack;
-import card.Card;
+import blackjack.Card;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;

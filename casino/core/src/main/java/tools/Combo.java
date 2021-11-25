@@ -1,6 +1,9 @@
-package slots;
+package tools;
 
-enum Combo {
+/**
+ * Provides the combo for slots.
+ */
+public enum Combo {
   LOSS,
   PAIR,
   FLUSH,

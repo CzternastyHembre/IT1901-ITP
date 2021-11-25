@@ -1,6 +1,7 @@
-package card;
+package blackjack;
 
 import java.util.Arrays;
+import tools.CardColor;
 
 
 /**
