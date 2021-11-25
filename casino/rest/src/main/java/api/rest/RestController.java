@@ -1,4 +1,4 @@
-package it1901.rest;
+package api.rest;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

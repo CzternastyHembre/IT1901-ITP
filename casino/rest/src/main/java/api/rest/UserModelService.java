@@ -1,4 +1,4 @@
-package it1901.rest;
+package api.rest;
 
 import java.util.ArrayList;
 import java.util.List;
