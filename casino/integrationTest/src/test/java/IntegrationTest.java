@@ -78,6 +78,7 @@ public class IntegrationTest extends ApplicationTest {
         logIn();
         setTestCasino();
         clickOn("#addChips");
+        setTestCasino();
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
         assertEquals(2000, restModel.getUser("testUser").getBalance());
