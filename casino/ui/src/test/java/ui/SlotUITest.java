@@ -4,11 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import savehandler.UserSaveHandler;
 import user.User;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

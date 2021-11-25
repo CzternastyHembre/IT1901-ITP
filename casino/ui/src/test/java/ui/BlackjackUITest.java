@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import ui.BlackjackController;
 import user.User;
 import static org.mockito.Mockito.*;
 
