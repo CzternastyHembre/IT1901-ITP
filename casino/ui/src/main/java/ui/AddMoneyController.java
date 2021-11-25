@@ -23,7 +23,6 @@ public class AddMoneyController extends CasinoMenu {
   private Label errorLabel;
   @FXML
   private Label nameLabel;
-  private final RestModel restModel = new RestModel(false);
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -55,5 +54,9 @@ public class AddMoneyController extends CasinoMenu {
       responseLabel.setText("");
       errorLabel.setText("We only accept integers, try again");
     }
+  }
+
+  public String getErrorLabelText() {
+    return errorLabel.getText();
   }
 }
