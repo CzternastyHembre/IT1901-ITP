@@ -12,4 +12,6 @@ module core {
     exports validators;
     exports savehandler;
     exports blackjack;
+  exports card;
+  opens card;
 }
