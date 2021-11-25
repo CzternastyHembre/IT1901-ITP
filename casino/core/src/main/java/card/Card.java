@@ -1,4 +1,4 @@
-package blackjack;
+package card;
 
 import java.util.Arrays;
 

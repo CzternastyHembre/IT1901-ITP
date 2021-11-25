@@ -1,13 +1,11 @@
 package ui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import savehandler.UserSaveHandler;
-import ui.menuItem.CasinoMenu;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import ui.menuitem.CasinoMenu;
 
 /**
  * Controller for adding money AddMoney.fxml.

@@ -1,10 +1,7 @@
 package slots;
 
-
-
+import card.CardColor;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import user.User;
@@ -83,7 +80,7 @@ public class Slots {
 
 
   private Enum randomSuit() {
-    var enumList = Collections.unmodifiableList(Arrays.asList(CardColor.values()));
+    var enumList = List.of(CardColor.values());
     return enumList.get(random.nextInt(CardColor.values().length));
   }
 

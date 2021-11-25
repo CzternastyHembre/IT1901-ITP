@@ -1,15 +1,11 @@
 package savehandler;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import user.User;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class SaveHandlerTest {
