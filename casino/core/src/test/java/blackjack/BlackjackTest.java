@@ -79,45 +79,6 @@ class BlackjackTest {
                 selectCard("2S")));
     }
 
-    void standLoseDeck(){
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("2D"),
-                selectCard("10C"),
-                selectCard("3C"),
-                selectCard("8H"),
-                selectCard("2S")));
-    }
-
-    void splitWinOneDeck(){
-        setSplittableDeck();
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("8D"),
-                selectCard("8C"),
-                selectCard("10C"),
-                selectCard("10H"),
-                selectCard("10D")));
-    }
-
-    void splitLose(){
-        setSplittableDeck();
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("10D"),
-                selectCard("10S"),
-                selectCard("10C"),
-                selectCard("10H"),
-                selectCard("8D")));
-    }
-
-    void splitWinBothDeck(){
-        setSplittableDeck();
-        testDeck.getDeck().addAll(Arrays.asList(
-                selectCard("8D"),
-                selectCard("8C"),
-                selectCard("8S"),
-                selectCard("8H"),
-                selectCard("10D")));
-    }
-
     void unHittableDeck(){
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("10D"),
@@ -146,20 +107,6 @@ class BlackjackTest {
         Assertions.assertTrue(blackjack.getPlayersHand1().isActive());
         Assertions.assertFalse(blackjack.getPlayersHand2().isActive());
 
-
-//        if (blackjack.isInstantBlackjack()){
-//            if (blackjack.getDealersHand().getSumOfDeck() == 21){
-//                assertEquals(blackjack.getPayout(), blackjack.getBet());
-//            }
-//            else{
-//                assertEquals(blackjack.getPayout(), blackjack.getBet()*1.5);
-//            }
-//        }
-//        else {
-//            Assertions.assertEquals(blackjack.getPayout(), 0);
-//        }
-//        Assertions.assertEquals(blackjack.getDealersHand().getDeck().size(),2);
-//        Assertions.assertEquals(blackjack.getTargetHand(),blackjack.getPlayersHand1());
     }
 
     @Test
