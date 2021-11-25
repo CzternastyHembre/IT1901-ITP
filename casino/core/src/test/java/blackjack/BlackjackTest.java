@@ -285,6 +285,16 @@ class BlackjackTest {
         });
     }
 
+    @Test
+    void brokeSplit(){
+        setSplittableDeck();
+        blackjack.setDealingDeck(testDeck);
+        blackjack.startGame(900);
+        assertThrows(IllegalStateException.class, () ->{
+            blackjack.split();
+        });
+    }
+
     private Card selectCard(String name){
         return cardDeck.getDeck().stream().filter(
                 card -> card.getCardName().equals(name))
