@@ -30,7 +30,7 @@ import ui.menuitem.CasinoMenu;
  *
  */
 
-public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
+public abstract class SlotsDisplay extends CasinoMenu {
 
   protected Slots slotMachine;
 
