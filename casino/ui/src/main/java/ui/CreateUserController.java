@@ -27,6 +27,7 @@ public class CreateUserController extends LoginController {
   public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
     if (restModel.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
+      throw new IllegalArgumentException("User already exist");
     }
     User newUser = new User(getUsername(), StartingBalance);
     createRestUser(newUser);
