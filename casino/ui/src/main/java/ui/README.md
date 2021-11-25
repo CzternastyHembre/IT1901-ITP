@@ -2,7 +2,23 @@
 
 The UI is made with JavaFX and FXML.
 
-## menuItem
+## casinoelements
+
+In this folder the casino chips are made with the use of three different classes. Two enum classes and one main class that uses the enum classes to create the chips.
+
+### CasinoElements
+
+This is a class where some casino elements are made. The UI chips in the Roulette game are all made with this class.
+
+### ChipColor
+
+This is where the enum of the chip color is made, and can be set and get from. This is used in CasinoElements.
+
+### TextValue
+
+This is where the enum of the chip text is made, and can be set and get from. This is used in CasinoElements.
+
+## menuitem
 
 This folder includes all the classes which let the user move between the different parts of the application with the **menuItems** in the UI. The reason for all the different classes extending the MainMenu class is to prevent the same methods being written in all the controllers, instead they can use these classes.
 
@@ -33,10 +49,6 @@ This file launches the application.
 ## BlackjackController
 
 This is where all the JavaFX logic for the Blackjack game is. It uses the **Blackjack.fxml** as its core and most of the UI is written in code. It also extends the **CasinoMenu** so the user can maneuver between all views in the application.
-
-## CasinoElements
-
-This is a class where some casino elements are made. The UI chips in the Roulette game are all made with this class.
 
 ## CreateUserController
 
@@ -72,14 +84,14 @@ This controller extends the **MainMenu** to use its functionality. This is where
 
 ## Class diagram:
 
-This class diagram shows how the different classes work togheter. 
+This class diagram shows how the different classes work togheter.
 
-**Keep in mind** this diagram does **not** show every method in the classes. It only shows the main methods and how the different classes uses each other. 
+**Keep in mind** this diagram does **not** show every method in the classes. It only shows the main methods and how the different classes uses each other.
 
 ![class diagram](docs/Images/UIDiagram.png)
 
 ## Sequence diagram of the UI
 
-A sequence diagram to show how the application works when creating a new user. 
+A sequence diagram to show how the application works when creating a new user.
 
 ![sequence](docs/Images/updatedSequence.png)
