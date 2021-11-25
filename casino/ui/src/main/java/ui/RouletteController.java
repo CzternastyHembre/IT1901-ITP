@@ -67,10 +67,6 @@ public class RouletteController extends CasinoMenu {
    *
    */
 
-  public RouletteController() {
-  }
-
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     createMenu();
