@@ -43,7 +43,7 @@ public class StartController extends MainMenu {
    */
 
   @FXML
-  public void log_in_scene(ActionEvent actionEvent) throws IOException {
+  public void logInScene(ActionEvent actionEvent) throws IOException {
     FXMLLoader loader = new FXMLLoader(
             Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
     loginController = new LoginController();
@@ -57,7 +57,7 @@ public class StartController extends MainMenu {
    */
 
   @FXML
-  public void create_user_scene(ActionEvent actionEvent) throws IOException {
+  public void createUserScene(ActionEvent actionEvent) throws IOException {
     FXMLLoader loader = new FXMLLoader(
             Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
     loginController = new CreateUserController();

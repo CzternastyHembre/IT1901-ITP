@@ -43,7 +43,5 @@ public class AddMoneyUITest extends ApplicationTest {
         clickOn("#addButton");
 
         Assertions.assertEquals(user.getBalance(), amount + START_AMOUNT);
-        System.out.println(addMoneyController.getErrorLabelText());
     }
-
 }
