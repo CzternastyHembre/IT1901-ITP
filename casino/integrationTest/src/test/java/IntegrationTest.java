@@ -4,6 +4,7 @@ import it1901.rest.RestApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class IntegrationTest extends ApplicationTest {
     private final StartController startController = new StartController();
 
 
-    @BeforeEach
+    @AfterEach
     public void removeUser() throws InterruptedException {
         restModel.deleteUser("testUser");
     }
@@ -75,6 +76,7 @@ public class IntegrationTest extends ApplicationTest {
     @Test
     public void addMoneyTest() throws IOException, InterruptedException {
         logIn();
+        setTestCasino();
         clickOn("#addChips");
         clickOn("#amountField").write("1000");
         clickOn("#addButton");
