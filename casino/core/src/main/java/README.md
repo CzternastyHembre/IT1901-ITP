@@ -118,4 +118,4 @@ For example the **isPair** method takes in a list as param and checks if their a
 
 A diagram showing how the classes in core work together: 
 
-![class diagram](docs/Images/classDiagramCore.png)
+![class diagram](docs/Images/classDiagramCoreUP.png)

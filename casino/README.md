@@ -19,13 +19,7 @@ It also contains JUnit testing for all four modules.
 
 ## Running the code:
 
-Start by routing into the casino directory.
-
-```powershell
-cd casino
-```
-
-When inside the casino directory, the next step is to install the project:
+Start by installing the application:
 
 ```powershell
 mvn install
@@ -123,7 +117,7 @@ Our maven build also includes the following:
 
 A PlantUML illustration showing the module dependencies and their packages.
 
-![appDependencies](docs/Images/DiagramForModules.png)
+![appDependencies](docs/Images/archiUML.png)
 
 ## Illustrations
 

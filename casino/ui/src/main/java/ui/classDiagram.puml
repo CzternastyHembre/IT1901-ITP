@@ -1,0 +1,121 @@
+@startuml
+
+Class AddMoneyController {
+    void addMoney
+}
+
+Class App {
+    void main()
+}
+
+Class BlackJackController {
+    void disableGameButtons()
+    void disableGameButtons()
+    void disableGameButtons()
+    void resetText()
+    void bet()
+    void split()
+    void toggle()
+    void hit()
+    void stand()
+    void endGame()
+}
+
+
+Class CreateUserController {
+    StartingBalance: double
+    void run()
+}
+
+Class LogInController {
+    void run()
+}
+
+Class RestModel {
+    baseUri: String
+    gson: Gson
+    void createUser()
+    User getUser()
+    void updateUser()
+    void deleteUser()
+}
+
+Class RouletteController {
+    rouletteGame: Roulette
+    chipList: List<Pane>
+    void run()
+    void clearChips()
+    void addChip()
+    void undoGuess()
+    void addGuess()
+    Pane createRouletteWheel()
+    
+}
+
+Class SelectGameController {
+    void loadBlackJack()
+    void loadSlots()
+    void loadRoulette()
+    void addChips()
+}
+
+Class SlotsController {
+}
+
+abstract SlotsDisplay {
+    void spin()
+    void updateUserState()
+    void updateStats()
+    void rotateCard()
+}
+
+Class StartController {
+    void createUserScene()
+    void logInScene()
+}
+
+abstract CasinoMenu{
+    void backToLobby()
+}
+
+abstract LobbyMenu{
+    user: User
+    User getUser()
+    void setUser()
+}
+
+abstract LoginMenu{
+    restModel: RestModel
+    nextController: LobbyMenu
+    void setRestModel()
+    void backToMainMenu()
+    Lobbymenu getNextController()
+    
+}
+
+abstract MainMenu{
+    void exit()
+}
+
+Interface Initializable{
+}
+
+AddMoneyController ..> CasinoMenu
+BlackJackController ..> CasinoMenu 
+CreateUserController ..> LogInController
+LogInController ..> LoginMenu
+RouletteController ..> CasinoMenu
+SelectGameController ..> LobbyMenu
+SlotsController ..> SlotsDisplay
+StartController ..> MainMenu
+CasinoMenu ..> LobbyMenu
+LobbyMenu ..> LoginMenu
+SlotsDisplay ..> CasinoMenu
+LoginMenu ..> MainMenu
+MainMenu --|> Initializable
+LoginMenu --> RestModel
+
+
+
+
+@enduml
