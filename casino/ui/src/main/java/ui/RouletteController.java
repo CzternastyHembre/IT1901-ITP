@@ -44,9 +44,6 @@ public class RouletteController extends CasinoMenu {
   @FXML Label nameLabel;
   @FXML Label textLabel1;
   @FXML Label textLabel2;
-  @FXML MenuItem mainMenu;
-  @FXML MenuItem lobby;
-  @FXML MenuItem exit;
 
   private Roulette rouletteGame;
   private Label rolledNumberLabel = new Label();

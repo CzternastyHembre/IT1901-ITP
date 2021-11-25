@@ -1,13 +1,8 @@
 package validators;
 
-
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import slots.Slots;
-import user.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
