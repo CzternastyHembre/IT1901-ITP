@@ -104,3 +104,9 @@ The Validators folder contains a class which helps determine the outcome of a sl
 This class determines what type of combination of symbols has been generated when the slots machine has been spun.
 
 For example the **isPair** method takes in a list as param and checks if their are two identical symbols in the list.
+
+## Class diagram
+
+A diagram showing how the classes in core work together: 
+
+![class diagram](docs/Images/classDiagramCore.png)

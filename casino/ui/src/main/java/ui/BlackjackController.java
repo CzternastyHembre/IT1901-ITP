@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import ui.menuItem.*;
+import ui.menuItem.CasinoMenu;
 
 
 /**
@@ -61,11 +61,11 @@ public class BlackjackController extends CasinoMenu implements Initializable {
   @FXML
   private HBox dealerHandHbox;
   private ObservableList<Pane> playerHandPanes = FXCollections.observableArrayList();
-  private boolean dealerIsFlipped;
 
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    createMenu();
     blackjack = new Blackjack(user);
     disableGameButtons();
     playerHandPanes.add(hand1);
@@ -129,7 +129,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
       if (blackjack.getTargetHand().getSumOfDeck() < 21) {
         hit.setDisable(false);
       }
-      if (blackjack.canSplit()) {
+      if (blackjack.isCanSplit()) {
         split.setDisable(false);
       }
       stand.setDisable(false);
@@ -222,7 +222,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
       hit.setDisable(true);
       endGame();
     } else {
-      if (blackjack.hasSplit()) {
+      if (blackjack.isHasSplit()) {
         toggle();
       }
     }
@@ -244,6 +244,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     } else {
       result.setText("LOSS!");
     }
+    toggleButton.setDisable(true);
     playerTotal.setText("" + blackjack.getTargetHand().getSumOfDeck());
     dealerTotal.setText("" + blackjack.getDealersHand().getSumOfDeck());
     turnLabel.setText("Game Over");
@@ -303,7 +304,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     for (Card card : blackjack.getDealersHand().getDeck()) {
       dealerHandHbox.getChildren().add(createImageView(card.getCardImage()));
     }
-    dealerIsFlipped = true;
   }
 
   public Blackjack getBlackjack() {
@@ -324,10 +324,6 @@ public class BlackjackController extends CasinoMenu implements Initializable {
 
   public Button getPlayAgainButton() {
     return playAgainButton;
-  }
-
-  public Button getBet() {
-    return bet;
   }
 
   public Text getPlayerTotal() {
@@ -370,9 +366,5 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     return playerHandPanes;
   }
 
-
-  public boolean isDealerIsFlipped() {
-    return dealerIsFlipped;
-  }
 }
 

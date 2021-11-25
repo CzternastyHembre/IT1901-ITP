@@ -30,6 +30,7 @@ public class Blackjack {
    */
   public Blackjack(User user) {
     this.user = user;
+    this.dealingDeck = new Deck(13);
   }
 
 
@@ -40,8 +41,6 @@ public class Blackjack {
    */
   public void startGame(double bet) {
     setBet(bet);
-    this.dealingDeck = new Deck(13);
-
     this.playersHand1 = new Hand();
     this.playersHand2 = new Hand();
     this.playersHand2.setActive(false);
@@ -50,11 +49,16 @@ public class Blackjack {
     this.payout = 0;
     this.dealersHand = new Hand();
 
-
     deal();
+    if (playersHand1.getSumOfDeck() == 21) {
+      instantBlackjack = true;
+      endGame();
+    }
     setCanSplit();
     this.targetHand = playersHand1;
   }
+
+
 
   private void setBet(double bet) {
     if (bet <= 0 || bet > this.user.getBalance()) {
@@ -74,10 +78,6 @@ public class Blackjack {
     for (int i = 0; i < 2; i++) {
       playersHand1.getDeck().add(dealingDeck.popTopCard());
       dealersHand.getDeck().add(dealingDeck.popTopCard());
-    }
-    if (playersHand1.getSumOfDeck() == 21) {
-      instantBlackjack = true;
-      endGame();
     }
   }
 
@@ -121,7 +121,7 @@ public class Blackjack {
   public void split() {
     setCanSplit();
     if (!canSplit) {
-      return;
+      throw new IllegalStateException("Cannot split this deck");
     }
     user.setBalance(user.getBalance() - bet);
     Card card = playersHand1.getLastCard();
@@ -208,7 +208,7 @@ public class Blackjack {
     return playerHands;
   }
 
-  public boolean canSplit() {
+  public boolean isCanSplit() {
     return canSplit;
   }
 
@@ -218,10 +218,6 @@ public class Blackjack {
 
   public Hand getTargetHand() {
     return targetHand;
-  }
-
-  public boolean hasSplit() {
-    return hasSplit;
   }
 
   public boolean isPlayerDone() {
@@ -248,10 +244,6 @@ public class Blackjack {
     return playersHand2;
   }
 
-  public boolean isCanSplit() {
-    return canSplit;
-  }
-
   public boolean isHasSplit() {
     return hasSplit;
   }
@@ -263,4 +255,29 @@ public class Blackjack {
   public boolean isInstantBlackjack() {
     return instantBlackjack;
   }
+
+  public void setDealingDeck(Deck dealingDeck) {
+    this.dealingDeck = dealingDeck;
+  }
+
+  public void setDealersHand(Hand dealersHand) {
+    this.dealersHand = dealersHand;
+  }
+
+  public void setPlayersHand2(Hand playersHand2) {
+    this.playersHand2 = playersHand2;
+  }
+
+  public void setHasSplit(boolean hasSplit) {
+    this.hasSplit = hasSplit;
+  }
+
+  public void setPayout(double payout) {
+    this.payout = payout;
+  }
+
+  public void setInstantBlackjack(boolean instantBlackjack) {
+    this.instantBlackjack = instantBlackjack;
+  }
+
 }

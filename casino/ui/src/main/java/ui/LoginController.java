@@ -20,7 +20,7 @@ import user.User;
  * Controller for LogIn.fxml.
  */
 
-public class LoginController extends LoginMenu implements Initializable {
+public class LoginController extends LoginMenu {
 
   @FXML
   protected TextField usernameField;
@@ -41,7 +41,6 @@ public class LoginController extends LoginMenu implements Initializable {
     User user = restModel.getUser(getUsername());
     if (user == null) {
       errorLabel.setText("Could not find user, please try again");
-      throw new IllegalArgumentException("This user does not exist");
     }
     openView(actionEvent, user);
   }
@@ -73,5 +72,6 @@ public class LoginController extends LoginMenu implements Initializable {
     if (this instanceof CreateUserController) {
       setButtonText("Create user");
     }
+    createMenu();
   }
 }

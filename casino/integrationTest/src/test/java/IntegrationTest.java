@@ -1,3 +1,5 @@
+
+import java.io.IOException;
 import it1901.rest.RestApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,14 +13,13 @@ import ui.RestModel;
 import ui.StartController;
 import user.User;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IntegrationTest extends ApplicationTest {
 
     private final RestModel restModel = new RestModel(true);
     private final StartController startController = new StartController();
+
 
     @BeforeEach
     public void removeUser() throws InterruptedException {
@@ -69,16 +70,6 @@ public class IntegrationTest extends ApplicationTest {
     public void logInUser() throws InterruptedException {
         logIn();
         assertEquals("testUser", startController.getLoginController().getNextController().getUser().getUsername());
-    }
-
-    @Test
-    public void moveAround() throws InterruptedException {
-        logIn();
-        clickOn("#roulette");
-        clickOn("#menyButton");
-        clickOn("#lobby");
-        clickOn("#menyButton");
-        clickOn("#mainMenu");
     }
 
     @Test

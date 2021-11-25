@@ -10,6 +10,7 @@ public class Card {
 
   private int cardValue;
   private final String cardImage;
+  private final String cardName;
 
 
   /**
@@ -30,7 +31,8 @@ public class Card {
             element -> element.toString().equals(suitString))) {
       throw new IllegalStateException("Suit must be either S, H, C, D");
     }
-    this.cardImage = "" + faceValue + suit + ".jpg";
+    this.cardName = "" + faceValue + suit;
+    this.cardImage = cardName + ".jpg";
     setCardValue(faceValue);
   }
 
@@ -58,6 +60,10 @@ public class Card {
 
   public String getCardImage() {
     return cardImage;
+  }
+
+  public String getCardName() {
+    return cardName;
   }
 }
 
