@@ -19,10 +19,8 @@ import java.util.stream.Collectors;
  */
 
 public class CasinoElements {
-  
+
   private static final int[] values = { 1, 5, 25, 50, 100, 500, 1000, 5000, 10000, 50000 };
-  private static final String[] textValues = {
-    "  1", "  5", " 25", " 50", "100", "500", " 1k", " 5k", "10k", "50k" };
   public static final double chipRadius = 20;
   public static final double fontSize = 15;
   public static final double largeFontSize = 30;
@@ -38,15 +36,17 @@ public class CasinoElements {
     return values.length;
   }
 
-  public static String getTextValue(int index) {
-    return textValues[index];
-  }
-
 
   public static String getColorName(int value){
     return Arrays.stream(ChipColor.values())
             .collect(Collectors.toList())
             .get(value).getColorName();
+  }
+
+  public static String getTextColor(int value){
+    return Arrays.stream(TextColor.values())
+            .collect(Collectors.toList())
+            .get(value).getTextColor();
   }
   /**
    * //TODO.
@@ -72,7 +72,7 @@ public class CasinoElements {
     chipContainer.getChildren().add(circle2);
     chipContainer.getChildren().add(circle);
 
-    Label chipLabel = new Label(CasinoElements.getTextValue(valueIndex));
+    Label chipLabel = new Label(getTextColor(valueIndex));
     chipLabel.setFont(textFont);
     chipLabel.setTranslateX(-fontSize / 3 * 2 - 3);
     chipLabel.setTranslateY(-fontSize / 2 - 2);
