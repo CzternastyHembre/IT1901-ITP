@@ -14,8 +14,7 @@ public class CasinoUITest extends ApplicationTest {
 
     private StartController startController;
     private LoginController loginController;
-    public RestModel service;
-
+    private RestModel service;
     private final User user = new User("TestUser", 1000);
 
     @Override
@@ -59,25 +58,6 @@ public class CasinoUITest extends ApplicationTest {
         Assertions.assertEquals(loginController.getNextController().getUser().getUsername(), user.getUsername());
         verify(service).getUser(user.getUsername());
 
-    }
-
-    @Test
-    public void testCreateExistingUser() throws IOException, InterruptedException {
-        clickOn("#createUserButton");
-        clickOn("#usernameField").write(user.getUsername());
-
-        updateLoginController();
-        when(service.getUser(user.getUsername())).thenReturn(user);
-
-        //Trying to create a user that already exist, should throw when clicking on #submit
-     /*   try {
-            clickOn("#submit");
-            sleep(1000);
-            Assertions.fail();
-        } catch (Exception e) {
-
-        }
-        verify(service).getUser(user.getUsername());*/
     }
 
     @Test
