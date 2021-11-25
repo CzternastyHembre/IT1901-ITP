@@ -40,6 +40,7 @@ public class LoginController extends LoginMenu {
     User user = restModel.getUser(getUsername());
     if (user == null) {
       errorLabel.setText("Could not find user, please try again");
+      throw new IllegalArgumentException("User does not exist");
     }
     openView(actionEvent, user);
   }
