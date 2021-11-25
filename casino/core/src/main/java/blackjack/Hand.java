@@ -7,10 +7,6 @@ package blackjack;
 public class Hand extends Deck {
   private boolean isActive = true;
 
-  public Hand() {
-
-  }
-
   public boolean isActive() {
     return isActive;
   }

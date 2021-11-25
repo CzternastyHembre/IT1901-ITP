@@ -24,7 +24,7 @@ public class CreateUserController extends LoginController {
    */
 
   @FXML
-  public void run(ActionEvent actionEvent) throws IOException, InterruptedException {
+  private void run(ActionEvent actionEvent) throws IOException, InterruptedException {
     if (restModel.getUser(getUsername()) != null) {
       errorLabel.setText("This username is taken, try again");
       throw new IllegalArgumentException("User already exist");

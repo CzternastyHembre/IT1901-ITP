@@ -42,13 +42,12 @@ public abstract class CasinoMenu extends LobbyMenu {
    * Creates a menuItem and adds it in the menu and supers the class to create next item.
    */
 
-  public void createMenu() {
+  protected void createMenu() {
     MenuItem menuItem = new MenuItem("Lobby");
     menuItem.setId("lobby");
     menuItem.setOnAction(event -> backToLobby());
     menu.getItems().add(menuItem);
     super.createMenu();
   }
-
 
 }

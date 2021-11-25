@@ -12,9 +12,7 @@ public class User {
    * Empty constructor such that Gson can save.
    */
 
-  public User() {
-
-  }
+  public User() {}
 
   /**
    * Creates a new user with a username and a balance.

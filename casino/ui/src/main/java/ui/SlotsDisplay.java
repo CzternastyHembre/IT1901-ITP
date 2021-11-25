@@ -66,6 +66,8 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   private Label avgPayout;
   @FXML
   private Label spinsCounter;
+  @FXML
+  private Label errorLabel;
 
   @FXML
   private ToggleButton keepBetButton;
@@ -96,14 +98,23 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    */
 
   @FXML
-  public void spin() throws InterruptedException {
-    int bet = Integer.parseInt(betField.getText());
+  private void spin() throws InterruptedException {
+    int bet;
+    String numberText = betField.getText();
+
+    try {
+      bet = Integer.parseInt(numberText);
+    } catch (NumberFormatException e) {
+      errorLabel.setText("That is not number.");
+      return;
+    }
+    errorLabel.setText("");
+
     slotMachine.play(bet);
     for (HBox box : hboxesList) {
       rotateCard(box, 0);
     }
   }
-
 
   private void updateUserState() throws InterruptedException {
     restModel.updateUser(slotMachine.getUser());
@@ -114,7 +125,8 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    *
    *
    */
-  public void updateCardsDisplay() {
+
+  private void updateCardsDisplay() {
     for (HBox box : hboxesList) {
       box.getChildren().set(0, createImageView(
               slotMachine.getSymbols().get(hboxesList.indexOf(box))));
@@ -126,7 +138,8 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
    *
    *
    */
-  public void displayBackOfCard() {
+
+  private void displayBackOfCard() {
     for (HBox box : hboxesList) {
       box.getChildren().set(0, createImageView("backOfCard"));
     }
@@ -236,11 +249,6 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
     });
   }
 
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-
-  }
-
   public TextField getBetField() {
     return betField;
   }
@@ -274,6 +282,6 @@ public abstract class SlotsDisplay extends CasinoMenu implements Initializable {
   }
 
   public List<HBox> getHboxesList() {
-    return hboxesList;
+    return new ArrayList<>(hboxesList);
   }
 }

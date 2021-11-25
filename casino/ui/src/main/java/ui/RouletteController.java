@@ -34,16 +34,26 @@ import ui.menuitem.CasinoMenu;
 
 public class RouletteController extends CasinoMenu {
 
-  @FXML Pane chipFolder;
-  @FXML Pane rouletteBoardPane;
-  @FXML Pane controllsFolder;
-  @FXML Pane gridPane;
-  @FXML Label moneyLabel;
-  @FXML Label moneyBettedLabel;
-  @FXML Label feedBackLabel;
-  @FXML Label nameLabel;
-  @FXML Label textLabel1;
-  @FXML Label textLabel2;
+  @FXML
+  private Pane chipFolder;
+  @FXML
+  private Pane rouletteBoardPane;
+  @FXML
+  private Pane controllsFolder;
+  @FXML
+  private Pane gridPane;
+  @FXML
+  private Label moneyLabel;
+  @FXML
+  private Label moneyBettedLabel;
+  @FXML
+  private Label feedBackLabel;
+  @FXML
+  private Label nameLabel;
+  @FXML
+  private Label textLabel1;
+  @FXML
+  private Label textLabel2;
 
   private Roulette rouletteGame;
   private Label rolledNumberLabel = new Label();
@@ -67,10 +77,6 @@ public class RouletteController extends CasinoMenu {
    * Creating the rouletteBoard.
    *
    */
-
-  public RouletteController() {
-  }
-
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -252,7 +258,7 @@ public class RouletteController extends CasinoMenu {
    */
 
   @FXML
-  public void run() throws IOException, InterruptedException {
+  private void run() throws IOException, InterruptedException {
     restModel.updateUser(user);
     rouletteGame.rollNumber();
 
@@ -455,16 +461,16 @@ public class RouletteController extends CasinoMenu {
     }
   }
 
-  public Pane getRouletteWheelContainer() {
-    return rouletteWheelContainer;
+  public boolean isRouletteWheelContainerShown() {
+    return rouletteWheelContainer.isVisible();
   }
 
-  public Label getRolledNumberLabel() {
-    return rolledNumberLabel;
+  public String getRolledNumberLabelText() {
+    return rolledNumberLabel.getText();
   }
 
-  public List<Pane> getChipList() {
-    return chipList;
+  public int getChipListSize() {
+    return chipList.size();
   }
 
   /**

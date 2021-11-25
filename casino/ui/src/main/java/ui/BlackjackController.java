@@ -91,7 +91,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    *
    */
   @FXML
-  public void playAgain() {
+  private void playAgain() {
     blackjack = new Blackjack(user);
     disableGameButtons();
     for (Pane pane : playerHandPanes) {
@@ -120,7 +120,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * @throws InterruptedException from restModel (Sending Http request)
    */
   @FXML
-  public void bet() throws InterruptedException {
+  private void bet() throws InterruptedException {
     blackjack.startGame(Double.parseDouble(this.betAmount.getText()));
     restModel.updateUser(user);
     if (blackjack.isInstantBlackjack()) {
@@ -162,7 +162,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * and updates views allowing for a player to toggle between their two hands.
    */
   @FXML
-  public void split() {
+  private void split() {
     blackjack.split();
     toggleButton.setDisable(false);
     updatePlayerViews();
@@ -179,7 +179,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    *
    */
   @FXML
-  public void toggle() {
+  private void toggle() {
     blackjack.toggleTargetHand();
     toggleHandPanes();
     turnLabel.setText("Player (Hand "
@@ -192,7 +192,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * buttons based on which state the game is in.
    */
   @FXML
-  public void hit() {
+  private void hit() {
     blackjack.hit();
 
     if (!split.isDisabled()) {
@@ -214,7 +214,7 @@ public class BlackjackController extends CasinoMenu implements Initializable {
    * @throws InterruptedException from RestModel sending Http Request.
    */
   @FXML
-  public void stand() throws InterruptedException {
+  private void stand() throws InterruptedException {
     blackjack.stand();
     if (blackjack.isPlayerDone()) {
       stand.setDisable(true);

@@ -46,7 +46,7 @@ public class Card {
    *
    * @param faceValue the face value of the card
    */
-  public void setCardValue(int faceValue) {
+  private void setCardValue(int faceValue) {
     if (faceValue < 10 && faceValue != 1) {
       this.cardValue = faceValue;
     }

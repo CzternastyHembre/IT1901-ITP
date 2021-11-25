@@ -95,9 +95,4 @@ public class Guess {
     return numbers.size();
   }
 
-  @Override
-  public String toString() {
-    return "amount: " + amount + ", numbers: " + numbers;
-  }
-
 }

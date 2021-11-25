@@ -3,6 +3,7 @@ package validators;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * A class which checks the different combinations that the slot can give out.
@@ -32,8 +33,7 @@ public class SlotsValidator {
     int first = splitStringForInt(symbols.get(0));
     int second = splitStringForInt(symbols.get(1));
     int third = splitStringForInt(symbols.get(2));
-    return isOneMore(first, second) && isOneMore(second, third)
-            || isOneLess(first, second) && isOneLess(second, third);
+    return isIncrementingOrDecrementing(first, second, third);
   }
 
   /**
@@ -46,14 +46,13 @@ public class SlotsValidator {
   public static boolean isStraight(List<String> symbols) { // F.eks 354, 798, 132
     var copyOfSymbols = new ArrayList<>(symbols);
 
-    Collections.sort(copyOfSymbols); // 354 becomes 345
-    Collections.reverse(copyOfSymbols); // 543
+    Collections.sort(copyOfSymbols); // 354 becomes sorted
 
     var first = splitStringForInt(copyOfSymbols.get(0));
     var second = splitStringForInt(copyOfSymbols.get(1));
     var third = splitStringForInt(copyOfSymbols.get(2));
 
-    return isOneMore(first, second) && isOneMore(second, third);
+    return isIncrementing(first, second, third);
   }
 
   public static boolean isDevil(List<String> symbols) { // 666
@@ -97,13 +96,23 @@ public class SlotsValidator {
     return numberList;
   }
 
-
-  private static boolean isOneMore(int first, int second) {
-    return first - second == 1;
+  private static boolean isDecrementing(int ...ints) {
+    for (int i = 0; i < ints.length - 1; i++) {
+      if (ints[i] - ints[i + 1] != 1) {
+        return false;
+      }
+    }
+    return true;
   }
 
-  private static boolean isOneLess(int first, int second) {
-    return first - second == -1;
+  private static boolean isIncrementing(int ...ints) {
+    //Flipping the array
+    return isDecrementing(IntStream.range(0, ints.length).map(i -> ints[ints.length - i - 1])
+            .toArray());
+  }
+
+  private static boolean isIncrementingOrDecrementing(int ...ints) {
+    return isIncrementing(ints) || isDecrementing(ints);
   }
 }
 

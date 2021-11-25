@@ -37,7 +37,7 @@ public class AddMoneyController extends CasinoMenu {
    */
 
   @FXML
-  public void addMoney() throws NumberFormatException {
+  private void addMoney() {
     try {
       int amount = Integer.parseInt(amountField.getText());
       if (amount < 0) {
@@ -48,13 +48,10 @@ public class AddMoneyController extends CasinoMenu {
       errorLabel.setText("");
       responseLabel.setText(amount + " has been added to your account!");
 
-    } catch (NumberFormatException | InterruptedException e) {
+    } catch (Exception e) {
       responseLabel.setText("");
       errorLabel.setText("We only accept integers, try again");
+      e.printStackTrace();
     }
-  }
-
-  public String getErrorLabelText() {
-    return errorLabel.getText();
   }
 }

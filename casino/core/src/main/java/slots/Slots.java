@@ -2,6 +2,7 @@ package slots;
 
 import card.CardColor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import user.User;
@@ -14,11 +15,11 @@ import validators.SlotsValidator;
 
 public class Slots {
   // Fields
-  private List<String> symbols = new ArrayList<>();
+  private List<String> symbols = Arrays.asList(new String[3]);
   private int spins;
   private int netGain;
   private int bet;
-  private final Random random;
+  private final Random random = new Random();
   private double currentWinnings;
   private Enum combo;
   private double averagePayout;
@@ -32,13 +33,6 @@ public class Slots {
    */
 
   public Slots(User user) {
-    this.spins = 0;
-    this.netGain = 0;
-    this.bet = 0;
-    for (int i = 0; i < 3; i++) {
-      symbols.add("");
-    }
-    this.random = new Random();
     this.user = user;
   }
 
@@ -210,11 +204,7 @@ public class Slots {
    * @return the string of the enum name.
    */
   public String enumToString(Enum e) {
-    if (e.name().contains("_")) {
-      return e.name().replaceAll("_", " ");
-    } else {
-      return e.name();
-    }
+    return e.name().replaceAll("_", " ");
   }
 
   public Enum getCombo() {

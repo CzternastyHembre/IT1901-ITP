@@ -1,9 +1,7 @@
 package ui;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +41,5 @@ public class AddMoneyUITest extends ApplicationTest {
         clickOn("#addButton");
 
         Assertions.assertEquals(user.getBalance(), amount + START_AMOUNT);
-        System.out.println(addMoneyController.getErrorLabelText());
     }
-
 }

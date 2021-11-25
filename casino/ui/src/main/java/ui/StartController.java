@@ -19,14 +19,7 @@ import ui.menuitem.MainMenu;
  */
 
 public class StartController extends MainMenu {
-  @FXML
-  private Button createUserButton;
-  @FXML
-  private Button logInButton;
-  @FXML
-  private MenuItem exit;
-  private Stage stage;
-  private Scene scene;
+
   private LoginController loginController;
 
   public LoginController getLoginController() {
@@ -40,7 +33,7 @@ public class StartController extends MainMenu {
    */
 
   @FXML
-  public void log_in_scene(ActionEvent actionEvent) throws IOException {
+  public void logInScene(ActionEvent actionEvent) throws IOException {
     FXMLLoader loader = new FXMLLoader(
             Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
     loginController = new LoginController();
@@ -54,7 +47,7 @@ public class StartController extends MainMenu {
    */
 
   @FXML
-  public void create_user_scene(ActionEvent actionEvent) throws IOException {
+  public void createUserScene(ActionEvent actionEvent) throws IOException {
     FXMLLoader loader = new FXMLLoader(
             Objects.requireNonNull(getClass().getResource("LogIn.fxml")));
     loginController = new CreateUserController();
@@ -63,8 +56,8 @@ public class StartController extends MainMenu {
 
   private void loadView(ActionEvent actionEvent, FXMLLoader loader) throws IOException {
     loader.setController(loginController);
-    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-    scene = new Scene(loader.load());
+    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    Scene scene = new Scene(loader.load());
     stage.setScene(scene);
     stage.show();
   }

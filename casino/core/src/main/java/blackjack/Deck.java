@@ -11,7 +11,7 @@ import java.util.List;
 public class Deck {
 
 
-  private List<Card> deck = new ArrayList<>();
+  private List<Card> deck;
   private final char[] validSuits = new char[]{'S', 'H', 'C', 'D'};
 
   /**
@@ -36,12 +36,13 @@ public class Deck {
     if (i != 13) {
       throw new IllegalStateException("Must be 13 of each suit");
     }
-
+    List<Card> deck = new ArrayList<>();
     for (char suit : validSuits) {
       for (int j = 1; j <= i; j++) {
         deck.add(new Card(j, suit));
       }
     }
+    this.deck = deck;
   }
 
   public List<Card> getDeck() {
@@ -68,11 +69,11 @@ public class Deck {
    * @return the sum of the deck (based on the cardValue of each card in the deck).
    */
   public int getSumOfDeck() {
-    int sum = 0;
+    int cardSum = 0;
     for (Card card : this.getDeck()) {
-      sum += card.getCardValue();
+      cardSum += card.getCardValue();
     }
-    return sum;
+    return cardSum;
   }
 
   /**
