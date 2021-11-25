@@ -13,7 +13,6 @@ import user.User;
  *
  */
 public class SlotsController extends SlotsDisplay {
-  private final UserSaveHandler userSaveHandler = new UserSaveHandler();
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
