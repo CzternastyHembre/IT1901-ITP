@@ -1,9 +1,8 @@
 package blackjack;
 
+import card.Card;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-
-import card.Card;
 import user.User;
 
 
