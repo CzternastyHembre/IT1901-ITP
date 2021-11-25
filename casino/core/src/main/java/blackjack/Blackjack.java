@@ -249,10 +249,6 @@ public class Blackjack {
     return hasSplit;
   }
 
-  public void setPlayersHand1(Hand playersHand1) {
-    this.playersHand1 = playersHand1;
-  }
-
   public boolean isInstantBlackjack() {
     return instantBlackjack;
   }
@@ -260,25 +256,5 @@ public class Blackjack {
   public void setDealingDeck(Deck dealingDeck) {
     this.dealingDeck = dealingDeck;
   }
-
-  public void setDealersHand(Hand dealersHand) {
-    this.dealersHand = dealersHand;
-  }
-
-  public void setPlayersHand2(Hand playersHand2) {
-    this.playersHand2 = playersHand2;
-  }
-
-  public void setHasSplit(boolean hasSplit) {
-    this.hasSplit = hasSplit;
-  }
-
-  public void setPayout(double payout) {
-    this.payout = payout;
-  }
-
-  public void setInstantBlackjack(boolean instantBlackjack) {
-    this.instantBlackjack = instantBlackjack;
-  }
-
+  
 }
