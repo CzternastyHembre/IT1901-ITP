@@ -12,13 +12,8 @@ It is recommended to clone the project and run the application locally. The anim
 
 ## Running the code:
 
-Start by routing into the casino directory.
 
-```powershell
-cd casino
-```
-
-When inside the casino directory, the next step is to install the project:
+Start by installing the appication:
 
 ```powershell
 mvn install
