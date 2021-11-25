@@ -32,12 +32,13 @@ public class RestModel {
       baseUri = "http://localhost:8080";
     }
   }
-  public RestModel(){
+
+  public RestModel() {
     this(false);
   }
 
   /**
-   * Method for creating a user. Send Http request to /users/add
+   * Method for creating a user. Send Http request to /users/add.
    * Converts the user to json using Gson.
    *
    * @param newUser the user that is being created.
