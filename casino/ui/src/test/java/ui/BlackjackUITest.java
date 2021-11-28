@@ -26,7 +26,7 @@ public class BlackjackUITest extends ApplicationTest {
     private Deck cardDeck = new Deck(13);
     private Deck testDeck = new Deck();
 
-    void naturalBlackjackWinDeck(){
+    private void naturalBlackjackWinDeck(){
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("10D"),
                 selectCard("2C"),
@@ -35,7 +35,7 @@ public class BlackjackUITest extends ApplicationTest {
         blackjack.setDealingDeck(testDeck);
     }
 
-    void naturalBlackjackTieDeck(){
+    private void naturalBlackjackTieDeck(){
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("10D"),
                 selectCard("10C"),
@@ -44,7 +44,7 @@ public class BlackjackUITest extends ApplicationTest {
         blackjack.setDealingDeck(testDeck);
     }
 
-    void setSplittableDeck(){
+    private void setSplittableDeck(){
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("5D"),
                 selectCard("6C"),
@@ -54,7 +54,7 @@ public class BlackjackUITest extends ApplicationTest {
         blackjack.setDealingDeck(testDeck);
     }
 
-    void hitOverLimitDeck(){
+    private void hitOverLimitDeck(){
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("9D"),
                 selectCard("6C"),
@@ -64,7 +64,7 @@ public class BlackjackUITest extends ApplicationTest {
         blackjack.setDealingDeck(testDeck);
     }
 
-    void hitUnderLimitDeck(){
+    private void hitUnderLimitDeck(){
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("2D"),
                 selectCard("6C"),
@@ -74,7 +74,7 @@ public class BlackjackUITest extends ApplicationTest {
         blackjack.setDealingDeck(testDeck);
     }
 
-    void standWinDeck(){
+    private void standWinDeck(){
         testDeck.getDeck().addAll(Arrays.asList(
                 selectCard("10D"),
                 selectCard("10C"),
