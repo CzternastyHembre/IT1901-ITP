@@ -29,7 +29,7 @@ public class SlotUITest extends ApplicationTest{
 
 
     @Test
-    public void betAndSpin() {
+    void betAndSpin() {
         var prevAvgPayout = slotsController.getAvgPayout().getText();
         var prevBalanceNum = slotsController.getBalanceNum().getText();
         var prevNetGainNum = slotsController.getNetGainNum().getText();
@@ -57,7 +57,7 @@ public class SlotUITest extends ApplicationTest{
     }
 
     @Test
-    public void testKeepButton(){
+    void testKeepButton(){
         clickOn("#betField").write("10");
         clickOn("#keepBetButton");
         clickOn("#betButton");
