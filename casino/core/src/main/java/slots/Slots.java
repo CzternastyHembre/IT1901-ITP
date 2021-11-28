@@ -75,6 +75,10 @@ public class Slots {
   }
 
 
+  /**
+   * Generate a symbol to be used in the slot machine.
+   * @return the generated symbol.
+   */
   private String generateSymbol() {
     return random.nextInt(10) + 1 + randomSuit().name();
   }

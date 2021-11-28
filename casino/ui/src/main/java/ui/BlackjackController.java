@@ -234,6 +234,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     endOfGameView();
   }
 
+  /**
+   * Display the view at the end of the game.
+   */
   private void endOfGameView() {
     if (blackjack.getPayout() > 0) {
       if (blackjack.getPayout() == blackjack.getBet()) {
@@ -255,6 +258,9 @@ public class BlackjackController extends CasinoMenu implements Initializable {
     playAgainButton.setDisable(false);
   }
 
+  /**
+   * Visually switch which hand is displayed.
+   */
   private void toggleHandPanes() {
     var activePane = playerHandPanes.stream().filter(pane ->
             pane.getOpacity() == 1).collect(Collectors.toList()).get(0);
