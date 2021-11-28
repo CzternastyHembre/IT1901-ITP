@@ -188,6 +188,8 @@ public class Blackjack {
   }
 
   /**
+   * Calculate the amount of money a hand will pay.
+   *
    * @param hand the hand to be calculated.
    * @param dealerSum the dealers score.
    * @return the amount of money to be paid out.

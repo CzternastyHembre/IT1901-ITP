@@ -77,6 +77,7 @@ public class Slots {
 
   /**
    * Generate a symbol to be used in the slot machine.
+   *
    * @return the generated symbol.
    */
   private String generateSymbol() {
