@@ -1,6 +1,11 @@
 
 import java.io.IOException;
+import java.util.Arrays;
+
 import api.rest.RestApplication;
+import blackjack.Blackjack;
+import blackjack.Card;
+import blackjack.Deck;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -84,20 +89,30 @@ public class IntegrationTest extends ApplicationTest {
 
     @Test
     public void updateUserTest() throws InterruptedException, IOException {
+        Deck testDeck = new Deck();
+        testDeck.getDeck().addAll(Arrays.asList(
+                new Card(9,'D'),
+                new Card(6,'C'),
+                new Card(9,'C'),
+                new Card(5,'H'),
+                new Card(8,'S'),
+                new Card(8,'C')));
+
         clickOn("#createUserButton");
         clickOn("#usernameField").write("testUser");
         setTest();
         clickOn("#submit");
         clickOn("#blackjack");
         setTestCasino();
+        BlackjackController blackjackController = (BlackjackController) startController.getLoginController().getNextController().getNextController();
+        Blackjack blackjack = blackjackController.getBlackjack();
+        blackjack.setDealingDeck(testDeck);
         clickOn("#betAmount").write("50");
         clickOn("#bet");
-        BlackjackController blackjackController = (BlackjackController) startController.getLoginController().getNextController().getNextController();
-        while (blackjackController.getBlackjack().getPlayersHand1().getSumOfDeck() < 21) {
-            clickOn("#hit");
-        }
+        clickOn("#hit"); // This will make the sum of Deck for the players hand 26.
         clickOn("#stand");
         clickOn("#playAgainButton");
         assertEquals(950, restModel.getUser("testUser").getBalance());
     }
+
 }
