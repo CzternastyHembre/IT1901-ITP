@@ -161,6 +161,9 @@ public class Blackjack {
     user.addMoney(this.payout);
   }
 
+  /**
+   * Calculate the winnings based on the sum's of all hands.
+   */
   private void calculateWinnings() {
     int dealerSum = dealersHand.getSumOfDeck();
     if (instantBlackjack) {
@@ -184,6 +187,13 @@ public class Blackjack {
     this.payout = hand1Score + hand2Score;
   }
 
+  /**
+   * Calculate the amount of money a hand will pay.
+   *
+   * @param hand the hand to be calculated.
+   * @param dealerSum the dealers score.
+   * @return the amount of money to be paid out.
+   */
   private double calculateHand(Hand hand, double dealerSum) {
 
     if (hand.getSumOfDeck() == 0 || hand.getSumOfDeck() > 21) {

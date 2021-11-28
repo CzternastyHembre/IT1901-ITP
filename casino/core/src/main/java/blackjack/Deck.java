@@ -31,6 +31,11 @@ public class Deck {
     Collections.shuffle(deck);
   }
 
+  /**
+   * Generate a deck with a certain number of cards per suit.
+   *
+   * @param i number of cards in a suit.
+   */
   private void generateDeck(int i) {
     if (i != 13) {
       throw new IllegalStateException("Must be 13 of each suit");
